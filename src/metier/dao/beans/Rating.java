@@ -22,7 +22,7 @@ public class Rating implements Serializable{
 	private User user;
 	
 	@OneToOne
-	@JoinColumn(name = "idClinique" , referencedColumnName = "idClinique")
+	@JoinColumn(name = "idClinique" , referencedColumnName = "cin")
 	private Clinique clinique;
 	
 	@OneToOne

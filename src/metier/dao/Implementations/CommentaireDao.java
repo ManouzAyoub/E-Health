@@ -1,17 +1,19 @@
 package metier.dao.Implementations;
 
 import java.util.List;
-import javax.management.relation.Role;
+
 import org.hibernate.Session;
+
+import metier.dao.beans.Commentaire;
 import metier.dao.util.HibernateUtil;
 import metier.dao.util.functionStd;
 
-public class RoleImpl implements functionStd<Role, Long> {
+public class CommentaireDao implements functionStd<Commentaire, Long> {
 
 	Session session = HibernateUtil.openSession();
 	
 	@Override
-	public Role add(Role a) {
+	public Commentaire add(Commentaire a) {
 		session.beginTransaction();
 		session.save(a);
 		session.getTransaction().commit();
@@ -19,7 +21,7 @@ public class RoleImpl implements functionStd<Role, Long> {
 	}
 
 	@Override
-	public Role edit(Role a) {
+	public Commentaire edit(Commentaire a) {
 		session.beginTransaction();
 		session.merge(a);
 		session.getTransaction().commit();
@@ -29,20 +31,20 @@ public class RoleImpl implements functionStd<Role, Long> {
 	@Override
 	public void delete(Long b) {
 		session.beginTransaction();
-		Role role = getById(b);
-		session.delete(role);
+		Commentaire commentaire = getById(b);
+		session.delete(commentaire);
 		session.getTransaction().commit();
 		
 	}
 
 	@Override
-	public Role getById(Long id) {
-		return session.get(Role.class, id);
+	public Commentaire getById(Long id) {
+		return session.get(Commentaire.class, id);
 	}
 
 	@Override
-	public List<Role> getAll() {
-		return session.createQuery("select o from Role o").list();
+	public List<Commentaire> getAll() {
+		return session.createQuery("select o from Commentaire o").list();
 	}
 
 }

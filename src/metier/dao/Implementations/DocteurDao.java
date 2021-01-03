@@ -2,16 +2,17 @@ package metier.dao.Implementations;
 
 import java.util.List;
 import org.hibernate.Session;
-import metier.dao.beans.Clinique;
+
+import metier.dao.beans.Docteur;
 import metier.dao.util.HibernateUtil;
 import metier.dao.util.functionStd;
 
-public class CliniqueImpl implements functionStd<Clinique, Long> {
-
+public class DocteurDao implements functionStd<Docteur, String> {
+	
 	Session session = HibernateUtil.openSession();
 	
 	@Override
-	public Clinique add(Clinique a) {
+	public Docteur add(Docteur a) {
 		session.beginTransaction();
 		session.save(a);
 		session.getTransaction().commit();
@@ -19,7 +20,7 @@ public class CliniqueImpl implements functionStd<Clinique, Long> {
 	}
 
 	@Override
-	public Clinique edit(Clinique a) {
+	public Docteur edit(Docteur a) {
 		session.beginTransaction();
 		session.merge(a);
 		session.getTransaction().commit();
@@ -27,22 +28,21 @@ public class CliniqueImpl implements functionStd<Clinique, Long> {
 	}
 
 	@Override
-	public void delete(Long b) {
+	public void delete(String b) {
 		session.beginTransaction();
-		Clinique docteur = getById(b);
+		Docteur docteur = getById(b);
 		session.delete(docteur);
 		session.getTransaction().commit();
 		
 	}
 
 	@Override
-	public Clinique getById(Long id) {
-		return session.get(Clinique.class, id);
+	public Docteur getById(String id) {
+		return session.get(Docteur.class, id);
 	}
 
 	@Override
-	public List<Clinique> getAll() {
-		return session.createQuery("select o from Clinique o").list();
+	public List<Docteur> getAll() {
+		return session.createQuery("select o from Docteur o").list();
 	}
-
 }

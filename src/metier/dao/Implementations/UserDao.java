@@ -8,7 +8,10 @@ import metier.dao.beans.User;
 import metier.dao.util.HibernateUtil;
 import metier.dao.util.functionStd;
 
-public class UserImpl implements functionStd<User, String>{
+public class UserDao implements functionStd<User, String>{
+	
+	// je vois que nous avons pas besoin de ce class, on utilise seulement l'implémentations de fils !! 
+	// possible de le supprimer apres !!
 	
 	Session session = HibernateUtil.openSession();
 

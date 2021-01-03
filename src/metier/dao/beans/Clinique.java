@@ -10,13 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-public class Clinique implements Serializable{
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idClinique;
+@PrimaryKeyJoinColumn(name = "cin")
+public class Clinique extends User{
 	
 	@ManyToOne
 	@JoinColumn(name = "idUser" , referencedColumnName = "cin")
@@ -43,14 +41,6 @@ public class Clinique implements Serializable{
 	
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public Long getIdClinique() {
-		return idClinique;
-	}
-
-	public void setIdClinique(Long idClinique) {
-		this.idClinique = idClinique;
 	}
 	
 	

@@ -1,18 +1,18 @@
 package metier.dao.Implementations;
 
 import java.util.List;
-import org.hibernate.Session;
 
-import metier.dao.beans.Docteur;
+import org.hibernate.Session;
+import metier.dao.beans.Laboratoire;
 import metier.dao.util.HibernateUtil;
 import metier.dao.util.functionStd;
 
-public class DocteurImpl implements functionStd<Docteur, Long> {
-	
+public class LaboratoireDao implements functionStd<Laboratoire, Long>{
+
 	Session session = HibernateUtil.openSession();
 	
 	@Override
-	public Docteur add(Docteur a) {
+	public Laboratoire add(Laboratoire a) {
 		session.beginTransaction();
 		session.save(a);
 		session.getTransaction().commit();
@@ -20,7 +20,7 @@ public class DocteurImpl implements functionStd<Docteur, Long> {
 	}
 
 	@Override
-	public Docteur edit(Docteur a) {
+	public Laboratoire edit(Laboratoire a) {
 		session.beginTransaction();
 		session.merge(a);
 		session.getTransaction().commit();
@@ -30,19 +30,19 @@ public class DocteurImpl implements functionStd<Docteur, Long> {
 	@Override
 	public void delete(Long b) {
 		session.beginTransaction();
-		Docteur docteur = getById(b);
-		session.delete(docteur);
+		Laboratoire laboratoire = getById(b);
+		session.delete(laboratoire);
 		session.getTransaction().commit();
 		
 	}
 
 	@Override
-	public Docteur getById(Long id) {
-		return session.get(Docteur.class, id);
+	public Laboratoire getById(Long id) {
+		return session.get(Laboratoire.class, id);
 	}
 
 	@Override
-	public List<Docteur> getAll() {
-		return session.createQuery("select o from Docteur o").list();
+	public List<Laboratoire> getAll() {
+		return session.createQuery("select o from Laboratoire o").list();
 	}
 }

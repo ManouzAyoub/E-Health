@@ -1,22 +1,28 @@
 package metier.dao.util;
 
-import metier.dao.beans.User;
-import metier.dao.Implementations.UserImpl;
+import metier.dao.beans.Docteur;
+import metier.dao.Implementations.DocteurDao;
+import metier.dao.Implementations.UserDao;
 
 public class Test {
 	
 	public static void main(String[] args) {
 		
-		UserImpl user = new UserImpl();
+		UserDao user = new UserDao();
+		DocteurDao docteur = new DocteurDao();
 		
-		User usr = new User();
+		Docteur d = new Docteur();
 		
-		usr.setAdresse("agadir");
-		usr.setCin("jm63689");
-		usr.setNom("el gourari");
-		usr.setPrenom("youssef");
+		d.setCin("JA630898");
+		d.setAdresse("Agadir");
+		d.setNom("Zakaria");
+		d.setPrenom("Zakaria");
+		d.setName("Youssef");
+		d.setSpecialiter("Generale");
 		
-		user.add(usr);
+		Docteur result = docteur.getById("JM63689");
+		System.out.println(result);
+		docteur.add(d);
 					
 	}
 

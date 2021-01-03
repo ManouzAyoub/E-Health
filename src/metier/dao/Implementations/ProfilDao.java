@@ -4,16 +4,17 @@ import java.util.List;
 
 import org.hibernate.Session;
 
-import metier.dao.beans.Commentaire;
+import metier.dao.beans.Pharmacie;
+import metier.dao.beans.Profil;
 import metier.dao.util.HibernateUtil;
 import metier.dao.util.functionStd;
 
-public class CommentaireImpl implements functionStd<Commentaire, Long> {
+public class ProfilDao implements functionStd<Profil, Long>{
 
 	Session session = HibernateUtil.openSession();
 	
 	@Override
-	public Commentaire add(Commentaire a) {
+	public Profil add(Profil a) {
 		session.beginTransaction();
 		session.save(a);
 		session.getTransaction().commit();
@@ -21,7 +22,7 @@ public class CommentaireImpl implements functionStd<Commentaire, Long> {
 	}
 
 	@Override
-	public Commentaire edit(Commentaire a) {
+	public Profil edit(Profil a) {
 		session.beginTransaction();
 		session.merge(a);
 		session.getTransaction().commit();
@@ -31,20 +32,20 @@ public class CommentaireImpl implements functionStd<Commentaire, Long> {
 	@Override
 	public void delete(Long b) {
 		session.beginTransaction();
-		Commentaire commentaire = getById(b);
-		session.delete(commentaire);
+		Profil profil = getById(b);
+		session.delete(profil);
 		session.getTransaction().commit();
 		
 	}
 
 	@Override
-	public Commentaire getById(Long id) {
-		return session.get(Commentaire.class, id);
+	public Profil getById(Long id) {
+		return session.get(Profil.class, id);
 	}
 
 	@Override
-	public List<Commentaire> getAll() {
-		return session.createQuery("select o from Commentaire o").list();
+	public List<Profil> getAll() {
+		return session.createQuery("select o from Profil o").list();
 	}
 
 }

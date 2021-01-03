@@ -13,26 +13,13 @@ public class CliniqueDocteur implements Serializable{
 	@Id
 	private long idCliniqueDocteur;
 	
-	
 	@ManyToOne
-	@JoinColumn(name = "idUser" , referencedColumnName = "cin")
-	private User user;
-	
-	@ManyToOne
-	@JoinColumn(name = "idClinique" , referencedColumnName = "idClinique")
+	@JoinColumn(name = "idClinique" , referencedColumnName = "cin")
 	private Clinique clinique;
 	
 	@ManyToOne
-	@JoinColumn(name = "idDocteur" , referencedColumnName = "idDocteur")
+	@JoinColumn(name = "idDocteur" , referencedColumnName = "cin")
 	private Docteur docteur;
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	public Clinique getClinique() {
 		return clinique;

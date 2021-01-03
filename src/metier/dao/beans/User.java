@@ -4,10 +4,13 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User implements Serializable {
 	
 	@Id
