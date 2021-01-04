@@ -10,6 +10,11 @@ import metier.dao.util.functionStd;
 public class DocteurDao implements functionStd<Docteur, String> {
 	
 	Session session = HibernateUtil.openSession();
+	private static DocteurDao instance = null;
+	
+	private DocteurDao() {
+		
+	}
 	
 	@Override
 	public Docteur add(Docteur a) {
@@ -44,5 +49,11 @@ public class DocteurDao implements functionStd<Docteur, String> {
 	@Override
 	public List<Docteur> getAll() {
 		return session.createQuery("select o from Docteur o").list();
+	}
+	
+	public static DocteurDao getInstance() {
+	    if (instance == null)
+	                   instance = new DocteurDao();
+	    return instance;
 	}
 }

@@ -11,6 +11,11 @@ import metier.dao.util.functionStd;
 public class CommentaireDao implements functionStd<Commentaire, Long> {
 
 	Session session = HibernateUtil.openSession();
+	private static CommentaireDao instance = null;
+	
+	private CommentaireDao() {
+
+	}
 	
 	@Override
 	public Commentaire add(Commentaire a) {
@@ -45,6 +50,12 @@ public class CommentaireDao implements functionStd<Commentaire, Long> {
 	@Override
 	public List<Commentaire> getAll() {
 		return session.createQuery("select o from Commentaire o").list();
+	}
+	
+	public static CommentaireDao getInstance() {
+	    if (instance == null)
+               instance = new CommentaireDao();
+	    return instance;
 	}
 
 }

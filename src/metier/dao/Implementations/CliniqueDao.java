@@ -9,6 +9,11 @@ import metier.dao.util.functionStd;
 public class CliniqueDao implements functionStd<Clinique, Long> {
 
 	Session session = HibernateUtil.openSession();
+	private static CliniqueDao instance = null;
+	
+	private CliniqueDao() {
+
+	}
 	
 	@Override
 	public Clinique add(Clinique a) {
@@ -43,6 +48,12 @@ public class CliniqueDao implements functionStd<Clinique, Long> {
 	@Override
 	public List<Clinique> getAll() {
 		return session.createQuery("select o from Clinique o").list();
+	}
+	
+	public static CliniqueDao getInsctance() {
+		if (instance == null)
+            instance = new CliniqueDao();
+		return instance;
 	}
 
 }

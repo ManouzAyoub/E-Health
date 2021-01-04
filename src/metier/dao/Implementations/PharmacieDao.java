@@ -10,6 +10,11 @@ import metier.dao.util.functionStd;
 public class PharmacieDao implements functionStd<Pharmacie, Long> {
 
 	Session session = HibernateUtil.openSession();
+	private static PharmacieDao instance = null;
+	
+	private PharmacieDao() {
+		
+	}
 	
 	@Override
 	public Pharmacie add(Pharmacie a) {
@@ -44,5 +49,11 @@ public class PharmacieDao implements functionStd<Pharmacie, Long> {
 	@Override
 	public List<Pharmacie> getAll() {
 		return session.createQuery("select o from Pharmacie o").list();
+	}
+	
+	public static PharmacieDao getInstance() {
+	    if (instance == null)
+               instance = new PharmacieDao();
+	    return instance;
 	}
 }

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
@@ -23,6 +24,28 @@ public class Clinique extends User{
 	@ManyToMany
 	Set<Docteur> works;
 	
+	@OneToMany
+	Set<Rating> rating;
+	
+	@OneToMany
+	Set<Commentaire> comments;
+	
+	public Set<Rating> getRating() {
+		return rating;
+	}
+
+	public void setRating(Set<Rating> rating) {
+		this.rating = rating;
+	}
+
+	public Set<Commentaire> getComments() {
+		return comments;
+	}
+
+	public void setComments(Set<Commentaire> comments) {
+		this.comments = comments;
+	}
+
 	public Clinique() {
 		super();
 	}

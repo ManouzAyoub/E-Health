@@ -2,6 +2,7 @@ package metier.dao.Implementations;
 
 import java.util.List;
 
+
 import org.hibernate.Session;
 
 import metier.dao.beans.Rating;
@@ -11,6 +12,11 @@ import metier.dao.util.functionStd;
 public class RatingDao implements functionStd<Rating, Long> {
 
 	Session session = HibernateUtil.openSession();
+	private static RatingDao instance = null;
+	
+	private RatingDao() {
+		
+	}
 	
 	@Override
 	public Rating add(Rating a) {
@@ -45,6 +51,12 @@ public class RatingDao implements functionStd<Rating, Long> {
 	@Override
 	public List<Rating> getAll() {
 		return  session.createQuery("select o from Rating o").list();
+	}
+	
+	public static RatingDao getInstance() {
+	    if (instance == null)
+               instance = new RatingDao();
+	    return instance;
 	}
 
 }

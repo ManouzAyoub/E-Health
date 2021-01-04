@@ -21,23 +21,23 @@ public class Rating implements Serializable{
 	@JoinColumn(name = "idUser" , referencedColumnName = "cin")
 	private User user;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idClinique" , referencedColumnName = "cin")
 	private Clinique clinique;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idHopital" , referencedColumnName = "idHopital")
 	private Hopital hopital;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idLaboratoire" , referencedColumnName = "code")
 	private Laboratoire laboratoire;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idPharmacie" , referencedColumnName = "code")
 	private Pharmacie pharmacie;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "idCabinet" , referencedColumnName = "code")
 	private Cabinet cabinet;
 	

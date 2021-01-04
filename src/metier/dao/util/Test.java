@@ -9,11 +9,11 @@ public class Test {
 	public static void main(String[] args) {
 		
 		UserDao user = new UserDao();
-		DocteurDao docteur = new DocteurDao();
+		DocteurDao docteur = DocteurDao.getInstance();
 		
 		Docteur d = new Docteur();
 		
-		d.setCin("JA630898");
+		d.setCin("JC630898");
 		d.setAdresse("Agadir");
 		d.setNom("Zakaria");
 		d.setPrenom("Zakaria");

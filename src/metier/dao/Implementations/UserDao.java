@@ -14,6 +14,11 @@ public class UserDao implements functionStd<User, String>{
 	// possible de le supprimer apres !!
 	
 	Session session = HibernateUtil.openSession();
+	private static UserDao instance = null;
+	
+	private UserDao() {
+		
+	}
 
 	@Override
 	public User add(User a) {
@@ -49,6 +54,10 @@ public class UserDao implements functionStd<User, String>{
 		return session.get(User.class, id);
 	}
 	
-	
+	public static UserDao getInstance() {
+	    if (instance == null)
+               instance = new UserDao();
+	    return instance;
+	}
 
 }

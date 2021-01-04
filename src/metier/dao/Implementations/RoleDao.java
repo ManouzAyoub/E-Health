@@ -9,6 +9,11 @@ import metier.dao.util.functionStd;
 public class RoleDao implements functionStd<Role, Long> {
 
 	Session session = HibernateUtil.openSession();
+	private static RoleDao instance = null;
+	
+	private RoleDao() {
+		
+	}
 	
 	@Override
 	public Role add(Role a) {
@@ -43,6 +48,12 @@ public class RoleDao implements functionStd<Role, Long> {
 	@Override
 	public List<Role> getAll() {
 		return session.createQuery("select o from Role o").list();
+	}
+	
+	public static RoleDao getInstance() {
+	    if (instance == null)
+               instance = new RoleDao();
+	    return instance;
 	}
 
 }

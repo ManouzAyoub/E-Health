@@ -10,6 +10,11 @@ import metier.dao.util.functionStd;
 public class LaboratoireDao implements functionStd<Laboratoire, Long>{
 
 	Session session = HibernateUtil.openSession();
+	private static LaboratoireDao instance = null;
+	
+	private LaboratoireDao() {
+		
+	}
 	
 	@Override
 	public Laboratoire add(Laboratoire a) {
@@ -44,5 +49,11 @@ public class LaboratoireDao implements functionStd<Laboratoire, Long>{
 	@Override
 	public List<Laboratoire> getAll() {
 		return session.createQuery("select o from Laboratoire o").list();
+	}
+	
+	public static LaboratoireDao getInstance() {
+	    if (instance == null)
+               instance = new LaboratoireDao();
+	    return instance;
 	}
 }

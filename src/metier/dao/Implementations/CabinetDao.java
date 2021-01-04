@@ -11,6 +11,11 @@ import metier.dao.util.functionStd;
 public class CabinetDao implements functionStd<Cabinet, Long> {
 
 	Session session = HibernateUtil.openSession();
+	private static CabinetDao instance = null;
+	
+	private CabinetDao() {
+
+	}
 	
 	@Override
 	public Cabinet add(Cabinet a) {
@@ -45,5 +50,11 @@ public class CabinetDao implements functionStd<Cabinet, Long> {
 	@Override
 	public List<Cabinet> getAll() {
 		return session.createQuery("select o from Cabinet o").list();
+	}
+	
+	public static CabinetDao getInsctance() {
+		if (instance == null)
+            instance = new CabinetDao();
+		return instance;
 	}
 }
