@@ -10,62 +10,70 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance( strategy = InheritanceType.JOINED )
 public class User implements Serializable {
-	
-	@Id
-	private String cin;
-	private String nom;
-	private String prenom;
-	private String adresse;
-	
-	@ManyToOne
-	@JoinColumn(name = "idRole" , referencedColumnName = "idRole")
-	private Role role;
-	
-	public User() {
-		super();
-	}
-	
-	public Role getRole() {
-		return role;
-	}
-	
-	public void setRole(Role role) {
-		this.role = role;
-	}
 
-	public String getCin() {
-		return cin;
-	}
+    @Id
+    private String cin;
+    private String firstname;
+    private String lastname;
+    private String email;
+    private String password;
 
-	public void setCin(String cin) {
-		this.cin = cin;
-	}
+    @ManyToOne
+    @JoinColumn( name = "idRole", referencedColumnName = "idRole" )
+    private Role   role;
 
-	public String getNom() {
-		return nom;
-	}
+    public User() {
+        super();
+    }
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
+    public Role getRole() {
+        return role;
+    }
 
-	public String getPrenom() {
-		return prenom;
-	}
+    public void setRole( Role role ) {
+        this.role = role;
+    }
 
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
+    public String getCin() {
+        return cin;
+    }
 
-	public String getAdresse() {
-		return adresse;
-	}
+    public void setCin( String cin ) {
+        this.cin = cin;
+    }
 
-	public void setAdresse(String adresse) {
-		this.adresse = adresse;
-	}
-	
-	
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname( String firstname ) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname( String lastname ) {
+        this.lastname = lastname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail( String email ) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword( String password ) {
+        this.password = password;
+    }
+
 }
