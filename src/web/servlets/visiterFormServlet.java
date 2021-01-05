@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import metier.dao.Implementations.UserDao;
 import metier.dao.beans.User;
 import metier.services.UserImpl;
 
@@ -40,6 +41,8 @@ public class visiterFormServlet extends HttpServlet {
         request.setAttribute( ATT_FORM, form );
 
         if ( form.getErreurs().isEmpty() ) {
+            UserDao user = UserDao.getInstance();
+            user.add( visiter );
             this.getServletContext().getRequestDispatcher( SUCESS ).forward(
                     request, response );
 
