@@ -41,8 +41,10 @@ public class visiterFormServlet extends HttpServlet {
         request.setAttribute( ATT_FORM, form );
 
         if ( form.getErreurs().isEmpty() ) {
+
             UserDao user = UserDao.getInstance();
             user.add( visiter );
+
             this.getServletContext().getRequestDispatcher( SUCESS ).forward(
                     request, response );
 
