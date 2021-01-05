@@ -16,7 +16,7 @@ public class Test {
         u.setFirstname( "salma" );
         u.setLastname( "jaouhari" );
         u.setPassword( "health123" );
-        u.setCin( "JM" );
+        u.setId( "101" );
         user.add( u );
 
         // Docteur d = new Docteur();

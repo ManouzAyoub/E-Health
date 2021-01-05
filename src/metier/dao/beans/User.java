@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 public class User implements Serializable {
 
     @Id
-    private String cin;
+    private String id;
     private String firstname;
     private String lastname;
     private String email;
@@ -36,12 +36,12 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public String getCin() {
-        return cin;
+    public String getId() {
+        return id;
     }
 
-    public void setCin( String cin ) {
-        this.cin = cin;
+    public void setId( String id ) {
+        this.id = id;
     }
 
     public String getFirstname() {

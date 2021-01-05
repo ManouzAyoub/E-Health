@@ -11,46 +11,46 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Rating implements Serializable{
+public class Rating implements Serializable {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idRating;
-	
-	@OneToOne
-	@JoinColumn(name = "idUser" , referencedColumnName = "cin")
-	private User user;
-	
-	@ManyToOne
-	@JoinColumn(name = "idClinique" , referencedColumnName = "cin")
-	private Clinique clinique;
-	
-	@ManyToOne
-	@JoinColumn(name = "idHopital" , referencedColumnName = "idHopital")
-	private Hopital hopital;
-	
-	@ManyToOne
-	@JoinColumn(name = "idLaboratoire" , referencedColumnName = "code")
-	private Laboratoire laboratoire;
-	
-	@ManyToOne
-	@JoinColumn(name = "idPharmacie" , referencedColumnName = "code")
-	private Pharmacie pharmacie;
-	
-	@ManyToOne
-	@JoinColumn(name = "idCabinet" , referencedColumnName = "code")
-	private Cabinet cabinet;
-	
-	public Rating() {
-		super();
-	}
-	
-	public void setIdRating(long idRating) {
-		this.idRating = idRating;
-	}
-	
-	public long getIdRating() {
-		return idRating;
-	}
-	
+    @Id
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    private long        idRating;
+
+    @OneToOne
+    @JoinColumn( name = "idUser", referencedColumnName = "id" )
+    private User        user;
+
+    @ManyToOne
+    @JoinColumn( name = "idClinique", referencedColumnName = "cin" )
+    private Clinique    clinique;
+
+    @ManyToOne
+    @JoinColumn( name = "idHopital", referencedColumnName = "idHopital" )
+    private Hopital     hopital;
+
+    @ManyToOne
+    @JoinColumn( name = "idLaboratoire", referencedColumnName = "code" )
+    private Laboratoire laboratoire;
+
+    @ManyToOne
+    @JoinColumn( name = "idPharmacie", referencedColumnName = "code" )
+    private Pharmacie   pharmacie;
+
+    @ManyToOne
+    @JoinColumn( name = "idCabinet", referencedColumnName = "code" )
+    private Cabinet     cabinet;
+
+    public Rating() {
+        super();
+    }
+
+    public void setIdRating( long idRating ) {
+        this.idRating = idRating;
+    }
+
+    public long getIdRating() {
+        return idRating;
+    }
+
 }
