@@ -16,12 +16,8 @@ import javax.persistence.ManyToOne;
 public class User implements Serializable {
 
     @Id
-<<<<<<< HEAD
-    private String id;
-=======
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cin;
->>>>>>> 6c6f451704ae988626cb9b17a3010973d71d86ad
+    @GeneratedValue( strategy = GenerationType.IDENTITY )
+    private Long   cin;
     private String firstname;
     private String lastname;
     private String email;
@@ -43,21 +39,12 @@ public class User implements Serializable {
         this.role = role;
     }
 
-<<<<<<< HEAD
-    public String getId() {
-        return id;
-    }
-
-    public void setId( String id ) {
-        this.id = id;
-=======
     public Long getCin() {
         return cin;
     }
 
     public void setCin( Long cin ) {
         this.cin = cin;
->>>>>>> 6c6f451704ae988626cb9b17a3010973d71d86ad
     }
 
     public String getFirstname() {

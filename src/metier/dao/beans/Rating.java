@@ -18,7 +18,7 @@ public class Rating implements Serializable {
     private long        idRating;
 
     @OneToOne
-    @JoinColumn( name = "idUser", referencedColumnName = "id" )
+    @JoinColumn( name = "idUser", referencedColumnName = "cin" )
     private User        user;
 
     @ManyToOne
