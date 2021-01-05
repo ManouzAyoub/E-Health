@@ -3,6 +3,8 @@ package metier.dao.beans;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -14,7 +16,8 @@ import javax.persistence.ManyToOne;
 public class User implements Serializable {
 
     @Id
-    private String cin;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long cin;
     private String firstname;
     private String lastname;
     private String email;
@@ -36,11 +39,11 @@ public class User implements Serializable {
         this.role = role;
     }
 
-    public String getCin() {
+    public Long getCin() {
         return cin;
     }
 
-    public void setCin( String cin ) {
+    public void setCin( Long cin ) {
         this.cin = cin;
     }
 

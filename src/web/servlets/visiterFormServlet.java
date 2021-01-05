@@ -32,10 +32,11 @@ public class visiterFormServlet extends HttpServlet {
         this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
     }
 
-    protected void doPost( HttpServletRequest request, HttpServletResponse response )
-            throws ServletException, IOException {
-        UserImpl form = UserImpl.getInstance();
-        User visiter = form.visitorFormService( request );
+    protected void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
+        
+    	UserImpl form = UserImpl.getInstance();
+        
+    	User visiter = form.visitorFormService( request );
 
         request.setAttribute( ATT_VISITER, visiter );
         request.setAttribute( ATT_FORM, form );
@@ -43,6 +44,7 @@ public class visiterFormServlet extends HttpServlet {
         if ( form.getErreurs().isEmpty() ) {
 
             UserDao user = UserDao.getInstance();
+            
             user.add( visiter );
 
             this.getServletContext().getRequestDispatcher( SUCESS ).forward(
