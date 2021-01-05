@@ -8,7 +8,7 @@ import metier.dao.beans.User;
 import metier.dao.util.HibernateUtil;
 import metier.dao.util.functionStd;
 
-public class UserDao implements functionStd<User, String>{
+public class UserDao implements functionStd<User, Long>{
 	
 	// je vois que nous avons pas besoin de ce class, on utilise seulement l'implémentations de fils !! 
 	// possible de le supprimer apres !!
@@ -37,7 +37,7 @@ public class UserDao implements functionStd<User, String>{
 	}
 
 	@Override
-	public void delete(String b) {
+	public void delete(Long b) {
 		session.beginTransaction();
 		User user = getById(b);
 		session.delete(user);
@@ -50,7 +50,7 @@ public class UserDao implements functionStd<User, String>{
 	}
 
 	@Override
-	public User getById(String id) {
+	public User getById(Long id) {
 		return session.get(User.class, id);
 	}
 	
