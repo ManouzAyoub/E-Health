@@ -9,6 +9,7 @@
 <title>Visiter's selected information</title>
 </head>
 <body>
+<p> do u see me</p>
         <div id="corps">
             <p class="rs">${ form.getResultat() }</p>
             <p>Prénom : <c:out value="${visiter.firstname}"/></p>
