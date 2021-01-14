@@ -17,7 +17,6 @@ import javax.persistence.PrimaryKeyJoinColumn;
 public class Laboratoire extends Profil{
 
 	private String name;
-	private String code;
 	
 	@OneToMany
 	Set<Rating> rating;
@@ -43,14 +42,6 @@ public class Laboratoire extends Profil{
 	
 	public void setRating(Set<Rating> rating) {
 		this.rating = rating;
-	}
-	
-	public String getCode() {
-		return code;
-	}
-	
-	public void setCode(String code) {
-		this.code = code;
 	}
 	
 	public String getName() {

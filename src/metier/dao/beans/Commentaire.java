@@ -33,15 +33,15 @@ public class Commentaire implements Serializable{
 	private Hopital hopital;
 	
 	@ManyToOne
-	@JoinColumn(name = "idLaboratoire" , referencedColumnName = "code")
+	@JoinColumn(name = "idLaboratoire" , referencedColumnName = "idProfil")
 	private Laboratoire laboratoire;
 	
 	@ManyToOne
-	@JoinColumn(name = "idPharmacie" , referencedColumnName = "code")
+	@JoinColumn(name = "idPharmacie" , referencedColumnName = "idProfil")
 	private Pharmacie pharmacie;
 	
 	@ManyToOne
-	@JoinColumn(name = "idCabinet" , referencedColumnName = "code")
+	@JoinColumn(name = "idCabinet" , referencedColumnName = "idProfil")
 	private Cabinet cabinet;
 	
 

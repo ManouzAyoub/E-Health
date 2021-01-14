@@ -6,7 +6,7 @@
 	<title>Ajouter Cabinet</title>
 </head>
 <body>
-	<form action="<%=request.getContextPath()%>/addCabinet" method="post">
+	<form action="addCabinet" method="post">
 		<label>Name Cabinet:</label>
 		<input type="text" name="name"/><br>
 		<label>Adresse:</label>
@@ -16,25 +16,6 @@
 		<button type="reset"> Remettre à zéro</button>
 	</form>
 	<br>
-	<br>
-	<br>
-	<table>
-		<thead>
-			<tr>
-		    <th>id</th>
-		    <th>name</th>
-		    <th>adresse</th>
-		  </tr>
-		</thead>
-		<tbody>
-			<c:forEach var="entry" items="${cabinets}">
-				<tr>
-				    <td>${ entry.getIdProfil()}</td>
-				    <td>${ entry.getName()}</td>
-				    <td>${ entry.getAdresse()}</td>
-				  </tr>
-			</c:forEach>
-		</tbody>
-	</table>
+	
 </body>
 </html>

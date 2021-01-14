@@ -23,7 +23,7 @@ public abstract class Profil implements Serializable{
 	private long idProfil;
 	
 	@OneToOne
-	@JoinColumn(name = "idDocteur" ,nullable = false, referencedColumnName = "cin")
+	@JoinColumn(name = "idDocteur" ,nullable = true, referencedColumnName = "cin")
 	private Docteur docteur;
 	
 	public Profil() {

@@ -7,7 +7,7 @@ import metier.dao.beans.Docteur;
 import metier.dao.util.HibernateUtil;
 import metier.dao.util.functionStd;
 
-public class DocteurDao implements functionStd<Docteur, String> {
+public class DocteurDao implements functionStd<Docteur, Long> {
 	
 	Session session = HibernateUtil.openSession();
 	private static DocteurDao instance = null;
@@ -33,7 +33,7 @@ public class DocteurDao implements functionStd<Docteur, String> {
 	}
 
 	@Override
-	public void delete(String b) {
+	public void delete(Long b) {
 		session.beginTransaction();
 		Docteur docteur = getById(b);
 		session.delete(docteur);
@@ -42,7 +42,7 @@ public class DocteurDao implements functionStd<Docteur, String> {
 	}
 
 	@Override
-	public Docteur getById(String id) {
+	public Docteur getById(Long id) {
 		return session.get(Docteur.class, id);
 	}
 
