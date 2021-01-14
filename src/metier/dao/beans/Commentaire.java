@@ -1,6 +1,7 @@
 package metier.dao.beans;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,6 +17,8 @@ public class Commentaire implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idCommentaire;
+	private String commentaire;
+	private Date date_commentaire;
 	
 	@OneToOne
 	@JoinColumn(name = "idUser" , referencedColumnName = "cin")
@@ -40,8 +43,6 @@ public class Commentaire implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "idCabinet" , referencedColumnName = "code")
 	private Cabinet cabinet;
-	
-	
 	
 
 	public User getUser() {
@@ -104,5 +105,20 @@ public class Commentaire implements Serializable{
 		this.idCommentaire = idCommentaire;
 	}
 	
+	public String getCommentaire() {
+		return commentaire;
+	}
 	
+	public void setCommentaire(String commentaire) {
+		this.commentaire = commentaire;
+	}
+	
+	public Date getDate_commentaire() {
+		return date_commentaire;
+	}
+	
+	public void setDate_commentaire(Date date_commentaire) {
+		this.date_commentaire = date_commentaire;
+	}
+		
 }

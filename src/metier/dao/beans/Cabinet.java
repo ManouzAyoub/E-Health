@@ -18,7 +18,7 @@ public class Cabinet extends Profil{
 
 
 	private String name;
-	private String code;
+	private String adresse;
 	
 	@OneToMany
 	Set<Rating> rating;
@@ -46,12 +46,12 @@ public class Cabinet extends Profil{
 		super();
 	}
 	
-	public String getCode() {
-		return code;
+	public String getAdresse() {
+		return adresse;
 	}
 	
-	public void setCode(String code) {
-		this.code = code;
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
 	
 	public String getName() {
