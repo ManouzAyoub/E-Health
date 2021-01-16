@@ -16,11 +16,20 @@
 		<tbody>
 			<c:forEach var="entry" items="${c}">
 				<tr>
-				    <td>${ entry.value.getName()}</td>
-				    <td>${ entry.value.getAdresse()}</td>
+					<td id="idProfil">${ entry.getIdProfil()}</td>
+				    <td >${ entry.getName()}</td>
+				    <td>${ entry.getAdresse()}</td>
+				    <td>
+				    	<a href="<c:url value="/navigation"> <c:param name="cabinet" value="${ entry }" /></c:url>">
+				    		test
+				    	</a>	
+				    </td>
 			  	</tr>
 			</c:forEach>
 		</tbody>
 	</table>
+	<script>
+		
+	</script>
 </body>
 </html>
