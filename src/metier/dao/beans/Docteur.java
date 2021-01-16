@@ -1,5 +1,6 @@
 package metier.dao.beans;
 
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -17,8 +18,14 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name = "cin")
 public class Docteur extends User{
 	
-	private String name;
-	private String specialiter;
+	    private String speciality;
+	    private String languages;
+	    private String practice;
+	    private String tel;
+ //	    private InputStream id_scan; 
+	    private String profile_image;
+//	    private InputStream med_certificate;
+	    private String local_contract;
 	
 	@ManyToOne
 	@JoinColumn(name = "idUser" , referencedColumnName = "cin")
@@ -35,6 +42,7 @@ public class Docteur extends User{
 	@ManyToMany
 	Set<Clinique> travaille;
 	
+
 	public Docteur() {
 		super();
 	}
@@ -55,20 +63,69 @@ public class Docteur extends User{
 		this.user = user;
 	}
 
-	public String getName() {
-		return name;
+	public String getSpeciality() {
+		return speciality;
 	}
-	
-	public void setName(String name) {
-		this.name = name;
+
+	public void setSpeciality(String speciality) {
+		this.speciality = speciality;
 	}
-	
-	public String getSpecialiter() {
-		return specialiter;
+
+	public String getLanguages() {
+		return languages;
 	}
-	
-	public void setSpecialiter(String specialiter) {
-		this.specialiter = specialiter;
+
+	public void setLanguages(String languages) {
+		this.languages = languages;
 	}
+
+	public String getPractice() {
+		return practice;
+	}
+
+	public void setPractice(String practice) {
+		this.practice = practice;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+//	public InputStream getId_scan() {
+//		return id_scan;
+//	}
+//
+//	public void setId_scan(InputStream id_scan) {
+//		this.id_scan = id_scan;
+//	}
+
+	public String getProfile_image() {
+		return profile_image;
+	}
+
+	public void setProfile_image(String profile_image) {
+		this.profile_image = profile_image;
+	}
+
+//	public InputStream getMed_certificate() {
+//		return med_certificate;
+//	}
+//
+//	public void setMed_certificate(InputStream med_certificate) {
+//		this.med_certificate = med_certificate;
+//	}
+
+	public String getLocal_contract() {
+		return local_contract;
+	}
+
+	public void setLocal_contract(String local_contract) {
+		this.local_contract = local_contract;
+	}
+
 	
 }

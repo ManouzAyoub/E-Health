@@ -1,3 +1,4 @@
+
 (function($) {
 
     $(".toggle-password").click(function() {

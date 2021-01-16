@@ -2,7 +2,6 @@
 display-flex, .display-flex, .display-flex-center {
   display: flex;
   display: -webkit-flex; }
-
 /* @extend list-type-ulli; */
 list-type-ulli {
   list-style-type: none;
@@ -137,10 +136,10 @@ body {
   color: #222;
   font-weight: 400;
   font-family: 'Montserrat';
-    background-image: 
+   /* background-image: 
         linear-gradient(to bottom, rgba(0,0, 225, 0.3), rgba(0,0, 225, 0.3)), 
-        url("../images/patient.jpg");
-  /*background-image: url("../images/signup-bg.jpg");*/
+        url("../images/patient.jpg");*/
+  background-image: url("../images/bg.gif");
   background-repeat: no-repeat;
   background-size: cover;
   -moz-background-size: cover;
@@ -154,6 +153,11 @@ body {
   width: 660px;
   position: relative;
   margin: 0 auto; }
+  
+  .selectpicker {
+  padding-top:10px;
+  padding-down:10px;
+  }
 
 .display-flex {
   justify-content: space-between;
@@ -197,12 +201,66 @@ body {
   -o-border-radius: 10px;
   -ms-border-radius: 10px;
   padding: 50px 85px; }
+  
+            #upload-border{
+            height:30px;
+              width: 100%;
+            border:1px solid #dae0e5;
+            display:inline-block;
+            border-radius: 4px;
+            padding-left:7px;
+            margin:20px 0;
+          }
+          
+          #upload-name1,
+          #upload-name2,
+          #upload-name3,#upload-name4{
+            height:70%;
+            border:none;
+            width:351px;
+          }
+          
+          #upload-button1,
+          #upload-button2,
+          #upload-button3,#upload-button4{
+            height:95%;
+            width:96px;
+            justify-content: center;
+            border:none;
+            font-size: 13px;
+            font-weight: 400;
+            background:#f8f9fa;
+            color:#212529;
+            cursor:pointer;
+          }
+          
+          #upload-name1:focus,#upload-name2:focus,
+          #upload-name3:focus,#upload-name4:focus
+           #upload-button1:focus,upload-button2:focus,
+           upload-button3:focus,upload-button4:focus{
+            outline:none;
+          }
+  
+  .custom-file-input.selected:lang(en)::after {
+  content: "" !important;
+}
+
+.custom-file {
+  overflow: hidden;
+}
+
+.custom-file-input {
+  white-space: nowrap;
+}
 
 .form-group {
   overflow: hidden;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+   }
 
+ 
 .form-input {
+  height:20px;
   width: 100%;
   border: 1px solid #ebebeb;
   border-radius: 5px;
@@ -328,7 +386,17 @@ input[type=checkbox]:not(old):checked + label > span:before {
   font-size: 12px;
   font-weight: 600;
   color: #555; }
-
+  
+  .label-file{
+  padding-top:6px;
+  padding-bottom:0px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #555;
+  }
+.upload-container{
+	margin-bottom:0;
+}
 .term-service {
   color: #555; }
 
@@ -350,6 +418,48 @@ input[type=checkbox]:not(old):checked + label > span:before {
   position: relative;
   z-index: 2;
   color: #555; }
+  /*dropdown*/
+.select-css {
+	display: block;
+	font-size: 13px;
+	font-weight: 600;
+	color: #555;
+	line-height: 1.3;
+	padding: .6em 1.4em .5em .8em;
+	width: 100%;
+	max-width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	border: 1px solid #aaa;
+	box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+	border-radius: .5em;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: #fff;
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+	  linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+	background-repeat: no-repeat, repeat;
+	background-position: right .7em top 50%, 0 0;
+	background-size: .65em auto, 100%;
+}
+.select-css::-ms-expand {
+	display: none;
+}
+.select-css:hover {
+	border-color: #888;
+}
+.select-css:focus {
+	border-color: #aaa;
+	box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+	box-shadow: 0 0 0 3px -moz-mac-focusring;
+	color: #222;
+	outline: none;
+}
+.select-css option {
+	font-weight:normal;
+}
+/*dropdown*/
 
 @media screen and (max-width: 768px) {
   .container {

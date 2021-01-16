@@ -16,9 +16,7 @@ public class Test {
         docteur.setEmail("youssef@gmail.com");
         docteur.setFirstname("youssef");
         docteur.setLastname("el gourari");
-        docteur.setSpecialiter("test");
-        docteur.setName("test");
-        
+  
         DocteurDao dao = DocteurDao.getInstance();
         dao.add(docteur);
 
