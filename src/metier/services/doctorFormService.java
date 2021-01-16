@@ -67,7 +67,7 @@ public class doctorFormService {
             System.out.println(filepart1.getContentType());
             
     		inputStream1=filepart1.getInputStream();
-
+    		
 		    }
 		}
 		if(filepart2!=null) {
