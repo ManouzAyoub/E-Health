@@ -8,17 +8,12 @@ public class Test {
 
     public static void main( String[] args ) {
 
-        UserDao user = UserDao.getInstance();
+        DocteurDao doctorDao = DocteurDao.getInstance();
 
         Docteur docteur = new Docteur();
         
-        docteur.setCin(1L);
-        docteur.setEmail("youssef@gmail.com");
-        docteur.setFirstname("youssef");
-        docteur.setLastname("el gourari");
-  
-        DocteurDao dao = DocteurDao.getInstance();
-        dao.add(docteur);
+         docteur=doctorDao.getById(4L);
+         System.out.println(docteur.getId_scan());  
 
     }
 

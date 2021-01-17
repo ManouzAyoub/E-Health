@@ -1,8 +1,10 @@
 package metier.services;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,14 +53,18 @@ public class doctorFormService {
         String speciality = request.getParameter( CHAMP_SPECIALITY );
         String[] languages = request.getParameterValues( CHAMP_LANGUAGES );
         String practice=request.getParameter(CHAMP_PRACTICE);
-        /*Part medfile=request.getPart(CHAMP_MED_CERTIFICATE);
+        
+        Part medfile=request.getPart(CHAMP_MED_CERTIFICATE);
         Part localfile=request.getPart(CHAMP_LOCAL_CONTRACT);
-        Part photofile=request.getPart(CHAMP_PROFILE_IMAGE);*/
+        Part photofile=request.getPart(CHAMP_PROFILE_IMAGE);
 		List<Part> fileParts = request.getParts().stream().filter(part -> CHAMP_ID_SCAN.equals(part.getName()) && part.getSize() > 0).collect(Collectors.toList());
+		
 		InputStream inputStream1=null,inputStream2=null,inputStream3=null,inputStream4=null;
+		
 		Docteur doctor = new Docteur();
-		/*Part filepart1=request.getPart(CHAMP_ID_SCAN);*/
-		Part filepart2=request.getPart(CHAMP_MED_CERTIFICATE);
+		
+		byte[] bite1=null,bite2=null,bite3=null,bite4=null;
+		
         for(Part filepart1 : fileParts) {
 		if(filepart1!=null) {
 		      // prints out some information for debugging
@@ -67,54 +73,36 @@ public class doctorFormService {
             System.out.println(filepart1.getContentType());
             
     		inputStream1=filepart1.getInputStream();
-    		
+    		bite1=convert(inputStream1);
+	
 		    }
 		}
-		if(filepart2!=null) {
-		      // prints out some information for debugging
-          System.out.println(filepart2.getName());
-          System.out.println(filepart2.getSize());
-          System.out.println(filepart2.getContentType());
-          
-  		inputStream2=filepart2.getInputStream();
-
-		}
-        /*for (int i=0; i<fileParts.size()-1; i++) {
-		    Part input1=fileParts.get(i);
-		    if(input1!=null) {
-			    System.out.println(input1.getName());
-			    System.out.println(input1.getSize());
-			    System.out.println(input1.getContentType());
-
-		    inputStream1=input1.getInputStream();}*/
-            
-		   /* Part input2=fileParts.get(i+1);
-		    if(input2!=null) {
-			    System.out.println(input2.getName());
-			    System.out.println(input2.getSize());
-			    System.out.println(input2.getContentType());
-		    inputStream2=input1.getInputStream();}
 		    
 		    if(medfile!=null) {
 			    System.out.println(medfile.getName());
 			    System.out.println(medfile.getSize());
 			    System.out.println(medfile.getContentType());
-		    inputStream3=medfile.getInputStream();}
+		    inputStream2=medfile.getInputStream();
+    		bite2=convert(inputStream2);
+             }
 		    
 		    if(localfile!=null) {
 			    System.out.println(localfile.getName());
 			    System.out.println(localfile.getSize());
 			    System.out.println(localfile.getContentType());
-		    inputStream3=localfile.getInputStream();}
+		    inputStream3=localfile.getInputStream();
+    		bite3=convert(inputStream3);
+
+		    }
 		    
 		    if(photofile!=null) {
 			    System.out.println(photofile.getName());
 			    System.out.println(photofile.getSize());
 			    System.out.println(photofile.getContentType());
-		    inputStream4=photofile.getInputStream();}
-        }*/
-       /* doctor.setId_scan(inputStream1);
-        doctor.setMed_certificate(inputStream2);*/
+		    inputStream4=photofile.getInputStream();
+    		bite4=convert(inputStream4);
+            }
+        
         try {
             validationEmail( email );
         } catch ( Exception e ) {
@@ -152,8 +140,14 @@ public class doctorFormService {
         doctor.setSpeciality(speciality);
         doctor.setLanguages(languages[0]);
         doctor.setPractice(practice);
+        doctor.setId_scan(bite1);
+        doctor.setMed_certificate(bite2);
+        doctor.setLocal_contract(bite3);
+        doctor.setProfile_image(bite4);
         return doctor;
     }
+    
+
 
     private void validationPrenom( String firstname ) throws Exception {
         if ( firstname != null ) {
@@ -191,5 +185,17 @@ public class doctorFormService {
         } else {
             throw new Exception( "Veuillez saisir votre numero de Telephone" );
         }
+    }
+    
+    private byte[] convert(InputStream inputstream) throws IOException {
+		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+		int nRead;
+		byte[] data = new byte[16384];
+
+		while ((nRead = inputstream.read(data, 0, data.length)) != -1) {
+		  buffer.write(data, 0, nRead);
+		}
+
+		return buffer.toByteArray();
     }
 }

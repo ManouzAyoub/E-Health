@@ -1,5 +1,9 @@
 package metier.dao.Implementations;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 import org.hibernate.Session;
 
@@ -8,7 +12,7 @@ import metier.dao.util.HibernateUtil;
 import metier.dao.util.functionStd;
 
 public class DocteurDao implements functionStd<Docteur, Long> {
-	
+
 	Session session = HibernateUtil.openSession();
 	private static DocteurDao instance = null;
 	
