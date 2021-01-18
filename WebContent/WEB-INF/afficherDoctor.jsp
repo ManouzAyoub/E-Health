@@ -18,8 +18,8 @@
             <p>Tel : <c:out value="${ docteur.speciality }"/></p>
             <p>Tel : <c:out value="${ docteur.languages }"/></p>
             <p>Tel : <c:out value="${ docteur.practice }"/></p>
-			<div style="width:25%; height:25%"> <img src="${ docteur.id_scan }"/> </div>  
-			<img src="data:image/png;base64,${ docteur.Base64image }"/>          
+			<%-- <div style="width:25%; height:25%"> <img src="${ docteur.id_scan }"/> </div> --%>  
+			<img src="data:image/png;base64,${docteur.getBase64image()}"/>          
             
              <%-- <c:forEach items="${ doctor.id_scan }" var="imagename">
              <p>ID scan :</p>
