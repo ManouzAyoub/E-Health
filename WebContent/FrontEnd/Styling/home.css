@@ -4,7 +4,6 @@
     margin: 0px;
     padding : 0px ;
     box-sizing: border-box;
-
 }
 /*Navbar styling */
 nav{
@@ -14,6 +13,7 @@ nav{
     min-height: 8vh;
     background-color: #EDF8FF;
     font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
 }
 .logo{
     color : #24385A;
@@ -63,9 +63,9 @@ nav{
    
 }
 @media screen and (max-width:800px){
-    body{
-       overflow: hidden;
-       overflow-x: hidden;
+    body {
+       /* overflow: hidden; */
+       /* overflow-x: hidden; */
     }
     .nav-links div {
         display: flex;
@@ -121,6 +121,22 @@ nav{
 }
 /*footer styling */
 footer{
-    
+    position: absolute;
+    bottom:0;
+    width: 100vw;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.5px;
+    background-color:#EDF8FF;
+    box-shadow: 8px 11px 15px 5px #27AAF0;
+}
+footer .container .row div h5{
+        font:20px 'Gilroy', sans-serif;
+        letter-spacing: 2px;
+        color:#24385A;
+        
+}
+footer .container .row div ul li a i:hover{
+    color:#F4AC25;
+    transition : 0.3s ease;
 }
 
