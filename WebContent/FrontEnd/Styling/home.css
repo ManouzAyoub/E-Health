@@ -4,6 +4,7 @@
     margin: 0px;
     padding : 0px ;
     box-sizing: border-box;
+    /* background-color: #FFB37E; */
 }
 /*Navbar styling */
 nav{
@@ -139,4 +140,69 @@ footer .container .row div ul li a i:hover{
     color:#F4AC25;
     transition : 0.3s ease;
 }
+/*home page sections styling*/
+.section{
+    /* background-color: #F4AC25; */
+    /* border: 2px solid black; */
+    font-family: 'Montserrat', sans-serif;
+    height: 80vh;
+     width: 92%;
+     margin: auto;
+     margin-top : 20vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 
+.cta{
+ font-family:'Gilroy', sans-serif;
+ font-weight: bold;
+ height: 50px;
+ width: 150px;
+ cursor: pointer;
+ font-size: 16px;
+ outline: none;
+ letter-spacing: 0.8px;
+ border-radius: 3px;
+ text-transform: capitalize;
+}
+.description-2,.description-4{
+    margin-left: 5vw;
+}
+.title{
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 30px;
+    letter-spacing: 4px;
+    margin-left:20px;
+}
+.text-description{
+    margin: 30px 0px 0px 10px;
+    letter-spacing: 0.8px;
+}
+.img-1,.img-3{
+    height: 90vh;
+    width: 40vw; 
+    margin-left: 5vw;
+    filter: drop-shadow(0px 3px 5px #BCDAE8);
+}
+.img-4,.img-2{
+    height: 90vh;
+    width: 40vw; 
+    margin-right: 5vw;
+    filter: drop-shadow(0px 3px 5px #BCDAE8);
+}
+.sign-up{
+    margin: 30px 0px 0px 30px;
+    border: none;
+    background-color:#27AAF0 ;
+    color: #EDF8FF;
+    box-shadow: 5px 5px 5px #BCDAE8;
+}
+.sign-in{
+    margin: 30px 0px 0px 30px;
+    border : 2px solid #27AAF0;
+    background-color:transparent ;
+    color: #27AAF0;
+    box-shadow: 5px 5px 5px #EDF8FF;
+}
