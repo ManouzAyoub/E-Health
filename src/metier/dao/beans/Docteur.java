@@ -30,67 +30,21 @@ public class Docteur extends User{
 	    @Transient
 	    private String Base64image;
 	    
-	    
-	    public String getBase64image() {
-			return Base64image;
-		}
-
-		public void setBase64image(String base64image) {
-			Base64image = base64image;
-		}
 
 		@Lob
-	    @Column(name = "id_scan", columnDefinition="BLOB")
+	    @Column(name = "id_scan", columnDefinition="LONGBLOB")
 	    private byte[] id_scan;
-	    
-	    public byte[] getId_scan() {
-			return id_scan;
-		}
-
-		public void setId_scan(byte[] id_scan) {
-			this.id_scan = id_scan;
-		}
-
-		public byte[] getProfile_image() {
-			return profile_image;
-		}
-
-		public void setProfile_image(byte[] profile_image) {
-			this.profile_image = profile_image;
-		}
-
-		public byte[] getMed_certificate() {
-			return med_certificate;
-		}
-
-		public void setMed_certificate(byte[] med_certificate) {
-			this.med_certificate = med_certificate;
-		}
-
-		public byte[] getLocal_contract() {
-			return local_contract;
-		}
-
-		public void setLocal_contract(byte[] local_contract) {
-			this.local_contract = local_contract;
-		}
-		
-		public void base64(byte[] bytes,Docteur doc) throws UnsupportedEncodingException {
-		    byte[] encodeBase64 = Base64.getDecoder().decode(bytes);
-	        String base64Encoded = new String(encodeBase64, "UTF-8");
-	        doc.setBase64image(base64Encoded);
-	    }
 
 		@Lob
-	    @Column(name = "profile_image", columnDefinition="BLOB")
+	    @Column(name = "profile_image", columnDefinition="LONGBLOB")
 	    private byte[] profile_image;
 	    
 	    @Lob
-	    @Column(name = "med_certificate", columnDefinition="BLOB")
+	    @Column(name = "med_certificate", columnDefinition="LONGBLOB")
 	    private byte[] med_certificate;
 	    
 	    @Lob
-	    @Column(name = "local_contract", columnDefinition="BLOB")
+	    @Column(name = "local_contract", columnDefinition="LONGBLOB")
 	    private byte[] local_contract;
 	    
 
@@ -163,8 +117,51 @@ public class Docteur extends User{
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
+	
+    public byte[] getId_scan() {
+		return id_scan;
+	}
 
+	public void setId_scan(byte[] id_scan) {
+		this.id_scan = id_scan;
+	}
+
+	public byte[] getProfile_image() {
+		return profile_image;
+	}
+
+	public void setProfile_image(byte[] profile_image) {
+		this.profile_image = profile_image;
+	}
+
+	public byte[] getMed_certificate() {
+		return med_certificate;
+	}
+
+	public void setMed_certificate(byte[] med_certificate) {
+		this.med_certificate = med_certificate;
+	}
+
+	public byte[] getLocal_contract() {
+		return local_contract;
+	}
+
+	public void setLocal_contract(byte[] local_contract) {
+		this.local_contract = local_contract;
+	}
 	
+    public String getBase64image() {
+			return Base64image;
+		}
+
+		public void setBase64image(String base64image) {
+			Base64image = base64image;
+		}
 	
+	public void base64(byte[] bytes,Docteur doc) throws UnsupportedEncodingException {
+	    byte[] encodeBase64 = Base64.getDecoder().decode(bytes);
+        String base64Encoded = new String(encodeBase64, "UTF-8");
+        doc.setBase64image(base64Encoded);
+    }
 
 }

@@ -46,8 +46,10 @@ public class DoctorFormServlet extends HttpServlet {
          Docteur doctor = form.doctorFormService(request);
          
          DocteurDao doctordao=DocteurDao.getInstance();
+         
          String base64Image = Base64.getEncoder().encodeToString(doctor.getId_scan());
          doctor.setBase64image(base64Image);
+         
          request.setAttribute( ATT_DOCTOR, doctor );
          request.setAttribute( ATT_FORM, form );
 
