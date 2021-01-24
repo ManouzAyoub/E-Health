@@ -1,4 +1,9 @@
+// variables selectors :
 
+var sections = document.querySelectorAll('.nav-link');
+var section = '.section-';
+// console.log(section.concat(1));
+//Fonction de Navbar
 const navSlide=()=> {
     const burger = document.querySelector('.burger');
     const navbar = document.querySelector('.nav-links' );
@@ -20,5 +25,18 @@ const navSlide=()=> {
         burger.classList.toggle('toggle');
     });
 
-}
- navSlide();
+} 
+
+$('.nav-links a').on('click', function(e){
+   if(this.hash !== ''){
+       e.preventDefault();
+       const hash = this.hash;
+       $('html ,body').animate({
+        scrollTop : $(hash).offset().top
+       },800);
+   }
+});
+$('body').on('load',()=>{
+    window.alert("hi");
+})
+navSlide();
