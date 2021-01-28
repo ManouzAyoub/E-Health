@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
+
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 
 import metier.dao.beans.Docteur;
@@ -53,6 +56,13 @@ public class DocteurDao implements functionStd<Docteur, Long> {
 	@Override
 	public List<Docteur> getAll() {
 		return session.createQuery("select o from Docteur o").list();
+	}
+	
+	public List<Docteur> getFromDocteurs(long cin){
+		Query q = session.createQuery("select o from Docteur o where cin = :d");
+		q.setParameter("d", cin);
+		List<Docteur> list = q.getResultList();
+		return list;
 	}
 	
 	public static DocteurDao getInstance() {

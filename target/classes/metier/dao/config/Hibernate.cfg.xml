@@ -12,7 +12,7 @@
 		
 		<!-- Database Connection Settings -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3307/e-health</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/e-health</property>
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password"></property>
 		<property name="hibernate.connection.pool_size">10</property>
@@ -35,6 +35,9 @@
 		<mapping class="metier.dao.beans.Rating"/>
 		<mapping class="metier.dao.beans.Hopital"/>
 		<mapping class="metier.dao.beans.CliniqueDocteur"/>
+		<mapping class="metier.dao.beans.Langue"/>
+		
+		
 		
 	</session-factory>
 </hibernate-configuration>

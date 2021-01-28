@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +17,7 @@ import javax.servlet.http.Part;
 
 
 import metier.dao.beans.Docteur;
+import metier.dao.beans.Langue;
 
 public class doctorFormService {
     private static final String CHAMP_FIRSTNAME       = "firstname";
@@ -46,17 +48,16 @@ public class doctorFormService {
     }
 
     public Docteur doctorFormService( HttpServletRequest request ) throws IOException, ServletException {
-        String firstname = request.getParameter( CHAMP_FIRSTNAME );
-        String lastname = request.getParameter( CHAMP_LASTNAME );
-        String email = request.getParameter( CHAMP_EMAIL );
-        String tel = request.getParameter( CHAMP_TEL );
-        String speciality = request.getParameter( CHAMP_SPECIALITY );
+        String firstname   = request.getParameter( CHAMP_FIRSTNAME );
+        String lastname    = request.getParameter( CHAMP_LASTNAME );
+        String email       = request.getParameter( CHAMP_EMAIL );
+        String tel         = request.getParameter( CHAMP_TEL );
+        String speciality  = request.getParameter( CHAMP_SPECIALITY );
         String[] languages = request.getParameterValues( CHAMP_LANGUAGES );
-        String practice=request.getParameter(CHAMP_PRACTICE);
-        
-        Part medfile=request.getPart(CHAMP_MED_CERTIFICATE);
-        Part localfile=request.getPart(CHAMP_LOCAL_CONTRACT);
-        Part photofile=request.getPart(CHAMP_PROFILE_IMAGE);
+        String practice    = request.getParameter(CHAMP_PRACTICE);
+        Part medfile       = request.getPart(CHAMP_MED_CERTIFICATE);
+        Part localfile     = request.getPart(CHAMP_LOCAL_CONTRACT);
+        Part photofile     = request.getPart(CHAMP_PROFILE_IMAGE);
 		List<Part> fileParts = request.getParts().stream().filter(part -> CHAMP_ID_SCAN.equals(part.getName()) && part.getSize() > 0).collect(Collectors.toList());
 		
 		InputStream inputStream1=null,inputStream2=null,inputStream3=null,inputStream4=null;
@@ -137,8 +138,15 @@ public class doctorFormService {
             resultat = "Echec d'inscription";
         }
         
+        LangueImpl langueImpl = LangueImpl.getInstance();
+        
         doctor.setSpeciality(speciality);
-        doctor.setLanguages(languages[0]);
+        List<Langue> les_langues = new ArrayList<>();
+        for(String lg : languages) {
+        	Langue langue = langueImpl.getLangueByString(lg);
+        	les_langues.add(langue);
+        }
+        doctor.setLangues(les_langues);	
         doctor.setPractice(practice);
         doctor.setId_scan(bite1);
         doctor.setMed_certificate(bite2);
@@ -146,6 +154,8 @@ public class doctorFormService {
         doctor.setProfile_image(bite4);
         return doctor;
     }
+    
+    
     
 
 
@@ -198,4 +208,6 @@ public class doctorFormService {
 
 		return buffer.toByteArray();
     }
+    
+    
 }

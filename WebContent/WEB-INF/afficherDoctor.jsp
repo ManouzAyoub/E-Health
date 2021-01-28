@@ -16,7 +16,9 @@
             <p>Email : <c:out value="${ docteur.email }"/></p>
             <p>Tel : <c:out value="${ docteur.tel }"/></p>
             <p>Tel : <c:out value="${ docteur.speciality }"/></p>
-            <p>Tel : <c:out value="${ docteur.languages }"/></p>
+            <c:forEach var="langue" items="${ docteur.getLangues() }">
+            	<p>Tel : <c:out value="${ langue.getLangue() }"/></p> <br/>
+            </c:forEach>
             <p>Tel : <c:out value="${ docteur.practice }"/></p>
 			<%-- <div style="width:25%; height:25%"> <img src="${ docteur.id_scan }"/> </div> --%>  
 			<img src="data:image/png;base64,${docteur.getBase64image()}"/>          

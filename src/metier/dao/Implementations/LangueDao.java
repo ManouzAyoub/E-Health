@@ -2,37 +2,33 @@ package metier.dao.Implementations;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
-
 import org.hibernate.Session;
 
 import metier.dao.beans.Cabinet;
+import metier.dao.beans.Langue;
 import metier.dao.util.HibernateUtil;
 import metier.dao.util.functionStd;
 
-public class CabinetDao implements functionStd<Cabinet, Long> {
+public class LangueDao implements functionStd<Langue, Long> {
 	
 	Session session = HibernateUtil.openSession();
 	
-	private static CabinetDao instance = null;
+	private static LangueDao instance = null;
 	
-	private CabinetDao() {
+	private LangueDao() {
 
 	}
 	
 	@Override
-	public Cabinet add(Cabinet a) {
+	public Langue add(Langue a) {
 		session.beginTransaction();
 		session.save(a);
 		session.getTransaction().commit();
-		session.close();
 		return a;
 	}
 
 	@Override
-	public Cabinet edit(Cabinet a) {
+	public Langue edit(Langue a) {
 		session.beginTransaction();
 		session.merge(a);
 		session.getTransaction().commit();
@@ -42,25 +38,25 @@ public class CabinetDao implements functionStd<Cabinet, Long> {
 	@Override
 	public void delete(Long b) {
 		session.beginTransaction();
-		Cabinet cabinet = getById(b);
-		session.delete(cabinet);
+		Langue langue = getById(b);
+		session.delete(langue);
 		session.getTransaction().commit();
 		
 	}
 
 	@Override
-	public Cabinet getById(Long id) {
-		return session.get(Cabinet.class, id);
+	public Langue getById(Long id) {
+		return session.get(Langue.class, id);
 	}
 
 	@Override
-	public List<Cabinet> getAll() {
-		return session.createQuery("select o from Cabinet o").list();//SQL HQL
+	public List<Langue> getAll() {
+		return session.createQuery("select o from Langue o").list();//SQL HQL
 	}
 	
-	public static CabinetDao getInsctance() {
+	public static LangueDao getInsctance() {
 		if (instance == null)
-            instance = new CabinetDao();
+            instance = new LangueDao();
 		return instance;
 	}
 }
