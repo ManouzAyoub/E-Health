@@ -45,7 +45,7 @@ AOS.init({
     duration:1000, 
     easing: 'ease', 
     mirror : true,
-    // offset : 350,
+    offset : 20,
   });
   //Title animation TypeWriter Animation
   var typed = new Typed('.animate', {

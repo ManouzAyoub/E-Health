@@ -261,6 +261,7 @@ nav{
     justify-content: space-between;
     align-items: center;
 }
+
 .section .title {
     font-size : 20px;
 }
@@ -272,14 +273,17 @@ nav{
     margin-top: 8vh;
 }
 .section .description-1,.section .description-3{
-    margin-top:60vh;
+    margin-top:65vh;
     width : 80vw;
+}
+.section .description-2,.section .description-4{
+    flex : 0.7;
 }
 .section .description-1{
     flex:0.7;
 }
 .section .img-2,.section .img-4{
-    margin-top : 8vh;
+    margin-top : 5vh;
     width : 90vw;
     height : 50vh;
     /* margin : auto; */
