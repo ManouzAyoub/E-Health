@@ -34,7 +34,6 @@
 		<mapping class="metier.dao.beans.Cabinet"/>
 		<mapping class="metier.dao.beans.Rating"/>
 		<mapping class="metier.dao.beans.Hopital"/>
-		<mapping class="metier.dao.beans.CliniqueDocteur"/>
 		<mapping class="metier.dao.beans.Langue"/>
 		
 		

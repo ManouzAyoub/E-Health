@@ -17,15 +17,15 @@ const navSlide=()=> {
            if( link.style.animation){
             link.style.animation = ``;
            }
-           else{
+           else{ 
             link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7+0.5}s`;
-           }
-        });
-        // burger animation 
-        burger.classList.toggle('toggle');
-    });
-
-} 
+           } 
+        }); 
+        // burger animation  
+        burger.classList.toggle('toggle'); 
+    }); 
+ 
+}  
 
 $('.nav-links a').on('click', function(e){
    if(this.hash !== ''){
@@ -34,9 +34,29 @@ $('.nav-links a').on('click', function(e){
        $('html ,body').animate({
         scrollTop : $(hash).offset().top
        },800);
+       if ($('body').width()<901)
+    $('.burger').click();
    }
 });
-$('body').on('load',()=>{
-    window.alert("hi");
-})
+
+
+// Animation of sections (animation on scroll)
+AOS.init({
+    duration:1000, 
+    easing: 'ease', 
+    mirror : true,
+    offset : 20,
+  });
+  //Title animation TypeWriter Animation
+  var typed = new Typed('.animate', {
+    strings: [
+        "un Medecin ?",
+        "un Hopital ?",
+        "un Clinique ?",
+        "un Laboratoire ?",
+    ],
+    typeSpeed :60,
+    backSpeed : 60,
+    loop : true
+});
 navSlide();

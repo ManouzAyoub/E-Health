@@ -17,14 +17,17 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name = "idProfil")
 public class Cabinet extends Profil{
 
-	
-
 	private String name;
 	private String adresse;
 	
-	@Override
-	public String toString() {
-		return "Cabinet [name=" + name + ", idCabinet=" + getIdProfil() + ", adresse=" + adresse + ", rating=" + rating + ", comments=" + comments + "]";
+	@OneToMany
+	Set<Rating> rating;
+	
+	@OneToMany
+	Set<Commentaire> comments;
+	
+	public Cabinet() {
+		super();
 	}
 	
 	public String getName() {
@@ -43,12 +46,6 @@ public class Cabinet extends Profil{
 		this.adresse = adresse;
 	}
 
-	@OneToMany
-	Set<Rating> rating;
-	
-	@OneToMany
-	Set<Commentaire> comments;
-	
 	public Set<Rating> getRating() {
 		return rating;
 	}
@@ -65,9 +62,7 @@ public class Cabinet extends Profil{
 		this.comments = comments;
 	}
 
-	public Cabinet() {
-		super();
-	}
+	
 	
 	
 	

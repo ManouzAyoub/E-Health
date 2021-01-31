@@ -27,6 +27,9 @@ public class Langue implements Serializable {
                 inverseJoinColumns = @JoinColumn( name = "cin" ) )
     private List<Docteur> docteurs = new ArrayList<>();
 	
+	@ManyToMany
+	Set<Docteur> parle;
+	
 	public Langue() {
 		super();
 	}
@@ -50,6 +53,14 @@ public class Langue implements Serializable {
 
 	public void setDocteurs(List<Docteur> docteurs) {
 		this.docteurs = docteurs;
+	}
+
+	public Set<Docteur> getParle() {
+		return parle;
+	}
+
+	public void setParle(Set<Docteur> parle) {
+		this.parle = parle;
 	}
 	
 	
