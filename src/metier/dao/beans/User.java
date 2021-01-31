@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "user")
 @Inheritance( strategy = InheritanceType.JOINED )
 public class User implements Serializable {
 

@@ -36,8 +36,13 @@ public class SignInService {
 	        return erreurs;
 	    }
 	    
-	    public User VerifyUser( String email,String password) {
-	    	String hql="SELECT u FROM user u WHERE u.email = :email AND u.password = :password";
+	    
+	    public void setErreurs(Map<String, String> erreurs) {
+			this.erreurs = erreurs;
+		}
+
+		public User VerifyUser( String email,String password) {
+	    	String hql="SELECT u FROM User u WHERE u.email = :email AND u.password = :password";
 	        Query query = session.createQuery( hql );
 	        query.setParameter("email", email);
 	        query.setParameter("password", password);
