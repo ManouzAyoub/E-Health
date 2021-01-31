@@ -9,5 +9,7 @@ public interface functionStd<A,B> {
 	public void delete(B b);
 	public A getById(B id);
 	public List<A> getAll();
+
+
 	
 }

@@ -48,7 +48,7 @@ public class UserDao implements functionStd<User, Long>{
 	public List<User> getAll() {
 		return  session.createQuery("select o from User o").list();
 	}
-
+	
 	@Override
 	public User getById(Long id) {
 		return session.get(User.class, id);
