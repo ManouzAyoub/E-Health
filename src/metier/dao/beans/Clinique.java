@@ -1,6 +1,8 @@
 package metier.dao.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -8,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -20,6 +23,12 @@ public class Clinique extends User{
 	@ManyToOne
 	@JoinColumn(name = "idUser" , referencedColumnName = "cin")
 	private User user;
+	
+	@ManyToMany
+    @JoinTable( name = "T_Clinique_Docteur",
+                joinColumns = @JoinColumn( name = "idClinique" ),
+                inverseJoinColumns = @JoinColumn( name = "cin" ) )
+    private List<Docteur> docteurs = new ArrayList<>();
 
 	@ManyToMany
 	Set<Docteur> works;

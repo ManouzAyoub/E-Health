@@ -16,6 +16,7 @@ public class Rating implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private long        idRating;
+    private int numberEtoile;
 
     @OneToOne
     @JoinColumn( name = "idUser", referencedColumnName = "cin" )
@@ -40,6 +41,10 @@ public class Rating implements Serializable {
     @ManyToOne
     @JoinColumn( name = "idCabinet", referencedColumnName = "idProfil" )
     private Cabinet     cabinet;
+    
+    @ManyToOne
+    @JoinColumn( name = "idDocteur", referencedColumnName = "cin" )
+    private Docteur     docteur;
 
     public Rating() {
         super();
@@ -52,5 +57,23 @@ public class Rating implements Serializable {
     public long getIdRating() {
         return idRating;
     }
+    
+    public int getNumberEtoile() {
+		return numberEtoile;
+	}
+    
+    public void setNumberEtoile(int numberEtoile) {
+		this.numberEtoile = numberEtoile;
+	}
+    
+    public Docteur getDocteur() {
+		return docteur;
+	}
+    
+    public void setDocteur(Docteur docteur) {
+		this.docteur = docteur;
+	}
+    
+    
 
 }

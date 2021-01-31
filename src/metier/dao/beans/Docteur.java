@@ -27,8 +27,17 @@ import javax.persistence.Transient;
 public class Docteur extends User{
 	
 	    private String speciality;
+	    private String adresse;
+	    private int heureDepart;
+	    private int heureFin;
+	    private String jourDepart;
+	    private String jourFin;
+	    private Boolean teleMedcine;
+	    private Boolean consultationDomicile;
+	    private String gender;
 	    private String practice;
 	    private String tel;
+	    private Boolean dispo;
 	    @Transient
 	    private String Base64image;
 	    
@@ -37,6 +46,15 @@ public class Docteur extends User{
 	                joinColumns = @JoinColumn( name = "cin" ),
 	                inverseJoinColumns = @JoinColumn( name = "idLangue" ) )
 	    private List<Langue> langues = new ArrayList<>();
+	    
+	    @ManyToMany
+	    @JoinTable( name = "T_Clinique_Docteur",
+	                joinColumns = @JoinColumn( name = "idDocteur" ),
+	                inverseJoinColumns = @JoinColumn( name = "cin" ) )
+	    private List<Clinique> cliniques = new ArrayList<>();
+	    
+	    @ManyToMany
+		private Set<Langue> parlerPar;
 	    
 		@Lob
 	    @Column(name = "id_scan", columnDefinition="LONGBLOB")
@@ -167,7 +185,101 @@ public class Docteur extends User{
 
 		public void setLangues(List<Langue> langues) {
 			this.langues = langues;
+		}
+
+		public Set<Langue> getParlerPar() {
+			return parlerPar;
+		}
+
+		public void setParlerPar(Set<Langue> parlerPar) {
+			this.parlerPar = parlerPar;
+		}
+
+		public Boolean getDispo() {
+			return dispo;
+		}
+
+		public void setDispo(Boolean dispo) {
+			this.dispo = dispo;
+		}
+
+		@Override
+		public String toString() {
+			return "Docteur [speciality=" + speciality + ", tel=" + tel + ", dispo=" + dispo + ", langues=" + langues
+					+ "]";
 		}	
+		
+		public String getAdresse() {
+			return adresse;
+		}
+		
+		public void setAdresse(String adresse) {
+			this.adresse = adresse;
+		}
+
+		public Boolean getTeleMedcine() {
+			return teleMedcine;
+		}
+
+		public void setTeleMedcine(Boolean teleMedcine) {
+			this.teleMedcine = teleMedcine;
+		}
+
+		public Boolean getConsultationDomicile() {
+			return consultationDomicile;
+		}
+
+		public void setConsultationDomicile(Boolean consultationDomicile) {
+			this.consultationDomicile = consultationDomicile;
+		}
+		
+		public String getGender() {
+			return gender;
+		}
+		
+		public void setGender(String gender) {
+			this.gender = gender;
+		}
+
+		public int getHeureDepart() {
+			return heureDepart;
+		}
+
+		public void setHeureDepart(int heureDepart) {
+			this.heureDepart = heureDepart;
+		}
+
+		public int getHeureFin() {
+			return heureFin;
+		}
+
+		public void setHeureFin(int heureFin) {
+			this.heureFin = heureFin;
+		}
+
+		public String getJourDepart() {
+			return jourDepart;
+		}
+
+		public void setJourDepart(String jourDepart) {
+			this.jourDepart = jourDepart;
+		}
+
+		public String getJourFin() {
+			return jourFin;
+		}
+
+		public void setJourFin(String jourFin) {
+			this.jourFin = jourFin;
+		}
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 
