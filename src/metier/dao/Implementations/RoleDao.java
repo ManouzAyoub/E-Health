@@ -1,8 +1,10 @@
 package metier.dao.Implementations;
 
 import java.util.List;
-import javax.management.relation.Role;
+
 import org.hibernate.Session;
+
+import metier.dao.beans.Role;
 import metier.dao.util.HibernateUtil;
 import metier.dao.util.functionStd;
 

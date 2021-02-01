@@ -35,36 +35,27 @@ public class doctorFormService {
     private String              resultat;
     private Map<String, String> erreurs               = new HashMap<String, String>();
 
-    public String getResultat() {
-        return resultat;
-    }
-
-    public void setResultat( String resultat ) {
-        this.resultat = resultat;
-    }
-
-    public Map<String, String> getErreurs() {
-        return erreurs;
-    }
+    
 
     public Docteur doctorFormService( HttpServletRequest request ) throws IOException, ServletException {
-        String firstname   = request.getParameter( CHAMP_FIRSTNAME );
-        String lastname    = request.getParameter( CHAMP_LASTNAME );
-        String email       = request.getParameter( CHAMP_EMAIL );
-        String tel         = request.getParameter( CHAMP_TEL );
-        String speciality  = request.getParameter( CHAMP_SPECIALITY );
-        String[] languages = request.getParameterValues( CHAMP_LANGUAGES );
-        String practice    = request.getParameter(CHAMP_PRACTICE);
-        Part medfile       = request.getPart(CHAMP_MED_CERTIFICATE);
-        Part localfile     = request.getPart(CHAMP_LOCAL_CONTRACT);
-        Part photofile     = request.getPart(CHAMP_PROFILE_IMAGE);
+        String firstname     = request.getParameter( CHAMP_FIRSTNAME );
+        String lastname      = request.getParameter( CHAMP_LASTNAME );
+        String email         = request.getParameter( CHAMP_EMAIL );
+        String tel           = request.getParameter( CHAMP_TEL );
+        String speciality    = request.getParameter( CHAMP_SPECIALITY );
+        String[] languages   = request.getParameterValues( CHAMP_LANGUAGES );
+        String practice      = request.getParameter(CHAMP_PRACTICE);
+        Part medfile         = request.getPart(CHAMP_MED_CERTIFICATE);
+        Part localfile       = request.getPart(CHAMP_LOCAL_CONTRACT);
+        Part photofile       = request.getPart(CHAMP_PROFILE_IMAGE);
 		List<Part> fileParts = request.getParts().stream().filter(part -> CHAMP_ID_SCAN.equals(part.getName()) && part.getSize() > 0).collect(Collectors.toList());
 		
 		InputStream inputStream1=null,inputStream2=null,inputStream3=null,inputStream4=null;
 		
 		Docteur doctor = new Docteur();
 		
-		byte[] bite1=null,bite2=null,bite3=null,bite4=null;
+		//byte[] bite1=null,bite2=null,bite3=null,bite4=null;
+		byte[] bites[] = null;
 		
         for(Part filepart1 : fileParts) {
 		if(filepart1!=null) {
@@ -74,7 +65,7 @@ public class doctorFormService {
             System.out.println(filepart1.getContentType());
             
     		inputStream1=filepart1.getInputStream();
-    		bite1=convert(inputStream1);
+    		bites[0]=convert(inputStream1);
 	
 		    }
 		}
@@ -84,7 +75,7 @@ public class doctorFormService {
 			    System.out.println(medfile.getSize());
 			    System.out.println(medfile.getContentType());
 		    inputStream2=medfile.getInputStream();
-    		bite2=convert(inputStream2);
+    		bites[1]=convert(inputStream2);
              }
 		    
 		    if(localfile!=null) {
@@ -92,7 +83,7 @@ public class doctorFormService {
 			    System.out.println(localfile.getSize());
 			    System.out.println(localfile.getContentType());
 		    inputStream3=localfile.getInputStream();
-    		bite3=convert(inputStream3);
+		    bites[2]=convert(inputStream3);
 
 		    }
 		    
@@ -101,36 +92,40 @@ public class doctorFormService {
 			    System.out.println(photofile.getSize());
 			    System.out.println(photofile.getContentType());
 		    inputStream4=photofile.getInputStream();
-    		bite4=convert(inputStream4);
+		    bites[3]=convert(inputStream4);
             }
         
         try {
             validationEmail( email );
+            doctor.setEmail( email );
         } catch ( Exception e ) {
             erreurs.put( CHAMP_EMAIL, e.getMessage() );
         }
-        doctor.setEmail( email );
+        
 
         try {
             validationPrenom( firstname );
+            doctor.setFirstname( firstname );
         } catch ( Exception e ) {
             erreurs.put( CHAMP_FIRSTNAME, e.getMessage() );
         }
-        doctor.setFirstname( firstname );
+        
 
         try {
             validationNom( lastname );
+            doctor.setLastname( lastname );
         } catch ( Exception e ) {
             erreurs.put( CHAMP_LASTNAME, e.getMessage() );
         }
-        doctor.setLastname( lastname );
+        
 
         try {
             validationTel( tel );
+            doctor.setTel( tel );
         } catch ( Exception e ) {
             erreurs.put( CHAMP_TEL, e.getMessage() );
         }
-        doctor.setTel( tel );
+        
 
         if ( erreurs.isEmpty() ) {
             resultat = "Succés d'inscription!";
@@ -148,10 +143,10 @@ public class doctorFormService {
         }
         doctor.setLangues(les_langues);	
         doctor.setPractice(practice);
-        doctor.setId_scan(bite1);
-        doctor.setMed_certificate(bite2);
-        doctor.setLocal_contract(bite3);
-        doctor.setProfile_image(bite4);
+        doctor.setId_scan(bites[0]);
+        doctor.setMed_certificate(bites[1]);
+        doctor.setLocal_contract(bites[2]);
+        doctor.setProfile_image(bites[3]);
         return doctor;
     }
     
@@ -207,6 +202,18 @@ public class doctorFormService {
 		}
 
 		return buffer.toByteArray();
+    }
+    
+    public String getResultat() {
+        return resultat;
+    }
+
+    public void setResultat( String resultat ) {
+        this.resultat = resultat;
+    }
+
+    public Map<String, String> getErreurs() {
+        return erreurs;
     }
     
     

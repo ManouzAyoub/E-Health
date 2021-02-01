@@ -25,6 +25,7 @@ public class LangueImpl {
 	    return instance;
 	}
 
+	// recuperer l'objet Langue par leur nom
 	public Langue getLangueByString(String name) {
     	Query query = session.createQuery("select o from Langue o where langue = :name");
     	query.setParameter("name", name);

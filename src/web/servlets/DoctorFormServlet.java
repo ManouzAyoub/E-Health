@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import metier.services.doctorFormService;
 import metier.dao.Implementations.DocteurDao;
 import metier.dao.beans.Docteur;
+import metier.dao.beans.Role;
 
 @WebServlet( "/doctorForm" )
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2,maxFileSize=16177215,maxRequestSize = 1024 * 1024 * 50)  // upload file's size up to 16MB
@@ -27,7 +28,7 @@ public class DoctorFormServlet extends HttpServlet {
 
     public static final String VUE              = "/WEB-INF/DoctorForm.jsp";
     public static final String SUCESS           = "/WEB-INF/afficherDoctor.jsp";
-    
+    Role role = new Role();
 
     public DoctorFormServlet() {
         super();

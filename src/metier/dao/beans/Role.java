@@ -13,6 +13,8 @@ public class Role implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idRole;
+	private String libelle;
+	private String desc;
 	
 	public Role() {
 		super();
@@ -25,6 +27,24 @@ public class Role implements Serializable {
 	public int getIdRole() {
 		return idRole;
 	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
+	}
+
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+	
+	
 	
 
 }
