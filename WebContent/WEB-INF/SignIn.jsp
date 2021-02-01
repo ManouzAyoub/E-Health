@@ -12,13 +12,34 @@
 
     <!-- Main css -->
     <link rel="stylesheet" href="inc/css/style.css">
+ <style>
+body {
+    background-image: url("inc/images/happyboy.jpg");
+    
+}
+  .signIn_container{
+    width: 500px;
+    position: relative;
+    margin-left: auto;
+    margin-right: 60px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.2);
+    transition:all 0.2s ease-in-out;
+
+  }
+  .signIn_container:hover{
+    transform:scale(1.02);
+    transition:all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+</style>
 </head>
-<body>
+<body class="signIn">
 
     <div class="main">
 
         <section class="signup">
-            <div class="container">
+            <div class="signIn_container" >
                 <div class="signup-content">
                     <form action ="<%=request.getContextPath()%>/signIn" method="POST" id="signup-form" class="signup-form">
                         <h2 class="form-title">Sign In</h2>

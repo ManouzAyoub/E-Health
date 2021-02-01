@@ -2,8 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sign Up Form </title>
 
@@ -14,8 +14,46 @@
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
      
     <link rel="stylesheet" href="inc/css/style.css">
-    <link rel="stylesheet" href="inc/css/youssef.css">
-    
+ <style>
+
+  .container{
+  width: 660px;
+  position: relative;
+  margin: 0 auto; 
+    box-shadow:0 1px 3px rgba(0,0,0,0.2);
+    transition:all 0.2s ease-in-out;
+
+  }
+  .container:hover{
+    transform:scale(1.02);
+    transition:all 0.2s ease-in-out;
+    cursor: pointer;
+}
+.selectBox{
+            position: relative;
+        }
+        .selectBox select{
+            width: 100%;
+            font-weight: bold;
+        }
+        .overSelect{
+            position: absolute;
+            left: 0;right: 0;top:0;bottom: 0;
+        }
+        #checkboxes{
+            display: none;
+            border:1px #dadada solid;
+        }
+        #checkboxes label{
+            display:block;
+            
+        }
+        #checkboxes label:hover{
+            background-color: #1e90ff;
+        }
+
+
+</style>    
 </head>
 <body>
 
@@ -50,17 +88,30 @@
                              <span class="erreur" >${form.erreurs['emergency_tel']}</span>  
                         </div>
                       	
-                      	<!-- d�but de changement -->
+                      	<!-- début de changement -->
                         
-						  <div class="form-group">     
+                      <div class="form-group">         
 					       <div class="selectBox" onClick="showCheckBoxes()">
-					           <select id=""  class="form-input">
-					               <option >Veuillez choisir les specialit�s de votre clinique</option>
+					           <select  class="form-input" >
+					               <option style="display:block">Veuillez choisir les specialités de votre clinique</option>
 					           </select>
 					           <div class="overSelect"></div>
 					           </div>
-					           <div id="checkboxes" style="display:none">
-					               <label for="sp1"><input type="checkbox" style="display:block"   id="sp1"/>gyn�cologie et obst�trique</label>
+					           <div id="checkboxes">
+					               <label for="sp1"><input type="checkbox"   id="sp1"/>gynécologie et obstétrique</label>
+					               <label for="sp2"><input type="checkbox"  id="sp2"/>gastro-entérologie</label>
+					               <label for="sp3"><input type="checkbox"  id="sp3"/>chirurgie esthétique</label>
+					               <label for="sp4"><input type="checkbox"  id="sp4"/>Santé sexuelle et contraceptifs</label>
+					               <label for="sp5"><input type="checkbox"  id="sp5"/>La cardiologie</label>
+					               <label for="sp6"><input type="checkbox"  id="sp6"/>L’anesthésiologie</label>
+					               <label for="sp7"><input type="checkbox"  id="sp7"/>médecine intensive</label>
+					               <label for="sp8"><input type="checkbox"  id="sp8"/>médecine nucléaire</label>
+					               <label for="sp9"><input type="checkbox"  id="sp9"/>neurochirurgie</label>
+					               <label for="sp10"><input type="checkbox"  id="sp10"/>oncologie médicale et chirurgicale</label>
+					               <label for="sp11"><input type="checkbox"  id="sp11"/>radiologie diagnostique et interventionnelle</label>
+					               <label for="sp12"><input type="checkbox"  id="sp12"/>neurochirurgie</label>
+					               <label for="sp13"><input type="checkbox"  id="sp13"/>neurochirurgie</label>
+					               <label for="sp14"><input type="checkbox"  id="sp14"/>chirurgie orthopédique et traumatologique</label>
 					           </div>
 					    </div>
                      
@@ -99,6 +150,5 @@
         </script>
 
     <!-- JS -->
-<!--      <script src="vendor/jquery/jquery.min.js"></script>
- --></body>
+</body>
 </html>
