@@ -1,15 +1,21 @@
 package metier.services;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.Session;
+
 import metier.dao.beans.User;
+import metier.dao.util.HibernateUtil;
 
 public class UserImpl {
 
-    private static UserImpl instance = null;
+	Session session = HibernateUtil.openSession();
+	private static UserImpl instance = null;
 
     private UserImpl() {
 
@@ -35,6 +41,19 @@ public class UserImpl {
     public Map<String, String> getErreurs() {
         return erreurs;
     }
+    
+	public void validationEmail( String email) throws Exception{
+    	String hql="select u from User u where u.email = :email";
+        Query query = session.createQuery( hql );
+        query.setParameter("email", email);
+        User user = new User();
+        List<User> list = query.getResultList();
+        if (list.size() != 0) {
+        	throw new Exception( "cet email a d√©ja √©t√© choisie" );
+		}else {
+			return;
+		}
+	}
 
     public User visitorFormService( HttpServletRequest request ) {
         String firstname = request.getParameter( CHAMP_FIRSTNAME );
@@ -47,7 +66,7 @@ public class UserImpl {
 
         
         try {
-            validationEmail( email );
+        	validationEmail(email);
         } catch ( Exception e ) {
             erreurs.put( CHAMP_EMAIL, e.getMessage() );
         }
@@ -75,7 +94,7 @@ public class UserImpl {
         visiter.setLastname( lastname );
 
         if ( erreurs.isEmpty() ) {
-            resultat = "SuccÈs d'inscription!";
+            resultat = "Succ√©s d'inscription!";
         } else {
             resultat = "Echec d'inscription";
         }
@@ -86,7 +105,7 @@ public class UserImpl {
     private void validationPrenom( String firstname ) throws Exception {
         if ( firstname != null ) {
             if ( firstname.trim().length() < 3 ) {
-                throw new Exception( "Veuillez saisir un nom de plus de 3 caractÈres." );
+                throw new Exception( "Veuillez saisir un nom de plus de 3 caractÔøΩres." );
             }
         }
     }
@@ -94,20 +113,8 @@ public class UserImpl {
     private void validationNom( String lastname ) throws Exception {
         if ( lastname != null ) {
             if ( lastname.trim().length() < 3 ) {
-                throw new Exception( "Veuillez saisir un nom de plus de 3 caractÈres." );
+                throw new Exception( "Veuillez saisir un nom de plus de 3 caractÔøΩres." );
             }
-        }
-    }
-
-    private void validationEmail( String email ) throws Exception {
-        String regex = "([^.@]+)(\\\\.[^.@]+)*@([^.@]+\\\\.)+([^.@]+)";
-        if ( email != null && email.trim().length() != 0 ) {
-            if ( email.matches( regex ) ) {
-                throw new Exception( "adresse email validÈ" );
-            }
-
-        } else {
-            throw new Exception( "Veuillez saisir une adresse email s'il vous plait!" );
         }
     }
 
@@ -115,9 +122,9 @@ public class UserImpl {
         if ( motDePasse != null && motDePasse.trim().length() != 0 && confirmation != null
                 && confirmation.trim().length() != 0 ) {
             if ( !motDePasse.equals( confirmation ) ) {
-                throw new Exception( "Les mots de passe entrÈs sont diffÈrents, merci de les saisir ‡ nouveau." );
+                throw new Exception( "Les mots de passe entrÔøΩs sont diffÔøΩrents, merci de les saisir ÔøΩ nouveau." );
             } else if ( motDePasse.trim().length() < 3 ) {
-                throw new Exception( "Les mots de passe doivent contenir au moins 3 caractËres." );
+                throw new Exception( "Les mots de passe doivent contenir au moins 3 caractÔøΩres." );
             }
         } else {
             throw new Exception( "Merci de saisir et confirmer votre mot de passe." );

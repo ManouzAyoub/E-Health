@@ -67,7 +67,8 @@ public class SignInService {
 	        if(listUser!=null) {
 	        	visiter.setEmail(email);
 	        	visiter.setPassword(password);
-	        	resultat = "Succés d'inscription!";
+	        	erreurs.clear();
+	        	resultat = "SuccÃ©s d'inscription!";
 	        }
 	        else {
 	        	visiter.setEmail(email);

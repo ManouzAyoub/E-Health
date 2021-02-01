@@ -28,7 +28,7 @@
           	                        <h2 class="form-title">Create account</h2>
           	
                         <div class="form-group">
-                            <input type="text" class="form-input" name="firstname" id="name" placeholder="Votre prénom" value="<c:out value="${requestScope.doctor.firstname}"/>" />
+                            <input type="text" class="form-input" name="firstname" id="name" placeholder="Votre prï¿½nom" value="<c:out value="${requestScope.doctor.firstname}"/>" />
                             <span class="erreur" >${form.erreurs['firstname']}</span>      
                         </div>
                         <div class="form-group">
@@ -48,7 +48,7 @@
            		       
                              <select name="languages" class="selectpicker" style="margin:10px 0" data-width="fit"  multiple>
                          <option  data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
-                         <option  data-content='<span class="flag-icon flag-icon-mx"></span> Español'>Español</option>
+                         <option  data-content='<span class="flag-icon flag-icon-mx"></span> Espaï¿½ol'>Espaï¿½ol</option>
                          <option  data-content='<span class="flag-icon flag-icon-cn"></span> Chinois'>Chinois</option>
                          <option  data-content='<span class="flag-icon flag-icon-fr"></span> Frensh'>Frensh</option>
                          <option  data-content='<span class="flag-icon flag-icon-ma"></span> Arabic'>Arabic</option>
@@ -59,7 +59,7 @@
                                                 
                         <!-- file CN -->
                          <div class="form-group" id="upload-container">
-                        <label class="label-file">Merci de déposer une photocopie de votre carte nationale :</label>
+                        <label class="label-file">Merci de dï¿½poser une photocopie de votre carte nationale :</label>
                         <div  id="upload-border">
                           <nobr>
                             <input type="text" id="upload-name1"   disabled="true" />
@@ -74,7 +74,7 @@
                       <!-- file MED_certificate -->
                        
                         <div class="form-group" id="upload-container">
-                        <label class="label-file">Merci de déposer votre certificat médicale :</label>
+                        <label class="label-file">Merci de dï¿½poser votre certificat mï¿½dicale :</label>
                         <div  id="upload-border">
                           <nobr>
                             <input type="text" id="upload-name2"   disabled="true" />
@@ -88,7 +88,7 @@
                       <!-- file Profile_picture -->
                       
                          <div class="form-group" id="upload-container">
-                          	<label class="label-file">Merci de déposer votre photo de profile :</label>
+                          	<label class="label-file">Merci de dï¿½poser votre photo de profile :</label>
 	                        <div  id="upload-border">
 	                          <nobr>
 	                            <input type="text" id="upload-name3"   disabled="true" />
@@ -102,7 +102,7 @@
                       <!-- file Local_contract -->
                       
                          <div class="form-group" id="upload-container">
-	                        <label class="label-file">Merci de déposer le contract de location de votre cabinet médical :</label>
+	                        <label class="label-file">Merci de dï¿½poser le contract de location de votre cabinet mï¿½dical :</label>
 	                        <div  id="upload-border">
 	                          <nobr>
 	                            <input type="text" id="upload-name4"   disabled="true" />
@@ -117,7 +117,7 @@
                         
                         <div class="form-group" style="margin-top:15px; margin-bottom:40px">
                         <select  name="med_practice" class="select-css" name="work">
-                            <option>cabinet médical</option>
+                            <option>cabinet mï¿½dical</option>
                             <option>pharmacie</option>
                             <option>clinique</option>
                         </select>
@@ -125,30 +125,30 @@
                         
                         <div class="form-group">
                         <select name="speciality" class="select-css" onmousedown="if(this.options.length>8){this.size=8;}"  onchange='this.size=0;' onblur="this.size=0;">
-                            <option>chirurgie esthétique</option>
-                            <option>chirurgie pédiatrique</option>
+                            <option>chirurgie esthï¿½tique</option>
+                            <option>chirurgie pï¿½diatrique</option>
                             <option>chirurgie vasculaire</option>
-                            <option>chirurgie viscérale et digestive</option>
-                            <option>gynécologie obstétrique</option>
+                            <option>chirurgie viscï¿½rale et digestive</option>
+                            <option>gynï¿½cologie obstï¿½trique</option>
                             <option>neurochirurgie </option>
                             <option>allergologie</option>
                             <option>anatomie et cytologie pathologique</option>
-                            <option>anesthésie</option>
+                            <option>anesthï¿½sie</option>
                             <option>cardiologie</option>
                             <option>dermatologie</option>
                             <option>endocrinologie-nutrition</option>
-                            <option>génétique</option>
+                            <option>gï¿½nï¿½tique</option>
                             <option>allergologie</option>
-                            <option>gynécologie médicale</option>
-                            <option>hématologie</option>
-                            <option>médecine générale</option>
-                            <option>médecine physique et réadaptation</option>
-                            <option>néphrologie</option>
+                            <option>gynï¿½cologie mï¿½dicale</option>
+                            <option>hï¿½matologie</option>
+                            <option>mï¿½decine gï¿½nï¿½rale</option>
+                            <option>mï¿½decine physique et rï¿½adaptation</option>
+                            <option>nï¿½phrologie</option>
                             <option>neurologie</option>
                             <option>psychiatrie</option>
                             <option>radiologie</option>
-                            <option>réanimation</option>
-                            <option>santé publique</option>
+                            <option>rï¿½animation</option>
+                            <option>santï¿½ publique</option>
                             <option>urgentiste</option>
                         </select>
                         </div>

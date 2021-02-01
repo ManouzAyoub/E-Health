@@ -9,7 +9,7 @@ public class TestGetUser {
 		
 		SignInService impl = SignInService.getInstance();
 		
-		User user = impl.VerifyUser("youssef@gmail.com", "youssef");
+		User user = impl.VerifyUser("salma.al.jaouhari@gmail.com", "salma");
 		
 		if (user == null) {
 			System.out.println("is not defined");
