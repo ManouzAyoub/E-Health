@@ -1,5 +1,6 @@
 package metier.services;
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.Session;
 
-import metier.dao.Implementations.UserDao;
 import metier.dao.beans.User;
 import metier.dao.util.HibernateUtil;
 
@@ -42,14 +42,18 @@ public class SignInService {
 		}
 
 		public User VerifyUser( String email,String password) {
-	    	String hql="SELECT u FROM User u WHERE u.email = :email AND u.password = :password";
+	    	String hql="select u from User u where u.email = :email AND u.password = :password";
 	        Query query = session.createQuery( hql );
 	        query.setParameter("email", email);
 	        query.setParameter("password", password);
-	        User user=new User();
-	        user = (User)((org.hibernate.query.Query) query).list().get(0);
-	        System.out.print("this is it" +user.getEmail());
-    		return user;    		
+	        User user = new User();
+	        List<User> list = query.getResultList();
+	        if (list.size() == 0) {
+				return null;
+			}else {
+				return list.get(0);
+			}
+    		    		
     	}
 	    
 	    public User SignInService(HttpServletRequest request) {

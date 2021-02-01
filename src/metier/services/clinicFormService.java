@@ -1,12 +1,11 @@
 package metier.services;
 
 import java.util.HashMap;
+
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.healthForms.beans.Clinic;
-import com.healthForms.beans.Visiter;
 
 import metier.dao.beans.Clinique;
 
@@ -32,7 +31,7 @@ public class clinicFormService {
 	    public Map<String, String> getErreurs() {
 	        return erreurs;
 	    }
- public Clinic clinicFormService(HttpServletRequest request) {
+ public Clinique clinicFormService(HttpServletRequest request) {
      String name = request.getParameter( CHAMP_NAME );
      String address = request.getParameter( CHAMP_ADDRESS );
      String email = request.getParameter( CHAMP_EMAIL);
@@ -47,28 +46,28 @@ public class clinicFormService {
      } catch ( Exception e ) {
          erreurs.put( CHAMP_NAME, e.getMessage() );
      }
-     clinic.setName(name);
+     //clinic.setName(name);
      
      try {
          validationAddress( address );
      } catch ( Exception e ) {
          erreurs.put( CHAMP_ADDRESS, e.getMessage() );
      }
-     clinic.setAddress(address);
+     //clinic.setAddress(address);
      
      try {
          validationTel( tel );
      } catch ( Exception e ) {
          erreurs.put( CHAMP_TEL, e.getMessage() );
      }
-     clinic.setTel( tel );
+     //clinic.setTel( tel );
      
      try {
          validationTel( emer_tel );
      } catch ( Exception e ) {
          erreurs.put( CHAMP_EMER_TEL, e.getMessage() );
      }
-     clinic.setEmergency_tel(emer_tel);;
+     //clinic.setEmergency_tel(emer_tel);;
      
      try {
          validationEmail( email );
@@ -76,7 +75,7 @@ public class clinicFormService {
          erreurs.put( CHAMP_EMAIL, e.getMessage() );
      }
      clinic.setEmail( email );
-     clinic.setSpeciality(speciality[0]);
+     //clinic.setSpeciality(speciality[0]);
        
      if ( erreurs.isEmpty() ) {
          resultat = "Succés d'inscription!";

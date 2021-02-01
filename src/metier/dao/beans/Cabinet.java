@@ -20,6 +20,7 @@ public class Cabinet extends Profil{
 	private String name;
 	private String adresse;
 	
+	
 	@OneToMany
 	Set<Rating> rating;
 	
