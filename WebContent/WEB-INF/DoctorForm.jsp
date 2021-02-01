@@ -50,8 +50,8 @@
            		       
                              <select name="languages" class="selectpicker" style="margin:10px 0" data-width="fit"  multiple>
                          <option  data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
-                         <option  data-content='<span class="flag-icon flag-icon-mx"></span> Espa�ol'>Espanol</option>
-                         <option  data-content='<span class="flag-icon flag-icon-cn"></span> Chinois'>Chinois</option>
+                         <option  data-content='<span class="flag-icon flag-icon-mx"></span> Spanish'>Spanish</option>
+                         <option  data-content='<span class="flag-icon flag-icon-cn"></span> Chinese'>Chinese</option>
                          <option  data-content='<span class="flag-icon flag-icon-fr"></span> Frensh'>Frensh</option>
                          <option  data-content='<span class="flag-icon flag-icon-ma"></span> Arabic'>Arabic</option>
                             </select>

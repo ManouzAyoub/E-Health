@@ -12,9 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import metier.services.RoleImpl;
 import metier.services.doctorFormService;
 import metier.dao.Implementations.DocteurDao;
+import metier.dao.Implementations.RoleDao;
 import metier.dao.beans.Docteur;
+import metier.dao.beans.Role;
+
 
 @WebServlet( "/doctorForm" )
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2,maxFileSize=16177215,maxRequestSize = 1024 * 1024 * 50)  // upload file's size up to 16MB
@@ -28,7 +32,7 @@ public class DoctorFormServlet extends HttpServlet {
     public static final String VUE              = "/WEB-INF/DoctorForm.jsp";
     public static final String SUCESS           = "/WEB-INF/afficherDoctor.jsp";
     
-
+    Role role=new Role();
     public DoctorFormServlet() {
         super();
 
@@ -44,7 +48,8 @@ public class DoctorFormServlet extends HttpServlet {
             throws ServletException, IOException {
     	 doctorFormService form = new doctorFormService();
          Docteur doctor = form.doctorFormService(request);
-         
+         RoleImpl roleimpl=RoleImpl.getInstance(); 
+         RoleDao roledao=RoleDao.getInstance();
          DocteurDao doctordao=DocteurDao.getInstance();
          
          String base64Image = Base64.getEncoder().encodeToString(doctor.getId_scan());
@@ -53,8 +58,11 @@ public class DoctorFormServlet extends HttpServlet {
          request.setAttribute( ATT_DOCTOR, doctor );
          request.setAttribute( ATT_FORM, form );
 
-         if ( form.getErreurs().isEmpty() ) {
-
+         if ( form.getErreurs().isEmpty()) {
+        	 
+        	 role=roleimpl.getRolebyrole("doctor");
+        	 doctor.setRole(role);           
+               
                doctordao.add(doctor);
  				this.getServletContext().getRequestDispatcher( SUCESS ).forward(
  	                     request, response );
