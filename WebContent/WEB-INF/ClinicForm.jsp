@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -13,47 +15,7 @@
     <!-- Main css -->
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
      
-    <link rel="stylesheet" href="inc/css/style.css">
- <style>
-
-  .container{
-  width: 660px;
-  position: relative;
-  margin: 0 auto; 
-    box-shadow:0 1px 3px rgba(0,0,0,0.2);
-    transition:all 0.2s ease-in-out;
-
-  }
-  .container:hover{
-    transform:scale(1.02);
-    transition:all 0.2s ease-in-out;
-    cursor: pointer;
-}
-.selectBox{
-            position: relative;
-        }
-        .selectBox select{
-            width: 100%;
-            font-weight: bold;
-        }
-        .overSelect{
-            position: absolute;
-            left: 0;right: 0;top:0;bottom: 0;
-        }
-        #checkboxes{
-            display: none;
-            border:1px #dadada solid;
-        }
-        #checkboxes label{
-            display:block;
-            
-        }
-        #checkboxes label:hover{
-            background-color: #1e90ff;
-        }
-
-
-</style>    
+    <link rel="stylesheet" href="inc/css/style.css">   
 </head>
 <body>
 
@@ -93,7 +55,7 @@
                       <div class="form-group">         
 					       <div class="selectBox" onClick="showCheckBoxes()">
 					           <select  class="form-input" >
-					               <option style="display:block">Veuillez choisir les specialités de votre clinique</option>
+					               <option>Veuillez choisir les specialités de votre clinique</option>
 					           </select>
 					           <div class="overSelect"></div>
 					           </div>
@@ -118,22 +80,22 @@
                         
                         <div class="form-group">
                             <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="inc/terms.html" class="term-service">Terms of service</a></label>
                         </div>
                         <div class="form-group">
                             <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up"/>
                         </div>
                     </form>
                     <p class="loginhere">
-                        Have already an account ? <a href="#" class="loginhere-link">Login here</a>
+                        Have already an account ? <a href="<c:url value="signIn" />" class="loginhere-link">Login here</a>
                     </p>
                 </div>
             </div>
         </section>
 
     </div>
-    <!-- var select = document.getElementById("selectchooser"); -->
-        <script>
+ 
+        <script type="text/javascript">
             var expanded =false;
             function showCheckBoxes(){
                 var checkboxes = document.getElementById("checkboxes");

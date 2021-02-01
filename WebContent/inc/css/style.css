@@ -74,7 +74,7 @@ list-type-ulli {
   -o-appearance: unset !important;
   -ms-appearance: unset !important; }*/
 
-  /* input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+   input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   appearance: none !important;
   -moz-appearance: none !important;
   -webkit-appearance: none !important;
@@ -88,7 +88,7 @@ input:focus, select:focus, textarea:focus {
   -moz-box-shadow: none !important;
   -webkit-box-shadow: none !important;
   -o-box-shadow: none !important;
-  -ms-box-shadow: none !important; }
+  -ms-box-shadow: none !important; } 
 
 input[type=checkbox] {
   appearance: checkbox !important;
@@ -102,11 +102,8 @@ input[type=radio] {
   -moz-appearance: radio !important;
   -webkit-appearance: radio !important;
   -o-appearance: radio !important;
-  -ms-appearance: radio !important; } */
+  -ms-appearance: radio !important; } 
  
-img {
-  max-width: 100%;
-  height: auto; }
 
 figure {
   margin: 0; }
@@ -147,10 +144,19 @@ body {
   background-position: center center;
   padding: 115px 0; }
 
-.container {
+.container{
   width: 660px;
   position: relative;
-  margin: 0 auto; }
+  margin: 0 auto; 
+    box-shadow:0 1px 3px rgba(0,0,0,0.2);
+    transition:all 0.2s ease-in-out;
+
+  }
+  .container:hover{
+    transform:scale(1.02);
+    transition:all 0.2s ease-in-out;
+    cursor: pointer;
+}
   
   .selectpicker {
   padding-top:10px;
@@ -458,37 +464,31 @@ input[type=checkbox]:not(old):checked + label > span:before {
 .select-css option {
 	font-weight:normal;
 }
-/**checkbox*/
-input[type=checkbox] {
-         position: relative;
-	       cursor: pointer;
-    }
-    input[type=checkbox]:before {
-         content: "";
-         display: block;
-         position: absolute;
-         width: 16px;
-         height: 16px;
-         top: 0;
-         left: 0;
-         border: 2px solid #555555;
-         border-radius: 3px;
-         background-color: white;
-}
-    input[type=checkbox]:checked:after {
-         content: "";
-         display: block;
-         width: 5px;
-         height: 10px;
-         border: solid black;
-         border-width: 0 2px 2px 0;
-         -webkit-transform: rotate(45deg);
-         -ms-transform: rotate(45deg);
-         transform: rotate(45deg);
-         position: absolute;
-         top: 2px;
-         left: 6px;
-}
+
+.selectBox{
+            position: relative;
+        }
+        .selectBox select{
+            width: 100%;
+            font-weight: bold;
+        }
+        .overSelect{
+            position: absolute;
+            left: 0;right: 0;top:0;bottom: 0;
+        }
+        #checkboxes{
+            display: none;
+            border:1px #dadada solid;
+        }
+        #checkboxes label{
+            display:block;
+            
+        }
+        #checkboxes label:hover{
+            background-color: #1e90ff;
+        }
+
+
 /*dropdown*/
 
 @media screen and (max-width: 768px) {

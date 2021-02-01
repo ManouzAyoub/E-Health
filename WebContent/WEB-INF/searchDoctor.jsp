@@ -1,4 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,7 +82,7 @@
 	    
 	                                <div class="row mt-3">
 	                                    <div class="col-md-6">
-	                                        <span class="font-montserrat font-size-14">Spécialité : <span class="color-second"> ${doctors.getOrDefault(entry.key, entry.value).get(1)} </span></span>
+	                                        <span class="font-montserrat font-size-14">Spï¿½cialitï¿½ : <span class="color-second"> ${doctors.getOrDefault(entry.key, entry.value).get(1)} </span></span>
 	                                        <div class="rating text-warning font-size-12">
 	                                        	<c:set var="numberOfRating" value="${Integer.valueOf(doctors.getOrDefault(entry.key, entry.value).get(10))}"></c:set>
 	                                            <c:choose>
@@ -127,14 +129,14 @@
 	                                    </div>
 	                                    <div class="col-md-6 border-left">
 	                                        <span class="font-noto text-secondary font-size-12"><i class="fas fa-map-marker-alt"></i> ${doctors.getOrDefault(entry.key, entry.value).get(2)}</span><br>
-	                                        <span class="font-noto text-secondary font-size-12"><i class="fas fa-calendar-alt"></i> ${doctors.getOrDefault(entry.key, entry.value).get(12)}:00-${doctors.getOrDefault(entry.key, entry.value).get(13)}:00 - ${doctors.getOrDefault(entry.key, entry.value).get(14)} à ${doctors.getOrDefault(entry.key, entry.value).get(15)}</span>                                    
+	                                        <span class="font-noto text-secondary font-size-12"><i class="fas fa-calendar-alt"></i> ${doctors.getOrDefault(entry.key, entry.value).get(12)}:00-${doctors.getOrDefault(entry.key, entry.value).get(13)}:00 - ${doctors.getOrDefault(entry.key, entry.value).get(14)} ï¿½ ${doctors.getOrDefault(entry.key, entry.value).get(15)}</span>                                    
 	                                    </div>
 	                                </div>
 	    
 	                                <div class="mt-3 py-1 border-top">
 	                                    <div class="row">
 	                                        <!-- if 3ndo telemedecine-->
-	                                        <span class="col-md-6 font-size-12 text-dark font-montserrat"><i class="fas fa-mobile-alt text-success"></i> &nbsp; Télémédecine</span>
+	                                        <span class="col-md-6 font-size-12 text-dark font-montserrat"><i class="fas fa-mobile-alt text-success"></i> &nbsp; Tï¿½lï¿½mï¿½decine</span>
 	                                        <span class="col-md-6 font-size-12 text-dark font-montserrat"><i class="fas fa-home text-success"></i> &nbsp; Consultation a domicile</span>
 	                                    </div>
 	                                    
@@ -153,7 +155,7 @@
 
                     <!-- Clear Button -->
                     <div class="Clear border d-flex justify-content-center mb-3">
-                        <button class="btn font-size-16 font-gilroy-bold color-second" id="clearAllBtn">Réinitialiser la recherche</button>
+                        <button class="btn font-size-16 font-gilroy-bold color-second" id="clearAllBtn">Rï¿½initialiser la recherche</button>
                     </div>
                     
                     <!-- Name -->
@@ -176,20 +178,20 @@
                     
                     <!-- Special services -->
                     <div class="special_services border mb-3">
-                        <h6 class="font-size-16 font-gilroy-bold color-second px-4 mt-2">Sévices Spécial</h6>
+                        <h6 class="font-size-16 font-gilroy-bold color-second px-4 mt-2">Sï¿½vices Spï¿½cial</h6>
                         <div class="px-4 py-2">
                             <div class="font-montserrat font-size-14">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="Télémédecine" id="Telemedecine" name="Sevices_Special" onclick="filter()" checked>
+                                    <input class="form-check-input" type="checkbox" value="Tï¿½lï¿½mï¿½decine" id="Telemedecine" name="Sevices_Special" onclick="filter()" checked>
                                     <label class="form-check-label" for="special_services">
-                                        Télémédecine
+                                        Tï¿½lï¿½mï¿½decine
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="Consultation à domicile" id="Consultation_a_domicile" name="Sevices_Special" onclick="filter()" checked>
+                                    <input class="form-check-input" type="checkbox" value="Consultation ï¿½ domicile" id="Consultation_a_domicile" name="Sevices_Special" onclick="filter()" checked>
                                     <label class="form-check-label" for="special_services">
-                                        Consultation à domicile
+                                        Consultation ï¿½ domicile
                                     </label>
                                 </div>
                             </div>
@@ -198,7 +200,7 @@
 
                     <!-- Rating -->
                     <div class="Rating border mb-3">
-                        <h6 class="font-size-16 font-gilroy-bold color-second px-4 mt-2">Évaluation des visiteurs</h6>
+                        <h6 class="font-size-16 font-gilroy-bold color-second px-4 mt-2">ï¿½valuation des visiteurs</h6>
                         <div class="px-4 py-2">
                             <div class="font-montserrat font-size-14">
 
@@ -281,7 +283,7 @@
 
                     <!-- Speciality -->
                     <div class="Speciality border mb-3">
-                        <h6 class="font-size-16 font-gilroy-bold color-second px-4 mt-2">Spécialités</h6>
+                        <h6 class="font-size-16 font-gilroy-bold color-second px-4 mt-2">Spï¿½cialitï¿½s</h6>
                         <div class="px-4 py-2">
                             <div class="font-montserrat font-size-14">
                                 <div class="form-check">
@@ -292,16 +294,16 @@
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" value="Chirurgie esthétique" name="Speciality" id="Chirurgie_esthetique" onclick="filter()">
+                                    <input class="form-check-input" type="radio" value="Chirurgie esthï¿½tique" name="Speciality" id="Chirurgie_esthetique" onclick="filter()">
                                     <label class="form-check-label" for="Speciality">
-                                        Chirurgie esthétique
+                                        Chirurgie esthï¿½tique
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" value="Chirurgie pédiatrique" name="Speciality" id="Chirurgie_pediatrique" onclick="filter()">
+                                    <input class="form-check-input" type="radio" value="Chirurgie pï¿½diatrique" name="Speciality" id="Chirurgie_pediatrique" onclick="filter()">
                                     <label class="form-check-label" for="Speciality">
-                                        Chirurgie pédiatrique
+                                        Chirurgie pï¿½diatrique
                                     </label>
                                 </div>
 
@@ -315,16 +317,16 @@
                                 <div id="showMore" style="display: none;">
                                     
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="Chirurgie viscérale et digestive" name="Speciality" id="Chirurgie_viscérale_et_digestive" onclick="filter()">
+                                        <input class="form-check-input" type="radio" value="Chirurgie viscï¿½rale et digestive" name="Speciality" id="Chirurgie_viscï¿½rale_et_digestive" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            Chirurgie viscérale et digestive
+                                            Chirurgie viscï¿½rale et digestive
                                         </label>
                                     </div>
                                     
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="Gynécologie obstétrique" name="Speciality" id="Gynecologie_obstetrique" onclick="filter()">
+                                        <input class="form-check-input" type="radio" value="Gynï¿½cologie obstï¿½trique" name="Speciality" id="Gynecologie_obstetrique" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            Gynécologie obstétrique
+                                            Gynï¿½cologie obstï¿½trique
                                         </label>
                                     </div>
                                     
@@ -350,9 +352,9 @@
                                     </div>
                                     
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="Anesthésie" name="Speciality" id="Anesthesie" onclick="filter()">
+                                        <input class="form-check-input" type="radio" value="Anesthï¿½sie" name="Speciality" id="Anesthesie" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            Anesthésie
+                                            Anesthï¿½sie
                                         </label>
                                     </div>
                                     
@@ -378,9 +380,9 @@
                                     </div>
                                     
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="Génétique" name="Speciality" id="Genetique" onclick="filter()">
+                                        <input class="form-check-input" type="radio" value="Gï¿½nï¿½tique" name="Speciality" id="Genetique" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            Génétique
+                                            Gï¿½nï¿½tique
                                         </label>
                                     </div>
                                     
@@ -392,37 +394,37 @@
                                     </div>
                                     
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="Gynécologie médicale" name="Speciality" id="Gynecologie_medicale" onclick="filter()">
+                                        <input class="form-check-input" type="radio" value="Gynï¿½cologie mï¿½dicale" name="Speciality" id="Gynecologie_medicale" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            Gynécologie médicale
+                                            Gynï¿½cologie mï¿½dicale
                                         </label>
                                     </div>
                                     
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="Hématologie" name="Speciality" id="Hematologie" onclick="filter()">
+                                        <input class="form-check-input" type="radio" value="Hï¿½matologie" name="Speciality" id="Hematologie" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            Hématologie
+                                            Hï¿½matologie
                                         </label>
                                     </div>
                                     
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="Médecine générale" name="Speciality" id="Medecine_generale" onclick="filter()">
+                                        <input class="form-check-input" type="radio" value="Mï¿½decine gï¿½nï¿½rale" name="Speciality" id="Medecine_generale" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            Médecine générale
+                                            Mï¿½decine gï¿½nï¿½rale
                                         </label>
                                     </div>
                                     
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="Médecine physique et réadaptation" name="Speciality" id="Medecine_physique_et_readaptation" onclick="filter()">
+                                        <input class="form-check-input" type="radio" value="Mï¿½decine physique et rï¿½adaptation" name="Speciality" id="Medecine_physique_et_readaptation" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            Médecine physique et réadaptation
+                                            Mï¿½decine physique et rï¿½adaptation
                                         </label>
                                     </div>
                                     
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="Néphrologie" name="Speciality" id="Nephrologie" onclick="filter()">
+                                        <input class="form-check-input" type="radio" value="Nï¿½phrologie" name="Speciality" id="Nephrologie" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            Néphrologie
+                                            Nï¿½phrologie
                                         </label>
                                     </div>
                                     
@@ -448,16 +450,16 @@
                                     </div>
                                     
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="Réanimation" name="Speciality" id="Reanimation" onclick="filter()">
+                                        <input class="form-check-input" type="radio" value="Rï¿½animation" name="Speciality" id="Reanimation" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            Réanimation
+                                            Rï¿½animation
                                         </label>
                                     </div>
                                     
                                     <div class="form-check">
-                                        <input class="form-check-input" type="radio" value="Santé publique" name="Speciality" id="Sante_publique" onclick="filter()">
+                                        <input class="form-check-input" type="radio" value="Santï¿½ publique" name="Speciality" id="Sante_publique" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            Santé publique
+                                            Santï¿½ publique
                                         </label>
                                     </div>
                                     
@@ -496,7 +498,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" value="Espanol" id="Espanol" name="Language" onclick="filter()">
                                     <label class="form-check-label" for="Language">
-                                        <span class="flag-icon flag-icon-mx"></span> Español
+                                        <span class="flag-icon flag-icon-mx"></span> Espaï¿½ol
                                     </label>
                                 </div>
 
@@ -555,7 +557,7 @@
 
                     <!-- Disponibility -->
                     <div class="Disponibility border mb-3">
-                        <h6 class="font-size-16 font-gilroy-bold color-second px-4 mt-2">Disponibilité</h6>
+                        <h6 class="font-size-16 font-gilroy-bold color-second px-4 mt-2">Disponibilitï¿½</h6>
                         <div class="px-4 py-2">
                             <div class="font-montserrat font-size-14">
                                 <div class="form-check">
@@ -566,21 +568,21 @@
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="Consultation à domicile" id="Disponibility" >
+                                    <input class="form-check-input" type="checkbox" value="Consultation ï¿½ domicile" id="Disponibility" >
                                     <label class="form-check-label" for="Disponibility">
                                         Demain
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="Consultation à domicile" id="Disponibility" >
+                                    <input class="form-check-input" type="checkbox" value="Consultation ï¿½ domicile" id="Disponibility" >
                                     <label class="form-check-label" for="Disponibility">
                                         Cette semaine
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="Consultation à domicile" id="Disponibility" >
+                                    <input class="form-check-input" type="checkbox" value="Consultation ï¿½ domicile" id="Disponibility" >
                                     <label class="form-check-label" for="Disponibility">
                                         La semaine prochaine
                                     </label>
