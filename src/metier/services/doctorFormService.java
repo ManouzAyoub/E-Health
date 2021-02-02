@@ -65,37 +65,7 @@ public class doctorFormService {
 		Docteur doctor = new Docteur();
 		
 		byte[] bite1=null,bite2=null,bite3=null,bite4=null;
-		
-        for(Part filepart1 : fileParts) {
-		if(filepart1!=null) {
-		      // prints out some information for debugging
-            System.out.println(filepart1.getName());
-            System.out.println(filepart1.getSize());
-            System.out.println(filepart1.getContentType());
-            
-    		inputStream1=filepart1.getInputStream();
-    		bite1=convert(inputStream1);
-	
-		    }
-		}
-		    
-		    if(medfile!=null) {
-			    System.out.println(medfile.getName());
-			    System.out.println(medfile.getSize());
-			    System.out.println(medfile.getContentType());
-		    inputStream2=medfile.getInputStream();
-    		bite2=convert(inputStream2);
-             }
-		    
-		    if(localfile!=null) {
-			    System.out.println(localfile.getName());
-			    System.out.println(localfile.getSize());
-			    System.out.println(localfile.getContentType());
-		    inputStream3=localfile.getInputStream();
-    		bite3=convert(inputStream3);
-
-		    }
-		    
+			    
 		    if(photofile!=null) {
 			    System.out.println(photofile.getName());
 			    System.out.println(photofile.getSize());
@@ -103,66 +73,157 @@ public class doctorFormService {
 		    inputStream4=photofile.getInputStream();
     		bite4=convert(inputStream4);
             }
+		    doctor.setProfile_image(bite4);
+		    
+		    /*ID_SCAN*/
+        for(Part filepart1 : fileParts) {
+    		if(filepart1!=null) {
+    		      // prints out some information for debugging
+                System.out.println(filepart1.getName());
+                System.out.println(filepart1.getSize());
+                System.out.println(filepart1.getContentType());
+                
+        		inputStream1=filepart1.getInputStream();
+        		bite1=convert(inputStream1);
+    		    }
+    		}
+	        try {
+	        	validationImageID( bite1 );
+
+	        } catch ( Exception e ) {
+	            erreurs.put( CHAMP_ID_SCAN, e.getMessage() );
+	        }
+	        doctor.setId_scan(bite1);
+	        /*ID_SCAN*/
+	        
+	        /*MED_FILE*/
+	        if(medfile.getSize()!=0) {
+			    System.out.println(medfile.getName());
+			    System.out.println(medfile.getSize());
+			    System.out.println(medfile.getContentType());
+		    inputStream2=medfile.getInputStream();
+    		bite2=convert(inputStream2);}
+	        
+		    try {
+		        validationImageCertificat( bite2 );
+		    } catch ( Exception e ) {
+		        erreurs.put( CHAMP_MED_CERTIFICATE, e.getMessage() );
+		    }
+	        doctor.setMed_certificate(bite2);
+	        /*MED_FILE*/
+	        
+	        /*LOCAL_FILE*/
+		    if(localfile.getSize()!=0) {
+			    System.out.println(localfile.getName());
+			    System.out.println(localfile.getSize());
+			    System.out.println(localfile.getContentType());
+			    inputStream3=localfile.getInputStream();
+				bite3=convert(inputStream3);}
+	        
+		    try {
+		        validationImageLocalContract( bite3 );
+		    } catch ( Exception e ) {
+		        erreurs.put( CHAMP_LOCAL_CONTRACT, e.getMessage() );
+		    }
+		    doctor.setLocal_contract(bite3);
+		    /*LOCAL_FILE*/
+		    
+	        try {
+	            validationEmail( email );
+	        } catch ( Exception e ) {
+	            erreurs.put( CHAMP_EMAIL, e.getMessage() );
+	        }
+	        doctor.setEmail( email );
+	
+	        try {
+	            validationPrenom( firstname );
+	        } catch ( Exception e ) {
+	            erreurs.put( CHAMP_FIRSTNAME, e.getMessage() );
+	        }
+	        doctor.setFirstname( firstname );
+	
+	        try {
+	            validationNom( lastname );
+	        } catch ( Exception e ) {
+	            erreurs.put( CHAMP_LASTNAME, e.getMessage() );
+	        }
+	        doctor.setLastname( lastname );
+	
+	        try {
+	            validationTel( tel );
+	        } catch ( Exception e ) {
+	            erreurs.put( CHAMP_TEL, e.getMessage() );
+	        }
+	        doctor.setTel( tel );
         
-        try {
-            validationEmail( email );
-        } catch ( Exception e ) {
-            erreurs.put( CHAMP_EMAIL, e.getMessage() );
-        }
-        doctor.setEmail( email );
-
-        try {
-            validationPrenom( firstname );
-        } catch ( Exception e ) {
-            erreurs.put( CHAMP_FIRSTNAME, e.getMessage() );
-        }
-        doctor.setFirstname( firstname );
-
-        try {
-            validationNom( lastname );
-        } catch ( Exception e ) {
-            erreurs.put( CHAMP_LASTNAME, e.getMessage() );
-        }
-        doctor.setLastname( lastname );
-
-        try {
-            validationTel( tel );
-        } catch ( Exception e ) {
-            erreurs.put( CHAMP_TEL, e.getMessage() );
-        }
-        doctor.setTel( tel );
-
-        if ( erreurs.isEmpty() ) {
-            resultat = "SuccÈs d'inscription!";
-        } else {
-            resultat = "Echec d'inscription";
-        }
         
         LangueImpl langueImpl = LangueImpl.getInstance();
-        
-        doctor.setSpeciality(speciality);
         List<Langue> les_langues = new ArrayList<>();
+        if(languages!=null) {
         for(String lg : languages) {
         	Langue langue = langueImpl.getLangueByString(lg);
         	les_langues.add(langue);
+          }
         }
-        doctor.setLangues(les_langues);	
+        try {
+            validationLangues( les_langues );
+        } catch ( Exception e ) {
+            erreurs.put( CHAMP_LANGUAGES, e.getMessage() );
+        }
+        doctor.setLangues(les_langues);
+        
+        try {
+            validationPractice( practice );
+        } catch ( Exception e ) {
+            erreurs.put( CHAMP_PRACTICE  , e.getMessage() );
+        }
         doctor.setPractice(practice);
-        doctor.setId_scan(bite1);
-        doctor.setMed_certificate(bite2);
-        doctor.setLocal_contract(bite3);
-        doctor.setProfile_image(bite4);
+        
+        
+        if ( erreurs.isEmpty() ) {
+            resultat = "Succ√©s d'inscription!";
+        } else {
+            resultat = "Echec d'inscription";
+        }
+
+        doctor.setSpeciality(speciality);
         return doctor;
     }
     
     
     
+    private void validationImageID( byte[] bite ) throws Exception {
+        if ( bite == null ) {
+                throw new Exception( "Veuillez saisir un screeshot de votre carte nationale!" );
+        }
+    }
+    
+    private void validationImageCertificat( byte[] bite  ) throws Exception {
+    	System.out.print("NOT null");
 
+        if ( bite == null ) {
+	    	System.out.print("nulllllll");
+
+                throw new Exception( "Veuillez saisir un screeshot de votre certificat m√©dical!" );
+        }
+    }
+    
+    private void validationImageLocalContract( byte[] bite ) throws Exception {
+        if ( bite == null ) {
+                throw new Exception( "Veuillez saisir un screeshot de votre contract de location!" );
+        }
+    }
+    
+    private void validationLangues( List<Langue> les_langues ) throws Exception {
+        if ( les_langues.size() == 0 ) {
+                throw new Exception( "Veuillez saisir la/les langues que vous parlez" );
+        }
+    }
 
     private void validationPrenom( String firstname ) throws Exception {
         if ( firstname != null ) {
             if ( firstname.trim().length() < 3 ) {
-                throw new Exception( "Veuillez saisir un nom de plus de 3 caractÈres." );
+                throw new Exception( "Veuillez saisir un nom de plus de 3 caract√©res." );
             }
         }
     }
@@ -170,7 +231,7 @@ public class doctorFormService {
     private void validationNom( String lastname ) throws Exception {
         if ( lastname != null ) {
             if ( lastname.trim().length() < 3 ) {
-                throw new Exception( "Veuillez saisir un nom de plus de 3 caractÈres." );
+                throw new Exception( "Veuillez saisir un nom de plus de 3 caract√©res." );
             }
         }
     }
@@ -179,7 +240,7 @@ public class doctorFormService {
         String regex = "([^.@]+)(\\\\.[^.@]+)*@([^.@]+\\\\.)+([^.@]+)";
         if ( email != null && email.trim().length() != 0 ) {
             if ( email.matches( regex ) ) {
-                throw new Exception( "adresse email validÈ" );
+                throw new Exception( "adresse email valid√©" );
             }
 
         } else {
@@ -190,10 +251,15 @@ public class doctorFormService {
     private void validationTel( String tel ) throws Exception {
         if ( tel != null ) {
             if ( tel.trim().length() != 10 ) {
-                throw new Exception( "on demande votre numero de tel rÈel" );
+                throw new Exception( "on demande votre numero de tel r√©el" );
             }
         } else {
             throw new Exception( "Veuillez saisir votre numero de Telephone" );
+        }
+    }
+    private void validationPractice( String practice ) throws Exception {
+        if ( practice!="-- domaine m√©dical--") {
+                throw new Exception( "Veuillez saisir votre domaine m√©dical!" );
         }
     }
     

@@ -25,27 +25,27 @@
                     <form action ="<%=request.getContextPath()%>/visiterForm" method="POST" id="signup-form" class="signup-form">
                         <h2 class="form-title">Create account</h2>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="firstname" id="name" placeholder="Your Firstname" value="<c:out value="${requestScope.visiter.firstname}"/>" />
-                            <span class="erreur" >${form.erreurs['firstname']}</span>      
+                            <input type="text" class="form-input" name="firstname" id="name" placeholder="Your Firstname" required oninvalid="this.setCustomValidity('Veuillez saisir votre prénom')" oninput="setCustomValidity('')" value="<c:out value="${requestScope.visiter.firstname}"/>" />
+                            <%-- <span class="erreur" >${form.erreurs['firstname']}</span> --%>      
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="lastname" id="name" placeholder="Your Lastname" value="<c:out value="${requestScope.visiter.lastname}"/>" />
-                            <span class="erreur" >${form.erreurs['lastname']}</span>      
+                            <input type="text" class="form-input" name="lastname" id="name" placeholder="Your Lastname" required oninvalid="this.setCustomValidity('Veuillez saisir votre nom')" oninput="setCustomValidity('')" value="<c:out value="${requestScope.visiter.lastname}"/>" />
+                            <%-- <span class="erreur" >${form.erreurs['lastname']}</span>  --%>     
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-input" name="email" id="email" placeholder="Your Email" value="<c:out value="${requestScope.visiter.email}"/>" />
+                            <input type="email" class="form-input" name="email" id="email" placeholder="Your Email" required oninvalid="this.setCustomValidity('Veuillez saisir une adresse e-mail')" oninput="setCustomValidity('')" value="<c:out value="${requestScope.visiter.email}"/>" />
                              <span class="erreur" >${form.erreurs['email']}</span>  
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-input" name="password" id="password" placeholder="Password" />
+                            <input type="password" class="form-input" name="password" id="password" placeholder="Password" required oninvalid="this.setCustomValidity('Veuillez saisir un mot de passe')" oninput="setCustomValidity('')" />
                             <span class="erreur" >${form.erreurs['password']}</span>
                             <span toggle="#password" class="zmdi zmdi-eye-off field-icon toggle-password"></span>
                         </div>
                         <div class="form-group">
-                            <input type="password" class="form-input" name="confirmation" id="re_password" placeholder="Repeat your password" />
+                            <input type="password" class="form-input" name="confirmation" id="re_password" required oninvalid="this.setCustomValidity('Veuillez confirmer votre mot de passe')" oninput="setCustomValidity('')" placeholder="Repeat your password" />
                         </div>
                         <div class="form-group">
-                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                            <input type="checkbox" name="agree-term" id="agree-term" onClick="checkTerms(event);" />
                             <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="inc/terms.html" target="_blank" class="term-service">Terms of service</a></label>
                         </div>
                         <div class="form-group">
@@ -64,5 +64,6 @@
     <!-- JS -->
     <script src="inc/vendor/jquery/jquery.min.js"></script>
     <script src="inc/js/password.js"></script>
+    <script src="inc/js/terms.js"></script>
 </body>
 </html>

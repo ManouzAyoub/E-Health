@@ -1,4 +1,4 @@
-
+	
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
@@ -10,8 +10,9 @@
 <body>
         <div id="corps">
             <p class="rs">${ form.getResultat() }</p>
-            <p>Email : <c:out value="${ visiter.email }"/></p>
-            <p>Mot de passe : <c:out value="${ visiter.password }"/></p>
+            <p>Email : <c:out value="${ clinic.email }"/></p>
+            <p>Mot de passe : <c:out value="${ clinic.name }"/></p>
+            <p>Mot de passe : <c:out value="${ clinic.speciality }"/></p>
         </div>
 
 </body>

@@ -10,15 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import metier.dao.beans.Clinique;
 
 public class clinicFormService {
-	 private static final String CHAMP_NAME    = "name";
+	
+	   private static clinicFormService instance = null;
+	
+	    private static final String CHAMP_NAME        = "name";
 	    private static final String CHAMP_ADDRESS     = "address";
-	    private static final String CHAMP_EMAIL     = "email";
-	    private static final String CHAMP_TEL       = "tel";
+	    private static final String CHAMP_EMAIL       = "email";
+	    private static final String CHAMP_TEL         = "tel";
 	    private static final String CHAMP_EMER_TEL    = "emergency_tel";
-	    private static final String CHAMP_SPECIALITY = "speciality";
+	    private static final String CHAMP_SPECIALITY  = "speciality";
 
 	    private String              resultat;
 	    private Map<String, String> erreurs            = new HashMap<String, String>();
+	    
+       private clinicFormService() {
+    	   
+       }
 
 	    public String getResultat() {
 	        return resultat;
@@ -38,6 +45,8 @@ public class clinicFormService {
      String tel = request.getParameter( CHAMP_TEL );
      String emer_tel = request.getParameter( CHAMP_EMER_TEL );
      String[] speciality = request.getParameterValues( CHAMP_SPECIALITY );
+     
+     System.out.print("sssssss"+speciality[0]);
 
      Clinique clinic = new Clinique();
      
@@ -46,28 +55,28 @@ public class clinicFormService {
      } catch ( Exception e ) {
          erreurs.put( CHAMP_NAME, e.getMessage() );
      }
-     //clinic.setName(name);
+     clinic.setName(name);
      
      try {
          validationAddress( address );
      } catch ( Exception e ) {
          erreurs.put( CHAMP_ADDRESS, e.getMessage() );
      }
-     //clinic.setAddress(address);
+     clinic.setAdresse(address);;
      
      try {
          validationTel( tel );
      } catch ( Exception e ) {
          erreurs.put( CHAMP_TEL, e.getMessage() );
      }
-     //clinic.setTel( tel );
+     clinic.setTel( tel );
      
      try {
          validationTel( emer_tel );
      } catch ( Exception e ) {
          erreurs.put( CHAMP_EMER_TEL, e.getMessage() );
      }
-     //clinic.setEmergency_tel(emer_tel);;
+     clinic.setEmergency_tel(emer_tel);;
      
      try {
          validationEmail( email );
@@ -75,12 +84,13 @@ public class clinicFormService {
          erreurs.put( CHAMP_EMAIL, e.getMessage() );
      }
      clinic.setEmail( email );
-     //clinic.setSpeciality(speciality[0]);
+     
+     clinic.setSpeciality(speciality[0]);
        
      if ( erreurs.isEmpty() ) {
-         resultat = "Succés d'inscription!";
+         resultat = "SuccÃ©s d'inscription!";
      } else {
-         resultat = "Echec d'inscription";
+         resultat = "Ã‰chec d'inscription";
      }
      
     
@@ -88,40 +98,45 @@ public class clinicFormService {
      return clinic;
  }
  
- private void validationNom( String name ) throws Exception {
-     if ( name != null ) {
-         if ( name.trim().length() < 3 ) {
-             throw new Exception( "Veuillez saisir un nom de plus de 3 caractéres." );
-         }
-     }
- }
- private void validationAddress( String address ) throws Exception {
-     if ( address != null ) {
-         if ( address.trim().length() < 6 ) {
-             throw new Exception( "Veuillez saisir un nom de plus de 6 caractéres." );
-         }
-     }
- }
- 
- private void validationEmail( String email ) throws Exception {
-     String regex = "([^.@]+)(\\\\.[^.@]+)*@([^.@]+\\\\.)+([^.@]+)";
-     if ( email != null && email.trim().length() != 0 ) {
-         if ( email.matches( regex ) ) {
-             throw new Exception( "adresse email validé" );
-         }
-
-     } else {
-         throw new Exception( "Veuillez saisir une adresse email s'il vous plait!" );
-     }
- }
-
- private void validationTel( String tel ) throws Exception {
-     if ( tel != null ) {
-         if ( tel.trim().length() != 10 ) {
-             throw new Exception( "on demande votre numero de tel réel" );
-         }
-     } else {
-         throw new Exception( "Veuillez saisir votre numero de Telephone" );
-     }
- }
+	 private void validationNom( String name ) throws Exception {
+	     if ( name != null ) {
+	         if ( name.trim().length() < 3 ) {
+	             throw new Exception( "Veuillez saisir un nom de plus de 3 caractï¿½res." );
+	         }
+	     }
+	 }
+	 private void validationAddress( String address ) throws Exception {
+	     if ( address != null ) {
+	         if ( address.trim().length() < 6 ) {
+	             throw new Exception( "Veuillez saisir un nom de plus de 6 caractï¿½res." );
+	         }
+	     }
+	 }
+	 
+	 private void validationEmail( String email ) throws Exception {
+	     String regex = "([^.@]+)(\\\\.[^.@]+)*@([^.@]+\\\\.)+([^.@]+)";
+	     if ( email != null && email.trim().length() != 0 ) {
+	         if ( email.matches( regex ) ) {
+	             throw new Exception( "adresse email validï¿½" );
+	         }
+	
+	     } else {
+	         throw new Exception( "Veuillez saisir une adresse email s'il vous plait!" );
+	     }
+	 }
+	
+	 private void validationTel( String tel ) throws Exception {
+	     if ( tel != null ) {
+	         if ( tel.trim().length() != 10 ) {
+	             throw new Exception( "on demande votre numero de tel rï¿½el" );
+	         }
+	     } else {
+	         throw new Exception( "Veuillez saisir votre numero de Telephone" );
+	     }
+	 }
+	    public static clinicFormService getInstance() {
+	        if ( instance == null )
+	            instance = new clinicFormService();
+	        return instance;
+	    }
 }

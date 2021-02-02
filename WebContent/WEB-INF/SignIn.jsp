@@ -47,20 +47,16 @@ body {
                         <h2 class="form-title">Sign In</h2>
                         
                         <div class="form-group">
-                            <input type="email" class="form-input" name="email" id="email" placeholder="Your Email" value="<c:out value="${requestScope.visiter.email}"/>" />
+                            <input type="email" class="form-input" name="email" id="email" placeholder="Your Email" required oninvalid="this.setCustomValidity('Veuillez saisir une adresse e-mail')" oninput="setCustomValidity('')" value="<c:out value="${requestScope.visiter.email}"/>" />
                              <span class="erreur" >${form.erreurs['email']}</span>  
                         </div>
                         
                        <div class="form-group">
-                            <input type="password" class="form-input" name="password" id="password" placeholder="Password" />
+                            <input type="password" class="form-input" name="password" id="password" required oninvalid="this.setCustomValidity('Veuillez saisir votre mot de passe')" oninput="setCustomValidity('')" placeholder="Password" />
                             <span class="erreur" >${form.erreurs['password']}</span>
                             <span toggle="#password" class="zmdi zmdi-eye-off field-icon toggle-password"></span>
                         </div>
                
-                        <div class="form-group">
-                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
-                            <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
-                        </div>
                         <div class="form-group">
                             <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up"/>
                         </div>

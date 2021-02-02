@@ -18,6 +18,7 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css'>
 
     <link rel="stylesheet" href="inc/css/style.css">
+
 </head>
 <body>
 
@@ -29,20 +30,20 @@
                     <form action ="<%=request.getContextPath()%>/doctorForm" method="POST" id="signup-form" class="signup-form" enctype="multipart/form-data" >
           	                        <h2 class="form-title">Create account</h2>
           	
-                        <div class="form-group">
-                            <input type="text" class="form-input" name="firstname" id="name" placeholder="Votre prénom" value="<c:out value="${requestScope.doctor.firstname}"/>" />
-                            <span class="erreur" >${form.erreurs['firstname']}</span>      
+                        <div class="form-group input-container" data-error="prénom trop court">
+                            <input type="text" class="form-input" name="firstname" id="name" placeholder="Votre prénom" required oninvalid="this.setCustomValidity('Veuillez saisir votre prénom')" oninput="setCustomValidity('')" value="<c:out value="${requestScope.doctor.firstname}"/>" />
+                            <%-- <span class="erreur" >${form.erreurs['firstname']}</span>  --%>     
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="lastname" id="name" placeholder="Votre nom" value="<c:out value="${requestScope.doctor.lastname}"/>" />
-                            <span class="erreur" >${form.erreurs['lastname']}</span>      
+                            <input type="text" class="form-input" name="lastname" id="name" placeholder="Votre nom" required oninvalid="this.setCustomValidity('Veuillez saisir votre nom')" oninput="setCustomValidity('')" value="<c:out value="${requestScope.doctor.lastname}"/>" />
+                            <%-- <span class="erreur" >${form.erreurs['lastname']}</span> --%>      
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-input" name="email" id="email" placeholder="Votre email" value="<c:out value="${requestScope.doctor.email}"/>" />
+                            <input type="email" class="form-input" name="email" id="email" placeholder="Votre email" required oninvalid="this.setCustomValidity('Veuillez saisir une adresse e-mail')" oninput="setCustomValidity('')" value="<c:out value="${requestScope.doctor.email}"/>" />
                              <span class="erreur" >${form.erreurs['email']}</span>  
                         </div>
                         <div class="form-group">
-                            <input type="tel" class="form-input" name="tel" id="tel" placeholder="Votre numero de telephone" value="<c:out value="${requestScope.doctor.tel}"/>" />
+                            <input type="tel" class="form-input" name="tel" id="tel" placeholder="Votre numero de telephone" required oninvalid="this.setCustomValidity('Veuillez saisir votre numero de tel')" oninput="setCustomValidity('')" value="<c:out value="${requestScope.doctor.tel}"/>" />
                              <span class="erreur" >${form.erreurs['tel']}</span>  
                         </div>
                         
@@ -55,6 +56,7 @@
                          <option  data-content='<span class="flag-icon flag-icon-fr"></span> Frensh'>Frensh</option>
                          <option  data-content='<span class="flag-icon flag-icon-ma"></span> Arabic'>Arabic</option>
                             </select>
+                            <span class="erreur" style="display:block" >${form.erreurs['languages']}</span>
                         
                         <!-- languages -->
                         
@@ -69,6 +71,7 @@
                           </nobr>
                         </div>
                         <input name="id_scan" type="file" id="hidden-upload1" style="display:none" multiple/>
+                         <span class="erreur" >${form.erreurs['id_scan']}</span>
                       </div>
                       <!-- file CN -->
                       
@@ -84,6 +87,7 @@
                           </nobr>
                         </div>
                         <input name="med_certificate" type="file" id="hidden-upload2" style="display:none"/>
+                      <span class="erreur" >${form.erreurs['med_certificate']}</span>
                       </div>
                       <!-- file MED_certificate -->
                       
@@ -112,6 +116,7 @@
 	                          </nobr>
 	                        </div>
 	                        <input name="local_contract" type="file" id="hidden-upload4" style="display:none" />
+                           <span class="erreur" >${form.erreurs['local_contract']}</span>
                       </div>
                      <!-- file Local_contract -->
                       
@@ -119,13 +124,15 @@
                         
                         <div class="form-group" style="margin-top:15px; margin-bottom:40px" onchange="changeFunc();">
                         <select  name="med_practice" id="practice" class="select-css">
+                            <option value="">-- domaine médical--</option>
                             <option value="pharmacie">pharmacie</option>
                             <option value="cabinet_medical">cabinet médical</option>
                             <option value="clinique">clinique</option>
                         </select>
+                        <span class="erreur" >${form.erreurs['med_practice']}</span> 
                         </div>
                         
-                        <div class="form-group" id="Speciality" style="visibility : hidden;">
+                        <div class="form-group" id="Speciality" style="display:none;">
                         <select name="speciality" class="select-css" onmousedown="if(this.options.length>8){this.size=8;}"  onchange='this.size=0;' onblur="this.size=0;">
                             <option>chirurgie esthétique</option>
                             <option>chirurgie pédiatrique</option>
@@ -158,11 +165,11 @@
                         
                         
                         <div class="form-group">
-                            <input type="checkbox" class="form-input" name="agree-term" id="agree-term" class="agree-term" />
+                            <input type="checkbox" class="form-input" name="agree-term" id="agree-term" onClick="checkTerms(event);"/>
                             <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="inc/terms.html" class="term-service">Terms of service</a></label>
                         </div>
                         <div class="form-group">
-                            <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up" onClick="postLogin(event);" />
+                            <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up" onClick="postLogin(event);" disabled='disabled'/>
                         </div>
                     </form>
                     <p class="loginhere">
@@ -174,26 +181,10 @@
 
     </div>
     <!-- JS -->
-        <script type="text/javascript">
-    function postLogin(event) {
-        var form = document.getElementById("signup-form");
-        form.submit();
 
-        event.preventDefault();
-    }
-    
-    function changeFunc() {
-        var selectBox = document.getElementById("practice");
-        var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-               if(selectedValue=='cabinet_medical'){
-                   document.getElementById("Speciality").style.visibility='visible';
-               }
-       
-       }
-    </script>
-
-     <!-- <script src="inc/js/main.js"></script> -->
      <script src="inc/js/files.js"></script>
+     <script src="inc/js/terms.js"></script>
+     <script src="inc/js/doctorjs.js"></script>
    
         <!--language js -->
       <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>

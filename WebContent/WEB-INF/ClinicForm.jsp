@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<html lang="en">
+<html lang="fr">
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
@@ -15,7 +15,36 @@
     <!-- Main css -->
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
      
-    <link rel="stylesheet" href="inc/css/style.css">   
+    <link rel="stylesheet" href="inc/css/style.css"> 
+    <style>     
+     .hidden {
+            display: none;
+        }
+
+        .visible {
+            display: block;
+        }
+
+        .div {
+            border: 1px solid #ebebeb;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        #sel {
+            width: 100%;
+        }
+
+        .arrow {
+            float: right;
+            cursor: pointer;
+        }
+    </style>  
 </head>
 <body>
 
@@ -50,36 +79,31 @@
                              <span class="erreur" >${form.erreurs['emergency_tel']}</span>  
                         </div>
                       	
-                      	<!-- début de changement -->
-                        
-                      <div class="form-group">         
-					       <div class="selectBox" onClick="showCheckBoxes()">
-					           <select  class="form-input" >
-					               <option>Veuillez choisir les specialités de votre clinique</option>
-					           </select>
-					           <div class="overSelect"></div>
-					           </div>
-					           <div id="checkboxes">
-					               <label for="sp1"><input type="checkbox"   id="sp1"/>gynécologie et obstétrique</label>
-					               <label for="sp2"><input type="checkbox"  id="sp2"/>gastro-entérologie</label>
-					               <label for="sp3"><input type="checkbox"  id="sp3"/>chirurgie esthétique</label>
-					               <label for="sp4"><input type="checkbox"  id="sp4"/>Santé sexuelle et contraceptifs</label>
-					               <label for="sp5"><input type="checkbox"  id="sp5"/>La cardiologie</label>
-					               <label for="sp6"><input type="checkbox"  id="sp6"/>L’anesthésiologie</label>
-					               <label for="sp7"><input type="checkbox"  id="sp7"/>médecine intensive</label>
-					               <label for="sp8"><input type="checkbox"  id="sp8"/>médecine nucléaire</label>
-					               <label for="sp9"><input type="checkbox"  id="sp9"/>neurochirurgie</label>
-					               <label for="sp10"><input type="checkbox"  id="sp10"/>oncologie médicale et chirurgicale</label>
-					               <label for="sp11"><input type="checkbox"  id="sp11"/>radiologie diagnostique et interventionnelle</label>
-					               <label for="sp12"><input type="checkbox"  id="sp12"/>neurochirurgie</label>
-					               <label for="sp13"><input type="checkbox"  id="sp13"/>neurochirurgie</label>
-					               <label for="sp14"><input type="checkbox"  id="sp14"/>chirurgie orthopédique et traumatologique</label>
-					           </div>
-					    </div>
+
+					<div class="div" onmouseover="showSelect('visible')" onmouseout="showSelect('hidden')">
+				        &nbsp;&nbsp;&nbsp;&nbsp;Veuillez choisir votre/vos specialités <span class="arrow">&#9660;&nbsp;&nbsp;</span>
+				
+				        <select multiple="multiple" class="hidden" id="sel" name="speciality">
+				            <option value="gynécologie et obstétrique">gynécologie et obstétrique</option>
+				            <option value="gastro-entérologie">gastro-entérologie</option>
+				            <option value="chirurgie esthétique">chirurgie esthétique</option>
+				            <option value="Santé sexuelle et contraceptifs">Santé sexuelle et contraceptifs</option>
+				            <option value="cardiologie">cardiologie</option>
+				            <option value="anesthésiologie">anesthésiologie</option>
+				            <option value="médecine intensive">médecine intensive</option>
+				            <option value="médecine nucléaire">médecine nucléaire</option>
+				            <option value="neurochirurgie">neurochirurgie</option>
+				            <option value="oncologie médicale et chirurgicale">oncologie médicale et chirurgicale</option>
+				            <option value="radiologie diagnostique et interventionnelle">radiologie diagnostique et interventionnelle</option>
+				            <option value="neurochirurgie">neurochirurgie</option>
+				            <option value="chirurgie orthopédique et traumatologique">chirurgie orthopédique et traumatologique</option>
+				
+				        </select>
+				    </div>
                      
                         
                         <div class="form-group">
-                            <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                            <input type="checkbox" name="agree-term" id="agree-term" onClick="checkTerms(event);" />
                             <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="inc/terms.html" class="term-service">Terms of service</a></label>
                         </div>
                         <div class="form-group">
@@ -94,23 +118,12 @@
         </section>
 
     </div>
- 
-        <script type="text/javascript">
-            var expanded =false;
-            function showCheckBoxes(){
-                var checkboxes = document.getElementById("checkboxes");
-                if(!expanded){
-                    checkboxes.style.display="block";
-                    expanded=true;
-                }else{
-                    checkboxes.style.display="none";
-                    expanded=false;
-                }
-            }
-            
-            
-        </script>
-
+    <script src="inc/js/terms.js"></script>
+    <script type="text/javascript">
+    function showSelect(classname) {
+        document.getElementById('sel').className = classname;
+    }
+    </script>
     <!-- JS -->
 </body>
 </html>

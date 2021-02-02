@@ -72,8 +72,8 @@ public class SignInService {
 	        }
 	        else {
 	        	visiter.setEmail(email);
-	        	erreurs.put( CHAMP_EMAIL, "Vous etes pas inscrit" );
-	        	resultat = "Echec d'inscription";
+	        	erreurs.put( CHAMP_EMAIL, "Vous êtes pas inscrit" );
+	        	resultat = "Échec d'inscription";
 	        }
 
 
