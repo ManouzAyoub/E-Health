@@ -8,7 +8,7 @@ import metier.dao.beans.Role;
 import metier.dao.util.HibernateUtil;
 import metier.dao.util.functionStd;
 
-public class RoleDao implements functionStd<Role, Long> {
+public class RoleDao implements functionStd<Role, Integer> {
 
 	Session session = HibernateUtil.openSession();
 	private static RoleDao instance = null;
@@ -34,7 +34,7 @@ public class RoleDao implements functionStd<Role, Long> {
 	}
 
 	@Override
-	public void delete(Long b) {
+	public void delete(Integer b) {
 		session.beginTransaction();
 		Role role = getById(b);
 		session.delete(role);
@@ -43,7 +43,7 @@ public class RoleDao implements functionStd<Role, Long> {
 	}
 
 	@Override
-	public Role getById(Long id) {
+	public Role getById(Integer id) {
 		return session.get(Role.class, id);
 	}
 

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,7 +30,7 @@
           	                        <h2 class="form-title">Create account</h2>
           	
                         <div class="form-group">
-                            <input type="text" class="form-input" name="firstname" id="name" placeholder="Votre prénom" value="<c:out value="${requestScope.doctor.firstname}"/>" />
+                            <input type="text" class="form-input" name="firstname" id="name" placeholder="Votre prÃ©nom" value="<c:out value="${requestScope.doctor.firstname}"/>" />
                             <span class="erreur" >${form.erreurs['firstname']}</span>      
                         </div>
                         <div class="form-group">
@@ -48,8 +50,8 @@
            		       
                              <select name="languages" class="selectpicker" style="margin:10px 0" data-width="fit"  multiple>
                          <option  data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
-                         <option  data-content='<span class="flag-icon flag-icon-mx"></span> Español'>Español</option>
-                         <option  data-content='<span class="flag-icon flag-icon-cn"></span> Chinois'>Chinois</option>
+                         <option  data-content='<span class="flag-icon flag-icon-mx"></span> Spanish'>Spanish</option>
+                         <option  data-content='<span class="flag-icon flag-icon-cn"></span> Chinese'>Chinese</option>
                          <option  data-content='<span class="flag-icon flag-icon-fr"></span> Frensh'>Frensh</option>
                          <option  data-content='<span class="flag-icon flag-icon-ma"></span> Arabic'>Arabic</option>
                             </select>
@@ -59,7 +61,7 @@
                                                 
                         <!-- file CN -->
                          <div class="form-group" id="upload-container">
-                        <label class="label-file">Merci de déposer une photocopie de votre carte nationale :</label>
+                        <label class="label-file">Merci de dÃ©poser une photocopie de votre carte nationale :</label>
                         <div  id="upload-border">
                           <nobr>
                             <input type="text" id="upload-name1"   disabled="true" />
@@ -74,7 +76,7 @@
                       <!-- file MED_certificate -->
                        
                         <div class="form-group" id="upload-container">
-                        <label class="label-file">Merci de déposer votre certificat médicale :</label>
+                        <label class="label-file">Merci de dÃ©poser votre certificat mÃ©dicale :</label>
                         <div  id="upload-border">
                           <nobr>
                             <input type="text" id="upload-name2"   disabled="true" />
@@ -88,7 +90,7 @@
                       <!-- file Profile_picture -->
                       
                          <div class="form-group" id="upload-container">
-                          	<label class="label-file">Merci de déposer votre photo de profile :</label>
+                          	<label class="label-file">Merci de dÃ©poser votre photo de profile :</label>
 	                        <div  id="upload-border">
 	                          <nobr>
 	                            <input type="text" id="upload-name3"   disabled="true" />
@@ -102,7 +104,7 @@
                       <!-- file Local_contract -->
                       
                          <div class="form-group" id="upload-container">
-	                        <label class="label-file">Merci de déposer le contract de location de votre cabinet médical :</label>
+	                        <label class="label-file">Merci de dÃ©poser le contract de location de votre cabinet mÃ©dical :</label>
 	                        <div  id="upload-border">
 	                          <nobr>
 	                            <input type="text" id="upload-name4"   disabled="true" />
@@ -115,40 +117,40 @@
                       
                       <!-- select  -->                      
                         
-                        <div class="form-group" style="margin-top:15px; margin-bottom:40px">
-                        <select  name="med_practice" class="select-css" name="work">
-                            <option>cabinet médical</option>
-                            <option>pharmacie</option>
-                            <option>clinique</option>
+                        <div class="form-group" style="margin-top:15px; margin-bottom:40px" onchange="changeFunc();">
+                        <select  name="med_practice" id="practice" class="select-css">
+                            <option value="pharmacie">pharmacie</option>
+                            <option value="cabinet_medical">cabinet mÃ©dical</option>
+                            <option value="clinique">clinique</option>
                         </select>
                         </div>
                         
-                        <div class="form-group">
+                        <div class="form-group" id="Speciality" style="visibility : hidden;">
                         <select name="speciality" class="select-css" onmousedown="if(this.options.length>8){this.size=8;}"  onchange='this.size=0;' onblur="this.size=0;">
-                            <option>chirurgie esthétique</option>
-                            <option>chirurgie pédiatrique</option>
+                            <option>chirurgie esthÃ©tique</option>
+                            <option>chirurgie pÃ©diatrique</option>
                             <option>chirurgie vasculaire</option>
-                            <option>chirurgie viscérale et digestive</option>
-                            <option>gynécologie obstétrique</option>
+                            <option>chirurgie viscÃ©rale et digestive</option>
+                            <option>gynÃ©cologie obstÃ©trique</option>
                             <option>neurochirurgie </option>
                             <option>allergologie</option>
                             <option>anatomie et cytologie pathologique</option>
-                            <option>anesthésie</option>
+                            <option>anesthÃ©sie</option>
                             <option>cardiologie</option>
                             <option>dermatologie</option>
                             <option>endocrinologie-nutrition</option>
-                            <option>génétique</option>
+                            <option>gÃ©nÃ©tique</option>
                             <option>allergologie</option>
-                            <option>gynécologie médicale</option>
-                            <option>hématologie</option>
-                            <option>médecine générale</option>
-                            <option>médecine physique et réadaptation</option>
-                            <option>néphrologie</option>
+                            <option>gynÃ©cologie mÃ©dicale</option>
+                            <option>hÃ©matologie</option>
+                            <option>mÃ©decine gÃ©nÃ©rale</option>
+                            <option>mÃ©decine physique et rÃ©adaptation</option>
+                            <option>nÃ©phrologie</option>
                             <option>neurologie</option>
                             <option>psychiatrie</option>
                             <option>radiologie</option>
-                            <option>réanimation</option>
-                            <option>santé publique</option>
+                            <option>rÃ©animation</option>
+                            <option>santÃ© publique</option>
                             <option>urgentiste</option>
                         </select>
                         </div>
@@ -164,7 +166,7 @@
                         </div>
                     </form>
                     <p class="loginhere">
-                        Have already an account ? <a href="#" class="loginhere-link">Login here</a>
+                        Have already an account ? <a href="<c:url value="signIn" />" class="loginhere-link">Login here</a>
                     </p>
                 </div>
             </div>
@@ -172,13 +174,22 @@
 
     </div>
     <!-- JS -->
-        <script>
+        <script type="text/javascript">
     function postLogin(event) {
         var form = document.getElementById("signup-form");
         form.submit();
 
         event.preventDefault();
     }
+    
+    function changeFunc() {
+        var selectBox = document.getElementById("practice");
+        var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+               if(selectedValue=='cabinet_medical'){
+                   document.getElementById("Speciality").style.visibility='visible';
+               }
+       
+       }
     </script>
 
      <!-- <script src="inc/js/main.js"></script> -->

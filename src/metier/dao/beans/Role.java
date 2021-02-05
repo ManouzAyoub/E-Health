@@ -10,11 +10,17 @@ import javax.persistence.Id;
 @Entity
 public class Role implements Serializable {
 	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idRole;
+
 	private String libelle;
 	private String desc;
+
+	private String role;
+	private String description;
+	
 	
 	public Role() {
 		super();
@@ -44,7 +50,21 @@ public class Role implements Serializable {
 		this.desc = desc;
 	}
 	
-	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	
 
 }
