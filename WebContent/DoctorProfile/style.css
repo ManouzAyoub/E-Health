@@ -1,0 +1,189 @@
+/*    Sass template   */
+/*  Global Classes  */
+
+
+/*  Typography Classes  */
+.font-gilroy {
+  font-family: "Gilroy", cursive;
+}
+
+.font-gilroy-bold {
+  font-family: "Gilroy", cursive;
+  font-weight: bold;
+}
+
+.font-noto {
+  font-family: "Noto Sans", cursive;
+}
+
+.font-montserrat {
+  font-family: "Montserrat", cursive;
+}
+
+.font-size-12 {
+  font-size: 12px;
+}
+
+.font-size-14 {
+  font-size: 14px;
+}
+
+.font-size-16 {
+  font-size: 16px;
+}
+
+.font-size-20 {
+  font-size: 20px;
+}
+
+@media (max-width: 767px) {
+  .text-xs-center {
+    text-align: center;
+  } 
+}
+
+/* Color Template */
+.color-primary {
+  color: #114A75;
+}
+
+.color-primary-bg {
+  background: #114A75;
+}
+
+.color-second {
+  color: #478DCA;
+}
+
+.color-second-bg {
+  background: #478DCA;
+}
+
+.color-third {
+  color: #D46374;
+}
+
+.color-third-bg {
+  background: #D46374;
+}
+
+.color-search-pannel-bg {
+  background: rgb(0,118,255);
+  background: linear-gradient(90deg, rgba(0,118,255,1) 0%, rgba(0,207,255,1) 58%, rgba(249,249,249,1) 100%);
+}
+
+.readMoreArea {
+  opacity: 0;
+  max-height: 0;
+  font-size: 0;
+  transition: .25s ease;
+}
+
+@media (min-width: 960px) {
+  .show-mobile {
+    display: none;
+  }
+
+  #search_bar {
+    display: inline;
+  }
+}
+
+@media (max-width: 960px) {
+  #search_bar {
+    display: none;
+  }
+
+  #SectionsNavbar {
+    display: none;
+  }
+
+}
+
+.border-3 {
+  border-style:solid;
+  border-width:3px !important;
+  border-color: white;
+}
+
+#SectionsNavbar.scrolled {
+  background-color: #114A75 !important;
+  transition: background-color 200ms linear;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+}
+
+.map-container{
+  overflow:hidden;
+  padding-bottom:56.25%;
+  position:relative;
+  height:0;
+}
+.map-container iframe{
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  position:absolute;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+#map {
+  height: 100%;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.progress-label {
+  float: left;
+  margin-right: 1em;
+}
+
+.ratting-table {
+  border: 0;
+  margin-right: 10px;
+}
+
+.ratting-table ,tr ,td{
+  padding: 5px;
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+}
+
+.starrating > input {display: none;}  /* Remove radio buttons */
+
+.starrating > label:before { 
+  content: "\f005"; /* Star */
+  margin: 2px;
+  font-family: FontAwesome;
+  display: inline-block; 
+}
+
+.starrating > label
+{
+  color: #222222; /* Start color when not clicked */
+}
+
+.starrating > input:checked ~ label
+{ color: #ffca08 ; } /* Set yellow color when star checked */
+
+.starrating > input:hover ~ label
+{ color: #ffca08 ;  } /* Set yellow color when star hover */
+
+pre {
+  white-space: pre-wrap;       /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+/*# sourceMappingURL=style.css.map */
