@@ -39,8 +39,7 @@ public class DocteurImpl {
 	private List<String> string = new ArrayList<>();
 	private Map<Long,List<String>> classes_list_map = new HashMap<Long, List<String>>();
 	private Map<String,String> specialities = new HashMap<String,String>();
-	
-	
+
 	
 	private DocteurImpl() {
 		

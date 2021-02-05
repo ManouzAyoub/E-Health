@@ -53,14 +53,16 @@ public class DoctorFormServlet extends HttpServlet {
          RoleDao roledao=RoleDao.getInstance();
          DocteurDao doctordao=DocteurDao.getInstance();
          
-         String base64Image = Base64.getEncoder().encodeToString(doctor.getId_scan());
-         doctor.setBase64image(base64Image);
+
          
          request.setAttribute( ATT_DOCTOR, doctor );
          request.setAttribute( ATT_FORM, form );
 
          if ( form.getErreurs().isEmpty()) {
-        	 
+        	 //base64image is just for image display purposes
+             String base64Image = Base64.getEncoder().encodeToString(doctor.getId_scan());
+             doctor.setBase64image(base64Image);
+             
         	 role=roleimpl.getRolebyrole("doctor");
         	 doctor.setRole(role);           
                
@@ -70,6 +72,7 @@ public class DoctorFormServlet extends HttpServlet {
              
 
          } else {
+        	 System.out.print(form.getErreurs());
              this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 
          }

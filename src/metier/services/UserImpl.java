@@ -42,7 +42,9 @@ public class UserImpl {
         return erreurs;
     }
     
-	public void validationEmail( String email) throws Exception{
+    
+    // where a correct function ?
+	public void validationEmail2( String email) throws Exception{
     	String hql="select u from User u where u.email = :email";
         Query query = session.createQuery( hql );
         query.setParameter("email", email);
@@ -51,7 +53,7 @@ public class UserImpl {
         if (list.size() != 0) {
         	throw new Exception( "cet email a deja ete choisie" );
 		}else {
-			return;
+			erreurs.clear();
 		}
 	}
 
@@ -101,11 +103,25 @@ public class UserImpl {
 
         return visiter;
     }
+    
+    
+	public void validationEmail( String email) throws Exception{
+    	String hql="select u from User u where u.email = :email";
+        Query query = session.createQuery( hql );
+        query.setParameter("email", email);
+        User user = new User();
+        List<User> list = query.getResultList();
+        if (list.size() != 0) {
+        	throw new Exception( "cet email a déja été choisie" );
+		}else {
+			erreurs.clear();
+		}
+	}
 
     private void validationPrenom( String firstname ) throws Exception {
         if ( firstname != null ) {
             if ( firstname.trim().length() < 3 ) {
-                throw new Exception( "Veuillez saisir un nom de plus de 3 caract�res." );
+                throw new Exception( "Veuillez saisir un nom de plus de 3 caractéres." );
             }
         }
     }
@@ -113,7 +129,7 @@ public class UserImpl {
     private void validationNom( String lastname ) throws Exception {
         if ( lastname != null ) {
             if ( lastname.trim().length() < 3 ) {
-                throw new Exception( "Veuillez saisir un nom de plus de 3 caract�res." );
+                throw new Exception( "Veuillez saisir un nom de plus de 3 caractéres." );
             }
         }
     }
@@ -122,9 +138,9 @@ public class UserImpl {
         if ( motDePasse != null && motDePasse.trim().length() != 0 && confirmation != null
                 && confirmation.trim().length() != 0 ) {
             if ( !motDePasse.equals( confirmation ) ) {
-                throw new Exception( "Les mots de passe entr�s sont diff�rents, merci de les saisir � nouveau." );
+                throw new Exception( "Les mots de passe entrés sont différents, merci de les saisir à nouveau." );
             } else if ( motDePasse.trim().length() < 3 ) {
-                throw new Exception( "Les mots de passe doivent contenir au moins 3 caract�res." );
+                throw new Exception( "Les mots de passe doivent contenir au moins 3 caractéres." );
             }
         } else {
             throw new Exception( "Merci de saisir et confirmer votre mot de passe." );

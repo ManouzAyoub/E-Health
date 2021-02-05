@@ -35,124 +35,190 @@ public class doctorFormService {
     private String              resultat;
     private Map<String, String> erreurs               = new HashMap<String, String>();
 
-    
+    public String getResultat() {
+        return resultat;
+    }
+
+    public void setResultat( String resultat ) {
+        this.resultat = resultat;
+    }
+
+    public Map<String, String> getErreurs() {
+        return erreurs;
+    }
 
     public Docteur doctorFormService( HttpServletRequest request ) throws IOException, ServletException {
-        String firstname     = request.getParameter( CHAMP_FIRSTNAME );
-        String lastname      = request.getParameter( CHAMP_LASTNAME );
-        String email         = request.getParameter( CHAMP_EMAIL );
-        String tel           = request.getParameter( CHAMP_TEL );
-        String speciality    = request.getParameter( CHAMP_SPECIALITY );
-        String[] languages   = request.getParameterValues( CHAMP_LANGUAGES );
-        String practice      = request.getParameter(CHAMP_PRACTICE);
-        Part medfile         = request.getPart(CHAMP_MED_CERTIFICATE);
-        Part localfile       = request.getPart(CHAMP_LOCAL_CONTRACT);
-        Part photofile       = request.getPart(CHAMP_PROFILE_IMAGE);
+        String firstname   = request.getParameter( CHAMP_FIRSTNAME );
+        String lastname    = request.getParameter( CHAMP_LASTNAME );
+        String email       = request.getParameter( CHAMP_EMAIL );
+        String tel         = request.getParameter( CHAMP_TEL );
+        String speciality  = request.getParameter( CHAMP_SPECIALITY );
+        String[] languages = request.getParameterValues( CHAMP_LANGUAGES );
+        String practice    = request.getParameter(CHAMP_PRACTICE);
+        Part medfile       = request.getPart(CHAMP_MED_CERTIFICATE);
+        Part localfile     = request.getPart(CHAMP_LOCAL_CONTRACT);
+        Part photofile     = request.getPart(CHAMP_PROFILE_IMAGE);
 		List<Part> fileParts = request.getParts().stream().filter(part -> CHAMP_ID_SCAN.equals(part.getName()) && part.getSize() > 0).collect(Collectors.toList());
 		
 		InputStream inputStream1=null,inputStream2=null,inputStream3=null,inputStream4=null;
 		
 		Docteur doctor = new Docteur();
 		
-		//byte[] bite1=null,bite2=null,bite3=null,bite4=null;
-		byte[] bites[] = null;
-		
-        for(Part filepart1 : fileParts) {
-		if(filepart1!=null) {
-		      // prints out some information for debugging
-            System.out.println(filepart1.getName());
-            System.out.println(filepart1.getSize());
-            System.out.println(filepart1.getContentType());
-            
-    		inputStream1=filepart1.getInputStream();
-    		bites[0]=convert(inputStream1);
-	
-		    }
-		}
-		    
-		    if(medfile!=null) {
-			    System.out.println(medfile.getName());
-			    System.out.println(medfile.getSize());
-			    System.out.println(medfile.getContentType());
-		    inputStream2=medfile.getInputStream();
-    		bites[1]=convert(inputStream2);
-             }
-		    
-		    if(localfile!=null) {
-			    System.out.println(localfile.getName());
-			    System.out.println(localfile.getSize());
-			    System.out.println(localfile.getContentType());
-		    inputStream3=localfile.getInputStream();
-		    bites[2]=convert(inputStream3);
-
-		    }
-		    
+		byte[] bite1=null,bite2=null,bite3=null,bite4=null;
+			    
 		    if(photofile!=null) {
 			    System.out.println(photofile.getName());
 			    System.out.println(photofile.getSize());
 			    System.out.println(photofile.getContentType());
 		    inputStream4=photofile.getInputStream();
-		    bites[3]=convert(inputStream4);
+    		bite4=convert(inputStream4);
             }
+		    doctor.setProfile_image(bite4);
+		    
+		    /*ID_SCAN*/
+        for(Part filepart1 : fileParts) {
+    		if(filepart1!=null) {
+    		      // prints out some information for debugging
+                System.out.println(filepart1.getName());
+                System.out.println(filepart1.getSize());
+                System.out.println(filepart1.getContentType());
+                
+        		inputStream1=filepart1.getInputStream();
+        		bite1=convert(inputStream1);
+    		    }
+    		}
+	        try {
+	        	validationImageID( bite1 );
+
+	        } catch ( Exception e ) {
+	            erreurs.put( CHAMP_ID_SCAN, e.getMessage() );
+	        }
+	        doctor.setId_scan(bite1);
+	        /*ID_SCAN*/
+	        
+	        /*MED_FILE*/
+	        if(medfile.getSize()!=0) {
+			    System.out.println(medfile.getName());
+			    System.out.println(medfile.getSize());
+			    System.out.println(medfile.getContentType());
+		    inputStream2=medfile.getInputStream();
+    		bite2=convert(inputStream2);}
+	        
+		    try {
+		        validationImageCertificat( bite2 );
+		    } catch ( Exception e ) {
+		        erreurs.put( CHAMP_MED_CERTIFICATE, e.getMessage() );
+		    }
+	        doctor.setMed_certificate(bite2);
+	        /*MED_FILE*/
+	        
+	        /*LOCAL_FILE*/
+		    if(localfile.getSize()!=0) {
+			    System.out.println(localfile.getName());
+			    System.out.println(localfile.getSize());
+			    System.out.println(localfile.getContentType());
+			    inputStream3=localfile.getInputStream();
+				bite3=convert(inputStream3);}
+	        
+		    try {
+		        validationImageLocalContract( bite3 );
+		    } catch ( Exception e ) {
+		        erreurs.put( CHAMP_LOCAL_CONTRACT, e.getMessage() );
+		    }
+		    doctor.setLocal_contract(bite3);
+		    /*LOCAL_FILE*/
+		    
+	        try {
+	            validationEmail( email );
+	        } catch ( Exception e ) {
+	            erreurs.put( CHAMP_EMAIL, e.getMessage() );
+	        }
+	        doctor.setEmail( email );
+	
+	        try {
+	            validationPrenom( firstname );
+	        } catch ( Exception e ) {
+	            erreurs.put( CHAMP_FIRSTNAME, e.getMessage() );
+	        }
+	        doctor.setFirstname( firstname );
+	
+	        try {
+	            validationNom( lastname );
+	        } catch ( Exception e ) {
+	            erreurs.put( CHAMP_LASTNAME, e.getMessage() );
+	        }
+	        doctor.setLastname( lastname );
+	
+	        try {
+	            validationTel( tel );
+	        } catch ( Exception e ) {
+	            erreurs.put( CHAMP_TEL, e.getMessage() );
+	        }
+	        doctor.setTel( tel );
+        
+        
+        LangueImpl langueImpl = LangueImpl.getInstance();
+        List<Langue> les_langues = new ArrayList<>();
+        if(languages!=null) {
+        for(String lg : languages) {
+        	Langue langue = langueImpl.getLangueByString(lg);
+        	les_langues.add(langue);
+          }
+        }
+        try {
+            validationLangues( les_langues );
+        } catch ( Exception e ) {
+            erreurs.put( CHAMP_LANGUAGES, e.getMessage() );
+        }
+        doctor.setLangues(les_langues);
         
         try {
-            validationEmail( email );
-            doctor.setEmail( email );
+            validationPractice( practice );
         } catch ( Exception e ) {
-            erreurs.put( CHAMP_EMAIL, e.getMessage() );
+            erreurs.put( CHAMP_PRACTICE  , e.getMessage() );
         }
+        doctor.setPractice(practice);
         
-
-        try {
-            validationPrenom( firstname );
-            doctor.setFirstname( firstname );
-        } catch ( Exception e ) {
-            erreurs.put( CHAMP_FIRSTNAME, e.getMessage() );
-        }
         
-
-        try {
-            validationNom( lastname );
-            doctor.setLastname( lastname );
-        } catch ( Exception e ) {
-            erreurs.put( CHAMP_LASTNAME, e.getMessage() );
-        }
-        
-
-        try {
-            validationTel( tel );
-            doctor.setTel( tel );
-        } catch ( Exception e ) {
-            erreurs.put( CHAMP_TEL, e.getMessage() );
-        }
-        
-
         if ( erreurs.isEmpty() ) {
             resultat = "Succés d'inscription!";
         } else {
             resultat = "Echec d'inscription";
         }
-        
-        LangueImpl langueImpl = LangueImpl.getInstance();
-        
+
         doctor.setSpeciality(speciality);
-        List<Langue> les_langues = new ArrayList<>();
-        for(String lg : languages) {
-        	Langue langue = langueImpl.getLangueByString(lg);
-        	les_langues.add(langue);
-        }
-        doctor.setLangues(les_langues);	
-        doctor.setPractice(practice);
-        doctor.setId_scan(bites[0]);
-        doctor.setMed_certificate(bites[1]);
-        doctor.setLocal_contract(bites[2]);
-        doctor.setProfile_image(bites[3]);
         return doctor;
     }
     
     
     
+    private void validationImageID( byte[] bite ) throws Exception {
+        if ( bite == null ) {
+                throw new Exception( "Veuillez saisir un screeshot de votre carte nationale!" );
+        }
+    }
+    
+    private void validationImageCertificat( byte[] bite  ) throws Exception {
+    	System.out.print("NOT null");
 
+        if ( bite == null ) {
+	    	System.out.print("nulllllll");
+
+                throw new Exception( "Veuillez saisir un screeshot de votre certificat médical!" );
+        }
+    }
+    
+    private void validationImageLocalContract( byte[] bite ) throws Exception {
+        if ( bite == null ) {
+                throw new Exception( "Veuillez saisir un screeshot de votre contract de location!" );
+        }
+    }
+    
+    private void validationLangues( List<Langue> les_langues ) throws Exception {
+        if ( les_langues.size() == 0 ) {
+                throw new Exception( "Veuillez saisir la/les langues que vous parlez" );
+        }
+    }
 
     private void validationPrenom( String firstname ) throws Exception {
         if ( firstname != null ) {
@@ -191,6 +257,11 @@ public class doctorFormService {
             throw new Exception( "Veuillez saisir votre numero de Telephone" );
         }
     }
+    private void validationPractice( String practice ) throws Exception {
+        if ( practice!="-- domaine médical--") {
+                throw new Exception( "Veuillez saisir votre domaine médical!" );
+        }
+    }
     
     private byte[] convert(InputStream inputstream) throws IOException {
 		ByteArrayOutputStream buffer = new ByteArrayOutputStream();
@@ -202,18 +273,6 @@ public class doctorFormService {
 		}
 
 		return buffer.toByteArray();
-    }
-    
-    public String getResultat() {
-        return resultat;
-    }
-
-    public void setResultat( String resultat ) {
-        this.resultat = resultat;
-    }
-
-    public Map<String, String> getErreurs() {
-        return erreurs;
     }
     
     

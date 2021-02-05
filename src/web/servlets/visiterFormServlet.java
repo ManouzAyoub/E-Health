@@ -8,8 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import metier.dao.Implementations.RoleDao;
 import metier.dao.Implementations.UserDao;
+import metier.dao.beans.Role;
 import metier.dao.beans.User;
+import metier.services.RoleImpl;
 import metier.services.UserImpl;
 
 @WebServlet( "/visiterForm" )
@@ -22,7 +25,9 @@ public class visiterFormServlet extends HttpServlet {
 
     public static final String VUE              = "/WEB-INF/VisiterForm.jsp";
     public static final String SUCESS           = "/WEB-INF/afficherVisiter.jsp";
-
+    
+    Role role=new Role();
+    
     public visiterFormServlet() {
         super();
     }
@@ -35,7 +40,8 @@ public class visiterFormServlet extends HttpServlet {
     protected void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         
     	UserImpl form = UserImpl.getInstance();
-        
+        RoleImpl roleimpl=RoleImpl.getInstance(); 
+        RoleDao roledao=RoleDao.getInstance();
     	User visiter = form.visitorFormService( request );
 
         request.setAttribute( ATT_VISITER, visiter );
@@ -43,9 +49,11 @@ public class visiterFormServlet extends HttpServlet {
 
         if ( form.getErreurs().isEmpty() ) {
 
-            UserDao user = UserDao.getInstance();
-            
-            user.add( visiter );
+            UserDao userdao = UserDao.getInstance();
+            role=roleimpl.getRolebyrole("visiter");
+            System.out.print(role.getRole());
+            visiter.setRole(role);
+            userdao.add( visiter );
 
             this.getServletContext().getRequestDispatcher( SUCESS ).forward(
                     request, response );
