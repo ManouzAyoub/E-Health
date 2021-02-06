@@ -52,7 +52,7 @@ AOS.init({
     strings: [
         "un Medecin ?",
         "un Hopital ?",
-        "un Clinique ?",
+        "une Clinique ?",
         "un Laboratoire ?",
     ],
     typeSpeed :60,

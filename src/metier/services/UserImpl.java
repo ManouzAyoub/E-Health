@@ -42,6 +42,20 @@ public class UserImpl {
         return erreurs;
     }
     
+    
+    // where a correct function ?
+	public void validationEmail2( String email) throws Exception{
+    	String hql="select u from User u where u.email = :email";
+        Query query = session.createQuery( hql );
+        query.setParameter("email", email);
+        User user = new User();
+        List<User> list = query.getResultList();
+        if (list.size() != 0) {
+        	throw new Exception( "cet email a deja ete choisie" );
+		}else {
+			erreurs.clear();
+		}
+	}
 
     public User visitorFormService( HttpServletRequest request ) {
         String firstname = request.getParameter( CHAMP_FIRSTNAME );
@@ -138,4 +152,6 @@ public class UserImpl {
             instance = new UserImpl();
         return instance;
     }
+    
+    
 }

@@ -181,7 +181,7 @@ public class doctorFormService {
         
         
         if ( erreurs.isEmpty() ) {
-            resultat = "SuccÃ©s d'inscription!";
+            resultat = "Succés d'inscription!";
         } else {
             resultat = "Echec d'inscription";
         }
@@ -204,7 +204,7 @@ public class doctorFormService {
         if ( bite == null ) {
 	    	System.out.print("nulllllll");
 
-                throw new Exception( "Veuillez saisir un screeshot de votre certificat mÃ©dical!" );
+                throw new Exception( "Veuillez saisir un screeshot de votre certificat médical!" );
         }
     }
     
@@ -223,7 +223,7 @@ public class doctorFormService {
     private void validationPrenom( String firstname ) throws Exception {
         if ( firstname != null ) {
             if ( firstname.trim().length() < 3 ) {
-                throw new Exception( "Veuillez saisir un nom de plus de 3 caractÃ©res." );
+                throw new Exception( "Veuillez saisir un nom de plus de 3 caractéres." );
             }
         }
     }
@@ -231,7 +231,7 @@ public class doctorFormService {
     private void validationNom( String lastname ) throws Exception {
         if ( lastname != null ) {
             if ( lastname.trim().length() < 3 ) {
-                throw new Exception( "Veuillez saisir un nom de plus de 3 caractÃ©res." );
+                throw new Exception( "Veuillez saisir un nom de plus de 3 caractéres." );
             }
         }
     }
@@ -240,7 +240,7 @@ public class doctorFormService {
         String regex = "([^.@]+)(\\\\.[^.@]+)*@([^.@]+\\\\.)+([^.@]+)";
         if ( email != null && email.trim().length() != 0 ) {
             if ( email.matches( regex ) ) {
-                throw new Exception( "adresse email validÃ©" );
+                throw new Exception( "adresse email validé" );
             }
 
         } else {
@@ -251,15 +251,20 @@ public class doctorFormService {
     private void validationTel( String tel ) throws Exception {
         if ( tel != null ) {
             if ( tel.trim().length() != 10 ) {
-                throw new Exception( "on demande votre numero de tel rÃ©el" );
+                throw new Exception( "on demande votre numero de tel réel" );
             }
         } else {
             throw new Exception( "Veuillez saisir votre numero de Telephone" );
         }
     }
     private void validationPractice( String practice ) throws Exception {
+<<<<<<< HEAD
         if ( practice=="none") {
                 throw new Exception( "Veuillez saisir votre domaine mÃ©dical!" );
+=======
+        if ( practice!="-- domaine médical--") {
+                throw new Exception( "Veuillez saisir votre domaine médical!" );
+>>>>>>> 0fc0d29540b04df4fb8b7090cb350d0bdce52499
         }
     }
     
