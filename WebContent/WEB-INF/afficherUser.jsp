@@ -13,6 +13,11 @@
             <p>Email : <c:out value="${ visiter.email }"/></p>
             <p>Mot de passe : <c:out value="${ visiter.password }"/></p>
         </div>
+        
+        <form action="<%=request.getContextPath()%>/searchDoctor" method="get">
+        	<c:set var="visiter" value="${visiter }" scope="session"></c:set>
+        	<button type="submit">Search Doctors</button>
+        </form>
 
 </body>
 </html>

@@ -1,6 +1,7 @@
 package metier.services;
 
 import java.util.ArrayList;
+
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
@@ -34,11 +35,13 @@ public class DocteurImpl {
 	private String JDepart;
 	private String JFin;
 	private String image;
+	private String idDocteur;
 	private String all_languages;
 	private List<Langue> list_langue;
 	private List<String> string = new ArrayList<>();
 	private Map<Long,List<String>> classes_list_map = new HashMap<Long, List<String>>();
 	private Map<String,String> specialities = new HashMap<String,String>();
+	private Map<String , String >data = new HashMap<String , String>();
 
 	
 	private DocteurImpl() {
@@ -65,6 +68,7 @@ public class DocteurImpl {
 		function();
 		string.clear();
 		for(Docteur docteur : list) {	
+			idDocteur      = String.valueOf(docteur.getCin());
 			fullName       = docteur.getFirstname() + " " + docteur.getLastname();
 			HDepart        = String.valueOf(docteur.getHeureDepart());
 			HFin           = String.valueOf(docteur.getHeureFin());
@@ -117,6 +121,7 @@ public class DocteurImpl {
 			string.add(JDepart);  		  //14
 			string.add(JFin);  			  //15
 			string.add(image); 			  //16
+			string.add(idDocteur);		  //17
 			
 			classes_list_map.put(docteur.getCin(), string);
 			
@@ -124,6 +129,40 @@ public class DocteurImpl {
 		specialities.clear();
 		return classes_list_map;
 	}
+
+	public Map<String, String> displayDataInProfilePage(Docteur docteur){
+		data.put("fullname", docteur.getFirstname() + " " + docteur.getLastname());
+		data.put("gender", docteur.getGender()  );
+		data.put("adresse", docteur.getAdresse() );
+		data.put("age", String.valueOf(docteur.getAge())  );
+		data.put("speciality", docteur.getSpeciality() );
+		String[] str = docteur.getTel().split("");
+		String string ="";
+		for(int i = 1 ; i<str.length ; i++) {
+			string += str[i];
+		}
+		data.put("phone", string  );
+		data.put("telemedecine", docteur.getTeleMedcine() ? "Télémédecine" : "" );
+		data.put("adomicile", docteur.getConsultationDomicile() ? "Consultation a domicile" : ""  );
+		data.put("heureD", String.valueOf(docteur.getHeureDepart()) );
+		data.put("heureF", String.valueOf(docteur.getHeureFin()) );
+		data.put("jourD",  docteur.getJourDepart());
+		data.put("jourF",  docteur.getJourFin());
+		data.put("description", docteur.getDescription());
+		data.put("nbrRating", String.valueOf(ratingImpl.getNumberOfRatingByDoctor(docteur)));
+		data.put("image", Base64.getEncoder().encodeToString(docteur.getProfile_image()));
+		data.put("average", String.valueOf(ratingImpl.getAverageOfRatingByDoctor(docteur)));
+		
+		List<Long> list = ratingImpl.countDistinctValueOfRate(docteur);
+		for(Long li : list) {
+			System.out.println("frooooom number "+li);
+		}
+		
+		return data;
+	}
+	
+	
+	
 	
 	// remplir le map de specialiter et leur class jsp
 	public void function() {

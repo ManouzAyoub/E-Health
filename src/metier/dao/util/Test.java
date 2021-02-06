@@ -9,9 +9,11 @@ import java.util.Set;
 import metier.dao.Implementations.DocteurDao;
 import metier.dao.Implementations.LangueDao;
 import metier.dao.Implementations.RatingDao;
+import metier.dao.Implementations.RoleDao;
 import metier.dao.beans.Docteur;
 import metier.dao.beans.Langue;
 import metier.dao.beans.Rating;
+import metier.dao.beans.Role;
 import metier.services.DocteurImpl;
 import metier.services.RatingImpl;
 
@@ -26,93 +28,74 @@ public class Test {
 
     	DocteurImpl implDocteur = DocteurImpl.getInstance();
     	
+    	 Role role = new Role();
+         role.setRole("admin");
+         
+         RoleDao roleDao = RoleDao.getInstance();
+         roleDao.add(role);
+    	
         LangueDao langueDao = LangueDao.getInsctance();
         
-        // 1
-        Langue langue = new Langue();
+        Langue ins_l1 = new Langue();
         
-        langue.setLangue("arabe");
+        ins_l1.setLangue("Arabic");
+        langueDao.add(ins_l1);
         
-        langueDao.add(langue);
-        setLangue.add(langue);
+        Langue ins_l2 = new Langue();
+        ins_l2.setLangue("English");
+        langueDao.add(ins_l2);
         
-        // 2
-        Langue langue_2 = new Langue();
-        
-        langue_2.setLangue("français");
-        
-        langueDao.add(langue_2);
-        setLangue.add(langue_2);
-        
-        // la list
-        
-        les_langues.add(langue);
-        les_langues.add(langue_2);
+        Langue l1 = langueDao.getById(1L);
+        Langue l2 = langueDao.getById(1L);
+         les_langues.add(l2);
+         les_langues.add(l1);
         
         DocteurDao docteurDao = DocteurDao.getInstance();
         
+        Role r = roleDao.getById(1);
+        
         Docteur docteur = new Docteur();
         
-        docteur.setEmail("bbb");
-        docteur.setFirstname("bbb");
-        docteur.setLastname("bbb");
+        docteur.setEmail("youssef@gmail.com");
+        docteur.setFirstname("Youssef");
+        docteur.setLastname("El Gourari");
         docteur.setLangues(les_langues);
         docteur.setParlerPar(setLangue);
         docteur.setConsultationDomicile(true);
         docteur.setTeleMedcine(true);
         docteur.setDispo(true);
         docteur.setAdresse("agadir hay salam");
-        docteur.setGender("Femme");
+        docteur.setGender("Homme");
         docteur.setTel("0676873368");
+        docteur.setHeureDepart(9);
+        docteur.setHeureFin(16);
+        docteur.setAge(33);
+        docteur.setJourDepart("Lundi");
+        docteur.setJourFin("vendredi");
+        docteur.setPractice("Cabinet");
+        docteur.setSpeciality("Chirurgie esthétique");
+        docteur.setRole(r);
+
+       Docteur doc = docteurDao.add(docteur);
         
-        Docteur d = docteurDao.add(docteur);
-        
-        RatingDao ratingDao = RatingDao.getInstance();
-        RatingImpl ratingImpl = RatingImpl.getInstance();
         Rating rating = new Rating();
         
+        Docteur d = docteurDao.getById(1L);
         
-        List<Docteur> list = implDocteur.getDoctorsAccordingToTheirAvailability(false);
-        
-        if (list.isEmpty()) {
-			System.out.println("rien a afficher");
-		}
-        
-        for(Docteur ls : list) {
-        	System.out.println(ls.toString());
-        }
-        
-        Docteur docteurbyid = docteurDao.getById(1L);
-        rating.setDocteur(docteurbyid);
         rating.setNumberEtoile(4);
-        ratingDao.add(rating);
-        long result = ratingImpl.getNumberOfEtoileByDoctor(docteurbyid);
-        Double a = result + 0.0;
-        System.out.println("resultat of rating ---- " + result);
-        System.out.println("the last function average --***-- : " + ratingImpl.getAverageOfRatingByDoctor(docteurbyid));
+        rating.setDocteur(d);
+        
+        RatingDao dao = RatingDao.getInstance();
+        
+        dao.add(rating);
+        
+       
+        
+        System.out.println("Fin D'inssersion");
         
         
         
         
-        
-        long result_two = ratingImpl.getNumberOfRatingByDoctor(docteurbyid);
-        Double b = result_two - 1 + 0.0;
-        System.out.println(a);
-        System.out.println(b);
-        System.out.println("number of rating : " + (result_two - 1));
-        System.out.println("resultat of round function " + Math.round(a/(b)));
-        
-        
-        List<Langue> list_langue = docteurbyid.getLangues();
-        
-        for(Langue lg : list_langue ) {
-        	System.out.println( "allez youssef : " + lg.getLangue());
-        }
-//        
-//        List<Langue> list_langue = implDocteur.getLanguagesSpokenByDocteur(docteurbyid);
-//        System.out.println(list_langue);
-        
-
     }
 
 }

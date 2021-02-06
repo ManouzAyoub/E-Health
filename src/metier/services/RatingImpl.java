@@ -50,4 +50,12 @@ public class RatingImpl {
 		int c = (int) Math.round(a/b);
 		return c;
 	}
+	
+	public List<Long> countDistinctValueOfRate(Docteur docteur){
+		String hql = "select count(distinct r.numberEtoile) from Rating r where idDocteur = :idDocteur";
+		Query q = session.createQuery(hql);
+		q.setParameter("idDocteur", docteur.getCin());
+		List<Long> list = q.getResultList();
+		return list;
+	}
 }

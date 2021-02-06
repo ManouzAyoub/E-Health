@@ -38,6 +38,10 @@ public class Docteur extends User{
 	    private String practice;
 	    private String tel;
 	    private Boolean dispo;
+	    private int age;
+	    private Boolean conger;
+	    private String description;
+	    private Boolean rtelephonique;
 	    @Transient
 	    private String Base64image;
 	    
@@ -49,7 +53,7 @@ public class Docteur extends User{
 	    
 	    @ManyToMany
 	    @JoinTable( name = "T_Clinique_Docteur",
-	                joinColumns = @JoinColumn( name = "idDocteur" ),
+	                joinColumns = @JoinColumn( name = "email" ),
 	                inverseJoinColumns = @JoinColumn( name = "cin" ) )
 	    private List<Clinique> cliniques = new ArrayList<>();
 	    
@@ -274,10 +278,45 @@ public class Docteur extends User{
 		}
 		
 		
+		public int getAge() {
+			return age;
+		}
 		
+		public void setAge(int age) {
+			this.age = age;
+		}
 		
+		public void setDescription(String description) {
+			this.description = description;
+		}
 		
+		public String getDescription() {
+			return description;
+		}
 		
+		public void setConger(Boolean conger) {
+			this.conger = conger;
+		}
+		
+		public Boolean getConger() {
+			return conger;
+		}
+		
+		public Boolean getRtelephonique() {
+			return rtelephonique;
+		}
+		
+		public void setRtelephonique(Boolean rtelephonique) {
+			this.rtelephonique = rtelephonique;
+		}
+
+		public List<Clinique> getCliniques() {
+			return cliniques;
+		}
+
+		public void setCliniques(List<Clinique> cliniques) {
+			this.cliniques = cliniques;
+		}
 		
 		
 		

@@ -1,10 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title></title>
 
     <!-- Bootstrap CDN -->
@@ -76,7 +75,7 @@
 	                            <div class="col-md-9 text-xs-center">
 	                                <div>
 	                                    <div class="border-bottom">
-	                                        <h4><a href="#"" class="font-gilroy text-danger ">Dr. <span class="fullName"> ${doctors.getOrDefault(entry.key, entry.value).get(0)}</span></a></h4>
+	                                        <h4><a href="<c:url value="/doctorProfile"><c:set var="testSession" value="${Long.valueOf(doctors.getOrDefault(entry.key, entry.value).get(17)) }" scope="session" /></c:url>"" class="font-gilroy text-danger ">Dr. <span class="fullName"> ${doctors.getOrDefault(entry.key, entry.value).get(0)}</span></a></h4>
 	                                    </div>
 	                                </div>
 	    
@@ -145,8 +144,6 @@
 	                        </div>
 	                    </div>
                     </c:forEach>
-                    <!-- allez -->
-                    <!-- allez -->
                 </div>
     
                 <!--Search bar -->

@@ -62,22 +62,19 @@ public class SignInService {
 	        String password = request.getParameter( CHAMP_PASSWORD );
 	        User visiter = new User();        
 	        User listUser=VerifyUser(email, password);
-//	        System.out.print("this is it" +listUser.getEmail());
-	        
+//	        System.out.
 	        if(listUser!=null) {
-	        	visiter.setEmail(email);
-	        	visiter.setPassword(password);
 	        	erreurs.clear();
-	        	resultat = "Succés d'inscription!";
+	        	resultat = "Succes d'inscription!";
 	        }
 	        else {
 	        	visiter.setEmail(email);
-	        	erreurs.put( CHAMP_EMAIL, "Vous êtes pas inscrit" );
-	        	resultat = "Échec d'inscription";
+	        	erreurs.put( CHAMP_EMAIL, "Vous etes pas inscrit" );
+	        	resultat = "echec d'inscription";
 	        }
 
 
-	        return visiter;
+	        return listUser;
 	    }
 	   
 	    public static SignInService getInstance() {

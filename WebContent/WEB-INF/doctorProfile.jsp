@@ -1,15 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Dr.Alaoui Nasima</title>
+    <title>Dr.${data.getOrDefault("fullname", "") }</title>
 
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Font Icon -->
-    <link rel="stylesheet" href=".\node_modules\flag-icon-css\css\flag-icon.css">
-    <link rel="stylesheet" href=".\node_modules\flag-icon-css\css\flag-icon.min.css">
+    <link rel="stylesheet" href="<c:url value="/DoctorProfile/node_modules/flag-icon-css/css/flag-icon.css"/>">
+    <link rel="stylesheet" href="">
 
     <!-- Owl-carousel CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
@@ -27,10 +29,10 @@
     <!-- Google Maps API -->
     <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcybDNa2i9CePsLK9l7rAhcAafXMGALcY&libraries=places&callback=initMap"> </script>
 
-    <link rel="shortcut icon" type="image/x-icon" href="pageLogo.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/DoctorProfile/pageLogo.png"/>" />
 
     <!-- Custom CSS file -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="<c:url value="/DoctorProfile/style.css"/>">
 </head>
 <body>
 
@@ -44,18 +46,25 @@
                 <div class="row py-3">
                     <div class="col-md-3 text-xs-center px-4 py-2">
                         <div class="row text-center justify-content-center">
-                            <img id="item_img" src="<c:url value="femaleDoctorPic.jpg"/>" width="150 px" class="img-fluid img-responsive border border-3 rounded">
+                            <img id="item_img" src="data:image/png;base64,${image}" width="150 px" class="img-fluid img-responsive border border-3 rounded">
                         </div>
-
                         <div class="row text-center justify-content-center">
                             <div class="rating font-size-14 mt-2 text-white">
-                                <span><i class="fas text-warning fa-star"></i></span>
+                            	<c:set var="nbr" value="${Integer.valueOf(data.getOrDefault(\"average\", \"\")) }"></c:set>
+                            	<c:set var="result" value="${5 - nbr }"></c:set>
+                            	<c:forEach var="entry" begin="1" end="${nbr }" >
+                            		<span><i class="fas text-warning fa-star"></i></span>
+                            	</c:forEach>
+                            	<c:forEach var="entry" begin="1" end="${result }">
+                            		<span><i class="fas fa-star"></i></span>
+                            	</c:forEach>
+                                <!-- <span><i class="fas text-warning fa-star"></i></span>
                                 <span><i class="fas text-warning fa-star"></i></span>
                                 <span><i class="fas text-warning fa-star"></i></span>
                                 <span><i class="fas fa-star"></i></span>
-                                <span><i class="fas fa-star"></i></span>
+                                <span><i class="fas fa-star"></i></span> -->
                                 <!-- Math.around() -->
-                                <br><span class="font-gilroy-bold">320 votes</span><br>
+                                <br><span class="font-gilroy-bold">${data.getOrDefault("nbrRating", "") } votes</span><br>
                                 <a class="btn btn-outline-info border-0 text-white font-size-16 font-gilroy-bold" href="#Evaluation">Laisser votre avis</a>
                             </div>
                         </div>
@@ -65,32 +74,35 @@
                     <div class="col-md-9 text-xs-center px-4 py-2">
                         <div>
                             <div class="border-bottom">
-                                <h2 class="font-gilroy-bold">Dr. <span class="fullName">Alaoui Nasima</span></h2>
+                                <h2 class="font-gilroy-bold">Dr. <span class="fullName">${data.getOrDefault("fullname", "") }</span></h2>
                             </div>
                         </div>
 
                         <div class="row mt-3">
                             <div class="col-md-4">
-                                <span class="font-montserrat font-size-12">Spécialité : <span class="font-size-14 font-gilroy-bold"> Chirurgie pédiatrique</span></span><br>
-                                <span class="font-montserrat font-size-12">Sexe : <span class="font-size-14 font-gilroy-bold"> Femme</span></span><br>
-                                <span class="font-montserrat font-size-12">Age : <span class="font-size-14 font-gilroy-bold"> 32 ans</span></span><br>
+                                <span class="font-montserrat font-size-12">Spécialité : <span class="font-size-14 font-gilroy-bold"> ${data.getOrDefault("speciality", "") }</span></span><br>
+                                <span class="font-montserrat font-size-12">Sexe : <span class="font-size-14 font-gilroy-bold"> ${data.getOrDefault("gender", "") }</span></span><br>
+                                <span class="font-montserrat font-size-12">Age : <span class="font-size-14 font-gilroy-bold"> ${data.getOrDefault("age", "") } ans</span></span><br>
 
                             </div>
                             <div class="col-md-8 border-left">
-                                <span class="font-noto font-size-12"><i class="fas fa-map-marker-alt"></i> &nbsp; 12 Rue Saada Hay Salam, Agadir</span><br>
-                                <span class="font-noto font-size-12"><i class="fas fa-calendar-alt"></i> &nbsp; 9:00-16:00 - Lundi à Vendredi</span><br>
+                                <span class="font-noto font-size-12"><i class="fas fa-map-marker-alt"></i> &nbsp; ${data.getOrDefault("adresse", "") }</span><br>
+                                <span class="font-noto font-size-12"><i class="fas fa-calendar-alt"></i> &nbsp; ${data.getOrDefault("heureD", "") }:00-${data.getOrDefault("heureF", "") }:00 - ${data.getOrDefault("jourD", "") } à ${data.getOrDefault("jourF", "") }</span><br>
                                 <!-- Si n'est pas congé -->
-                                <span class="font-noto font-size-12"><i class="far fa-calendar-check"></i> &nbsp; Accepte nouveaux patients</span><br>
+                                <c:if test="${!doctor.getConger() }">
+                                	<span class="font-noto font-size-12"><i class="far fa-calendar-check"></i> &nbsp; Accepte nouveaux patients</span><br>
+                                </c:if>
                                 <!-- Sinon si congé -->
-                                <!-- <span class="font-noto font-size-12"><i class="far fa-calendar-times"></i> &nbsp; En congé jusqu'à 15/02/2021 </span><br> -->
+                                <c:if test="${doctor.getConger() }">
+                                	<span class="font-noto font-size-12"><i class="far fa-calendar-times"></i> &nbsp; En congé jusqu'à 15/02/2021 </span><br>
+                                </c:if>
+                                
                             </div>
                         </div>
 
                         <div class="mt-3 border-top">
                             <p class="font-noto text-justify font-size-14 mt-3">
-                                &nbsp;&nbsp;&nbsp;&nbsp; Lorem ipsum dolor sit amet consectetur 
-                                adipisicing elit. Modi laudantium beatae vero architecto, maxime, tenetur pariatur eius rerum excepturi illo vel
-                                voluptate dolore. Doloremque ut hic delectus ullam impedit voluptate.
+                                &nbsp;&nbsp;&nbsp;&nbsp;  ${data.getOrDefault("description", "") }
                             </p>
                         </div>
 
@@ -98,15 +110,18 @@
                             <div class="row">
                                 <!-- if 3ndo telemedecine-->
                                 <div class="col-md-6 font-size-12 font-montserrat">
-                                    <i class="fas fa-mobile-alt mb-1 mr-1 ml-1"></i> <span>Télémédecine</span><br>
-                                    <i class="fas fa-home mb-1 mr-1"></i> <span> Consultation a domicile</span><br>
-                                    <i class="fas fa-phone-alt mr-1"></i> <span> Prend rendez-vous par téléphone</span>
+                                    <i class="fas fa-mobile-alt mb-1 mr-1 ml-1"></i> <span>${data.getOrDefault("telemedecine", "") }</span><br>
+                                    <i class="fas fa-home mb-1 mr-1"></i> <span> ${data.getOrDefault("adomicile", "") }</span><br>
+                                    <c:if test="${ doctor.getRtelephonique() }">
+                                    	<i class="fas fa-phone-alt mr-1"></i> <span> Prend rendez-vous par téléphone</span>	
+                                    </c:if>
+                                    
                                 </div>
                                 <div class="col-md-6 font-size-12 font-montserrat text-center justify-content-center">
                                     <div class="mt-3 text-white font-size-16 font-montserrat" type="button">
                                         <span class="btn btn-info rounded px-3 py-1">
                                             <i class="fas fa-phone-alt"></i>
-                                            <span class="weight-bold">&nbsp; +212661235548</span> 
+                                            <span class="weight-bold">&nbsp; +212${data.getOrDefault("phone", "") }</span> 
                                         </span>
                                     </div>
                                 </div>
@@ -174,14 +189,14 @@
                 <!-- Localisation on Map -->
                 <div class="px-5 mt-3" id="mapLocalisation">
                     <div id="map" class="z-depth-1-half map-container my-5 mx-5">
-                        <span id="place_id" hidden>ChIJSZHKs5O3sw0R-zl1pDjBn_4</span>
+                        <span id="place_id" hidden>GhIJbAiOy7htPkARI59XPPUgI8A</span>
                     </div>
 
                     <div class="border py-3 px-3">
                         <div class="row text-xs-center">
                             <div class="col-md-6 color-dark">
-                                <h4 class="font-size-20 font-weight-bold font-montserrat"> Cabinet de Dr. <span>Alaoui Nasima</span> </h4>
-                                <span class="font-montserrat font-size-12">Spécialité : <span class="font-size-16 font-gilroy-bold"> Chirurgie pédiatrique</span></span><br>
+                                <h4 class="font-size-20 font-weight-bold font-montserrat"> Cabinet de Dr. <span>${data.getOrDefault("fullname", "") }</span> </h4>
+                                <span class="font-montserrat font-size-12">Spécialité : <span class="font-size-16 font-gilroy-bold"> ${data.getOrDefault("speciality", "") }</span></span><br>
                             </div>
 
                             <div class="col-md-6 font-size-12 font-montserrat d-flex justify-content-end">
@@ -189,7 +204,7 @@
                                     <span>Nouveau patient ? &nbsp;</span>
                                     <span class="btn bg-danger rounded px-3 py-1 text-white">
                                         <i class="fas fa-phone-alt"></i>
-                                        <span class="weight-bold font-weight-bold">&nbsp; +212661235548</span>
+                                        <span class="weight-bold font-weight-bold">&nbsp; +212${data.getOrDefault("phone", "") }</span>
                                     </span>
                                 </div>
                             </div>
@@ -298,7 +313,7 @@
                         <div class="col-md-6 text-center justify-content-center">
                             <div class="card mt-4" id="user_rate_card">
                                 <div class="card-body py-3">
-                                    <img class="mx-2 my-3 rounded mx-auto d-block" src="EHealthLogo.png" alt="Logo" height="50px">
+                                    <img class="mx-2 my-3 rounded mx-auto d-block" src="<c:url value="/DoctorProfile/EHealthLogo.png"/>" alt="Logo" height="50px">
                                     <h6 class="card-title mb-2 text-muted">Donnez votre évaluation</h6>
                                     <p class="card-text card-doctor-text"></p>
                                     <div class="container">
@@ -427,8 +442,10 @@
 
                             <table>
                                 <tr>
-                                    <td style="width: 100%;"><textarea name="userOwnComment" id="userOwnComment" class="form-control" rows="3" disabled></textarea></td>
-                                    <td><button class="btn btn-outline-info border-0 font-size-16 font-gilroy-bold" id="CommentBtn" disabled>Commenter</button></td>
+                                    <form action="<%=request.getContextPath()%>/addComment" method="post">
+                                    	<td style="width: 100%;"><textarea name="userOwnComment" id="userOwnComment" class="form-control" rows="3" ></textarea></td>
+                                    	<td><button class="btn btn-outline-info border-0 font-size-16 font-gilroy-bold" type="submit" id="CommentBtn" >Commenter</button></td>
+                                    </form>
                                 </tr>
                             </table>
                             
@@ -739,7 +756,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
 
     <!-- Custom Javascript -->
-    <script src="JSIndex.js"></script>
+    <script src="<c:url value="/DoctorProfile/JSIndex.js"/>"></script>
 
     <!-- font awesome Kit -->
     <script src="https://kit.fontawesome.com/bcf0cddf32.js" crossorigin="anonymous"></script>

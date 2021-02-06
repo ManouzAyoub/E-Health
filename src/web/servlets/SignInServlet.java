@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import metier.dao.Implementations.UserDao;
 import metier.dao.beans.User;
@@ -22,8 +23,9 @@ public class SignInServlet extends HttpServlet {
     public static final String ATT_RESULTAT     = "resultat";
     public static final String ATT_ERROR        = "erreurs";
        
-	  public static final String VUE              = "/WEB-INF/SignIn.jsp";
-	  public static final String SUCESS           = "/WEB-INF/afficherUser.jsp";
+	  public static final String VUE            = "/WEB-INF/SignIn.jsp";
+	  public static final String SUCESS         = "/WEB-INF/afficherUser.jsp";
+	  //public static final String SEARCH 		= "/searchDoctor";
    
 	  public SignInServlet() {
         super();
@@ -38,15 +40,16 @@ public class SignInServlet extends HttpServlet {
         SignInService form = SignInService.getInstance();
         
     	User visiter = form.SignInService( request );
-
+//    	HttpSession session = request.getSession();
+//    	if (session.isNew()) {
+//    		session.setAttribute("visiter", visiter);
+//		}
+    	
         request.setAttribute( ATT_VISITER, visiter );
         request.setAttribute( ATT_FORM, form );
 
         if ( form.getErreurs().isEmpty() ) {
-
-            this.getServletContext().getRequestDispatcher( SUCESS ).forward(
-                    request, response );
-
+            this.getServletContext().getRequestDispatcher( SUCESS ).forward(request, response );
         } else {
             this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 

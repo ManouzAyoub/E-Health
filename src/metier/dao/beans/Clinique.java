@@ -22,7 +22,6 @@ public class Clinique extends User{
 	
 	private String name;
 	private String adresse;
-	private String email;
 	private String tel;
 	private String emergency_tel;
 	private String speciality;
@@ -33,8 +32,8 @@ public class Clinique extends User{
 	
 	@ManyToMany
     @JoinTable( name = "T_Clinique_Docteur",
-                joinColumns = @JoinColumn( name = "idClinique" ),
-                inverseJoinColumns = @JoinColumn( name = "cin" ) )
+                joinColumns = @JoinColumn( name = "cin" ),
+                inverseJoinColumns = @JoinColumn( name = "email" ) )
     private List<Docteur> docteurs = new ArrayList<>();
 
 	@ManyToMany
@@ -96,14 +95,6 @@ public class Clinique extends User{
 
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getTel() {
