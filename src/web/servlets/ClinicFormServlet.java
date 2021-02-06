@@ -53,7 +53,7 @@ public class ClinicFormServlet extends HttpServlet {
         if ( form.getErreurs().isEmpty() ) {
 
             CliniqueDao clinicdao = CliniqueDao.getInsctance();
-            role=roleimpl.getRolebyrole("clinique");
+            role=roleimpl.getRolebyrole("clinic");
             System.out.print(role.getRole());
             clinic.setRole(role);
             clinicdao.add(clinic);

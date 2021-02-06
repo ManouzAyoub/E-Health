@@ -124,7 +124,7 @@
                         
                         <div class="form-group" style="margin-top:15px; margin-bottom:40px" onchange="changeFunc();">
                         <select  name="med_practice" id="practice" class="select-css">
-                            <option value="">-- domaine médical--</option>
+                            <option value="none">-- domaine médical--</option>
                             <option value="pharmacie">pharmacie</option>
                             <option value="cabinet_medical">cabinet médical</option>
                             <option value="clinique">clinique</option>

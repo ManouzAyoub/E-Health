@@ -258,7 +258,7 @@ public class doctorFormService {
         }
     }
     private void validationPractice( String practice ) throws Exception {
-        if ( practice!="-- domaine médical--") {
+        if ( practice=="none") {
                 throw new Exception( "Veuillez saisir votre domaine médical!" );
         }
     }
