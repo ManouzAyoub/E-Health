@@ -1,7 +1,5 @@
 package metier.dao.beans;
 
-import java.io.InputStream;
-import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -10,9 +8,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
@@ -42,6 +37,7 @@ public class Docteur extends User{
 	    private Boolean conger;
 	    private String description;
 	    private Boolean rtelephonique;
+	    private String biographie;
 	    @Transient
 	    private String Base64image;
 	    
@@ -56,6 +52,12 @@ public class Docteur extends User{
 	                joinColumns = @JoinColumn( name = "email" ),
 	                inverseJoinColumns = @JoinColumn( name = "cin" ) )
 	    private List<Clinique> cliniques = new ArrayList<>();
+	    
+	    @ManyToMany
+	    @JoinTable( name = "T_Hopital_Docteur",
+	                joinColumns = @JoinColumn( name = "cin" ),
+	                inverseJoinColumns = @JoinColumn( name = "idHopital" ) )
+	    private List<Hopital> hopitales = new ArrayList<>();
 	    
 	    @ManyToMany
 		private Set<Langue> parlerPar;
@@ -79,10 +81,6 @@ public class Docteur extends User{
 		@ManyToOne
 		@JoinColumn(name = "idUser" , referencedColumnName = "cin")
 		private User user;
-		
-		@ManyToOne
-		@JoinColumn(name = "idHopital" , referencedColumnName = "idHopital")
-		private Hopital hopital;
 		
 		@OneToOne
 		@JoinColumn(name = "idProfil", nullable = true , referencedColumnName = "idProfil")
@@ -317,7 +315,22 @@ public class Docteur extends User{
 		public void setCliniques(List<Clinique> cliniques) {
 			this.cliniques = cliniques;
 		}
+
+		public List<Hopital> getHopitales() {
+			return hopitales;
+		}
+
+		public void setHopitales(List<Hopital> hopitales) {
+			this.hopitales = hopitales;
+		}
 		
+		public String getBiographie() {
+			return biographie;
+		}
+		
+		public void setBiographie(String biographie) {
+			this.biographie = biographie;
+		}
 		
 		
 		

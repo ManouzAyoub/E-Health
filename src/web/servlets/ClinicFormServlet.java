@@ -34,7 +34,6 @@ public class ClinicFormServlet extends HttpServlet {
     
     public ClinicFormServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,7 +52,7 @@ public class ClinicFormServlet extends HttpServlet {
         if ( form.getErreurs().isEmpty() ) {
 
             CliniqueDao clinicdao = CliniqueDao.getInsctance();
-            role=roleimpl.getRolebyrole("clinic");
+            role=roleimpl.getRolebyrole("clinique");
             System.out.print(role.getRole());
             clinic.setRole(role);
             clinicdao.add(clinic);

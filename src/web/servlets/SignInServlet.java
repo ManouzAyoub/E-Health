@@ -40,10 +40,6 @@ public class SignInServlet extends HttpServlet {
         SignInService form = SignInService.getInstance();
         
     	User visiter = form.SignInService( request );
-//    	HttpSession session = request.getSession();
-//    	if (session.isNew()) {
-//    		session.setAttribute("visiter", visiter);
-//		}
     	
         request.setAttribute( ATT_VISITER, visiter );
         request.setAttribute( ATT_FORM, form );

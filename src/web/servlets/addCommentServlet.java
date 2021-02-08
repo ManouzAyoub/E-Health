@@ -3,6 +3,7 @@ package web.servlets;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ import metier.dao.Implementations.UserDao;
 import metier.dao.beans.Commentaire;
 import metier.dao.beans.Docteur;
 import metier.dao.beans.User;
+import metier.services.CommentaireImpl;
 import metier.services.DocteurImpl;
 
 @WebServlet("/addComment")
@@ -38,12 +40,14 @@ public class addCommentServlet extends HttpServlet {
 	public addCommentServlet() {
         super();
     }
+	
+	Docteur docteur = new Docteur();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		Long id = (Long) session.getAttribute("testSession");
 		user = (User) session.getAttribute("visiter");
-		Docteur docteur = docteurDao.getById(id);
+		docteur = docteurDao.getById(id);
 		donnees_doctor = docteurImpl.displayDataInProfilePage(docteur);
 		request.setAttribute("data", donnees_doctor);
 		request.setAttribute("doctor", docteur);
@@ -56,7 +60,11 @@ public class addCommentServlet extends HttpServlet {
 		Commentaire comment = new Commentaire();
 		comment.setCommentaire(commentaire);
 		comment.setUser(user);
+		comment.setDocteur(docteur);
 		commentDao.add(comment);
+		CommentaireImpl commentImpl = CommentaireImpl.getInstance();
+		List<Commentaire> lcomments = commentImpl.getCommentsByDocteur(docteur);
+		request.setAttribute("comments", lcomments);
 		
 		this.getServletContext().getRequestDispatcher( VUE ).forward(request, response);
 	}
