@@ -81,7 +81,7 @@
 	    
 	                                <div class="row mt-3">
 	                                    <div class="col-md-6">
-	                                        <span class="font-montserrat font-size-14">Sp�cialit� : <span class="color-second"> ${doctors.getOrDefault(entry.key, entry.value).get(1)} </span></span>
+	                                        <span class="font-montserrat font-size-14">Spécialité : <span class="color-second"> ${doctors.getOrDefault(entry.key, entry.value).get(1)} </span></span>
 	                                        <div class="rating text-warning font-size-12">
 	                                        	<c:set var="numberOfRating" value="${Integer.valueOf(doctors.getOrDefault(entry.key, entry.value).get(10))}"></c:set>
 	                                            <c:choose>

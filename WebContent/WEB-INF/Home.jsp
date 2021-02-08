@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,10 +11,10 @@
     <link rel="stylesheet"
 		href="https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-        <link rel="stylesheet" href="./Styling/index.css">
-        
-<!--         <style>
-        .popup_section1#blur.active{
+        <link rel="stylesheet" href="<c:url value="/FrontEnd/Styling/index.css" />">
+      
+      <style>
+      .popup_section1#blur.active, #blurimg.active{
         filter:blur(20px);
         pointer-events:none;
         user-select:none;
@@ -22,7 +25,7 @@
         top:40%;
         left:50%;
         transform:translate(-50%,-50%);
-        width:700px;
+        width:650px;
         padding:50px;
         box-shadow:0 5px 30px rgba(0,0,0,.30);
         background:#fff;
@@ -40,31 +43,31 @@
         }
         #popup > h2{
         text-align:center;
-                margin-bottom:40px;
+        margin-bottom:40px;
         }
         .popup-buttons{
-                        display:flex;
+        display:flex;
         justify-content:space-around;
         }
         .signup{
-
-        
-            height: 40px;
-    width: 100px;
-    border-radius: 5px;
-    border: none;
-    font-family:'Gilroy';
-    font-weight: 500;
-    font-size: 16px;
-    filter: drop-shadow(3px 3px 3px #BCDAE8);
-    outline: none;
-    cursor: pointer;
-    background-color: #27AAF0;
-    opacity: 0.7;
-    color: #EDF8FF ;
+	    height: 40px;
+	    width: 100px;
+	    border-radius: 5px;
+	    border: none;
+	    font-family:'Gilroy';
+	    font-weight: 500;
+	    font-size: 16px;
+	    filter: drop-shadow(3px 3px 3px #BCDAE8);
+	    outline: none;
+	    cursor: pointer;
+	    background-color: #27AAF0;
+	    opacity: 0.7;
+	    color: #EDF8FF ;
         }
+
+      
+      </style>   
         
-        </style> -->
 </head>
 <body>
     <header>
@@ -86,7 +89,7 @@
                 </ul>
             </nav>
             <div class="account">
-                <button class="sign-in">Connexion</button>
+                <a href="<c:url value="/signIn" />"><button class="sign-in">Connexion</button></a>
                 <button class="sign-up" id="toggle" >Inscription</button>
             </div>
             <div class="burger">
@@ -115,19 +118,19 @@
             </button>
         </div>
         </div >
-        <div id="blurimg"><img class="img-1" src="./Includes/images/image-1.svg" alt="e-health"></div>
+        <div id="blurimg"><img class="img-1" src="<c:url value="/FrontEnd/Includes/images/image-1.svg" />" alt="e-health"></div>
     </section>
     <div id="popup">
        <h2>Vous souhaitez vous inscrire en tant que :</h2>
        <div class="popup-buttons">
-       <a href="#"><button class="signup"  >Médecin</button></a>
-       <a href="#"><button  class="signup"  >Clinique</button></a>
-        <a href="#"><button class="signup"  >Utilisateur</button></a></div>
+       <a href="<c:url value="/doctorForm" />"><button class="signup"  >Médecin</button></a>
+       <a href="<c:url value="/clinicForm" />"><button  class="signup"  >Clinique</button></a>
+        <a href="<c:url value="/visiterForm" />"><button class="signup"  >Utilisateur</button></a></div>
         </div>
      <hr>
     <!-- -----------La deuxieme section --------------- -->
-    <section id="section-2" class="section"  >
-        <img class="img-2" src="./Includes/images/image-2.svg" alt="Medecin" data-aos="fade-right">
+    <section id="section-2" class="section" >
+        <img class="img-2" src="<c:url value="/FrontEnd/Includes/images/image-2.svg" />" alt="Medecin" data-aos="fade-right">
         <div class="description-2" data-aos="fade-up">
             <h1 class="title">
                 Trouver Un medecin
@@ -161,10 +164,10 @@
 </form>
         
         </div >
-        <img class="img-3" src="./Includes/images/image-3.svg" alt="Clinique" data-aos="fade-up">
+        <img class="img-3" src="<c:url value="/FrontEnd/Includes/images/image-3.svg" />" alt="Clinique" data-aos="fade-up">
     </section> <hr>
-    <section id="section-4" class="section" id="blur" >
-        <img class="img-4" src="./Includes/images/image-4.svg" alt="Laboratoire" data-aos="fade-right">
+    <section id="section-4" class="section" >
+        <img class="img-4" src="<c:url value="/FrontEnd/Includes/images/image-4.svg" />" alt="Laboratoire" data-aos="fade-right">
         <div class="description-4" data-aos="fade-up">
             <h1 class="title">
                 Trouver Une Clinique 
@@ -196,7 +199,7 @@
 </form>
         
         </div >
-        <img class="img-1" src="./Includes/images/image-5.svg" alt="e-health" data-aos="fade-up">
+        <img class="img-1" src="<c:url value="/FrontEnd/Includes/images/image-5.svg" />" alt="e-health" data-aos="fade-up">
     </section>
     
        
@@ -225,7 +228,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
-    <script src="./JavaScript/home.js"></script>
+    <script src="<c:url value="/FrontEnd/JavaScript/home.js" />"></script>
 
 </body>
 </html>

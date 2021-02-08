@@ -102,6 +102,59 @@ nav{
     color: #27AAF0 ;
 }
 
+        #blur.active, #blurimg.active{
+        filter:blur(20px);
+        pointer-events:none;
+        user-select:none;
+        }
+        
+        #popup{
+        position:fixed;
+        z-index:99;
+        top:40%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        width:650px;
+        padding:50px;
+        box-shadow:0 5px 30px rgba(0,0,0,.30);
+        background:#fff;
+        visibility:hidden;
+        opacity:0;
+        transition:0.5s;
+        
+        }
+        
+        #popup.active{
+        top:50%;
+        z-index:99;
+        visibility:visible;
+        opacity:1;
+        transition:0.5s;
+        }
+        #popup > h2{
+        text-align:center;
+        margin-bottom:40px;
+        }
+        .popup-buttons{
+        display:flex;
+        justify-content:space-around;
+        }
+        .signup{
+	    height: 40px;
+	    width: 100px;
+	    border-radius: 5px;
+	    border: none;
+	    font-family:'Gilroy';
+	    font-weight: 500;
+	    font-size: 16px;
+	    filter: drop-shadow(3px 3px 3px #BCDAE8);
+	    outline: none;
+	    cursor: pointer;
+	    background-color: #27AAF0;
+	    opacity: 0.7;
+	    color: #EDF8FF ;
+        }
+
 
 
 /*home page sections styling*/
