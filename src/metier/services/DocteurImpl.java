@@ -153,10 +153,10 @@ public class DocteurImpl {
 		data.put("image", Base64.getEncoder().encodeToString(docteur.getProfile_image()));
 		data.put("average", String.valueOf(ratingImpl.getAverageOfRatingByDoctor(docteur)));
 		
-		List<Long> list = ratingImpl.countDistinctValueOfRate(docteur);
-		for(Long li : list) {
-			System.out.println("frooooom number "+li);
-		}
+//		List<Long> list = ratingImpl.countDistinctValueOfRate(docteur);
+//		for(Long li : list) {
+//			System.out.println("frooooom number "+li);
+//		}
 		
 		return data;
 	}

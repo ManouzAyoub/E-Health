@@ -35,6 +35,8 @@
 		<mapping class="metier.dao.beans.Rating"/>
 		<mapping class="metier.dao.beans.Hopital"/>
 		<mapping class="metier.dao.beans.Langue"/>
+		<mapping class="metier.dao.beans.Education"/>
+		<mapping class="metier.dao.beans.Recomponse"/>
 		
 		
 		

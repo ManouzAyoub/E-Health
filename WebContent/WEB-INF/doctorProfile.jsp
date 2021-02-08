@@ -237,17 +237,20 @@
 
                             <div class="row">
                                 <div class="col-xs-2">
-                                    <h1 class="font-gilroy-bold">3.1</h1>
+                                    <h1 class="font-gilroy-bold">${average}</h1>
                                 </div>
                                 <div class="col-xs-10 ml-3">
                                     <div class="rating font-size-14 mt-1 text-warning">
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="far fa-star"></i></span>
-                                        <span><i class="far fa-star"></i></span>
+                                    	<c:set var="nbr" value="${nbr }"></c:set>
+                                    	<c:set var="result" value="${ 5 - nbr }"></c:set>
+                                        <c:forEach var="entry" begin="1" end="${nbr }">
+                                        	<span><i class="fas fa-star"></i></span>
+                                        </c:forEach>
+                                        <c:forEach var="entry" begin="1" end="${result }">
+                                        	<span><i class="far fa-star"></i></span>
+                                        </c:forEach>
                                         <!-- Math.around() -->
-                                        <br><span class="font-gilroy-bold text-dark">Basée sur 320 votes</span>
+                                        <br><span class="font-gilroy-bold text-dark">Basée sur ${nbrRating} votes</span>
                                         
                                     </div>
                                 </div>
@@ -263,7 +266,7 @@
                                                 <div class="progress-bar" role="progressbar" style="width: 1.5%;" aria-valuenow="1.5" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </td>
-                                        <td>(5)</td>
+                                        <td>(${ evaluations.getOrDefault(Integer.valueOf(5),Long.valueOf(0)) })</td>
                                     </tr>
 
                                     
@@ -274,7 +277,7 @@
                                                 <div class="progress-bar" role="progressbar" style="width: 31.25%;" aria-valuenow="31.25" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </td>
-                                        <td>(20)</td>
+                                        <td>(${ evaluations.getOrDefault(Integer.valueOf(4),Long.valueOf(0)) })</td>
                                     </tr>
 
                                     <tr>
@@ -284,7 +287,7 @@
                                                 <div class="progress-bar" role="progressbar" style="width: 32.88%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </td>
-                                        <td>(100)</td>
+                                        <td>(${ evaluations.getOrDefault(Integer.valueOf(3),Long.valueOf(0)) })</td>
                                     </tr>
 
                                     <tr>
@@ -294,7 +297,7 @@
                                                 <div class="progress-bar" role="progressbar" style="width: 18.75%;" aria-valuenow="18.75" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </td>
-                                        <td>(30)</td>
+                                        <td>(${ evaluations.getOrDefault(Integer.valueOf(2),Long.valueOf(0)) })</td>
                                     </tr>
 
                                     <tr>
@@ -304,7 +307,7 @@
                                                 <div class="progress-bar" role="progressbar" style="width: 15.62%;" aria-valuenow="15.62" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </td>
-                                        <td>(30)</td>
+                                        <td>(${ evaluations.getOrDefault(Integer.valueOf(1),Long.valueOf(0)) })</td>
                                     </tr>
                                 </table>
                             </div>
@@ -341,94 +344,30 @@
                         <span class="font-size-20 font-gilroy-bold color-second">Commentaires</span>
                     </div>
 
-                    <div class="card comment-card mt-2">
-                        <div class="user-card card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <h6 class="card-title mb-2 text-muted">Achraf Saadi</h6>
-                                </div>
-
-                                <div class="col-6 text-right">
-                                    <div class="rating text-warning font-size-14">
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="far fa-star"></i></span>
+                    <c:forEach var="entry" items="${comments}">
+                        <div class="card comment-card mt-2">
+                            <div class="user-card card-body">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h6 class="card-title mb-2 text-muted">${entry.getUser().getFirstname()}</h6>
+                                    </div>
+    
+                                    <div class="col-6 text-right">
+                                        <div class="rating text-warning font-size-14">
+                                            <span><i class="fas fa-star"></i></span>
+                                            <span><i class="fas fa-star"></i></span>
+                                            <span><i class="fas fa-star"></i></span>
+                                            <span><i class="fas fa-star"></i></span>
+                                            <span><i class="far fa-star"></i></span>
+                                        </div>
                                     </div>
                                 </div>
+                            
+                                <p class="user_comment card-text"> ${entry.getCommentaire()} </p>
                             </div>
-                        
-                            <p class="user_comment card-text"> Dr Kashanian is the perfect Sherlock Holmes of all things urology. After 2 lost decades of futile internet searches and well-meaning well-wishers, I was resigned to all the problems down under. With heart-felt sensitivity and meticulous powers of observation & deduction, Dr. Kashanian systematically debugged my case. I can't thank Dr. Kashanian & staff highly enough. He has put life back into my life where earlier it was a reluctant resignation. Thank you for the amazing care. </p>
                         </div>
-                    </div>
+                    </c:forEach>
                     
-                    <div class="card comment-card mt-2">
-                        <div class="user-card card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <h6 class="card-title mb-2 text-muted">Khadija Kachkach</h6>
-                                </div>
-
-                                <div class="col-6 text-right">
-                                    <div class="rating text-warning font-size-14">
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="fas fa-star"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                            <p class="user_comment card-text">She is very thorough and spends time with you. She believes in quality of life and gets you to improve your health through diet and exercise.</p>
-                        </div>
-                    </div>
-
-                    <div class="card comment-card mt-2">
-                        <div class="user-card card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <h6 class="card-title mb-2 text-muted">Ahmed Salim</h6>
-                                </div>
-
-                                <div class="col-6 text-right">
-                                    <div class="rating text-warning font-size-14">
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="far fa-star"></i></span>
-                                        <span><i class="far fa-star"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                            <p class="user_comment card-text">Excellent Dr. With calm and plesent bedside manner. My wife and I went to him for infertility issues which can be a very sensitive subject. He put us both at ease and took the time to really explain everything to us. My wife is now pregnant. Would recommend him to everyone.</p>
-                        </div>
-                    </div>
-
-                    <div class="card comment-card mt-2">
-                        <div class="user-card card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <h6 class="card-title mb-2 text-muted">Ahmed Salim</h6>
-                                </div>
-
-                                <div class="col-6 text-right">
-                                    <div class="rating text-warning font-size-14">
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span><i class="far fa-star"></i></span>
-                                        <span><i class="far fa-star"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                            <p class="user_comment card-text">Excellent Dr. With calm and plesent bedside manner. My wife and I went to him for infertility issues which can be a very sensitive subject. He put us both at ease and took the time to really explain everything to us. My wife is now pregnant. Would recommend him to everyone.</p>
-                        </div>
-                    </div>
-
                     <div class="border d-flex justify-content-center mt-2" id="moreCommentsBtn" style="visibility: hidden;">
                         <a id="show-more-comments" class="btn font-size-16 font-gilroy-bold color-second">Afficher plus de commentaires</a>
                     </div>
@@ -472,7 +411,7 @@
                         <h5 class="text-left font-gilroy-bold color-primary border-bottom">Biographie  <span id="markBiographie"><i class="font-size-16 fas fa-plus-circle"></i></span></h5>
                     </a>
                     
-                    <pre id="BiographieText" style="display: none;" class="px-4 font-size-14 font-montserrat text-justify">Dr Kashanian has a bachelors of science in Biomedical Engineering and received his medical degree from Temple University School of Medicine in Philadelphia, PA. He completed his general surgery and Urology residency training at Maimonides Medical Center in Brooklyn, N.Y. Dr Kashanian joins the Center for Male Reproductive Medicine and Microsurgery, as well as Sexual Health & Medicine in the Department of Urology at Weill Cornell after completing fellowship training in Chicago, IL at Northwestern Memorial Hospital, Feinberg School of Medicine in Male reproductive medicine and surgery.</pre>
+                    <pre id="BiographieText" style="display: none;" class="px-4 font-size-14 font-montserrat text-justify">${doctor.biographie}</pre>
                 </div>
                 <!-- !Biographie -->
 
@@ -484,57 +423,23 @@
 
                     <div id="EducationText" style="display: none;">
                         <!-- Element -->
-                        <div class="row pl-4 mt-3">
-                            <div class="col-xs-4" style="width: 20%;">
-                                <h4 class="color-second text-center font-gilroy-bold">2015</h4>
-                            </div>
-
-                            <div class="col-xs-8 ml-2" style="width: 50%;">
-                                <div class="row">
-                                    <span class="font-size-16 font-weight-bold font-montserrat">Northwestern Univ Feinberg School of Med</span>
+                        <c:forEach var="entry" items="${educations}">
+                            <div class="row pl-4 mt-3">
+                                <div class="col-xs-4" style="width: 20%;">
+                                    <h4 class="color-second text-center font-gilroy-bold">${entry.anneeEduc}</h4>
                                 </div>
-                                
-                                <div class="row">
-                                    <span class="font-size-14 font-montserrat">Fellowship Hospital</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- !Element -->
-
-                        <!-- Element -->
-                        <div class="row pl-4 mt-3">
-                            <div class="col-xs-4" style="width: 20%;">
-                                <h4 class="color-second text-center font-gilroy-bold">2014</h4>
-                            </div>
-
-                            <div class="col-xs-8 ml-2" style="width: 50%;">
-                                <div class="row">
-                                    <span class="font-size-16 font-weight-bold font-montserrat">Maimonides Medical Center</span>
-                                </div>
-                                
-                                <div class="row">
-                                    <span class="font-size-14 font-montserrat">Residency Hospital</span>
+    
+                                <div class="col-xs-8 ml-2" style="width: 50%;">
+                                    <div class="row">
+                                        <span class="font-size-16 font-weight-bold font-montserrat">${entry.education}</span>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <span class="font-size-14 font-montserrat">${entry.descEduc}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- !Element -->
-
-                        <!-- Element -->
-                        <div class="row pl-4 mt-3">
-                            <div class="col-xs-4" style="width: 20%;">
-                                <h4 class="color-second text-center font-gilroy-bold">2009</h4>
-                            </div>
-
-                            <div class="col-xs-8 ml-2" style="width: 50%;">
-                                <div class="row">
-                                    <span class="font-size-16 font-weight-bold font-montserrat">Maimonides Medical Center</span>
-                                </div>
-                                
-                                <div class="row">
-                                    <span class="font-size-14 font-montserrat">Internship Hospital</span>
-                                </div>
-                            </div>
-                        </div>
+                        </c:forEach>
                         <!-- !Element -->
                     </div>
                 </div>
@@ -548,39 +453,23 @@
 
                     <div id="RecompensesText" style="display: none;">
                         <!-- Element -->
-                        <div class="row pl-4 mt-3">
-                            <div class="col-xs-4" style="width: 20%;">
-                                <h3 class="color-second text-center font-gilroy-bold"><i class="fas fa-award"></i></h3>
-                            </div>
-
-                            <div class="col-xs-8 ml-2" style="width: 50%;">
-                                <div class="row">
-                                    <span class="font-size-16 font-weight-bold font-montserrat">Healthgrades Honor Roll</span>
+                        <c:forEach var="entry" items="${recompenses}">
+                            <div class="row pl-4 mt-3">
+                                <div class="col-xs-4" style="width: 20%;">
+                                    <h3 class="color-second text-center font-gilroy-bold"><i class="fas fa-award"></i></h3>
                                 </div>
-                                
-                                <div class="row">
-                                    <span class="font-size-14 font-montserrat">2017</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- !Element -->
-
-                        <!-- Element -->
-                        <div class="row pl-4 mt-3">
-                            <div class="col-xs-4" style="width: 20%;">
-                                <h3 class="color-second text-center font-gilroy-bold"><i class="fas fa-award"></i></h3>
-                            </div>
-
-                            <div class="col-xs-8 ml-2" style="width: 50%;">
-                                <div class="row">
-                                    <span class="font-size-16 font-weight-bold font-montserrat">Healthgrades Honor Roll</span>
-                                </div>
-                                
-                                <div class="row">
-                                    <span class="font-size-14 font-montserrat">2016</span>
+    
+                                <div class="col-xs-8 ml-2" style="width: 50%;">
+                                    <div class="row">
+                                        <span class="font-size-16 font-weight-bold font-montserrat">${entry.name}</span>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <span class="font-size-14 font-montserrat">${entry.annee}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </c:forEach>
                         <!-- !Element -->
                     </div>
                 </div>
@@ -604,65 +493,21 @@
                     <div class="container">
                         <div class="row">
                             <!-- Element-->
-                            <div class="col-md-4">
-                                <a href="" class="btn btn-fluid text-center">
-                                    <div class="card">
-                                        <i class="fas fa-hospital fa-9x mx-3 my-3 color-second"></i>
-                                        <div class="card-body">
-                                            <h5 class="card-title font-gilroy-bold color-primary">Weill Cornell Medical Center</h5>
-                                            <i class="fas fa-map-marker-alt text-danger"></i>
-                                            <span class="font-size-14 font-weight-bold font-montserrat">302, bd Moulay Ismail, hay Ennahda, imm Illigh A1, Agadir 80000, Morocco</span>
+                            <c:forEach var="entry" items="${hopitaux}">
+                                <div class="col-md-4">
+                                    <a href="" class="btn btn-fluid text-center">
+                                        <div class="card">
+                                            <i class="fas fa-hospital fa-9x mx-3 my-3 color-second"></i>
+                                            <div class="card-body">
+                                                <h5 class="card-title font-gilroy-bold color-primary">${entry.getName()}</h5>
+                                                <i class="fas fa-map-marker-alt text-danger"></i>
+                                                <span class="font-size-14 font-weight-bold font-montserrat">${entry.getAdresse()}</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                            </div>
+                                    </a>
+                                </div>
+                            </c:forEach>
                             <!-- !Element-->
-                            
-                            <!-- Element-->
-                            <div class="col-md-4">
-                                <a href="" class="btn btn-fluid text-center">
-                                    <div class="card">
-                                        <i class="fas fa-hospital fa-9x mx-3 my-3 color-second"></i>
-                                        <div class="card-body">
-                                            <h5 class="card-title font-gilroy-bold color-primary">Weill Cornell Medical Center</h5>
-                                            <i class="fas fa-map-marker-alt text-danger"></i>
-                                            <span class="font-size-14 font-weight-bold font-montserrat">302, bd Moulay Ismail, hay Ennahda, imm Illigh A1, Agadir 80000, Morocco</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <!-- !Element-->
-                            
-                            <!-- Element-->
-                            <div class="col-md-4">
-                                <a href="" class="btn btn-fluid text-center">
-                                    <div class="card">
-                                        <i class="fas fa-hospital fa-9x mx-3 my-3 color-second"></i>
-                                        <div class="card-body">
-                                            <h5 class="card-title font-gilroy-bold color-primary">Weill Cornell Medical Center</h5>
-                                            <i class="fas fa-map-marker-alt text-danger"></i>
-                                            <span class="font-size-14 font-weight-bold font-montserrat">302, bd Moulay Ismail, hay Ennahda, imm Illigh A1, Agadir 80000, Morocco</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <!-- !Element-->
-                            
-                            <!-- Element-->
-                            <div class="col-md-4">
-                                <a href="" class="btn btn-fluid text-center">
-                                    <div class="card">
-                                        <i class="fas fa-hospital fa-9x mx-3 my-3 color-second"></i>
-                                        <div class="card-body">
-                                            <h5 class="card-title font-gilroy-bold color-primary">Weill Cornell Medical Center</h5>
-                                            <i class="fas fa-map-marker-alt text-danger"></i>
-                                            <span class="font-size-14 font-weight-bold font-montserrat">302, bd Moulay Ismail, hay Ennahda, imm Illigh A1, Agadir 80000, Morocco</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <!-- !Element-->
-                            
                         </div>
                     </div>
                 </div>
@@ -675,65 +520,21 @@
                     <div class="container">
                         <div class="row">
                             <!-- Element-->
-                            <div class="col-md-4">
-                                <a href="" class="btn btn-fluid text-center">
-                                    <div class="card">
-                                        <i class="far fa-hospital fa-5x mx-3 my-3 color-second"></i>
-                                        <div class="card-body">
-                                            <h5 class="card-title font-gilroy-bold color-primary">Weill Cornell Medical Center</h5>
-                                            <i class="fas fa-map-marker-alt text-danger"></i>
-                                            <span class="font-size-14 font-weight-bold font-montserrat">302, bd Moulay Ismail, hay Ennahda, imm Illigh A1, Agadir 80000, Morocco</span>
+                            <c:forEach var="clinique" items="${cliniques}">
+                                <div class="col-md-4">
+                                    <a href="" class="btn btn-fluid text-center">
+                                        <div class="card">
+                                            <i class="far fa-hospital fa-5x mx-3 my-3 color-second"></i>
+                                            <div class="card-body">
+                                                <h5 class="card-title font-gilroy-bold color-primary">${clinique.getName()}</h5>
+                                                <i class="fas fa-map-marker-alt text-danger"></i>
+                                                <span class="font-size-14 font-weight-bold font-montserrat">${clinique.getAdresse()}</span>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                            </div>
+                                    </a>
+                                </div>
+                            </c:forEach>
                             <!-- !Element-->
-                            
-                            <!-- Element-->
-                            <div class="col-md-4">
-                                <a href="" class="btn btn-fluid text-center">
-                                    <div class="card">
-                                        <i class="far fa-hospital fa-5x mx-3 my-3 color-second"></i>
-                                        <div class="card-body">
-                                            <h5 class="card-title font-gilroy-bold color-primary">Weill Cornell Medical Center</h5>
-                                            <i class="fas fa-map-marker-alt text-danger"></i>
-                                            <span class="font-size-14 font-weight-bold font-montserrat">302, bd Moulay Ismail, hay Ennahda, imm Illigh A1, Agadir 80000, Morocco</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <!-- !Element-->
-                            
-                            <!-- Element-->
-                            <div class="col-md-4">
-                                <a href="" class="btn btn-fluid text-center">
-                                    <div class="card">
-                                        <i class="far fa-hospital fa-5x mx-3 my-3 color-second"></i>
-                                        <div class="card-body">
-                                            <h5 class="card-title font-gilroy-bold color-primary">Weill Cornell Medical Center</h5>
-                                            <i class="fas fa-map-marker-alt text-danger"></i>
-                                            <span class="font-size-14 font-weight-bold font-montserrat">302, bd Moulay Ismail, hay Ennahda, imm Illigh A1, Agadir 80000, Morocco</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <!-- !Element-->
-                            
-                            <!-- Element-->
-                            <div class="col-md-4">
-                                <a href="" class="btn btn-fluid text-center">
-                                    <div class="card">
-                                        <i class="far fa-hospital fa-5x mx-3 my-3 color-second"></i>
-                                        <div class="card-body">
-                                            <h5 class="card-title font-gilroy-bold color-primary">Weill Cornell Medical Center</h5>
-                                            <i class="fas fa-map-marker-alt text-danger"></i>
-                                            <span class="font-size-14 font-weight-bold font-montserrat">302, bd Moulay Ismail, hay Ennahda, imm Illigh A1, Agadir 80000, Morocco</span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <!-- !Element-->
-                            
                         </div>
                     </div>
                 </div>

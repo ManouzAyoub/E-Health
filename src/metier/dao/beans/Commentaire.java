@@ -44,6 +44,10 @@ public class Commentaire implements Serializable{
 	@JoinColumn(name = "idCabinet" , referencedColumnName = "idProfil")
 	private Cabinet cabinet;
 	
+	@ManyToOne
+	@JoinColumn(name = "idDocteur" , referencedColumnName = "cin")
+	private Docteur docteur;
+	
 
 	public User getUser() {
 		return user;
@@ -121,4 +125,11 @@ public class Commentaire implements Serializable{
 		this.date_commentaire = date_commentaire;
 	}
 		
+	public void setDocteur(Docteur docteur) {
+		this.docteur = docteur;
+	}
+	
+	public Docteur getDocteur() {
+		return docteur;
+	}
 }
