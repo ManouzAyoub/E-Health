@@ -1,13 +1,13 @@
 package metier.dao.util;
 
 import metier.dao.beans.User;
-import metier.services.SignInService;
+import metier.services.SignInFormService;
 
 public class TestGetUser {
 
 	public static void main(String[] args) {
 		
-		SignInService impl = SignInService.getInstance();
+		SignInFormService impl = SignInFormService.getInstance();
 		
 		User user = impl.VerifyUser("salma.al.jaouhari@gmail.com", "salma");
 		

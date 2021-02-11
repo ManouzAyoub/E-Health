@@ -22,6 +22,8 @@ public class Hopital implements Serializable{
 	private long idHopital;
 	private String name;
 	private String adresse;
+	private String description;
+	private String tel;
 	
 	@ManyToMany
     @JoinTable( name = "T_Hopital_Docteur",
@@ -87,7 +89,20 @@ public class Hopital implements Serializable{
 		this.adresse = adresse;
 	}
 	
+	public String getDescription() {
+		return description;
+	}
 	
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	
+	public String getTel() {
+		return tel;
+	}
+	
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
 	
 }

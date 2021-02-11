@@ -263,7 +263,7 @@
                                         <td>5 étoiles</td>
                                         <td style="width: 360px;">
                                             <div class="progress position-relative" style="height: 10px;">
-                                                <div class="progress-bar" role="progressbar" style="width: 1.5%;" aria-valuenow="1.5" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar" role="progressbar" style="width: ${progressBar.getOrDefault(Integer.valueOf(5),"0") }%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </td>
                                         <td>(${ evaluations.getOrDefault(Integer.valueOf(5),Long.valueOf(0)) })</td>
@@ -274,7 +274,7 @@
                                         <td>4 étoiles</td>
                                         <td>
                                             <div class="progress position-relative" style="height: 10px;">
-                                                <div class="progress-bar" role="progressbar" style="width: 31.25%;" aria-valuenow="31.25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar" role="progressbar" style="width: ${progressBar.getOrDefault(Integer.valueOf(4),"0") }%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </td>
                                         <td>(${ evaluations.getOrDefault(Integer.valueOf(4),Long.valueOf(0)) })</td>
@@ -284,7 +284,7 @@
                                         <td>3 étoiles</td>
                                         <td>
                                             <div class="progress position-relative" style="height: 10px;">
-                                                <div class="progress-bar" role="progressbar" style="width: 32.88%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar" role="progressbar" style="width: ${progressBar.getOrDefault(Integer.valueOf(3),"0") }%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </td>
                                         <td>(${ evaluations.getOrDefault(Integer.valueOf(3),Long.valueOf(0)) })</td>
@@ -294,7 +294,7 @@
                                         <td>2 étoiles</td>
                                         <td>
                                             <div class="progress position-relative" style="height: 10px;">
-                                                <div class="progress-bar" role="progressbar" style="width: 18.75%;" aria-valuenow="18.75" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar" role="progressbar" style="width: ${progressBar.getOrDefault(Integer.valueOf(2),"0") }%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </td>
                                         <td>(${ evaluations.getOrDefault(Integer.valueOf(2),Long.valueOf(0)) })</td>
@@ -304,7 +304,7 @@
                                         <td>1 étoile</td>
                                         <td>
                                             <div class="progress position-relative" style="height: 10px;">
-                                                <div class="progress-bar" role="progressbar" style="width: 15.62%;" aria-valuenow="15.62" aria-valuemin="0" aria-valuemax="100"></div>
+                                                <div class="progress-bar" role="progressbar" style="width: ${progressBar.getOrDefault(Integer.valueOf(2),"0") }%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                             </div>
                                         </td>
                                         <td>(${ evaluations.getOrDefault(Integer.valueOf(1),Long.valueOf(0)) })</td>

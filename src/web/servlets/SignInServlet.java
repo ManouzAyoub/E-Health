@@ -10,22 +10,19 @@ import javax.servlet.http.HttpSession;
 
 import metier.dao.Implementations.UserDao;
 import metier.dao.beans.User;
-import metier.services.SignInService;
+import metier.services.SignInFormService;
 import metier.services.UserImpl;
 
 @WebServlet("/signIn")
-public class SignInServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class SignInServlet extends HttpServlet {	
 	
-	
-    public static final String ATT_VISITER      = "visiter";
-    public static final String ATT_FORM         = "form";
-    public static final String ATT_RESULTAT     = "resultat";
-    public static final String ATT_ERROR        = "erreurs";
+    private static final String ATT_VISITER      = "visiter";
+    private static final String ATT_FORM         = "form";
+    private static final String ATT_RESULTAT     = "resultat";
+    private static final String ATT_ERROR        = "erreurs";
        
-	  public static final String VUE            = "/WEB-INF/SignIn.jsp";
-	  public static final String SUCESS         = "/WEB-INF/afficherUser.jsp";
-	  //public static final String SEARCH 		= "/searchDoctor";
+    private static final String VUE            = "/WEB-INF/SignIn.jsp";
+    private static final String SUCESS         = "/WEB-INF/Home.jsp";
    
 	  public SignInServlet() {
         super();
@@ -37,9 +34,18 @@ public class SignInServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        SignInService form = SignInService.getInstance();
+        
+		System.out.println("fonction correctement");
+        
+		SignInFormService form = SignInFormService.getInstance();
         
     	User visiter = form.SignInService( request );
+    	
+    	HttpSession session = request.getSession();
+    	
+    	session.setAttribute("visiter", visiter);
+    	
+    	System.out.println(visiter);
     	
         request.setAttribute( ATT_VISITER, visiter );
         request.setAttribute( ATT_FORM, form );

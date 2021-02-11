@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,24 +14,24 @@
     <!-- Main css -->
     <link rel="stylesheet" href="inc/css/style.css">
  <style>
-body {
-    background-image: url("inc/images/happyboy.jpg");
-    
-}
-  .signIn_container{
-    width: 500px;
-    position: relative;
-    margin-left: auto;
-    margin-right: 60px;
-    box-shadow:0 1px 3px rgba(0,0,0,0.2);
-    transition:all 0.2s ease-in-out;
-
-  }
-  .signIn_container:hover{
-    transform:scale(1.02);
-    transition:all 0.2s ease-in-out;
-    cursor: pointer;
-}
+	body {
+	    background-image: url("inc/images/happyboy.jpg");
+	    
+	}
+	  .signIn_container{
+	    width: 500px;
+	    position: relative;
+	    margin-left: auto;
+	    margin-right: 60px;
+	    box-shadow:0 1px 3px rgba(0,0,0,0.2);
+	    transition:all 0.2s ease-in-out;
+	
+	  }
+	  .signIn_container:hover{
+	    transform:scale(1.02);
+	    transition:all 0.2s ease-in-out;
+	    cursor: pointer;
+	}
 
 </style>
 </head>
@@ -43,7 +42,7 @@ body {
         <section class="signup">
             <div class="signIn_container" >
                 <div class="signup-content">
-                    <form action ="<%=request.getContextPath()%>/signIn" method="POST" id="signup-form" class="signup-form">
+                    <form action ="<c:url value="/signIn" />" method="post" id="signup-form" class="signup-form">
                         <h2 class="form-title">Sign In</h2>
                         
                         <div class="form-group">

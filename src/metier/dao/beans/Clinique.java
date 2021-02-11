@@ -1,14 +1,13 @@
 package metier.dao.beans;
 
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -20,11 +19,22 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name = "cin")
 public class Clinique extends User{
 	
+	@Column(name="name",nullable=false)
 	private String name;
+	
+	@Column(name="adresse",nullable=false)
 	private String adresse;
+	
 	private String tel;
+	private String description;
+	
+	@Column(name="emergency_tel",nullable=false)
 	private String emergency_tel;
+	
+	@Column(name="speciality",nullable=false)
 	private String speciality;
+	
+	private Boolean dispo;
 	
 	@ManyToOne
 	@JoinColumn(name = "idUser" , referencedColumnName = "cin")
@@ -121,8 +131,29 @@ public class Clinique extends User{
 		this.speciality = speciality;
 	}
 	
+	public Boolean getDispo() {
+		return dispo;
+	}
 	
+	public void setDispo(Boolean dispo) {
+		this.dispo = dispo;
+	}
 	
+	public List<Docteur> getDocteurs() {
+		return docteurs;
+	}
+	
+	public void setDocteurs(List<Docteur> docteurs) {
+		this.docteurs = docteurs;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	
 	
 }

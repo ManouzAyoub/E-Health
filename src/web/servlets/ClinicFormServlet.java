@@ -16,11 +16,10 @@ import metier.dao.beans.User;
 import metier.services.CliniqueImpl;
 import metier.services.RoleImpl;
 import metier.services.UserImpl;
-import metier.services.clinicFormService;
+import metier.services.CliniqueFormImpl;
 
 @WebServlet("/clinicForm")
 public class ClinicFormServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
     
     public static final String ATT_CLINIC      = "clinic";
     public static final String ATT_FORM         = "form";
@@ -41,10 +40,14 @@ public class ClinicFormServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		clinicFormService form = clinicFormService.getInstance();
-        RoleImpl roleimpl=RoleImpl.getInstance(); 
-        RoleDao roledao=RoleDao.getInstance();
-    	Clinique clinic = form.clinicFormService(request);
+		
+		CliniqueFormImpl form     = CliniqueFormImpl.getInstance();
+		
+        RoleImpl roleimpl         = RoleImpl.getInstance();
+        
+        RoleDao roledao           = RoleDao.getInstance();
+        
+    	Clinique clinic           = form.clinicFormService(request);
 
         request.setAttribute( ATT_CLINIC, clinic );
         request.setAttribute( ATT_FORM, form );
@@ -52,13 +55,13 @@ public class ClinicFormServlet extends HttpServlet {
         if ( form.getErreurs().isEmpty() ) {
 
             CliniqueDao clinicdao = CliniqueDao.getInsctance();
-            role=roleimpl.getRolebyrole("clinique");
-            System.out.print(role.getRole());
+            
+            role                  = roleimpl.getRolebyrole("clinique");
+       
             clinic.setRole(role);
             clinicdao.add(clinic);
 
-            this.getServletContext().getRequestDispatcher( SUCESS ).forward(
-                    request, response );
+            this.getServletContext().getRequestDispatcher( SUCESS ).forward(request, response );
 
         } else {
             this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );

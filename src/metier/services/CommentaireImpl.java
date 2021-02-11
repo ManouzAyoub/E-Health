@@ -20,12 +20,16 @@ public class CommentaireImpl {
 		
 	}
 	
-	public List<Commentaire> getCommentsByDocteur(Docteur id){
-		String hql = "select c from Commentaire c where idDocteur = :idDocteur";
+	public List<Commentaire> getComments(Long id, String par){
+		String hql = "select c from Commentaire c where "+ par +" = :id";
 		Query q = session.createQuery(hql);
-		q.setParameter("idDocteur", id.getCin());
+		q.setParameter("id", id);
 		List<Commentaire> list = q.getResultList();
-		return list;
+		if (list.size() != 0) {
+			return list;
+		}else {
+			return null;
+		}
 	}
 	
 	public static CommentaireImpl getInstance() {

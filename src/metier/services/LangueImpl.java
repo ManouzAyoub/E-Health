@@ -30,6 +30,11 @@ public class LangueImpl {
     	Query query = session.createQuery("select o from Langue o where langue = :name");
     	query.setParameter("name", name);
     	List<Langue> langue = query.getResultList();
-    	return langue.get(0);
+    	if (langue.size() != 0) {
+    		return langue.get(0);
+		}else {
+			return null;
+		}
+    	
     }
 }

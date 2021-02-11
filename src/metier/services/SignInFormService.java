@@ -13,10 +13,10 @@ import org.hibernate.Session;
 import metier.dao.beans.User;
 import metier.dao.util.HibernateUtil;
 
-public class SignInService {
+public class SignInFormService {
 	
 	Session session = HibernateUtil.openSession();
-	private static SignInService instance = null;
+	private static SignInFormService instance = null;
 
 	    private static final String CHAMP_EMAIL        = "email";
 	    private static final String CHAMP_PASSWORD     = "password";
@@ -62,7 +62,7 @@ public class SignInService {
 	        String password = request.getParameter( CHAMP_PASSWORD );
 	        User visiter = new User();        
 	        User listUser=VerifyUser(email, password);
-//	        System.out.
+
 	        if(listUser!=null) {
 	        	erreurs.clear();
 	        	resultat = "Succes d'inscription!";
@@ -77,9 +77,9 @@ public class SignInService {
 	        return listUser;
 	    }
 	   
-	    public static SignInService getInstance() {
+	    public static SignInFormService getInstance() {
 	        if ( instance == null )
-	            instance = new SignInService();
+	            instance = new SignInFormService();
 	        return instance;
 	    }
 }

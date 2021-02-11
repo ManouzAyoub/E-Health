@@ -81,7 +81,7 @@
                     <li><a href="#section-2" class="nav-link" >Medecin</a></li>
                     <li><a href="#section-3" class="nav-link" >Hopital</a></li>
                     <li><a href="#section-4" class="nav-link" >Clinique</a></li>
-                    <li><a href="#section-5" class="nav-link" >Laboratoire</a></li>
+                    <li><a href="#section-5" class="nav-link" >Pharmacie</a></li>
                     <div >
                         <li><a href="#" class="tmp"><i class="fas fa-user"></i> Login</a></li>
                         <li><a href="#" class="tmp"><i class="fas fa-sign-in-alt"></i> Sign up</a></li>
@@ -108,27 +108,29 @@
             <p class="text-description">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ratione quo cupiditate illo, ev
                 eniet hic nesciunt 
-</p> 
-<div class="buttons">
-<button class="sign-in cta">
-    Connectez vous
-</button>
-          <button class="sign-up cta">
-                rejoignez nous ! 
-            </button>
-        </div>
+            </p> 
+            <div class="buttons">
+                <button class="sign-in cta">
+                    Connectez vous
+                </button>
+                <button class="sign-up cta">
+                    rejoignez nous ! 
+                </button>
+            </div>
         </div >
         <div id="blurimg"><img class="img-1" src="<c:url value="/FrontEnd/Includes/images/image-1.svg" />" alt="e-health"></div>
     </section>
+    <!-- La pop up  -->
     <div id="popup">
        <h2>Vous souhaitez vous inscrire en tant que :</h2>
        <div class="popup-buttons">
-       <a href="<c:url value="/doctorForm" />"><button class="signup"  >Médecin</button></a>
-       <a href="<c:url value="/clinicForm" />"><button  class="signup"  >Clinique</button></a>
-        <a href="<c:url value="/visiterForm" />"><button class="signup"  >Utilisateur</button></a></div>
+            <a href="<c:url value="/doctorForm" />"><button class="signup"  >Médecin</button></a>
+            <a href="<c:url value="/clinicForm" />"><button  class="signup"  >Clinique</button></a>
+            <a href="<c:url value="/visiterForm" />"><button class="signup"  >Utilisateur</button></a></div>
         </div>
      <hr>
     <!-- -----------La deuxieme section --------------- -->
+    <!-- Trouver Un Medecin -->
     <section id="section-2" class="section" >
         <img class="img-2" src="<c:url value="/FrontEnd/Includes/images/image-2.svg" />" alt="Medecin" data-aos="fade-right">
         <div class="description-2" data-aos="fade-up">
@@ -139,15 +141,16 @@
                Vous êtes à la recherche d'une recommandation pour un medecin ?</br></br>
                 Trouver un medecin près de chez vous et prenez votre rendez-vous !
             </p> 
-          <form action="" method="get">
-              <input type="text" placeholder="Entrer votre localisation" class="localisation" name="" id="" autocomplete="off" required />
+          <form method="get" action="<c:url value="/searchDoctor"/>" >
+              <input type="text" placeholder="Entrer votre localisation" class="localisation" name="localisation" id="" autocomplete="off" required />
               <input type="submit" class="submit" value="Chercher . . .">
           </form>
         
         </div >
-       
     </section>
-    <hr>
+    <!-- !Trouver Un Medecin -->
+
+    <!-- Trouver Un Hopital -->
     <section id="section-3" class="section" >
         <div class="description-3" data-aos="fade-right">
             <h1 class="title">
@@ -156,16 +159,18 @@
             <p class="text-description">
                 Vous cherchez à être hospitalisé dans le meilleur hopital près de chez vous ? <br/><br/>
                 saisissez votre localisation et nous nous occuperons du reste !
-</p> 
+            </p> 
 
-<form action="" method="get">
-    <input type="text" placeholder="Entrer votre localisation" class="localisation" name="" id="" autocomplete="off" required />
-    <input type="submit" class="submit" value="Chercher . . .">
-</form>
-        
+            <form method="get" action="<c:url value="/searchHospital"/>" >
+                <input type="text" placeholder="Entrer votre localisation" class="localisation" name="adresse" id="" autocomplete="off" required />
+                <input type="submit" class="submit" value="Chercher . . .">
+            </form>
         </div >
         <img class="img-3" src="<c:url value="/FrontEnd/Includes/images/image-3.svg" />" alt="Clinique" data-aos="fade-up">
-    </section> <hr>
+    </section>
+    <!-- !Trouver Un Hopital -->
+
+    <!-- Trouver Une Clinique -->
     <section id="section-4" class="section" >
         <img class="img-4" src="<c:url value="/FrontEnd/Includes/images/image-4.svg" />" alt="Laboratoire" data-aos="fade-right">
         <div class="description-4" data-aos="fade-up">
@@ -174,15 +179,18 @@
             </h1>
             <p class="text-description">
                 Communiquez avec la meilleure clinique près de chez vous et reserver un rendez-vous ! 
-</p> 
+            </p> 
 
-<form action="" method="get">
-    <input type="text" placeholder="Entrer votre localisation" class="localisation" name="" id="" autocomplete="off" required />
-    <input type="submit" class="submit" value="Chercher . . .">
-</form>
+            <form method="get" action="<c:url value="/searchClinique"/>">
+                <input type="text" placeholder="Entrer votre localisation" class="localisation" name="adresse" id="" autocomplete="off" required />
+                <input type="submit" class="submit" value="Chercher . . .">
+            </form>
         
         </div >
-    </section> <hr>
+    </section> 
+    <!-- !Trouver Ue Clinique -->
+
+    <!-- Trouver Un Laboratoire -->
     <section id="section-5" class="section" >
         <div class="description-1" data-aos="fade-right">
             <h1 class="title">
@@ -191,17 +199,17 @@
             <p class="text-description">
                 Vous voulez effetuer des analyses et obtenir les résultats dans un delai court ?<br/><br/>
                 Saisissez votre adresse ci-dessous 
-</p> 
+            </p> 
 
-<form action="" method="get">
-    <input type="text" placeholder="Entrer votre localisation" class="localisation" name="" id="" autocomplete="off" required />
-    <input type="submit" class="submit" value="Chercher . . .">
-</form>
+            <form action="" method="get">
+                <input type="text" placeholder="Entrer votre localisation" class="localisation" name="" id="" autocomplete="off" required />
+                <input type="submit" class="submit" value="Chercher . . .">
+            </form>
         
         </div >
         <img class="img-1" src="<c:url value="/FrontEnd/Includes/images/image-5.svg" />" alt="e-health" data-aos="fade-up">
     </section>
-    
+    <!-- Trouver Un Laboratoire -->
        
     <script type="text/javascript">
     function toggle(){

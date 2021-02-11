@@ -19,7 +19,7 @@ import javax.servlet.http.Part;
 import metier.dao.beans.Docteur;
 import metier.dao.beans.Langue;
 
-public class doctorFormService {
+public class DocteurFormService {
     private static final String CHAMP_FIRSTNAME       = "firstname";
     private static final String CHAMP_LASTNAME        = "lastname";
     private static final String CHAMP_EMAIL           = "email";

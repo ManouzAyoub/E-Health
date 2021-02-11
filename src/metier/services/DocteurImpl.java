@@ -60,7 +60,12 @@ public class DocteurImpl {
 		Query q = session.createQuery(hql);
 		q.setParameter("bool", bool);
 		List<Docteur> doctors = q.getResultList();
-		return doctors;
+		
+		if (doctors.size() != 0) {
+			return doctors;
+		}else {
+			return null;
+		}
 	}
 	
 	// Specifier les données à afficher dans la page searchDoctor par doctor
@@ -77,10 +82,12 @@ public class DocteurImpl {
 			adresse        = docteur.getAdresse();
 			gender         = docteur.getGender();
 			image          = Base64.getEncoder().encodeToString(docteur.getProfile_image());
-			numberOfRating = String.valueOf(ratingImpl.getNumberOfRatingByDoctor(docteur));
-			average        = String.valueOf(ratingImpl.getAverageOfRatingByDoctor(docteur));
-			rating         = " stars_" + ratingImpl.getAverageOfRatingByDoctor(docteur);
+			numberOfRating = String.valueOf(ratingImpl.getNumberOfRating(docteur.getCin(), "idDocteur"));
+			average        = String.valueOf(ratingImpl.getAverageOfRating(docteur.getCin() , "idDocteur"));
+			rating         = " stars_" + ratingImpl.getAverageOfRating(docteur.getCin(), "idDocteur");
 			specialiter    = docteur.getSpeciality();
+			System.out.println(specialiter);
+			System.out.println(specialities.get(docteur.getSpeciality()));
 			
 			if ( !specialities.get(docteur.getSpeciality()).isEmpty() ) {
 				specialiterClass = specialities.getOrDefault(docteur.getSpeciality(), "");
@@ -149,19 +156,22 @@ public class DocteurImpl {
 		data.put("jourD",  docteur.getJourDepart());
 		data.put("jourF",  docteur.getJourFin());
 		data.put("description", docteur.getDescription());
-		data.put("nbrRating", String.valueOf(ratingImpl.getNumberOfRatingByDoctor(docteur)));
+		data.put("nbrRating", String.valueOf(ratingImpl.getNumberOfRating(docteur.getCin(),"idDocteur")));
 		data.put("image", Base64.getEncoder().encodeToString(docteur.getProfile_image()));
-		data.put("average", String.valueOf(ratingImpl.getAverageOfRatingByDoctor(docteur)));
-		
-//		List<Long> list = ratingImpl.countDistinctValueOfRate(docteur);
-//		for(Long li : list) {
-//			System.out.println("frooooom number "+li);
-//		}
+		data.put("average", String.valueOf(ratingImpl.getAverageOfRating(docteur.getCin(), "idDocteur")));
 		
 		return data;
 	}
 	
-	
+	public List<Docteur> getDoctorsByYourAdress(String adresse, Boolean bool){
+		List<Docteur> list = new ArrayList<Docteur>();
+		String hql = "select d from Docteur d where dispo = :bool and  adresse like ?1";
+		Query q = session.createQuery(hql);
+		q.setParameter("bool", bool);
+		q.setParameter(1, "%"+adresse + "%");
+		list = q.getResultList();
+		return list;
+	}
 	
 	
 	// remplir le map de specialiter et leur class jsp
@@ -191,5 +201,10 @@ public class DocteurImpl {
 		specialities.put("Médecine physique et réadaptation", "Medecine_physique_et_readaptation");
 		specialities.put("Médecine générale", "Medecine_generale");
 		specialities.put("Chirurgie pédiatrique", "Chirurgie_pediatrique");
+	}
+	
+	public String getImageAsString(Docteur docteur) {
+		String image = Base64.getEncoder().encodeToString(docteur.getProfile_image());
+		return image;
 	}
 }

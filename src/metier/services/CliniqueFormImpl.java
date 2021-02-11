@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import metier.dao.beans.Clinique;
 
-public class clinicFormService {
+public class CliniqueFormImpl {
 	
-	   private static clinicFormService instance = null;
+	   private static CliniqueFormImpl instance = null;
 	
 	    private static final String CHAMP_NAME        = "name";
 	    private static final String CHAMP_ADDRESS     = "address";
@@ -23,7 +23,7 @@ public class clinicFormService {
 	    private String              resultat;
 	    private Map<String, String> erreurs            = new HashMap<String, String>();
 	    
-       private clinicFormService() {
+       private CliniqueFormImpl() {
     	   
        }
 
@@ -134,9 +134,9 @@ public class clinicFormService {
 	         throw new Exception( "Veuillez saisir votre numero de Telephone" );
 	     }
 	 }
-	    public static clinicFormService getInstance() {
+	    public static CliniqueFormImpl getInstance() {
 	        if ( instance == null )
-	            instance = new clinicFormService();
+	            instance = new CliniqueFormImpl();
 	        return instance;
 	    }
 }

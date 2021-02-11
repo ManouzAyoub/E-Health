@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import metier.services.RoleImpl;
-import metier.services.doctorFormService;
+import metier.services.DocteurFormService;
 import metier.dao.Implementations.DocteurDao;
 import metier.dao.Implementations.RoleDao;
 import metier.dao.beans.Docteur;
@@ -23,8 +23,8 @@ import metier.dao.beans.Role;
 @WebServlet( "/doctorForm" )
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2,maxFileSize=16177215,maxRequestSize = 1024 * 1024 * 50)  // upload file's size up to 16MB
 public class DoctorFormServlet extends HttpServlet {
-    private static final long  serialVersionUID = 1L;
-    public static final String ATT_DOCTOR      = "docteur";
+
+    public static final String ATT_DOCTOR       = "docteur";
     public static final String ATT_FORM         = "form";
     public static final String ATT_RESULTAT     = "resultat";
     public static final String ATT_ERROR        = "erreurs";
@@ -39,15 +39,13 @@ public class DoctorFormServlet extends HttpServlet {
 
     }
 
-    protected void doGet( HttpServletRequest request, HttpServletResponse response )
-            throws ServletException, IOException {
+    protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 
     }
 
-    protected void doPost( HttpServletRequest request, HttpServletResponse response )
-            throws ServletException, IOException {
-    	 doctorFormService form = new doctorFormService();
+    protected void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
+    	 DocteurFormService form = new DocteurFormService();
          Docteur doctor = form.doctorFormService(request);
          RoleImpl roleimpl=RoleImpl.getInstance(); 
          RoleDao roledao=RoleDao.getInstance();
@@ -59,6 +57,7 @@ public class DoctorFormServlet extends HttpServlet {
          request.setAttribute( ATT_FORM, form );
 
          if ( form.getErreurs().isEmpty()) {
+
         	 //base64image is just for image display purposes
              String base64Image = Base64.getEncoder().encodeToString(doctor.getId_scan());
              doctor.setBase64image(base64Image);

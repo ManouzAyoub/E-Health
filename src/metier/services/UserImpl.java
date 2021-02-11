@@ -63,7 +63,6 @@ public class UserImpl {
         String email = request.getParameter( CHAMP_EMAIL );
         String password = request.getParameter( CHAMP_PASSWORD );
         String conf = request.getParameter( CHAMP_CONFIRMATION );
-        String cin = request.getParameter(CHAMP_FIRSTNAME);
         User visiter = new User();
 
         

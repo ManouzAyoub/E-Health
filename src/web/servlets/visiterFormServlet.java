@@ -40,8 +40,11 @@ public class visiterFormServlet extends HttpServlet {
     protected void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         
     	UserImpl form = UserImpl.getInstance();
-        RoleImpl roleimpl=RoleImpl.getInstance(); 
+    	
+        RoleImpl roleimpl=RoleImpl.getInstance();
+        
         RoleDao roledao=RoleDao.getInstance();
+        
     	User visiter = form.visitorFormService( request );
 
         request.setAttribute( ATT_VISITER, visiter );
@@ -50,8 +53,9 @@ public class visiterFormServlet extends HttpServlet {
         if ( form.getErreurs().isEmpty() ) {
 
             UserDao userdao = UserDao.getInstance();
-            role=roleimpl.getRolebyrole("visiter");
-            System.out.print(role.getRole());
+            
+            role=roleimpl.getRolebyrole("utiliseur");
+            
             visiter.setRole(role);
             userdao.add( visiter );
 
