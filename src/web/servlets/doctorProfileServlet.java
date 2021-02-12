@@ -36,7 +36,6 @@ public class doctorProfileServlet extends HttpServlet {
 	Map<String, String> donnees_doctor = new HashMap<String, String>();
 	EducationImpl educImpl             = EducationImpl.getInstance();
 	RecompenseImpl recomImpl           = RecompenseImpl.getInstance();
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session         = request.getSession(false);
 		Docteur docteur                     = (Docteur) session.getAttribute("DisplayProfileDocteur");
@@ -49,7 +48,6 @@ public class doctorProfileServlet extends HttpServlet {
 		request.setAttribute("data", donnees_doctor);
 		request.setAttribute("doctor", docteur);
 		request.setAttribute("hopitaux", lh);
-		
 		request.setAttribute("cliniques", lc);
 		request.setAttribute("progressBar", ratingImpl.getPercentageOfEtoiles(docteur.getCin(), "idDocteur"));
 		request.setAttribute("image", Base64.getEncoder().encodeToString(docteur.getProfile_image()));

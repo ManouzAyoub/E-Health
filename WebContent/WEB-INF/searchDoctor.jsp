@@ -94,7 +94,11 @@
 	                            <div class="col-md-9 text-xs-center">
 	                                <div>
 	                                    <div class="border-bottom">
-	                                        <h4><a href="<c:url value="/doctorProfile"><c:set var="DisplayProfileDocteur" value="${docteur}" scope="session" /></c:url>"" class="font-gilroy text-danger ">Dr. <span class="fullName"> ${fullname}</span></a></h4>
+	                                        <h4>
+		                                        <a href="<c:url value="/doctorProfile?name=${ID }"></c:url>"" class="font-gilroy text-danger ">
+		                                        	Dr. <span class="fullName"> ${fullname}</span>
+	                                        	</a>
+                                        	</h4>
 	                                    </div>
 	                                </div>
 	    

@@ -24,6 +24,7 @@ public class searchDoctorServlet extends HttpServlet {
 	public static final String ATT_DOCTORS          = "doctors";
 	private static final String CHAMP_RECHERCHER    = "localisation";
 	private Map<Long, List<String>> data_doctors    = new HashMap<Long	, List<String>>();
+	private Map<Long, Docteur> select    = new HashMap<Long	, Docteur >();
 	DocteurDao docteurDao = DocteurDao.getInstance();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,6 +43,7 @@ public class searchDoctorServlet extends HttpServlet {
 			
 			request.setAttribute(ATT_DOCTORS, data_doctors);
 			request.setAttribute("docteurDao", docteurDao);
+			request.setAttribute("select", select);
 			this.getServletContext().getRequestDispatcher( SUCESS ).forward(request, response);
 		}else {
 			System.out.println("n'existe pas");

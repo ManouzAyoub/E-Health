@@ -388,10 +388,19 @@
 
                             <table>
                                 <tr>
-                                    <form action="<%=request.getContextPath()%>/addComment" method="post">
-                                    	<td style="width: 100%;"><textarea name="userOwnComment" id="userOwnComment" class="form-control" rows="3" ></textarea></td>
-                                    	<td><button class="btn btn-outline-info border-0 font-size-16 font-gilroy-bold" type="submit" id="CommentBtn" >Commenter</button></td>
-                                    </form>
+                                	<c:if test="${ sessionScope.visiter == null }">
+                                		<form action="<%=request.getContextPath()%>/signIn" method="get">
+	                                    	<td style="width: 100%;"><textarea name="userOwnComment" id="userOwnComment" class="form-control" rows="3" ></textarea></td>
+	                                    	<td><button class="btn btn-outline-info border-0 font-size-16 font-gilroy-bold" type="submit" id="CommentBtn" >Commenter</button></td>
+	                                    </form>
+                                	</c:if>
+                                	<c:if test="${ sessionScope.visiter != null }">
+                                		<form action="<%=request.getContextPath()%>/addComment" method="post">
+	                                    	<td style="width: 100%;"><textarea name="userOwnComment" id="userOwnComment" class="form-control" rows="3" ></textarea></td>
+	                                    	<td><button class="btn btn-outline-info border-0 font-size-16 font-gilroy-bold" type="submit" id="CommentBtn" >Commenter</button></td>
+	                                    </form>
+                                	</c:if>
+                                    
                                 </tr>
                             </table>
                             

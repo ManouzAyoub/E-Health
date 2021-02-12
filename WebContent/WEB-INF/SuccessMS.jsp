@@ -30,7 +30,7 @@
     avoir des problèmes? <a href="mailto:contact@example.com">Contacter nous</a>
   </p>
   <p class="lead">
-    <a class="btn btn-primary btn-sm" href="https://bootstrapcreative.com/" role="button">Continuer vers la page d'accueil</a>
+    <a class="btn btn-primary btn-sm" href="<c:url value="/Home"/>" role="button">Continuer vers la page d'accueil</a>
   </p>
 </div>
 </div>
