@@ -27,7 +27,7 @@ public class ClinicFormServlet extends HttpServlet {
     public static final String ATT_ERROR        = "erreurs";
 
     public static final String VUE              = "/WEB-INF/ClinicForm.jsp";
-    public static final String SUCESS           = "/WEB-INF/afficherClinic.jsp";
+    public static final String SUCESS           = "/WEB-INF/SuccessMS.jsp";
     
     Role role=new Role();
     

@@ -30,7 +30,7 @@ public class DoctorFormServlet extends HttpServlet {
     public static final String ATT_ERROR        = "erreurs";
 
     public static final String VUE              = "/WEB-INF/DoctorForm.jsp";
-    public static final String SUCESS           = "/WEB-INF/afficherDoctor.jsp";
+    public static final String SUCESS           = "/WEB-INF/SuccessMS.jsp";
 
     Role role = new Role();
 
