@@ -33,11 +33,6 @@ public class TestAddClinique {
 //		
 //		docteurDao.edit(docteur);
 		
-		ls = docteurImpl.getDoctorsByYourAdress("hay", true);
-		
-		for(Docteur l : ls) {
-			System.out.println("second: "+l.getAdresse());
-		}
-		
+			
 	}
 }

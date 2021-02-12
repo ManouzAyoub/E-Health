@@ -39,8 +39,7 @@ public class doctorProfileServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session         = request.getSession(false);
-		Long id                     = (Long) session.getAttribute("testSession");
-		Docteur docteur             = docteurDao.getById(id);	
+		Docteur docteur                     = (Docteur) session.getAttribute("DisplayProfileDocteur");
 		CommentaireImpl commentImpl = CommentaireImpl.getInstance();
 		List<Commentaire> lcomments = commentImpl.getComments(docteur.getCin(),"idDocteur");
 		map                         = ratingImpl.countDistinctValueOfRate(docteur.getCin(), "idDocteur");
@@ -50,6 +49,7 @@ public class doctorProfileServlet extends HttpServlet {
 		request.setAttribute("data", donnees_doctor);
 		request.setAttribute("doctor", docteur);
 		request.setAttribute("hopitaux", lh);
+		
 		request.setAttribute("cliniques", lc);
 		request.setAttribute("progressBar", ratingImpl.getPercentageOfEtoiles(docteur.getCin(), "idDocteur"));
 		request.setAttribute("image", Base64.getEncoder().encodeToString(docteur.getProfile_image()));

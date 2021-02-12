@@ -34,10 +34,12 @@ public class Docteur extends User{
 	    private String tel;
 	    private Boolean dispo;
 	    private int age;
+	    private String ville;
 	    private Boolean conger;
 	    private String description;
 	    private Boolean rtelephonique;
 	    private String biographie;
+	    private String id;
 	    @Transient
 	    private String Base64image;
 	    
@@ -332,6 +334,21 @@ public class Docteur extends User{
 			this.biographie = biographie;
 		}
 		
+		public String getId() {
+			return id;
+		}
+		
+		public void setId(String id) {
+			this.id = id;
+		}
+
+		public String getVille() {
+			return ville;
+		}
+
+		public void setVille(String ville) {
+			this.ville = ville;
+		}
 		
 		
 

@@ -66,25 +66,51 @@
                 <div class="col-lg-8" id="doctors_list">
 
                     <c:forEach var="entry" items="${doctors}">
-                    	<div class="item ${doctors.getOrDefault(entry.key, entry.value).get(11)} ${doctors.getOrDefault(entry.key, entry.value).get(8)} ${doctors.getOrDefault(entry.key, entry.value).get(3)} ${doctors.getOrDefault(entry.key, entry.value).get(6)} ${doctors.getOrDefault(entry.key, entry.value).get(7)} ${doctors.getOrDefault(entry.key, entry.value).get(4)}">
+                    	<c:set var="fullname" value="${doctors.getOrDefault(entry.key, entry.value).get(0)}"></c:set>
+                    	<c:set var="speciality" value="${doctors.getOrDefault(entry.key, entry.value).get(1)}"></c:set>
+                    	<c:set var="adress" value="${doctors.getOrDefault(entry.key, entry.value).get(2)}"></c:set>
+                    	<c:set var="gender" value="${doctors.getOrDefault(entry.key, entry.value).get(3)}"></c:set>
+                    	<c:set var="langues" value="${doctors.getOrDefault(entry.key, entry.value).get(4)}"></c:set>
+                    	<c:set var="numberOfRating" value="${doctors.getOrDefault(entry.key, entry.value).get(5)}"></c:set>
+                    	<c:set var="telemedcine" value="${doctors.getOrDefault(entry.key, entry.value).get(6)}"></c:set>
+                    	<c:set var="adomicile" value="${doctors.getOrDefault(entry.key, entry.value).get(7)}"></c:set>
+                    	<c:set var="rating" value="${doctors.getOrDefault(entry.key, entry.value).get(8)}"></c:set>
+                    	<c:set var="average" value="${Integer.valueOf(doctors.getOrDefault(entry.key, entry.value).get(10))}"></c:set>
+                    	<c:set var="specialityClass" value="${doctors.getOrDefault(entry.key, entry.value).get(11)}"></c:set>
+                    	<c:set var="HF" value="${doctors.getOrDefault(entry.key, entry.value).get(13)}"></c:set>
+                    	<c:set var="HD" value="${doctors.getOrDefault(entry.key, entry.value).get(12)}"></c:set>
+                    	<c:set var="JD" value="${doctors.getOrDefault(entry.key, entry.value).get(14)}"></c:set>
+                    	<c:set var="JF" value="${doctors.getOrDefault(entry.key, entry.value).get(15)}"></c:set>
+                    	<c:set var="image" value="${doctors.getOrDefault(entry.key, entry.value).get(16)}"></c:set>
+                    	<c:set var="ID" value="${Long.valueOf(doctors.getOrDefault(entry.key, entry.value).get(17))}"></c:set>
+                    	<c:set var="docteur" value="${docteurDao.getById(ID)}"></c:set>
+                    	
+                    	<div class="item ${specialityClass} ${rating} ${gender} ${telemedcine} ${adomicile} ${langues}">
 	                        <div class="row border py-3 mt-3">
 	                            <div class="col-md-3 text-xs-center">
-	                                <img src="data:image/png;base64,${doctors.getOrDefault(entry.key, entry.value).get(16)}" width="150 px" alt="cart1" class="img-fluid img-responsive">
+	                                <img src="data:image/png;base64,${image}" width="150 px" alt="cart1" class="img-fluid img-responsive">
 	                            </div>
 	        
 	                            <div class="col-md-9 text-xs-center">
 	                                <div>
 	                                    <div class="border-bottom">
-	                                        <h4><a href="<c:url value="/doctorProfile"><c:set var="testSession" value="${Long.valueOf(doctors.getOrDefault(entry.key, entry.value).get(17)) }" scope="session" /></c:url>"" class="font-gilroy text-danger ">Dr. <span class="fullName"> ${doctors.getOrDefault(entry.key, entry.value).get(0)}</span></a></h4>
+	                                        <h4><a href="<c:url value="/doctorProfile"><c:set var="DisplayProfileDocteur" value="${docteur}" scope="session" /></c:url>"" class="font-gilroy text-danger ">Dr. <span class="fullName"> ${fullname}</span></a></h4>
 	                                    </div>
 	                                </div>
 	    
 	                                <div class="row mt-3">
 	                                    <div class="col-md-6">
-	                                        <span class="font-montserrat font-size-14">Spécialité : <span class="color-second"> ${doctors.getOrDefault(entry.key, entry.value).get(1)} </span></span>
+	                                        <span class="font-montserrat font-size-14">Spécialité : <span class="color-second"> ${speciality} </span></span>
 	                                        <div class="rating text-warning font-size-12">
-	                                        	<c:set var="numberOfRating" value="${Integer.valueOf(doctors.getOrDefault(entry.key, entry.value).get(10))}"></c:set>
+	                                        	<c:set var="numberOfRating" value="${average}"></c:set>
 	                                            <c:choose>
+	                                            	<c:when test="${numberOfRating == 0 }">
+	                                            		<span><i class="far fa-star"></i></span>
+			                                            <span><i class="far fa-star"></i></span>
+			                                            <span><i class="far fa-star"></i></span>
+			                                            <span><i class="far fa-star"></i></span>
+			                                            <span><i class="far fa-star"></i></span>
+	                                            	</c:when>
 	                                            	<c:when test="${numberOfRating == 1 }">
 	                                            		<span><i class="fas fa-star"></i></span>
 			                                            <span><i class="far fa-star"></i></span>
@@ -123,20 +149,25 @@
 	                                            </c:choose>
 	                                            
 	                                            
-	                                            <span class="color-primary">${doctors.getOrDefault(entry.key, entry.value).get(9)} votes</span>
+	                                            <span class="color-primary">${numberOfRating} votes</span>
 	                                        </div>
 	                                    </div>
 	                                    <div class="col-md-6 border-left">
-	                                        <span class="font-noto text-secondary font-size-12"><i class="fas fa-map-marker-alt"></i> ${doctors.getOrDefault(entry.key, entry.value).get(2)}</span><br>
-	                                        <span class="font-noto text-secondary font-size-12"><i class="fas fa-calendar-alt"></i> ${doctors.getOrDefault(entry.key, entry.value).get(12)}:00-${doctors.getOrDefault(entry.key, entry.value).get(13)}:00 - ${doctors.getOrDefault(entry.key, entry.value).get(14)} � ${doctors.getOrDefault(entry.key, entry.value).get(15)}</span>                                    
+	                                        <span class="font-noto text-secondary font-size-12"><i class="fas fa-map-marker-alt"></i> ${adress}</span><br>
+	                                        <span class="font-noto text-secondary font-size-12"><i class="fas fa-calendar-alt"></i> ${HD}:00-${HF}:00 - ${JD} a ${JF}</span>                                    
 	                                    </div>
 	                                </div>
 	    
 	                                <div class="mt-3 py-1 border-top">
 	                                    <div class="row">
 	                                        <!-- if 3ndo telemedecine-->
-	                                        <span class="col-md-6 font-size-12 text-dark font-montserrat"><i class="fas fa-mobile-alt text-success"></i> &nbsp; T�l�m�decine</span>
-	                                        <span class="col-md-6 font-size-12 text-dark font-montserrat"><i class="fas fa-home text-success"></i> &nbsp; Consultation a domicile</span>
+	                                        <c:if test="${ docteur.teleMedcine }">
+	                                        	<span class="col-md-6 font-size-12 text-dark font-montserrat"><i class="fas fa-mobile-alt text-success"></i> &nbsp; Telemedecin</span>
+	                                        </c:if>
+	                                        <c:if test="${ docteur.consultationDomicile }">
+	                                        	<span class="col-md-6 font-size-12 text-dark font-montserrat"><i class="fas fa-home text-success"></i> &nbsp; Consultation a domicile</span>
+	                                        </c:if>
+	                                        
 	                                    </div>
 	                                    
 	                                </div>

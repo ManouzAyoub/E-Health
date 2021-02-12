@@ -13,6 +13,7 @@ import org.hibernate.Session;
 
 import metier.dao.beans.Docteur;
 import metier.dao.beans.Langue;
+import metier.dao.beans.Role;
 import metier.dao.util.HibernateUtil;
 
 public class DocteurImpl {
@@ -38,7 +39,6 @@ public class DocteurImpl {
 	private String idDocteur;
 	private String all_languages;
 	private List<Langue> list_langue;
-	private List<String> string = new ArrayList<>();
 	private Map<Long,List<String>> classes_list_map = new HashMap<Long, List<String>>();
 	private Map<String,String> specialities = new HashMap<String,String>();
 	private Map<String , String >data = new HashMap<String , String>();
@@ -55,9 +55,10 @@ public class DocteurImpl {
 	}
 	
 	// return les docteur selon l'attribue de confirmation par l'administrateur 
-	public List<Docteur> getDoctorsAccordingToTheirAvailability(boolean bool){
-		String hql = "select o from Docteur o where dispo = :bool";
+	public List<Docteur> getDoctorsAccordingToTheirAvailability(boolean bool, Role role){
+		String hql = "select o from Docteur o, User u where o.dispo = :bool and u.idRole =: idRole";
 		Query q = session.createQuery(hql);
+		q.setParameter("idRole", role.getIdRole());
 		q.setParameter("bool", bool);
 		List<Docteur> doctors = q.getResultList();
 		
@@ -71,8 +72,11 @@ public class DocteurImpl {
 	// Specifier les données à afficher dans la page searchDoctor par doctor
 	public Map<Long, List<String>> displayDoctorsInPage(List<Docteur> list) {
 		function();
-		string.clear();
-		for(Docteur docteur : list) {	
+		System.out.println("la taille de la list passer est egale :::: " + list.size());
+		for (int i = 0; i < list.size(); i++) {
+			List<String> string = new ArrayList<>();
+			Docteur docteur = list.get(i);
+			System.out.println("le nom de la list passer est egale :::: " + docteur.getFirstname());
 			idDocteur      = String.valueOf(docteur.getCin());
 			fullName       = docteur.getFirstname() + " " + docteur.getLastname();
 			HDepart        = String.valueOf(docteur.getHeureDepart());
@@ -100,14 +104,18 @@ public class DocteurImpl {
 			}
 			
 			if(docteur.getConsultationDomicile()) {
+				System.out.println("// consultation a domicile //");
 				aDomicile = "Consultation_a_domicile";
 			} else {
+				System.out.println(" Non // consultation a domicile //");
 				aDomicile = "";
 			}
 			
 			if (docteur.getTeleMedcine()) {
+				System.out.println("// tele medecine //");
 				teleMedcine = "Telemedecine";
 			} else {
+				System.out.println(" Non // consultation a domicile //");
 				teleMedcine = "";
 			}
 			
@@ -131,13 +139,17 @@ public class DocteurImpl {
 			string.add(idDocteur);		  //17
 			
 			classes_list_map.put(docteur.getCin(), string);
-			
 		}
+//		for(Docteur docteur : list) {
+//			System.out.println("displayDoctorsInPage : " + docteur);
+//				
+//		}
 		specialities.clear();
 		return classes_list_map;
 	}
 
 	public Map<String, String> displayDataInProfilePage(Docteur docteur){
+		data.put("id", String.valueOf(docteur.getCin()));
 		data.put("fullname", docteur.getFirstname() + " " + docteur.getLastname());
 		data.put("gender", docteur.getGender()  );
 		data.put("adresse", docteur.getAdresse() );
@@ -163,12 +175,12 @@ public class DocteurImpl {
 		return data;
 	}
 	
-	public List<Docteur> getDoctorsByYourAdress(String adresse, Boolean bool){
+	public List<Docteur> getDoctorsByYourAdress(String ville, Boolean bool){
 		List<Docteur> list = new ArrayList<Docteur>();
-		String hql = "select d from Docteur d where dispo = :bool and  adresse like ?1";
+		String hql = "select d from Docteur d where dispo = :bool and  ville like ?1";
 		Query q = session.createQuery(hql);
 		q.setParameter("bool", bool);
-		q.setParameter(1, "%"+adresse + "%");
+		q.setParameter(1, "%"+ ville + "%");
 		list = q.getResultList();
 		return list;
 	}

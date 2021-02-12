@@ -62,7 +62,7 @@ public class DoctorFormServlet extends HttpServlet {
              String base64Image = Base64.getEncoder().encodeToString(doctor.getId_scan());
              doctor.setBase64image(base64Image);
              
-        	 role=roleimpl.getRolebyrole("doctor");
+        	 role=roleimpl.getRolebyrole("docteur");
         	 doctor.setRole(role);           
                
                doctordao.add(doctor);

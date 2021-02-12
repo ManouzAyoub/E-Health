@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import metier.dao.Implementations.DocteurDao;
 import metier.dao.beans.Docteur;
 import metier.services.DocteurImpl;
+import metier.services.RoleImpl;
 
 @WebServlet(name="searchDoctor", urlPatterns = "/searchDoctor")
 public class searchDoctorServlet extends HttpServlet {
@@ -22,6 +24,7 @@ public class searchDoctorServlet extends HttpServlet {
 	public static final String ATT_DOCTORS          = "doctors";
 	private static final String CHAMP_RECHERCHER    = "localisation";
 	private Map<Long, List<String>> data_doctors    = new HashMap<Long	, List<String>>();
+	DocteurDao docteurDao = DocteurDao.getInstance();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -29,11 +32,18 @@ public class searchDoctorServlet extends HttpServlet {
 
 		DocteurImpl docteurImpl  = DocteurImpl.getInstance();
 		
+		RoleImpl roleimpl = RoleImpl.getInstance();
+		
 		List<Docteur> allDoctors = docteurImpl.getDoctorsByYourAdress(adresse,true);
 		
-		if(allDoctors.size() != 0) {
+		if(!allDoctors.isEmpty()) {
+			for(Docteur all : allDoctors) {
+				System.out.println("---- * ---- : " + all.getFirstname());
+			}
 			data_doctors = docteurImpl.displayDoctorsInPage(allDoctors);
+			
 			request.setAttribute(ATT_DOCTORS, data_doctors);
+			request.setAttribute("docteurDao", docteurDao);
 			this.getServletContext().getRequestDispatcher( SUCESS ).forward(request, response);
 		}else {
 			System.out.println("n'existe pas");

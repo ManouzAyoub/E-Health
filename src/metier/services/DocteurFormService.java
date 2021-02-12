@@ -31,6 +31,8 @@ public class DocteurFormService {
     private static final String CHAMP_PROFILE_IMAGE   = "profile_image";
     private static final String CHAMP_MED_CERTIFICATE = "med_certificate";
     private static final String CHAMP_LOCAL_CONTRACT  = "local_contract";
+    private static final String CHAMP_ID_LOCALISATION = "id_adresse";
+    private static final String CHAMP_VILLE           = "ville";
 
     private String              resultat;
     private Map<String, String> erreurs               = new HashMap<String, String>();
@@ -48,6 +50,8 @@ public class DocteurFormService {
     }
 
     public Docteur doctorFormService( HttpServletRequest request ) throws IOException, ServletException {
+    	String id_localisa = request.getParameter(CHAMP_ID_LOCALISATION);
+    	String ville = request.getParameter(CHAMP_VILLE);
         String firstname   = request.getParameter( CHAMP_FIRSTNAME );
         String lastname    = request.getParameter( CHAMP_LASTNAME );
         String email       = request.getParameter( CHAMP_EMAIL );
@@ -179,6 +183,15 @@ public class DocteurFormService {
         }
         doctor.setPractice(practice);
         
+        doctor.setHeureDepart(9);
+        doctor.setHeureFin(15);
+        doctor.setJourDepart("Lundi");
+        doctor.setJourFin("Vendredi");
+        doctor.setDispo(false);
+        doctor.setTeleMedcine(false);
+        doctor.setConsultationDomicile(false);
+        doctor.setId(id_localisa);
+        doctor.setVille(ville);
         
         if ( erreurs.isEmpty() ) {
             resultat = "Succés d'inscription!";

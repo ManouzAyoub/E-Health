@@ -29,8 +29,6 @@ public class searchCliniqueServlet extends HttpServlet {
 		
 		cliniques                               = cliniqueImpl.getAllClinicsAccordingToTheirAvailabilityAndAdress(adresse, true);
 		
-		System.out.println("size of list is : cliniques : " + cliniques.size());
-		System.out.println("size of list is : cliniques : " + ratingImpl.getAverageOfRating(cliniques.get(0).getCin(),"idClinique"));
 		
 		
 		if (cliniques.size() != 0) {

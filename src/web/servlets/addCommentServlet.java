@@ -46,7 +46,6 @@ public class addCommentServlet extends HttpServlet {
 	Docteur docteur             = new Docteur();
 	Hopital hopital             = new Hopital();
 	Clinique clinique           = new Clinique();
-	Long id                     = null;
 	 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -62,8 +61,7 @@ public class addCommentServlet extends HttpServlet {
 		
 		// commentaire pour un docteur
 		if (commentaire != null) {
-			id = (Long) session.getAttribute("testSession");
-			docteur = docteurDao.getById(id);
+			docteur = (Docteur) session.getAttribute("DisplayProfileDocteur");
 			request.setAttribute("data", docteurImpl.displayDataInProfilePage(docteur));
 			request.setAttribute("doctor", docteur);
 			request.setAttribute("image", Base64.getEncoder().encodeToString(docteur.getProfile_image()));

@@ -39,7 +39,6 @@
     <!-- DoctorProfile -->
     <section  id="DoctorProfile">
         
-
         <!-- InformationsPersonelle -->
         <div class="row color-primary-bg border-buttom px-4" id="InformationsPersonelle">
             <div class="container text-white">
@@ -81,8 +80,12 @@
                         <div class="row mt-3">
                             <div class="col-md-4">
                                 <span class="font-montserrat font-size-12">Spécialité : <span class="font-size-14 font-gilroy-bold"> ${data.getOrDefault("speciality", "") }</span></span><br>
-                                <span class="font-montserrat font-size-12">Sexe : <span class="font-size-14 font-gilroy-bold"> ${data.getOrDefault("gender", "") }</span></span><br>
-                                <span class="font-montserrat font-size-12">Age : <span class="font-size-14 font-gilroy-bold"> ${data.getOrDefault("age", "") } ans</span></span><br>
+                                <c:if test="${ doctor.gender != null}">
+                                    <span class="font-montserrat font-size-12">Sexe : <span class="font-size-14 font-gilroy-bold"> ${data.getOrDefault("gender", "") }</span></span><br>
+                                </c:if>
+                                <c:if test="${ doctor.age != 0 }">
+                                    <span class="font-montserrat font-size-12">Age : <span class="font-size-14 font-gilroy-bold"> ${data.getOrDefault("age", "") } ans</span></span><br>
+                                </c:if>
 
                             </div>
                             <div class="col-md-8 border-left">
@@ -110,8 +113,12 @@
                             <div class="row">
                                 <!-- if 3ndo telemedecine-->
                                 <div class="col-md-6 font-size-12 font-montserrat">
-                                    <i class="fas fa-mobile-alt mb-1 mr-1 ml-1"></i> <span>${data.getOrDefault("telemedecine", "") }</span><br>
-                                    <i class="fas fa-home mb-1 mr-1"></i> <span> ${data.getOrDefault("adomicile", "") }</span><br>
+                                    <c:if test="${ doctor.getTeleMedcine() }">
+                                    	<i class="fas fa-mobile-alt mb-1 mr-1 ml-1"></i> <span>${data.getOrDefault("telemedecine", "") }</span><br>
+                                    </c:if>
+                                    <c:if test="${ doctor.getConsultationDomicile() }">
+                                    	<i class="fas fa-home mb-1 mr-1"></i> <span> ${data.getOrDefault("adomicile", "") }</span><br>
+                                    </c:if>
                                     <c:if test="${ doctor.getRtelephonique() }">
                                     	<i class="fas fa-phone-alt mr-1"></i> <span> Prend rendez-vous par téléphone</span>	
                                     </c:if>
@@ -189,7 +196,7 @@
                 <!-- Localisation on Map -->
                 <div class="px-5 mt-3" id="mapLocalisation">
                     <div id="map" class="z-depth-1-half map-container my-5 mx-5">
-                        <span id="place_id" hidden>GhIJbAiOy7htPkARI59XPPUgI8A</span>
+                        <span id="place_id" hidden>${doctor.id}</span>
                     </div>
 
                     <div class="border py-3 px-3">
@@ -492,22 +499,28 @@
                     
                     <div class="container">
                         <div class="row">
-                            <!-- Element-->
-                            <c:forEach var="entry" items="${hopitaux}">
-                                <div class="col-md-4">
-                                    <a href="" class="btn btn-fluid text-center">
-                                        <div class="card">
-                                            <i class="fas fa-hospital fa-9x mx-3 my-3 color-second"></i>
-                                            <div class="card-body">
-                                                <h5 class="card-title font-gilroy-bold color-primary">${entry.getName()}</h5>
-                                                <i class="fas fa-map-marker-alt text-danger"></i>
-                                                <span class="font-size-14 font-weight-bold font-montserrat">${entry.getAdresse()}</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </c:forEach>
-                            <!-- !Element-->
+                        	<c:if test="${ !hopitaux.isEmpty() }">
+                        		<!-- Element-->
+	                            <c:forEach var="entry" items="${hopitaux}">
+	                                <div class="col-md-4">
+	                                    <a href="" class="btn btn-fluid text-center">
+	                                        <div class="card">
+	                                            <i class="fas fa-hospital fa-9x mx-3 my-3 color-second"></i>
+	                                            <div class="card-body">
+	                                                <h5 class="card-title font-gilroy-bold color-primary">${entry.getName()}</h5>
+	                                                <i class="fas fa-map-marker-alt text-danger"></i>
+	                                                <span class="font-size-14 font-weight-bold font-montserrat">${entry.getAdresse()}</span>
+	                                            </div>
+	                                        </div>
+	                                    </a>
+	                                </div>
+	                            </c:forEach>
+	                            <!-- !Element-->
+                        	</c:if>
+                        	<c:if test="${hopitaux.isEmpty() }">
+                        		<c:out value="is empty --- a changer"></c:out>
+                        	</c:if>
+                            
                         </div>
                     </div>
                 </div>
@@ -519,22 +532,28 @@
                     
                     <div class="container">
                         <div class="row">
-                            <!-- Element-->
-                            <c:forEach var="clinique" items="${cliniques}">
-                                <div class="col-md-4">
-                                    <a href="" class="btn btn-fluid text-center">
-                                        <div class="card">
-                                            <i class="far fa-hospital fa-5x mx-3 my-3 color-second"></i>
-                                            <div class="card-body">
-                                                <h5 class="card-title font-gilroy-bold color-primary">${clinique.getName()}</h5>
-                                                <i class="fas fa-map-marker-alt text-danger"></i>
-                                                <span class="font-size-14 font-weight-bold font-montserrat">${clinique.getAdresse()}</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </c:forEach>
-                            <!-- !Element-->
+                        	<c:if test="${ !cliniques.isEmpty() }">
+                        		<!-- Element-->
+	                            <c:forEach var="clinique" items="${cliniques}">
+	                                <div class="col-md-4">
+	                                    <a href="" class="btn btn-fluid text-center">
+	                                        <div class="card">
+	                                            <i class="far fa-hospital fa-5x mx-3 my-3 color-second"></i>
+	                                            <div class="card-body">
+	                                                <h5 class="card-title font-gilroy-bold color-primary">${clinique.getName()}</h5>
+	                                                <i class="fas fa-map-marker-alt text-danger"></i>
+	                                                <span class="font-size-14 font-weight-bold font-montserrat">${clinique.getAdresse()}</span>
+	                                            </div>
+	                                        </div>
+	                                    </a>
+	                                </div>
+	                            </c:forEach>
+	                            <!-- !Element-->
+                        	</c:if>
+                        	<c:if test="${cliniques.isEmpty() }">
+                        		<c:out value="is empty --- a changer"></c:out>
+                        	</c:if>
+                            
                         </div>
                     </div>
                 </div>

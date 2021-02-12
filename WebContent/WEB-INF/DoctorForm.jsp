@@ -1,7 +1,6 @@
-<!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -46,7 +45,15 @@
                             <input type="tel" class="form-input" name="tel" id="tel" placeholder="Votre numero de telephone" required oninvalid="this.setCustomValidity('Veuillez saisir votre numero de tel')" oninput="setCustomValidity('')" value="<c:out value="${requestScope.doctor.tel}"/>" />
                              <span class="erreur" >${form.erreurs['tel']}</span>  
                         </div>
-                        
+                        <div class="form-group">
+                          <input type="text" class="form-input" name="id_adresse" id="id_adresse" placeholder="Votre id de localisation" required "/>" 
+                          
+                        </div>
+                        <div class="form-group">
+                          <input type="text" class="form-input" name="ville" id="ville" placeholder="Votre ville" required "/>" 
+                          
+                        </div>
+
                         <!-- languages -->
            		       
                              <select name="languages" class="selectpicker" style="margin:10px 0" data-width="fit"  multiple>
@@ -134,31 +141,31 @@
                         
                         <div class="form-group" id="Speciality" style="display:none;">
                         <select name="speciality" class="select-css" onmousedown="if(this.options.length>8){this.size=8;}"  onchange='this.size=0;' onblur="this.size=0;">
-                            <option>chirurgie esthétique</option>
-                            <option>chirurgie pédiatrique</option>
-                            <option>chirurgie vasculaire</option>
-                            <option>chirurgie viscérale et digestive</option>
-                            <option>gynécologie obstétrique</option>
-                            <option>neurochirurgie </option>
-                            <option>allergologie</option>
-                            <option>anatomie et cytologie pathologique</option>
-                            <option>anesthésie</option>
-                            <option>cardiologie</option>
-                            <option>dermatologie</option>
-                            <option>endocrinologie-nutrition</option>
-                            <option>génétique</option>
-                            <option>allergologie</option>
-                            <option>gynécologie médicale</option>
-                            <option>hématologie</option>
-                            <option>médecine générale</option>
-                            <option>médecine physique et réadaptation</option>
-                            <option>néphrologie</option>
-                            <option>neurologie</option>
-                            <option>psychiatrie</option>
-                            <option>radiologie</option>
-                            <option>réanimation</option>
-                            <option>santé publique</option>
-                            <option>urgentiste</option>
+                            <option>Chirurgie esthétique</option>
+                            <option>Chirurgie pédiatrique</option>
+                            <option>Chirurgie vasculaire</option>
+                            <option>Chirurgie viscérale et digestive</option>
+                            <option>Gynécologie obstétrique</option>
+                            <option>Neurochirurgie </option>
+                            <option>Allergologie</option>
+                            <option>Anatomie et cytologie pathologique</option>
+                            <option>Anesthésie</option>
+                            <option>Cardiologie</option>
+                            <option>Dermatologie</option>
+                            <option>Endocrinologie-nutrition</option>
+                            <option>Génétique</option>
+                            <option>Allergologie</option>
+                            <option>Gynécologie médicale</option>
+                            <option>Hématologie</option>
+                            <option>Médecine générale</option>
+                            <option>Médecine physique et réadaptation</option>
+                            <option>Néphrologie</option>
+                            <option>Neurologie</option>
+                            <option>Psychiatrie</option>
+                            <option>Radiologie</option>
+                            <option>Réanimation</option>
+                            <option>Santé publique</option>
+                            <option>Urgentiste</option>
                         </select>
                         </div>
                         <!-- select  -->

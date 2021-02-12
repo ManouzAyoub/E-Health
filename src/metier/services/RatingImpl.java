@@ -94,17 +94,30 @@ public class RatingImpl {
 	public int getAverageOfRating(Long a , String s) {
 		Long numberofEtoile = getNumberOfEtoile(a,s);
 		Long numberOfRating = getNumberOfRating(a,s);
-		Double nbr = Double.valueOf(numberofEtoile);
-		Double b = Double.valueOf(numberOfRating);
-		int c = (int) Math.round(nbr/b);
-		return c;
+		if (numberofEtoile != null && numberOfRating != null) {
+			Double nbr = Double.valueOf(numberofEtoile);
+			Double b = Double.valueOf(numberOfRating);
+			int c = (int) Math.round(nbr/b);
+			return c;
+		} else {
+			return 0;
+		}
+		
 	}
 	
 	public Double average(Long docteur, String par) {
-		long numberofEtoile = getNumberOfEtoile(docteur, par);
-		long numberOfRating = getNumberOfRating(docteur, par);
-		Double a = numberofEtoile + 0.0;
-		Double b = numberOfRating + 0.0;
-		return a/b;
+		Long numberofEtoile = getNumberOfEtoile(docteur, par);
+		Long numberOfRating = getNumberOfRating(docteur, par);
+		if ( numberofEtoile != null && numberOfRating != null  ) {
+			Double a = numberofEtoile + 0.0;
+			Double b = numberOfRating + 0.0;
+			if (b != 0) {
+				return a/b;
+			}else {
+				return 0.0;
+			}
+		} else {
+			return 0.0;
+		}
 	}
 }

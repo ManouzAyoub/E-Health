@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import metier.dao.Implementations.LangueDao;
 import metier.dao.Implementations.RoleDao;
+import metier.dao.beans.Langue;
 import metier.dao.beans.Role;
 
 
@@ -20,7 +22,9 @@ public class HomeServlet extends HttpServlet {
 	
 	private static final String VUE            = "/WEB-INF/Home.jsp";
 	RoleDao roledao                            = RoleDao.getInstance();
+	LangueDao langueDao 					   = LangueDao.getInsctance(); 
 	List<Role> roles                           = new ArrayList<Role>();
+	String[] langues						   = {"Arabic" , "Frensh", "English", "Chinese", "Spanish" };
     
     @Override
     public void init() throws ServletException {
@@ -30,6 +34,10 @@ public class HomeServlet extends HttpServlet {
     		AjouterLesRoles("docteur","desc");
     		AjouterLesRoles("clinique","desc");
     		AjouterLesRoles("utiliseur","desc");
+		}
+    	List<Langue> languages = langueDao.getAll();
+    	if (languages.size() == 0) {
+			AjouterLangues(langues);
 		}
     	super.init();
     }
@@ -48,6 +56,14 @@ public class HomeServlet extends HttpServlet {
 		r.setDescription(description);
 		r.setRole(role);
 		roledao.add(r);
+	}
+	
+	public void AjouterLangues(String[] langues) {
+		for (int i = 0; i < langues.length; i++) {
+			Langue langue = new Langue();
+			langue.setLangue(langues[i]);
+			langueDao.add(langue);
+		}
 	}
 
 }
