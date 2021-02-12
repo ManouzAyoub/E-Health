@@ -95,7 +95,7 @@
 	                                <div>
 	                                    <div class="border-bottom">
 	                                        <h4>
-		                                        <a href="<c:url value="/doctorProfile?name=${ID }"></c:url>"" class="font-gilroy text-danger ">
+		                                        <a href="<c:url value="/doctorProfile?docteur=${ID }"></c:url>"" class="font-gilroy text-danger ">
 		                                        	Dr. <span class="fullName"> ${fullname}</span>
 	                                        	</a>
                                         	</h4>

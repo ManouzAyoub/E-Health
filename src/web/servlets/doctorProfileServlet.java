@@ -38,7 +38,8 @@ public class doctorProfileServlet extends HttpServlet {
 	RecompenseImpl recomImpl           = RecompenseImpl.getInstance();
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session         = request.getSession(false);
-		Docteur docteur                     = (Docteur) session.getAttribute("DisplayProfileDocteur");
+		String id = request.getParameter("docteur");
+		Docteur docteur                     = docteurDao.getById(Long.valueOf(id));
 		CommentaireImpl commentImpl = CommentaireImpl.getInstance();
 		List<Commentaire> lcomments = commentImpl.getComments(docteur.getCin(),"idDocteur");
 		map                         = ratingImpl.countDistinctValueOfRate(docteur.getCin(), "idDocteur");
