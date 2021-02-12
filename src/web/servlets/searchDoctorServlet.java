@@ -37,9 +37,7 @@ public class searchDoctorServlet extends HttpServlet {
 		List<Docteur> allDoctors = docteurImpl.getDoctorsByYourAdress(adresse,true);
 		
 		if(!allDoctors.isEmpty()) {
-			for(Docteur all : allDoctors) {
-				System.out.println("---- * ---- : " + all.getFirstname());
-			}
+
 			data_doctors = docteurImpl.displayDoctorsInPage(allDoctors);
 			
 			request.setAttribute(ATT_DOCTORS, data_doctors);
