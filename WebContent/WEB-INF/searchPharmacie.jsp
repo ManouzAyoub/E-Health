@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +10,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Font Icon -->
-    <link rel="stylesheet" href=".\node_modules\flag-icon-css\css\flag-icon.css">
-    <link rel="stylesheet" href=".\node_modules\flag-icon-css\css\flag-icon.min.css">
+    <link rel="stylesheet" href="<c:url value="/CliniqueProfile/node_modules/flag-icon-css/css/flag-icon.css" />">
+    <link rel="stylesheet" href="<c:url value="/CliniqueProfile/node_modules/flag-icon-css/css/flag-icon.min.css" />">
 
     <!-- Owl-carousel CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
@@ -33,7 +35,7 @@
     </script>
 
     <!-- Custom CSS file -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="<c:url value="/searchPharmacie/style.css" />">
 </head>
 <body onload="initialize()">
     <section class="py-3" id="doctorSearchList">
@@ -71,118 +73,53 @@
                 <!--Pharmacies List -->
                 <div class="col-lg-7" id="Pharmacies_list">
 
-                    <div class="item jour_nuit">
-                        <div class="row border py-3 mt-3">
-                            <div class="col-md-2 text-center">
-
-                                <div class="row text-center justify-content-center">
-                                    <img id="item_img" src="medicine.png" width="75px" class="img-fluid img-responsive">
-                                </div>
-
-                            </div>
-        
-                            <div class="col-md-10 text-xs-center justify-content-center">
-                                <div class="border-bottom">
-                                    <button class="btn" onclick="showPharmaClicked(event)"><h4 class="font-gilroy-bold font-size-20 color-primary fullName">Pharmacie Ayour</h4></button>
-                                </div>
-                                <table style="width:100%">
-                                    <tr>
-                                        <td style="width:60%; text-align: left; text-align:left; vertical-align:middle"><span class="font-noto text-secondary font-size-14 ml-3"><i class="fas fa-map-marker-alt text-danger"></i> Lot.61, secteur A , AlHouda AGADIR</span></td>
-                                        <td style="width:40%; text-align:right; vertical-align:middle"><a href="" target="_blank" class="btn btn-fluid font-size-12 btn-outline-info direction_anchor">Direction</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td style='text-align:left; vertical-align:middle'>
-                                            <span class="working_time"></span>
-                                        </td>
-
-                                        <td style='text-align:right; vertical-align:middle'>
-                                            <span class="btn btn-info rounded font-size-14 px-3 py-1">
-                                                <i class="fas fa-phone-alt"></i>
-                                                <span class="weight-bold">+212661235548</span> 
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <span class="place_id" hidden>ChIJ01WchTDIsw0RjByHlFU_XIk</span><br>
-                        </div>
-                    </div>
-
-                    <div class="item jour">
-                        <div class="row border py-3 mt-3">
-                            <div class="col-md-2 text-center">
-
-                                <div class="row text-center justify-content-center">
-                                    <img id="item_img" src="medicine.png" width="75px" class="img-fluid img-responsive">
-                                </div>
-
-                            </div>
-        
-                            <div class="col-md-10 text-xs-center justify-content-center">
-                                <div class="border-bottom">
-                                    <button class="btn" onclick="showPharmaClicked(event)"><h4 class="font-gilroy-bold font-size-20 color-primary fullName">Pharmacie Assafar</h4></button>
-                                </div>
-                                <table style="width:100%">
-                                    <tr>
-                                        <td style="width:60%; text-align: left; text-align:left; vertical-align:middle"><span class="font-noto text-secondary font-size-14 ml-3"><i class="fas fa-map-marker-alt text-danger"></i> Bloc G N Lot 70 , AlHouda AGADIR</span></td>
-                                        <td style="width:40%; text-align:right; vertical-align:middle"><a href="" target="_blank" class="btn btn-fluid font-size-12 btn-outline-info direction_anchor">Direction</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td style='text-align:left; vertical-align:middle'>
-                                            <span class="working_time"></span>
-                                        </td>
-
-                                        <td style='text-align:right; vertical-align:middle'>
-                                            <span class="btn btn-info rounded font-size-14 px-3 py-1">
-                                                <i class="fas fa-phone-alt"></i>
-                                                <span class="weight-bold">+212661235548</span> 
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <span class="place_id" hidden>ChIJ1Ud2HTDIsw0RCDn6q1TAYt0</span><br>
-                        </div>
-                    </div>
-
-                    <div class="item nuit">
-                        <div class="row border py-3 mt-3">
-                            <div class="col-md-2 text-center">
-
-                                <div class="row text-center justify-content-center">
-                                    <img id="item_img" src="medicine.png" width="75px" class="img-fluid img-responsive">
-                                </div>
-
-                            </div>
-        
-                            <div class="col-md-10 text-xs-center justify-content-center">
-                                <div class="border-bottom">
-                                    <button class="btn" onclick="showPharmaClicked(event)"><h4 class="font-gilroy-bold font-size-20 color-primary fullName">Pharmacie Du Maroc</h4></button>
-                                </div>
-                                <table style="width:100%">
-                                    <tr>
-                                        <td style="width:60%; text-align: left; text-align:left; vertical-align:middle"><span class="font-noto text-secondary font-size-14 ml-3"><i class="fas fa-map-marker-alt text-danger"></i> hay Al Houda, imm. Ennarjis II n°8 AGADIR</span></td>
-                                        <td style="width:40%; text-align:right; vertical-align:middle"><a href="" target="_blank" class="btn btn-fluid font-size-12 btn-outline-info direction_anchor">Direction</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td style='text-align:left; vertical-align:middle'>
-                                            <span class="working_time"></span>
-                                        </td>
-
-                                        <td style='text-align:right; vertical-align:middle'>
-                                            <span class="btn btn-info rounded font-size-14 px-3 py-1">
-                                                <i class="fas fa-phone-alt"></i>
-                                                <span class="weight-bold">+212661235548</span> 
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <span class="place_id" hidden>ChIJR3Jxgy_Isw0RfHG01aKFmyg</span><br>
-                        </div>
-                    </div>
-
-                    
+                    <c:forEach var="entry" items="${ pharmacies }">
+                    	<c:if test="${entry.ouverte_jour}"> 
+                    		<c:set var="permanence" value="jour"></c:set>                   	
+                    	</c:if>
+                    	<c:if test="${entry.ouverte_nuit}"> 
+                    		<c:set var="permanence" value="nuit"></c:set>                   	
+                    	</c:if>
+                    	<c:if test="${entry.ouverte_journer}"> 
+                    		<c:set var="permanence" value="jour_nuit"></c:set>                   	
+                    	</c:if>
+                    	<div class="item ${permanence }">
+	                        <div class="row border py-3 mt-3">
+	                            <div class="col-md-2 text-center">
+	
+	                                <div class="row text-center justify-content-center">
+	                                    <img id="item_img" src="<c:url value="/searchPharmacie/medicine.png"/>" width="75px" class="img-fluid img-responsive">
+	                                </div>
+	
+	                            </div>
+	        
+	                            <div class="col-md-10 text-xs-center justify-content-center">
+	                                <div class="border-bottom">
+	                                    <button class="btn" onclick="showPharmaClicked(event)"><h4 class="font-gilroy-bold font-size-20 color-primary fullName">${ entry.name }</h4></button>
+	                                </div>
+	                                <table style="width:100%">
+	                                    <tr>
+	                                        <td style="width:60%; text-align: left; text-align:left; vertical-align:middle"><span class="font-noto text-secondary font-size-14 ml-3"><i class="fas fa-map-marker-alt text-danger"></i> ${entry.adresse} </span></td>
+	                                        <td style="width:40%; text-align:right; vertical-align:middle"><a href="" target="_blank" class="btn btn-fluid font-size-12 btn-outline-info direction_anchor">Direction</a></td>
+	                                    </tr>
+	                                    <tr>
+	                                        <td style='text-align:left; vertical-align:middle'>
+	                                            <span class="working_time"></span>
+	                                        </td>
+	
+	                                        <td style='text-align:right; vertical-align:middle'>
+	                                            <span class="btn btn-info rounded font-size-14 px-3 py-1">
+	                                                <i class="fas fa-phone-alt"></i>
+	                                                <span class="weight-bold">+212${entry.tel}</span> 
+	                                            </span>
+	                                        </td>
+	                                    </tr>
+	                                </table>
+	                            </div>
+	                            <span class="place_id" hidden>${entry.id}</span><br>
+	                        </div>
+	                    </div>
+                    </c:forEach>                    
                 </div>
     
                 <!--Search bar -->
@@ -197,7 +134,7 @@
 
                             <div class="row mx-2">
                                 <div class="col-xs-2">
-                                    <img src="geo_green.png" alt="geo_green" width="16px">
+                                    <img src="<c:url value="/searchPharmacie/geo_green.png"/>" alt="geo_green" width="16px">
                                 </div>
                                 <div class="col-xs-10">
                                     <span class="text-success">&nbsp; Ouvert toute la journée</span>
@@ -206,7 +143,7 @@
 
                             <div class="row mx-2">
                                 <div class="col-xs-2">
-                                    <img src="geo_blue.png" alt="geo_blue" width="16px">
+                                    <img src="<c:url value="/searchPharmacie/geo_blue.png"/>" alt="geo_blue" width="16px">
                                 </div>
                                 <div class="col-xs-10">
                                     <span class="text-info">&nbsp; Ouvert seulement le jour</span>
@@ -215,7 +152,7 @@
 
                             <div class="row mx-2">
                                 <div class="col-xs-2">
-                                    <img src="geo_gray.png" alt="geo_gray" width="16px">
+                                    <img src="<c:url value="/searchPharmacie/geo_gray.png"/>" alt="geo_gray" width="16px">
                                 </div>
                                 <div class="col-xs-10">
                                     <span class="text-muted">&nbsp; Ouvert seulement la nuit</span>
@@ -302,7 +239,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
 
     <!-- Custom Javascript -->
-    <script src="JSIndex.js"></script>
+    <script src="<c:url value="/searchPharmacie/JSIndex.js"/>"></script>
 
     <!-- font awesome Kit -->
     <script src="https://kit.fontawesome.com/bcf0cddf32.js" crossorigin="anonymous"></script>

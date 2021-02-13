@@ -45,14 +45,12 @@
                             <input type="tel" class="form-input" name="tel" id="tel" placeholder="Votre numero de telephone" required oninvalid="this.setCustomValidity('Veuillez saisir votre numero de tel')" oninput="setCustomValidity('')" value="<c:out value="${requestScope.doctor.tel}"/>" />
                              <span class="erreur" >${form.erreurs['tel']}</span>  
                         </div>
+                        
                         <div class="form-group">
-                          <input type="text" class="form-input" name="id_adresse" id="id_adresse" placeholder="Votre id de localisation" required "/>" 
+                          <input type="text" class="form-input" name="ville" id="ville" placeholder="Votre ville" required "/>
                           
                         </div>
-                        <div class="form-group">
-                          <input type="text" class="form-input" name="ville" id="ville" placeholder="Votre ville" required "/>" 
-                          
-                        </div>
+                        
 
                         <!-- languages -->
            		       

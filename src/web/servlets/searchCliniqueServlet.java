@@ -31,12 +31,14 @@ public class searchCliniqueServlet extends HttpServlet {
 		
 		
 		
-		if (cliniques.size() != 0) {
+		if (cliniques != null) {
 			request.setAttribute("cliniques", cliniques);
 			request.setAttribute("impl", ratingImpl);
 			this.getServletContext().getRequestDispatcher( VUE ).forward(request, response);
 		}else {
-			this.getServletContext().getRequestDispatcher( HOME ).forward(request, response);
+			request.setAttribute("cliniques", cliniques);
+			request.setAttribute("impl", ratingImpl);
+			this.getServletContext().getRequestDispatcher( VUE ).forward(request, response);
 		}
 	}
 

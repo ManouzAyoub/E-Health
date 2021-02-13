@@ -29,14 +29,14 @@ public class searchHospitalServlet extends HttpServlet {
 		
 		hospitals = hopitalImpl.getAllHospitalsAccordingToTheirAvailabilityAndAdress(adresse);
 		
-		System.out.println("size of list is : " + hospitals.size());
-		
-		if (hospitals.size() != 0) {
+		if (hospitals != null) {
 			request.setAttribute("hospitals", hospitals);
 			request.setAttribute("impl", ratingImpl);
 			this.getServletContext().getRequestDispatcher( VUE ).forward(request, response);
 		}else {
-			this.getServletContext().getRequestDispatcher( HOME ).forward(request, response);
+			request.setAttribute("hospitals", hospitals);
+			request.setAttribute("impl", ratingImpl);
+			this.getServletContext().getRequestDispatcher( VUE ).forward(request, response);
 		}
 		
 	}

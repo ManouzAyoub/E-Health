@@ -69,7 +69,7 @@ public class DocteurImpl {
 		}
 	}
 	
-	// Specifier les données à afficher dans la page searchDoctor par doctor
+	// Specifier les donnï¿½es ï¿½ afficher dans la page searchDoctor par doctor
 	public Map<Long, List<String>> displayDoctorsInPage(List<Docteur> list) {
 		function();
 		System.out.println("la taille de la list passer est egale :::: " + list.size());
@@ -161,7 +161,7 @@ public class DocteurImpl {
 			string += str[i];
 		}
 		data.put("phone", string  );
-		data.put("telemedecine", docteur.getTeleMedcine() ? "Télémédecine" : "" );
+		data.put("telemedecine", docteur.getTeleMedcine() ? "Tï¿½lï¿½mï¿½decine" : "" );
 		data.put("adomicile", docteur.getConsultationDomicile() ? "Consultation a domicile" : ""  );
 		data.put("heureD", String.valueOf(docteur.getHeureDepart()) );
 		data.put("heureF", String.valueOf(docteur.getHeureFin()) );
@@ -188,31 +188,31 @@ public class DocteurImpl {
 	
 	// remplir le map de specialiter et leur class jsp
 	public void function() {
-		specialities.put("Chirurgie esthétique", "Chirurgie_esthetique");
+		specialities.put("Chirurgie esthÃ©tique", "Chirurgie_esthetique");
 		specialities.put("Chirurgie vasculaire", "Chirurgie_vasculaire");
-		specialities.put("Chirurgie viscérale et digestive", "Chirurgie_viscerale_et_digestive");
-		specialities.put("Gynécologie obstétrique", "Gynecologie_obstetrique");
+		specialities.put("Chirurgie viscï¿½rale et digestive", "Chirurgie_viscerale_et_digestive");
+		specialities.put("Gynï¿½cologie obstï¿½trique", "Gynecologie_obstetrique");
 		specialities.put("Neurochirurgie", "Neurochirurgie");
 		specialities.put("Allergologie", "Allergologie");
 		specialities.put("Anatomie et cytologie pathologique", "Anatomie_et_cytologie_pathologique");
-		specialities.put("Anesthésie", "Anesthesie");
+		specialities.put("Anesthï¿½sie", "Anesthesie");
 		specialities.put("Cardiologie", "Cardiologie");
 		specialities.put("Dermatologie", "Dermatologie");
 		specialities.put("Endocrinologie-nutrition", "Endocrinologie-nutrition");
-		specialities.put("Génétique", "Genetique");
+		specialities.put("Gï¿½nï¿½tique", "Genetique");
 		specialities.put("Allergologie", "Allergologie");
-		specialities.put("Gynécologie médicale", "Gynecologie_medicale");
-		specialities.put("Hématologie", "Hematologie");
+		specialities.put("Gynï¿½cologie mï¿½dicale", "Gynecologie_medicale");
+		specialities.put("Hï¿½matologie", "Hematologie");
 		specialities.put("Urgentiste", "Urgentiste");
-		specialities.put("Santé publique", "Sante_publique");
-		specialities.put("Réanimation", "Reanimation");
+		specialities.put("Santï¿½ publique", "Sante_publique");
+		specialities.put("Rï¿½animation", "Reanimation");
 		specialities.put("Radiologie", "Radiologie");
 		specialities.put("Psychiatrie", "Psychiatrie");
 		specialities.put("Neurologie", "Neurologie");
-		specialities.put("Néphrologie", "Nephrologie");
-		specialities.put("Médecine physique et réadaptation", "Medecine_physique_et_readaptation");
-		specialities.put("Médecine générale", "Medecine_generale");
-		specialities.put("Chirurgie pédiatrique", "Chirurgie_pediatrique");
+		specialities.put("Nï¿½phrologie", "Nephrologie");
+		specialities.put("Mï¿½decine physique et rï¿½adaptation", "Medecine_physique_et_readaptation");
+		specialities.put("Mï¿½decine gï¿½nï¿½rale", "Medecine_generale");
+		specialities.put("Chirurgie pï¿½diatrique", "Chirurgie_pediatrique");
 	}
 	
 	public String getImageAsString(Docteur docteur) {

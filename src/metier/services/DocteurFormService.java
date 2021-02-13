@@ -31,8 +31,8 @@ public class DocteurFormService {
     private static final String CHAMP_PROFILE_IMAGE   = "profile_image";
     private static final String CHAMP_MED_CERTIFICATE = "med_certificate";
     private static final String CHAMP_LOCAL_CONTRACT  = "local_contract";
-    private static final String CHAMP_ID_LOCALISATION = "id_adresse";
     private static final String CHAMP_VILLE           = "ville";
+    
 
     private String              resultat;
     private Map<String, String> erreurs               = new HashMap<String, String>();
@@ -50,7 +50,6 @@ public class DocteurFormService {
     }
 
     public Docteur doctorFormService( HttpServletRequest request ) throws IOException, ServletException {
-    	String id_localisa = request.getParameter(CHAMP_ID_LOCALISATION);
     	String ville = request.getParameter(CHAMP_VILLE);
         String firstname   = request.getParameter( CHAMP_FIRSTNAME );
         String lastname    = request.getParameter( CHAMP_LASTNAME );
@@ -190,11 +189,12 @@ public class DocteurFormService {
         doctor.setDispo(false);
         doctor.setTeleMedcine(false);
         doctor.setConsultationDomicile(false);
-        doctor.setId(id_localisa);
+        doctor.setId("ChIJyRyt2um2sw0RdIT0i7fQ-Lw");
         doctor.setVille(ville);
+
         
         if ( erreurs.isEmpty() ) {
-            resultat = "Succés d'inscription!";
+            resultat = "Succï¿½s d'inscription!";
         } else {
             resultat = "Echec d'inscription";
         }
@@ -217,7 +217,7 @@ public class DocteurFormService {
         if ( bite == null ) {
 	    	System.out.print("nulllllll");
 
-                throw new Exception( "Veuillez saisir un screeshot de votre certificat médical!" );
+                throw new Exception( "Veuillez saisir un screeshot de votre certificat mï¿½dical!" );
         }
     }
     
@@ -236,7 +236,7 @@ public class DocteurFormService {
     private void validationPrenom( String firstname ) throws Exception {
         if ( firstname != null ) {
             if ( firstname.trim().length() < 3 ) {
-                throw new Exception( "Veuillez saisir un nom de plus de 3 caractéres." );
+                throw new Exception( "Veuillez saisir un nom de plus de 3 caractï¿½res." );
             }
         }
     }
@@ -244,7 +244,7 @@ public class DocteurFormService {
     private void validationNom( String lastname ) throws Exception {
         if ( lastname != null ) {
             if ( lastname.trim().length() < 3 ) {
-                throw new Exception( "Veuillez saisir un nom de plus de 3 caractéres." );
+                throw new Exception( "Veuillez saisir un nom de plus de 3 caractï¿½res." );
             }
         }
     }
@@ -253,7 +253,7 @@ public class DocteurFormService {
         String regex = "([^.@]+)(\\\\.[^.@]+)*@([^.@]+\\\\.)+([^.@]+)";
         if ( email != null && email.trim().length() != 0 ) {
             if ( email.matches( regex ) ) {
-                throw new Exception( "adresse email validé" );
+                throw new Exception( "adresse email validï¿½" );
             }
 
         } else {
@@ -264,7 +264,7 @@ public class DocteurFormService {
     private void validationTel( String tel ) throws Exception {
         if ( tel != null ) {
             if ( tel.trim().length() != 10 ) {
-                throw new Exception( "on demande votre numero de tel réel" );
+                throw new Exception( "on demande votre numero de tel rï¿½el" );
             }
         } else {
             throw new Exception( "Veuillez saisir votre numero de Telephone" );
@@ -272,7 +272,7 @@ public class DocteurFormService {
     }
     private void validationPractice( String practice ) throws Exception {
         if ( practice=="none") {
-                throw new Exception( "Veuillez saisir votre domaine médical!" );
+                throw new Exception( "Veuillez saisir votre domaine mï¿½dical!" );
         }
     }
     
