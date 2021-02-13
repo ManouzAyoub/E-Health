@@ -35,7 +35,7 @@ public class Rating implements Serializable {
     private Laboratoire laboratoire;
 
     @ManyToOne
-    @JoinColumn( name = "idPharmacie", referencedColumnName = "idProfil" )
+    @JoinColumn( name = "idPharmacie", referencedColumnName = "idPharmacie" )
     private Pharmacie   pharmacie;
 
     @ManyToOne

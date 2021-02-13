@@ -72,51 +72,56 @@
             <div class="container border-top row flex-column-reverse flex-lg-row">
                 <!--hopitaux List -->
                 <div class="col-lg-7" id="hopitaux_list">
-
-                    <c:forEach var="entry" items="${hospitals}">
-                        <!-- Element -->
-                        <c:set var="nbr" value="${impl.getAverageOfRating(entry.idHopital,\"idHopital\")}"></c:set>
-                        <c:set var="result" value="${ 5 - nbr}"></c:set>
-                        <div class="item stars_${nbr}">
-                            <div class="row border py-3 mt-3">
-                                <div class="col-md-2 text-center">
-    
-                                    <div class="row text-center justify-content-center">
-                                        <i class="fas fa-hospital fa-3x mx-1 my-1 color-second text-center"></i>
-                                    </div>
-                                    
-                                    
-                                    <div class="row text-center justify-content-center">
-                                        <div class="rating font-size-12 mt-2 text-warning">
-                                            <c:forEach var="e" begin="1" end="${nbr}">
-                                                <span><i class="fas fa-star"></i></span>    
-                                            </c:forEach>
-                                            <c:forEach var="e" begin="1" end="${result}">
-                                                <span><i class="far fa-star"></i></span>
-                                            </c:forEach>
-                                            <!-- Math.around() -->
-                                            <br><span class="font-gilroy-bold text-dark">${impl.getNumberOfRating(entry.idHopital, "idHopital")} votes</span><br>
-                                        </div>
-                                    </div>
-    
-                                </div>
-            
-                                <div class="col-md-10 text-xs-center justify-content-center">
-                                    <div class="border-bottom">
-                                        <a href="<c:url value="/HospitalProfile"><c:set var="DisplayProfileHospital" value="${entry}" scope="session" /></c:url>" class="btn"><h4 class="font-gilroy-bold color-primary fullName">${entry.name}</h4></a>
-                                    </div>
-                                    <table>
-                                        <tr style="width:100%">
-                                            <td style="width:90%; text-align: left;"><span class="font-noto text-secondary font-size-14 ml-3"><i class="fas fa-map-marker-alt text-danger"></i> ${entry.adresse}</span></td>
-                                            <td style="width:10%"><a href="" target="_blank" class="btn btn-fluid font-size-12 btn-outline-info direction_anchor">Direction</a></td>
-                                        </tr>
-                                    </table>
-                                </div>
-                                <span class="place_id" hidden>ChIJ59WUR1m2sw0RZblX2csO_9c</span><br>
-                            </div>
-                        </div>
-                        <!-- !Element -->
-                    </c:forEach>
+					<c:if test="${hospitals != null }">
+						<c:forEach var="entry" items="${hospitals}">
+	                        <!-- Element -->
+	                        <c:set var="nbr" value="${impl.getAverageOfRating(entry.idHopital,\"idHopital\")}"></c:set>
+	                        <c:set var="result" value="${ 5 - nbr}"></c:set>
+	                        <div class="item stars_${nbr}">
+	                            <div class="row border py-3 mt-3">
+	                                <div class="col-md-2 text-center">
+	    
+	                                    <div class="row text-center justify-content-center">
+	                                        <i class="fas fa-hospital fa-3x mx-1 my-1 color-second text-center"></i>
+	                                    </div>
+	                                    
+	                                    
+	                                    <div class="row text-center justify-content-center">
+	                                        <div class="rating font-size-12 mt-2 text-warning">
+	                                            <c:forEach var="e" begin="1" end="${nbr}">
+	                                                <span><i class="fas fa-star"></i></span>    
+	                                            </c:forEach>
+	                                            <c:forEach var="e" begin="1" end="${result}">
+	                                                <span><i class="far fa-star"></i></span>
+	                                            </c:forEach>
+	                                            <!-- Math.around() -->
+	                                            <br><span class="font-gilroy-bold text-dark">${impl.getNumberOfRating(entry.idHopital, "idHopital")} votes</span><br>
+	                                        </div>
+	                                    </div>
+	    
+	                                </div>
+	            
+	                                <div class="col-md-10 text-xs-center justify-content-center">
+	                                    <div class="border-bottom">
+	                                        <a href="<c:url value="/HospitalProfile"><c:set var="DisplayProfileHospital" value="${entry}" scope="session" /></c:url>" class="btn"><h4 class="font-gilroy-bold color-primary fullName">${entry.name}</h4></a>
+	                                    </div>
+	                                    <table>
+	                                        <tr style="width:100%">
+	                                            <td style="width:90%; text-align: left;"><span class="font-noto text-secondary font-size-14 ml-3"><i class="fas fa-map-marker-alt text-danger"></i> ${entry.adresse}</span></td>
+	                                            <td style="width:10%"><a href="" target="_blank" class="btn btn-fluid font-size-12 btn-outline-info direction_anchor">Direction</a></td>
+	                                        </tr>
+	                                    </table>
+	                                </div>
+	                                <span class="place_id" hidden>ChIJ59WUR1m2sw0RZblX2csO_9c</span><br>
+	                            </div>
+	                        </div>
+	                        <!-- !Element -->
+	                    </c:forEach>
+					</c:if>
+					<c:if test="${ hospitals == null }">
+						<c:out value="aucun hopital"></c:out>
+					</c:if>
+                    
 
                 </div>
     

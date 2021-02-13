@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Hospital Hassan II Agadir</title>
+    <title>${hopital.name}</title>
 
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -70,11 +70,13 @@
                             <h2 class="font-gilroy-bold fullName">${hopital.name}</h2>
                         </div>
 
-                        <div class="mt-3">
-                            <p class="font-noto text-justify font-size-14 mt-3">
-                                &nbsp;&nbsp;&nbsp;&nbsp; ${hopital.description}
-                            </p>
-                        </div>
+                        <c:if test="${hopital.description != null}">
+                            <div class="mt-3">
+                                <p class="font-noto text-justify font-size-14 mt-3">
+                                    &nbsp;&nbsp;&nbsp;&nbsp; ${hopital.description}
+                                </p>
+                            </div>
+                        </c:if>
 
                         <div class="mt-3 py-2 border-top">
                             <div class="row justify-content-center">

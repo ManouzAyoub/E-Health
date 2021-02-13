@@ -1,17 +1,16 @@
-<!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>E-HEALTH</title>
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet"
 		href="https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <link rel="stylesheet" href="<c:url value="/FrontEnd/Styling/index.css" />">
+        <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/searchClinique/pageLogo.png"></c:url>" />
       
       <style>
       .popup_section1#blur.active, #blurimg.active{
@@ -88,10 +87,19 @@
                     </div>
                 </ul>
             </nav>
-            <div class="account">
-                <a href="<c:url value="/signIn" />"><button class="sign-in">Connexion</button></a>
-                <button class="sign-up" id="toggle" >Inscription</button>
-            </div>
+            <c:if test="${ sessionScope.visiter == null }">
+            	<div class="account">
+	               	<a href="<c:url value="/signIn" />"><button class="sign-in">Connexion</button></a>
+	                <button class="sign-up" id="toggle" >Inscription</button>
+            	</div>
+            </c:if>
+            <c:if test="${ sessionScope.visiter != null }">
+            	<div class="account">
+	               	<%-- <a href="<c:url value="/signIn" />"><button class="sign-in">Deconnexion</button></a> --%>
+	               	<button class="sign-up" id="toggle" style="padding:0px 5px" >Log Out</button>
+            	</div>
+            </c:if>
+            
             <div class="burger">
                 <div class="line1"></div>
                 <div class="line2"></div>
@@ -194,15 +202,15 @@
     <section id="section-5" class="section" >
         <div class="description-1" data-aos="fade-right">
             <h1 class="title">
-                Trouver Un Laboratoire
+                Trouver Un Pharmacie
             </h1>
             <p class="text-description">
                 Vous voulez effetuer des analyses et obtenir les résultats dans un delai court ?<br/><br/>
                 Saisissez votre adresse ci-dessous 
             </p> 
 
-            <form action="" method="get">
-                <input type="text" placeholder="Entrer votre localisation" class="localisation" name="" id="" autocomplete="off" required />
+            <form action="<c:url value="SearchPharmacie" />" method="post">
+                <input type="text" placeholder="Entrer votre localisation" class="localisation" name="ville" id="ville" autocomplete="off" required />
                 <input type="submit" class="submit" value="Chercher . . .">
             </form>
         
@@ -212,24 +220,24 @@
     <!-- Trouver Un Laboratoire -->
        
     <script type="text/javascript">
-    function toggle(){
-    	var blur=document.getElementById('blur');
-    	blur.classList.toggle('active');
-        var blurimg=document.getElementById('blurimg');
-        blurimg.classList.toggle('active');
-    	var popup=document.getElementById('popup');
-    	popup.classList.toggle('active');
-    }
-    document.getElementById("toggle").addEventListener("click", toggle);
+	    function toggle(){
+	    	var blur=document.getElementById('blur');
+	    	blur.classList.toggle('active');
+	        var blurimg=document.getElementById('blurimg');
+	        blurimg.classList.toggle('active');
+	    	var popup=document.getElementById('popup');
+	    	popup.classList.toggle('active');
+	    }
+	    document.getElementById("toggle").addEventListener("click", toggle);
         
-    function untoggle(){
-    	var blur=document.getElementById('blur');
-    	blur.classList.toggle("active",false);
-        var blurimg=document.getElementById('blurimg');
-        blurimg.classList.toggle("active",false);
-    	var popup=document.getElementById('popup');
-    	popup.classList.toggle("active",false);
-    }
+	    function untoggle(){
+	    	var blur=document.getElementById('blur');
+	    	blur.classList.toggle("active",false);
+	        var blurimg=document.getElementById('blurimg');
+	        blurimg.classList.toggle("active",false);
+	    	var popup=document.getElementById('popup');
+	    	popup.classList.toggle("active",false);
+	    }
         
     </script>
 
