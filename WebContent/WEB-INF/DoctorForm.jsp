@@ -47,7 +47,15 @@
                         </div>
                         
                         <div class="form-group">
+<<<<<<< HEAD
+                          <input type="text" class="form-input" name="id_adresse" id="id_adresse" placeholder="Votre id de localisation" required oninvalid="this.setCustomValidity('Veuillez saisir votre ID localisation')" oninput="setCustomValidity('')" value="<c:out value="${requestScope.doctor.id}"/>" />
+                          
+                        </div>
+                        <div class="form-group">
+                          <input type="text" class="form-input" name="ville" id="ville" placeholder="Votre ville" required oninvalid="this.setCustomValidity('Veuillez saisir votre ville')" oninput="setCustomValidity('')" value="<c:out value="${requestScope.doctor.ville}"/>"/>
+=======
                           <input type="text" class="form-input" name="ville" id="ville" placeholder="Votre ville" required "/>
+>>>>>>> 6d779cb8f71ee647b469caecf3839a7a1623cbde
                           
                         </div>
                         

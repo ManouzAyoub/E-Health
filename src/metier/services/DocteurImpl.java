@@ -55,10 +55,9 @@ public class DocteurImpl {
 	}
 	
 	// return les docteur selon l'attribue de confirmation par l'administrateur 
-	public List<Docteur> getDoctorsAccordingToTheirAvailability(boolean bool, Role role){
-		String hql = "select o from Docteur o, User u where o.dispo = :bool and u.idRole =: idRole";
+	public List<Docteur> getDoctorsAccordingToTheirAvailability(boolean bool){
+		String hql = "select o from Docteur o where dispo = :bool ";
 		Query q = session.createQuery(hql);
-		q.setParameter("idRole", role.getIdRole());
 		q.setParameter("bool", bool);
 		List<Docteur> doctors = q.getResultList();
 		
@@ -69,7 +68,11 @@ public class DocteurImpl {
 		}
 	}
 	
+<<<<<<< HEAD
+	// Specifier les données  afficher dans la page searchDoctor par doctor
+=======
 	// Specifier les donn�es � afficher dans la page searchDoctor par doctor
+>>>>>>> 6d779cb8f71ee647b469caecf3839a7a1623cbde
 	public Map<Long, List<String>> displayDoctorsInPage(List<Docteur> list) {
 		function();
 		System.out.println("la taille de la list passer est egale :::: " + list.size());
@@ -190,6 +193,31 @@ public class DocteurImpl {
 	public void function() {
 		specialities.put("Chirurgie esthétique", "Chirurgie_esthetique");
 		specialities.put("Chirurgie vasculaire", "Chirurgie_vasculaire");
+<<<<<<< HEAD
+		specialities.put("Chirurgie viscérale et digestive", "Chirurgie_viscerale_et_digestive");
+		specialities.put("Gynécologie obstétrique", "Gynecologie_obstetrique");
+		specialities.put("Neurochirurgie", "Neurochirurgie");
+		specialities.put("Allergologie", "Allergologie");
+		specialities.put("Anatomie et cytologie pathologique", "Anatomie_et_cytologie_pathologique");
+		specialities.put("Anesthésie", "Anesthesie");
+		specialities.put("Cardiologie", "Cardiologie");
+		specialities.put("Dermatologie", "Dermatologie");
+		specialities.put("Endocrinologie-nutrition", "Endocrinologie-nutrition");
+		specialities.put("Génétique", "Genetique");
+		specialities.put("Allergologie", "Allergologie");
+		specialities.put("Gynécologie médicale", "Gynecologie_medicale");
+		specialities.put("Hématologie", "Hematologie");
+		specialities.put("Urgentiste", "Urgentiste");
+		specialities.put("Santé publique", "Sante_publique");
+		specialities.put("Réanimation", "Reanimation");
+		specialities.put("Radiologie", "Radiologie");
+		specialities.put("Psychiatrie", "Psychiatrie");
+		specialities.put("Neurologie", "Neurologie");
+		specialities.put("Néphrologie", "Nephrologie");
+		specialities.put("Médecine physique et réadaptation", "Medecine_physique_et_readaptation");
+		specialities.put("Médecine générale", "Medecine_generale");
+		specialities.put("Chirurgie pédiatrique", "Chirurgie_pediatrique");
+=======
 		specialities.put("Chirurgie visc�rale et digestive", "Chirurgie_viscerale_et_digestive");
 		specialities.put("Gyn�cologie obst�trique", "Gynecologie_obstetrique");
 		specialities.put("Neurochirurgie", "Neurochirurgie");
@@ -213,6 +241,7 @@ public class DocteurImpl {
 		specialities.put("M�decine physique et r�adaptation", "Medecine_physique_et_readaptation");
 		specialities.put("M�decine g�n�rale", "Medecine_generale");
 		specialities.put("Chirurgie p�diatrique", "Chirurgie_pediatrique");
+>>>>>>> 6d779cb8f71ee647b469caecf3839a7a1623cbde
 	}
 	
 	public String getImageAsString(Docteur docteur) {
