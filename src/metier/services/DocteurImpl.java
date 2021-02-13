@@ -55,10 +55,9 @@ public class DocteurImpl {
 	}
 	
 	// return les docteur selon l'attribue de confirmation par l'administrateur 
-	public List<Docteur> getDoctorsAccordingToTheirAvailability(boolean bool, Role role){
-		String hql = "select o from Docteur o, User u where o.dispo = :bool and u.idRole =: idRole";
+	public List<Docteur> getDoctorsAccordingToTheirAvailability(boolean bool){
+		String hql = "select o from Docteur o where dispo = :bool ";
 		Query q = session.createQuery(hql);
-		q.setParameter("idRole", role.getIdRole());
 		q.setParameter("bool", bool);
 		List<Docteur> doctors = q.getResultList();
 		
@@ -69,7 +68,7 @@ public class DocteurImpl {
 		}
 	}
 	
-	// Specifier les données à afficher dans la page searchDoctor par doctor
+	// Specifier les donnÃ©es  afficher dans la page searchDoctor par doctor
 	public Map<Long, List<String>> displayDoctorsInPage(List<Docteur> list) {
 		function();
 		System.out.println("la taille de la list passer est egale :::: " + list.size());
@@ -161,7 +160,7 @@ public class DocteurImpl {
 			string += str[i];
 		}
 		data.put("phone", string  );
-		data.put("telemedecine", docteur.getTeleMedcine() ? "Télémédecine" : "" );
+		data.put("telemedecine", docteur.getTeleMedcine() ? "Tï¿½lï¿½mï¿½decine" : "" );
 		data.put("adomicile", docteur.getConsultationDomicile() ? "Consultation a domicile" : ""  );
 		data.put("heureD", String.valueOf(docteur.getHeureDepart()) );
 		data.put("heureF", String.valueOf(docteur.getHeureFin()) );
@@ -188,31 +187,31 @@ public class DocteurImpl {
 	
 	// remplir le map de specialiter et leur class jsp
 	public void function() {
-		specialities.put("Chirurgie esthétique", "Chirurgie_esthetique");
+		specialities.put("Chirurgie esthÃ©tique", "Chirurgie_esthetique");
 		specialities.put("Chirurgie vasculaire", "Chirurgie_vasculaire");
-		specialities.put("Chirurgie viscérale et digestive", "Chirurgie_viscerale_et_digestive");
-		specialities.put("Gynécologie obstétrique", "Gynecologie_obstetrique");
+		specialities.put("Chirurgie viscÃ©rale et digestive", "Chirurgie_viscerale_et_digestive");
+		specialities.put("GynÃ©cologie obstÃ©trique", "Gynecologie_obstetrique");
 		specialities.put("Neurochirurgie", "Neurochirurgie");
 		specialities.put("Allergologie", "Allergologie");
 		specialities.put("Anatomie et cytologie pathologique", "Anatomie_et_cytologie_pathologique");
-		specialities.put("Anesthésie", "Anesthesie");
+		specialities.put("AnesthÃ©sie", "Anesthesie");
 		specialities.put("Cardiologie", "Cardiologie");
 		specialities.put("Dermatologie", "Dermatologie");
 		specialities.put("Endocrinologie-nutrition", "Endocrinologie-nutrition");
-		specialities.put("Génétique", "Genetique");
+		specialities.put("GÃ©nÃ©tique", "Genetique");
 		specialities.put("Allergologie", "Allergologie");
-		specialities.put("Gynécologie médicale", "Gynecologie_medicale");
-		specialities.put("Hématologie", "Hematologie");
+		specialities.put("GynÃ©cologie mÃ©dicale", "Gynecologie_medicale");
+		specialities.put("HÃ©matologie", "Hematologie");
 		specialities.put("Urgentiste", "Urgentiste");
-		specialities.put("Santé publique", "Sante_publique");
-		specialities.put("Réanimation", "Reanimation");
+		specialities.put("SantÃ© publique", "Sante_publique");
+		specialities.put("RÃ©animation", "Reanimation");
 		specialities.put("Radiologie", "Radiologie");
 		specialities.put("Psychiatrie", "Psychiatrie");
 		specialities.put("Neurologie", "Neurologie");
-		specialities.put("Néphrologie", "Nephrologie");
-		specialities.put("Médecine physique et réadaptation", "Medecine_physique_et_readaptation");
-		specialities.put("Médecine générale", "Medecine_generale");
-		specialities.put("Chirurgie pédiatrique", "Chirurgie_pediatrique");
+		specialities.put("NÃ©phrologie", "Nephrologie");
+		specialities.put("MÃ©decine physique et rÃ©adaptation", "Medecine_physique_et_readaptation");
+		specialities.put("MÃ©decine gÃ©nÃ©rale", "Medecine_generale");
+		specialities.put("Chirurgie pÃ©diatrique", "Chirurgie_pediatrique");
 	}
 	
 	public String getImageAsString(Docteur docteur) {
