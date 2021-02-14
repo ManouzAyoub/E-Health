@@ -13,6 +13,7 @@ import metier.dao.Implementations.UserDao;
 import metier.dao.beans.Clinique;
 import metier.dao.beans.Role;
 import metier.dao.beans.User;
+import metier.dao.util.Instances;
 import metier.services.CliniqueImpl;
 import metier.services.RoleImpl;
 import metier.services.UserImpl;
@@ -21,31 +22,24 @@ import metier.services.CliniqueFormImpl;
 @WebServlet("/clinicForm")
 public class ClinicFormServlet extends HttpServlet {
     
-    public static final String ATT_CLINIC      = "clinic";
+    public static final String ATT_CLINIC       = "clinic";
     public static final String ATT_FORM         = "form";
     public static final String ATT_RESULTAT     = "resultat";
     public static final String ATT_ERROR        = "erreurs";
-
     public static final String VUE              = "/WEB-INF/ClinicForm.jsp";
     public static final String SUCESS           = "/WEB-INF/SuccessMS.jsp";
     
-    Role role=new Role();
     
-    public ClinicFormServlet() {
-        super();
-    }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// afficher la formulaire d'inscription d'un clinuque au client
 		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		CliniqueFormImpl form     = CliniqueFormImpl.getInstance();
-		
-        RoleImpl roleimpl         = RoleImpl.getInstance();
-        
-        RoleDao roledao           = RoleDao.getInstance();
         
     	Clinique clinic           = form.clinicFormService(request);
 
@@ -53,17 +47,19 @@ public class ClinicFormServlet extends HttpServlet {
         request.setAttribute( ATT_FORM, form );
 
         if ( form.getErreurs().isEmpty() ) {
+        	
+        	Role role = new Role();
 
-            CliniqueDao clinicdao = CliniqueDao.getInsctance();
-            
-            role                  = roleimpl.getRolebyrole("clinique");
+            role = Instances.roleImpl.getRolebyrole("clinique");
        
             clinic.setRole(role);
-            clinicdao.add(clinic);
+            
+            Instances.cliniqueDao.add(clinic);
 
             this.getServletContext().getRequestDispatcher( SUCESS ).forward(request, response );
 
         } else {
+        	
             this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 
         }

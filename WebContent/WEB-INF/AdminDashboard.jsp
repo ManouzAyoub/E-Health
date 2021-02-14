@@ -1,7 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,9 +11,10 @@
 </head>
 <body>
     <input type="checkbox" id="nav-toggle">
+
     <div class="sidebar">
         <div class="sidebar-brand">
-            <h2><span class="lab la-accusoft"></span> <span>Youssef</span></h2>
+            <h2><span class="lab la-accusoft"></span> <span>E-HEALTH</span></h2>
         </div>
         <div class="sidebar-menu">
             <ul>
@@ -57,7 +56,7 @@
             <div class="user-wrapper">
                 <img src="<c:url value="./assets/img/unknown.png" />" width="40px" height="40px" alt="">
                 <div class="user-wrapper-info">
-                    <h4>Youssef El Gourari</h4>
+                    <h4>${sessionScope.admin.firstname} ${sessionScope.admin.lastname}</h4>
                     <small>super admin</small>
                 </div>
             </div>
@@ -83,7 +82,7 @@
                     <div class="user-wrapper">
                         <img src="<c:url value="./assets/img/unknown.png" />" width="40px" height="40px" alt="">
                         <div class="user-wrapper-info">
-                            <h4>Youssef El Gourari</h4>
+                            <h4>${sessionScope.admin.firstname} ${sessionScope.admin.lastname}</h4>
                             <small>super admin</small>
                         </div>
                     </div>
@@ -99,32 +98,36 @@
                                     <h3>Demmandes de comptes</h3>
                                 </div>
                                 <div class="demmande-card-body">
-                                  <c:forEach var="doc" items="${docs}" >
-                                    <div class="Form">
-                                        <div class="info">
-                                            <div>
-                                                <h4>${doc.firstname} ${doc.lastname}</h4>
-                                                <small >Docteur</small>
+                                  <c:if test="${!docs.isEmpty()}">
+                                    <c:forEach var="doc" items="${docs}" >
+                                        <div class="Form">
+                                            <div class="info">
+                                                <div>
+                                                    <h4>${doc.firstname} ${doc.lastname}</h4>
+                                                    <small >Docteur</small>
+                                                </div>
+                                            </div>
+                                            <div class="contact">
+                                                <a href="<c:url value="/docsInfo?id=${doc.cin}" />" target="_blank" class="viewBtn">Voir la demmande</a>
                                             </div>
                                         </div>
-                                        <div class="contact">
-                                            <a href="<c:url value="/docsInfo?id=${doc.cin}" />" target="_blank" class="viewBtn">Voir la demmande</a>
-                                        </div>
-                                    </div>
-                                  </c:forEach>
-                                  <%-- <c:forEach var="clinic" items="${clinics}">
-                                    <div class="Form">
-                                        <div class="info">
-                                            <div>
-                                                <h4>${clinic.name}</h4>
-                                                <small>Clinique</small>
+                                      </c:forEach>
+                                  </c:if>
+                                  <c:if test="${!clinics.isEmpty()}">
+                                    <c:forEach var="clinic" items="${clinics}">
+                                        <div class="Form">
+                                            <div class="info">
+                                                <div>
+                                                    <h4>${clinic.name}</h4>
+                                                    <small>Clinique</small>
+                                                </div>
+                                            </div>
+                                            <div class="contact">
+                                                <a href="<c:url value="/clinicInfo?id=${clinic.cin}" />" class="viewBtn">Voir la demmande</a>
                                             </div>
                                         </div>
-                                        <div class="contact">
-                                            <a href="<c:url value="/clinicInfo?id=${clinic.cin}" />" class="viewBtn">Voir la demmande</a>
-                                        </div>
-                                    </div>
-                                 </c:forEach> --%>
+                                     </c:forEach>
+                                  </c:if>
                                 </div>
                             </div>
                         </div>
@@ -155,63 +158,41 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>MarouaXP</td>
-                                                <td>Doctor</td>
-                                                <td>Amine alaoui</td>
-                                                <td>
-                                                    <span class="status purple"></span>
-                                                    bon service
-                                                </td>
-                                                <td><button class="delete"><img src="https://img.icons8.com/metro/14/ffffff/delete-sign.png" />&nbsp;delete</button></td>
-                                                <td><button class="approve"><img src="https://img.icons8.com/metro/14/ffffff/approve.png"/>&nbsp;approve</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>YOUSSEF EL GOURARI</td>
-                                                <td>Doctor</td>
-                                                <td>Moustafa kadimi</td>
-                                                <td>
-                                                    <span class="status pink"></span>
-                                                    il explique bien les conditions
-                                                </td>
-                                                <td><button class="delete"><img src="https://img.icons8.com/metro/14/ffffff/delete-sign.png" />&nbsp;delete</button></td>
-                                                <td><button class="approve"><img src="https://img.icons8.com/metro/14/ffffff/approve.png"/>&nbsp;approve</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>YOUSSEF EL GOURARI</td>
-                                                <td>doctor</td>
-                                                <td>Moustafa kadimi</td>
-                                                <td>
-                                                    <span class="status orange"></span>
-                                                    pourtant prix de visite trés cher.
-                                                </td>
-                                                <td><button class="delete"><img src="https://img.icons8.com/metro/14/ffffff/delete-sign.png" />&nbsp;delete</button></td>
-                                                <td><button class="approve"><img src="https://img.icons8.com/metro/14/ffffff/approve.png"/>&nbsp;approve</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>ayoubx</td>
-                                                <td>clinique</td>
-                                                <td>Massira</td>
-                                                <td>
-                                                    <span class="status purple"></span>
-                                                    il faut essayer de sourire plus
-                                                </td>
-                                                <td><button class="delete"><img src="https://img.icons8.com/metro/14/ffffff/delete-sign.png" />&nbsp;delete</button></td>
-                                                <td><button class="approve"><img src="https://img.icons8.com/metro/14/ffffff/approve.png"/>&nbsp;approve</button></td>
-                                            </tr>
-                                            <tr>
-                                                <td>samira</td>
-                                                <td>clinique</td>
-                                                <td>tilila</td>
-                                                <td>
-                                                    <span class="status pink"></span>
-                                                    les infirmières sont très sympathiques.
-                                                </td>
-                                                <td><button class="delete"><img src="https://img.icons8.com/metro/14/ffffff/delete-sign.png" />&nbsp;delete</button></td>
-                                                <td><button class="approve"><img src="https://img.icons8.com/metro/14/ffffff/approve.png"/>&nbsp;approve</button></td>
-                                            </tr>
-                                            <tr>
-                                                
+                                            
+                                            <c:forEach var="entry" items="${comments}">
+                                                <tr>
+                                                    <td> ${entry.getUser().getFirstname()} ${entry.getUser().getLastname()}</td>
+                                                    <c:if test="${entry.getDocteur() != null}">
+                                                        <td>Doctor</td>
+                                                        <td>${entry.getDocteur().getFirstname()} ${ entry.getDocteur().getLastname() }</td>
+                                                    </c:if>
+                                                    <c:if test="${entry.getClinique() != null}">
+                                                        <td>Doctor</td>
+                                                        <td>${entry.getClinique().getName()} </td>
+                                                    </c:if>
+                                                    <c:if test="${entry.getHopital() != null}">
+                                                        <td>Doctor</td>
+                                                        <td>${entry.getHopital().getName()} </td>
+                                                    </c:if>
+                                                    <td>
+                                                        <span class="status orange"></span>
+                                                        ${entry.commentaire}
+                                                    </td>
+                                                    <td>
+                                                        <a class="delete" href="<c:url value="/GestionComment"><c:param name = "dlte" value = "${entry.idCommentaire}"/></c:url>">
+                                                            <img src="https://img.icons8.com/metro/14/ffffff/delete-sign.png" />
+                                                            &nbsp;delete
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a class="approve" href="<c:url value="/GestionComment"><c:param name = "apprv" value = "${entry.idCommentaire}"/></c:url>">
+                                                            
+                                                            <img src="https://img.icons8.com/metro/14/ffffff/approve.png"/>
+                                                            &nbsp;approve
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>    
             
                                         </tbody>
                                     </table>
@@ -227,7 +208,7 @@
             <div class="cards">
                 <div class="card-single">
                     <div>
-                        <h1>54</h1>
+                        <h1>${nbrUsers}</h1>
                         <span>Users</span>
                     </div>
                     <div>
@@ -238,15 +219,16 @@
                 </div>
                 <div class="card-single">
                     <div>
-                        <h1>70</h1>
+                        <h1>${nbrDoctors}</h1>
                         <span>Doctors</span>
                     </div>
                     <div>
-                        <img src="https://img.icons8.com/ios/50/069c54/doctor-male.png"/>                    </div>
+                        <img src="https://img.icons8.com/ios/50/069c54/doctor-male.png"/>                    
+                    </div>
                 </div>
                 <div class="card-single">
                     <div>
-                        <h1>120</h1>
+                        <h1>${nbrClinics}</h1>
                         <span>Clinics</span>
                     </div>
                     <div>
@@ -255,7 +237,7 @@
                 </div>
                 <div class="card-single">
                     <div>
-                        <h1>120</h1>
+                        <h1>${nbrPharmacies}</h1>
                         <span>Pharmacies</span>
                     </div>
                     <div>
@@ -282,53 +264,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>MarouaXP</td>
-                                            <td>Doctor</td>
-                                            <td>Amine alaoui</td>
-                                            <td>
-                                                <span class="status purple"></span>
-                                                bon service
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>YOUSSEF EL GOURARI</td>
-                                            <td>Doctor</td>
-                                            <td>Moustafa kadimi</td>
-                                            <td>
-                                                <span class="status pink"></span>
-                                                il explique bien les conditions
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>YOUSSEF EL GOURARI</td>
-                                            <td>doctor</td>
-                                            <td>Moustafa kadimi</td>
-                                            <td>
-                                                <span class="status orange"></span>
-                                                pourtant prix de visite trés cher.
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>ayoubx</td>
-                                            <td>clinique</td>
-                                            <td>Massira</td>
-                                            <td>
-                                                <span class="status purple"></span>
-                                                il faut essayer de sourire plus
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>samira</td>
-                                            <td>clinique</td>
-                                            <td>tilila</td>
-                                            <td>
-                                                <span class="status pink"></span>
-                                                les infirmières sont très sympathiques.
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            
+                                        
+                                        <c:forEach var="entry" items="${comments}">
+                                            <tr>
+                                                <td> ${entry.getUser().getFirstname()} ${entry.getUser().getLastname()}</td>
+                                                <c:if test="${entry.getDocteur() != null}">
+                                                    <td>Doctor</td>
+                                                    <td>${entry.getDocteur().getFirstname()} ${ entry.getDocteur().getLastname() }</td>
+                                                </c:if>
+                                                <c:if test="${entry.getClinique() != null}">
+                                                    <td>Doctor</td>
+                                                    <td>${entry.getClinique().getName()} </td>
+                                                </c:if>
+                                                <c:if test="${entry.getHopital() != null}">
+                                                    <td>Doctor</td>
+                                                    <td>${entry.getHopital().getName()} </td>
+                                                </c:if>
+                                                <td>
+                                                    <span class="status orange"></span>
+                                                    ${entry.commentaire}
+                                                </td>
+                                            </tr>
+                                        </c:forEach>    
         
                                     </tbody>
                                 </table>
@@ -344,52 +301,32 @@
                             <button onclick="document.getElementsByName('btn-comment')[0].classList.add('active')">See all <span class="las la-arrow-right"></span></button>
                         </div>
                         <div class="card-body">
-                            <div class="customer">
-                                <div class="info">
-                                    <img src="./assets/img/doc.jpg" width="40px" height="40px" alt="">
-                                    <div>
-                                        <h4>Mohamed moustafa</h4>
-                                        <small>cabinet médical</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="customer">
-                                <div class="info">
-                                    <img src="./assets/img/doc2.png" width="40px" height="40px" alt="">
-                                    <div>
-                                        <h4>Alaoui youssef</h4>
-                                        <small>cabinet médical</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="customer">
-                                <div class="info">
-                                    <img src="./assets/img/unknown.png" width="40px" height="40px" alt="">
-                                    <div>
-                                        <h4>Nour</h4>
-                                        <small>pharmacie</small>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            <div class="customer">
-                                <div class="info">
-                                    <img src="./assets/img/unknown.png" width="40px" height="40px" alt="">
-                                    <div>
-                                        <h4>tilila</h4>
-                                        <small>clinique</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="customer">
-                                <div class="info">
-                                    <img src="./assets/img/unknown.png" width="40px" height="40px" alt="">
-                                    <div>
-                                        <h4>amal</h4>
-                                        <small>pharmacie</small>
-                                    </div>
-                                </div>
-                            </div>
+                            <c:if test="${ !docs.isEmpty() }">
+                            	<c:forEach var="docteur" items="${docs}">
+	                                <div class="customer">
+	                                    <div class="info">
+	                                        <img src="./assets/img/doc.jpg" width="40px" height="40px" alt="">
+	                                        <div>
+	                                            <h4>${docteur.firstname} ${docteur.lastname}</h4>
+	                                            <small>cabinet médical</small>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </c:forEach>
+                            </c:if>
+                            <c:if test="${ !clinics.isEmpty() }">
+                            	<c:forEach var="clinic" items="${clinics }">
+	                                <div class="customer">
+	                                    <div class="info">
+	                                        <img src="./assets/img/unknown.png" width="40px" height="40px" alt="">
+	                                        <div>
+	                                            <h4>${clinic.name}</h4>
+	                                            <small>clinique</small>
+	                                        </div>
+	                                    </div>
+	                                </div>
+                            </c:forEach>
+                            </c:if>
                         </div>
                 </div>
             </div>

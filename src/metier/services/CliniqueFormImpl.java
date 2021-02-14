@@ -46,7 +46,7 @@ public class CliniqueFormImpl {
      String emer_tel = request.getParameter( CHAMP_EMER_TEL );
      String[] speciality = request.getParameterValues( CHAMP_SPECIALITY );
      
-     System.out.print("sssssss"+speciality[0]);
+     //System.out.print("sssssss"+speciality[0]);
 
      Clinique clinic = new Clinique();
      
@@ -86,6 +86,7 @@ public class CliniqueFormImpl {
      clinic.setEmail( email );
      
      clinic.setSpeciality(speciality[0]);
+     clinic.setDispo(false);
        
      if ( erreurs.isEmpty() ) {
          resultat = "Succés d'inscription!";

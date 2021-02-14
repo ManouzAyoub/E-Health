@@ -1,16 +1,28 @@
 package metier.services;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Transport;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.persistence.Query;
 
 import org.hibernate.Session;
-
 import metier.dao.beans.Docteur;
 import metier.dao.beans.Langue;
 import metier.dao.beans.Role;
@@ -68,11 +80,7 @@ public class DocteurImpl {
 		}
 	}
 	
-<<<<<<< HEAD
-	// Specifier les données  afficher dans la page searchDoctor par doctor
-=======
-	// Specifier les donn�es � afficher dans la page searchDoctor par doctor
->>>>>>> 6d779cb8f71ee647b469caecf3839a7a1623cbde
+
 	public Map<Long, List<String>> displayDoctorsInPage(List<Docteur> list) {
 		function();
 		System.out.println("la taille de la list passer est egale :::: " + list.size());
@@ -193,7 +201,6 @@ public class DocteurImpl {
 	public void function() {
 		specialities.put("Chirurgie esthétique", "Chirurgie_esthetique");
 		specialities.put("Chirurgie vasculaire", "Chirurgie_vasculaire");
-<<<<<<< HEAD
 		specialities.put("Chirurgie viscérale et digestive", "Chirurgie_viscerale_et_digestive");
 		specialities.put("Gynécologie obstétrique", "Gynecologie_obstetrique");
 		specialities.put("Neurochirurgie", "Neurochirurgie");
@@ -217,7 +224,6 @@ public class DocteurImpl {
 		specialities.put("Médecine physique et réadaptation", "Medecine_physique_et_readaptation");
 		specialities.put("Médecine générale", "Medecine_generale");
 		specialities.put("Chirurgie pédiatrique", "Chirurgie_pediatrique");
-=======
 		specialities.put("Chirurgie visc�rale et digestive", "Chirurgie_viscerale_et_digestive");
 		specialities.put("Gyn�cologie obst�trique", "Gynecologie_obstetrique");
 		specialities.put("Neurochirurgie", "Neurochirurgie");
@@ -241,11 +247,25 @@ public class DocteurImpl {
 		specialities.put("M�decine physique et r�adaptation", "Medecine_physique_et_readaptation");
 		specialities.put("M�decine g�n�rale", "Medecine_generale");
 		specialities.put("Chirurgie p�diatrique", "Chirurgie_pediatrique");
->>>>>>> 6d779cb8f71ee647b469caecf3839a7a1623cbde
 	}
 	
 	public String getImageAsString(Docteur docteur) {
 		String image = Base64.getEncoder().encodeToString(docteur.getProfile_image());
 		return image;
 	}
+	
+	public Docteur getDocteurByEmail(String email) {
+		String hql = "select d from Docteur d where email = :email";
+		Query q = session.createQuery(hql);
+		q.setParameter("email", email);
+		List<Docteur> list = q.getResultList();
+		if (list.size() != 0) {
+			return list.get(0);
+		}else {
+			return null;
+		}
+		
+	}
+	
+	
 }

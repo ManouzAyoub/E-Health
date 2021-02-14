@@ -17,7 +17,7 @@ import metier.services.DocteurImpl;
 import metier.services.RoleImpl;
 
 @WebServlet(name="searchDoctor", urlPatterns = "/searchDoctor")
-public class searchDoctorServlet extends HttpServlet {
+public class SearchDoctorServlet extends HttpServlet {
 	
 	public static final String SUCESS               = "/WEB-INF/searchDoctor.jsp";
 	public static final String VUE                  = "/WEB-INF/Home.jsp";

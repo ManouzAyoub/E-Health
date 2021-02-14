@@ -21,12 +21,13 @@ import metier.dao.beans.Commentaire;
 import metier.dao.beans.Docteur;
 import metier.dao.beans.Hopital;
 import metier.dao.beans.User;
+import metier.dao.util.Instances;
 import metier.services.CommentaireImpl;
 import metier.services.DocteurImpl;
 import metier.services.RatingImpl;
 
 @WebServlet("/addComment")
-public class addCommentServlet extends HttpServlet {
+public class AddCommentServlet extends HttpServlet {
 
 	private static final String VUE_DOCTEUR_PROFILE  = "/WEB-INF/doctorProfile.jsp";
 	private static final String VUE_HOPITAL_PROFILE  = "/WEB-INF/hospitalProfile.jsp";
@@ -34,13 +35,6 @@ public class addCommentServlet extends HttpServlet {
 	private static final String COMMENT_DOCTEUR      = "userOwnComment";
 	private static final String COMMENT_HOPITAL      = "comment_hopital";
 	private static final String COMMENT_CLINIQUE     = "comment_clinique";
-	
-	DocteurDao docteurDao       = DocteurDao.getInstance();
-	DocteurImpl docteurImpl     = DocteurImpl.getInstance();
-	RatingImpl ratingImpl       = RatingImpl.getInstance();
-	CommentaireDao commentDao   = CommentaireDao.getInstance();
-	CommentaireImpl commentImpl = CommentaireImpl.getInstance();
-	UserDao userDao             = UserDao.getInstance();
 	
 	User user                   = new User();
 	Docteur docteur             = new Docteur();
@@ -53,8 +47,10 @@ public class addCommentServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		HttpSession session        = request.getSession(false);
 		user                       = (User) session.getAttribute("visiter");
+		
 		String commentaire         = request.getParameter(COMMENT_DOCTEUR);
 		String commentaire_hopital = request.getParameter(COMMENT_HOPITAL);
 		String comment_clinique    = request.getParameter(COMMENT_CLINIQUE);
@@ -62,11 +58,11 @@ public class addCommentServlet extends HttpServlet {
 		// commentaire pour un docteur
 		if (commentaire != null) {
 			docteur = (Docteur) session.getAttribute("DisplayProfileDocteur");
-			request.setAttribute("data", docteurImpl.displayDataInProfilePage(docteur));
+			request.setAttribute("data", Instances.docteurImpl.displayDataInProfilePage(docteur));
 			request.setAttribute("doctor", docteur);
 			request.setAttribute("image", Base64.getEncoder().encodeToString(docteur.getProfile_image()));
 			addComment(commentaire, "Docteur", docteur, null, null, user);
-			request.setAttribute("comments", commentImpl.getComments(docteur.getCin(),"idDocteur"));			
+			request.setAttribute("comments", Instances.commentImpl.getComments(docteur.getCin(),"idDocteur"));			
 			this.getServletContext().getRequestDispatcher( VUE_DOCTEUR_PROFILE ).forward(request, response);
 		}
 		
@@ -74,15 +70,15 @@ public class addCommentServlet extends HttpServlet {
 		if (commentaire_hopital != null) {
 			hopital = (Hopital) session.getAttribute("DisplayProfileHospital");
 			addComment(commentaire_hopital, "Hopital", null,  hopital,null, user);
-			request.setAttribute("comments", commentImpl.getComments(hopital.getIdHopital(),"idHopital"));
+			request.setAttribute("comments", Instances.commentImpl.getComments(hopital.getIdHopital(),"idHopital"));
 			request.setAttribute("hopital", hopital);
 			request.setAttribute("docteurs", hopital.getDocteurs());
-			request.setAttribute("impl", ratingImpl);
-			request.setAttribute("docteurImpl", docteurImpl);
-			request.setAttribute("nbrRating", ratingImpl.getNumberOfRating(hopital.getIdHopital(), "idHopital"));
-			request.setAttribute("average", ratingImpl.average(hopital.getIdHopital(), "idHopital"));
-			request.setAttribute("averageRating", ratingImpl.getAverageOfRating(hopital.getIdHopital(), "idHopital"));
-			request.setAttribute("distinctValueRating", ratingImpl.countDistinctValueOfRate(hopital.getIdHopital(), "idHopital"));
+			request.setAttribute("impl", Instances.ratingImpl);
+			request.setAttribute("docteurImpl", Instances.docteurImpl);
+			request.setAttribute("nbrRating", Instances.ratingImpl.getNumberOfRating(hopital.getIdHopital(), "idHopital"));
+			request.setAttribute("average", Instances.ratingImpl.average(hopital.getIdHopital(), "idHopital"));
+			request.setAttribute("averageRating", Instances.ratingImpl.getAverageOfRating(hopital.getIdHopital(), "idHopital"));
+			request.setAttribute("distinctValueRating", Instances.ratingImpl.countDistinctValueOfRate(hopital.getIdHopital(), "idHopital"));
 			this.getServletContext().getRequestDispatcher( VUE_HOPITAL_PROFILE ).forward(request, response);
 		}
 		
@@ -90,15 +86,15 @@ public class addCommentServlet extends HttpServlet {
 		if (comment_clinique != null) {
 			clinique = (Clinique) session.getAttribute("DisplayProfileClinique");
 			addComment(comment_clinique, "Clinique", null, null, clinique, user);
-			request.setAttribute("comments", commentImpl.getComments(clinique.getCin(),"idClinique"));
+			request.setAttribute("comments", Instances.commentImpl.getComments(clinique.getCin(),"idClinique"));
 			request.setAttribute("clinique", clinique);
 			request.setAttribute("docteurs", clinique.getDocteurs());
-			request.setAttribute("impl", ratingImpl);
-			request.setAttribute("docteurImpl", docteurImpl);
-			request.setAttribute("nbrRating", ratingImpl.getNumberOfRating(clinique.getCin(), "idClinique"));
-			request.setAttribute("average", ratingImpl.average(clinique.getCin(), "idClinique"));
-			request.setAttribute("averageRating", ratingImpl.getAverageOfRating(clinique.getCin(), "idClinique"));
-			request.setAttribute("distinctValueRating", ratingImpl.countDistinctValueOfRate(clinique.getCin(), "idClinique"));
+			request.setAttribute("impl", Instances.ratingImpl);
+			request.setAttribute("docteurImpl", Instances.docteurImpl);
+			request.setAttribute("nbrRating", Instances.ratingImpl.getNumberOfRating(clinique.getCin(), "idClinique"));
+			request.setAttribute("average", Instances.ratingImpl.average(clinique.getCin(), "idClinique"));
+			request.setAttribute("averageRating", Instances.ratingImpl.getAverageOfRating(clinique.getCin(), "idClinique"));
+			request.setAttribute("distinctValueRating", Instances.ratingImpl.countDistinctValueOfRate(clinique.getCin(), "idClinique"));
 			this.getServletContext().getRequestDispatcher( VUE_CLINIQUE_PROFILE ).forward(request, response);
 		}
 		
@@ -119,6 +115,6 @@ public class addCommentServlet extends HttpServlet {
 			commentaire.setClinique(c);
 		}
 		commentaire.setUser(u);
-		commentDao.add(commentaire);
+		Instances.commentDao.add(commentaire);
 	}
 }

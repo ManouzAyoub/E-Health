@@ -1,16 +1,13 @@
-package metier.dao.util;
-
+package metier.services;
 
 import java.security.SecureRandom;
 import java.util.Properties;
-import java.util.Random;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -18,17 +15,21 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-public class GeneratePassword {	
-	
-	
-	public static void main(String[] args) {
-		
-		String pass = generateRandomPassword(8);
-		
-		sendEMailToUser("youssef el gourari message from ehealth", pass ,"youssefelgourari97@gmail.com");
+import javax.mail.Session;
 
-	}
+public class SendEmailService {
 	
+	private static SendEmailService instance = null;
+	
+	private SendEmailService() {
+			
+		}
+	
+	public static SendEmailService getInstance() {
+	    if (instance == null)
+	                   instance = new SendEmailService();
+	    return instance;
+	}
 	
 	public static void sendEMailToUser(String messages, String password, String email) {
 		String username = "healthapp775@gmail.com";
@@ -42,14 +43,14 @@ public class GeneratePassword {
 		prop.put("mail.smtp.port", "25");
 		prop.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 		
-		Session session = Session.getInstance(prop, new Authenticator() {
+		Session s = Session.getInstance(prop, new Authenticator() {
 			@Override
 		    protected PasswordAuthentication getPasswordAuthentication() {
 		        return new PasswordAuthentication(username, pass);
 		    }
 		});
 		
-		Message message = new MimeMessage(session);
+		Message message = new MimeMessage(s);
 		
 		try {
 			message.setFrom(new InternetAddress(username));
@@ -79,7 +80,7 @@ public class GeneratePassword {
 	
 	
 	
-	 public static String generateRandomPassword(int len)
+	 public String generateRandomPassword(int len)
 	    {
 	        // ASCII range - alphanumeric (0-9, a-z, A-Z)
 	        final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -97,4 +98,5 @@ public class GeneratePassword {
 	 
 	        return sb.toString();
 	    }
+
 }

@@ -14,6 +14,8 @@ import metier.dao.Implementations.LangueDao;
 import metier.dao.Implementations.RoleDao;
 import metier.dao.beans.Langue;
 import metier.dao.beans.Role;
+import metier.dao.beans.User;
+import metier.dao.util.Instances;
 
 
 @WebServlet("/Home")
@@ -21,25 +23,26 @@ public class HomeServlet extends HttpServlet {
 	
 	
 	private static final String VUE            = "/WEB-INF/Home.jsp";
-	RoleDao roledao                            = RoleDao.getInstance();
-	LangueDao langueDao 					   = LangueDao.getInsctance(); 
 	List<Role> roles                           = new ArrayList<Role>();
 	String[] langues						   = {"Arabic" , "Frensh", "English", "Chinese", "Spanish" };
     
     @Override
     public void init() throws ServletException {
-    	roles = roledao.getAll();
+    	roles = Instances.roleDao.getAll();
     	if (roles.size() == 0) {
     		AjouterLesRoles("admin","desc");
     		AjouterLesRoles("docteur","desc");
     		AjouterLesRoles("clinique","desc");
     		AjouterLesRoles("utiliseur","desc");
 		}
-    	List<Langue> languages = langueDao.getAll();
+    	List<Langue> languages = Instances.langueDao.getAll();
     	if (languages.size() == 0) {
 			AjouterLangues(langues);
 		}
-    	super.init();
+    	
+    	if ( Instances.userImpl.getNumbersOfUserVisiter(1) == null ) {
+			AjouterAdmin();
+		}
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -55,15 +58,26 @@ public class HomeServlet extends HttpServlet {
 		Role r = new Role();
 		r.setDescription(description);
 		r.setRole(role);
-		roledao.add(r);
+		Instances.roleDao.add(r);
 	}
 	
 	public void AjouterLangues(String[] langues) {
 		for (int i = 0; i < langues.length; i++) {
 			Langue langue = new Langue();
 			langue.setLangue(langues[i]);
-			langueDao.add(langue);
+			Instances.langueDao.add(langue);
 		}
+	}
+	
+	public void AjouterAdmin() {
+		User user = new User();
+		Role role = Instances.roleDao.getById(1);
+		user.setEmail("admin@gmail.com");
+		user.setFirstname("youssef");
+		user.setLastname("el gourari");
+		user.setPassword("admin");
+		user.setRole(role);
+		Instances.userDao.add(user);
 	}
 
 }

@@ -152,5 +152,30 @@ public class UserImpl {
         return instance;
     }
     
+    public Long getNumbersOfUser(String table) {
+		String hql = "select count(o) from " + table + " o ";
+		Query q = session.createQuery(hql);
+		List<Long> list = q.getResultList();
+		if (list.size() != 0) {
+			return list.get(0);
+		}else {
+			return null;
+		}
+	}
+    
+    public Long getNumbersOfUserVisiter(int id) {
+		String hql = "select count(o) from User o where idRole = :id ";
+		Query q = session.createQuery(hql);
+		q.setParameter("id", id);
+		List<Long> list = q.getResultList();
+		if (list.size() != 0) {
+			return list.get(0);
+		}else {
+			return null;
+		}
+	}
+    
+    
+    
     
 }

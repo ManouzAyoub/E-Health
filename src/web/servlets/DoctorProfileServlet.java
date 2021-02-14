@@ -19,6 +19,7 @@ import metier.dao.beans.Clinique;
 import metier.dao.beans.Commentaire;
 import metier.dao.beans.Docteur;
 import metier.dao.beans.Hopital;
+import metier.dao.util.Instances;
 import metier.services.CommentaireImpl;
 import metier.services.DocteurImpl;
 import metier.services.EducationImpl;
@@ -26,39 +27,35 @@ import metier.services.RatingImpl;
 import metier.services.RecompenseImpl;
 
 @WebServlet("/doctorProfile")
-public class doctorProfileServlet extends HttpServlet {
+public class DoctorProfileServlet extends HttpServlet {
 	
-	private static final String VUE    = "/WEB-INF/doctorProfile.jsp"; 
-	DocteurDao docteurDao              = DocteurDao.getInstance();
-	DocteurImpl docteurImpl            = DocteurImpl.getInstance();
-	RatingImpl ratingImpl              = RatingImpl.getInstance();
-	Map<Integer , Long> map            = new HashMap<Integer, Long>();
-	Map<String, String> donnees_doctor = new HashMap<String, String>();
-	EducationImpl educImpl             = EducationImpl.getInstance();
-	RecompenseImpl recomImpl           = RecompenseImpl.getInstance();
+	private static final String VUE    = "/WEB-INF/doctorProfile.jsp";
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// recuperer le docteur choisi par le client
 		HttpSession session         = request.getSession(false);
 		String id = request.getParameter("docteur");
-		Docteur docteur                     = docteurDao.getById(Long.valueOf(id));
-		CommentaireImpl commentImpl = CommentaireImpl.getInstance();
-		List<Commentaire> lcomments = commentImpl.getComments(docteur.getCin(),"idDocteur");
-		map                         = ratingImpl.countDistinctValueOfRate(docteur.getCin(), "idDocteur");
-		donnees_doctor              = docteurImpl.displayDataInProfilePage(docteur);
+		Docteur docteur                     = Instances.docteurDao.getById(Long.valueOf(id));
+		
+		List<Commentaire> lcomments = Instances.commentImpl.getComments(docteur.getCin(),"idDocteur");
 		List<Clinique> lc           = docteur.getCliniques();
 		List<Hopital> lh            = docteur.getHopitales();
-		request.setAttribute("data", donnees_doctor);
+		// les données du docteur dans un map pour les afficher dans la page du profile
+		request.setAttribute("data", Instances.docteurImpl.displayDataInProfilePage(docteur));
+		request.setAttribute("ratingImpl", Instances.ratingImpl);
 		request.setAttribute("doctor", docteur);
 		request.setAttribute("hopitaux", lh);
 		request.setAttribute("cliniques", lc);
-		request.setAttribute("progressBar", ratingImpl.getPercentageOfEtoiles(docteur.getCin(), "idDocteur"));
+		request.setAttribute("progressBar", Instances.ratingImpl.getPercentageOfEtoiles(docteur.getCin(), "idDocteur"));
 		request.setAttribute("image", Base64.getEncoder().encodeToString(docteur.getProfile_image()));
 		request.setAttribute("comments", lcomments);
-		request.setAttribute("evaluations", map );
-		request.setAttribute("nbrRating", ratingImpl.getNumberOfRating(docteur.getCin(), "idDocteur"));
-		request.setAttribute("average", ratingImpl.average(docteur.getCin(), "idDocteur"));
-		request.setAttribute("nbr", ratingImpl.getAverageOfRating(docteur.getCin(), "idDocteur"));
-		request.setAttribute("recompenses", recomImpl.getRecompenseByDoctor(docteur));
-		request.setAttribute("educations", educImpl.getEducationByDoctor(docteur));
+		// different valeurs de l'evaluation des client
+		request.setAttribute("evaluations", Instances.ratingImpl.countDistinctValueOfRate(docteur.getCin(), "idDocteur") );
+		request.setAttribute("nbrRating", Instances.ratingImpl.getNumberOfRating(docteur.getCin(), "idDocteur"));
+		request.setAttribute("average", Instances.ratingImpl.average(docteur.getCin(), "idDocteur"));
+		request.setAttribute("nbr", Instances.ratingImpl.getAverageOfRating(docteur.getCin(), "idDocteur"));
+		request.setAttribute("recompenses", Instances.recomImpl.getRecompenseByDoctor(docteur));
+		request.setAttribute("educations", Instances.educImpl.getEducationByDoctor(docteur));
 		this.getServletContext().getRequestDispatcher( VUE ).forward(request, response);
 	}
 

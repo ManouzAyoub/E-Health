@@ -120,4 +120,6 @@ public class RatingImpl {
 			return 0.0;
 		}
 	}
+	
+	
 }

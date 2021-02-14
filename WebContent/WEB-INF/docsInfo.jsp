@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +11,7 @@
 <body>
 <!-- partial:index.partial.html -->
 <div class="container">  
-  <form id="contact" action="" method="post">
+  <form id="contact" action="<c:url value="SendEmail"/>" method="post">
     <h3>Doctor's infos</h3>
     <fieldset>
       <input placeholder="doc's name" type="text" tabindex="1" value="${doc.firstname }" autofocus>
@@ -21,7 +20,7 @@
       <input placeholder="doc's lastname" type="text" tabindex="1" value="${doc.lastname }" autofocus>
     </fieldset>
     <fieldset>
-      <input placeholder="doc's Email Address" type="email" value="${doc.email }" tabindex="2" >
+      <input placeholder="doc's Email Address" type="email" name="email" value="${doc.email }" tabindex="2" >
     </fieldset>
     <fieldset>
       <input placeholder="doc's Phone Number" type="tel" value="${doc.tel }" tabindex="3" >
@@ -33,9 +32,13 @@
       <input placeholder="doc practices in a " type="text" value="${doc.practice }" tabindex="4" >
     </fieldset>
     <fieldset>
-      <button name="submit" type="submit" id="demmande_approve" data-submit="...Sending">approve</button>
-      <button name="submit" type="submit" id="demmande_desapprove" data-submit="...Sending" style="background-color: #d11a2a;">desapprove</button>
+      	<button name="submit" type="submit" id="demmande_approve" data-submit="...Sending">approve</button>
     </fieldset>
+  </form>
+  <form method="get" action="<c:url value="/SendEmail" />">
+  	<fieldset>
+  		<button name="submit" type="submit" id="demmande_desapprove" data-submit="...Sending" style="background-color: #d11a2a;">desapprove</button>
+  	</fieldset>
   </form>
 </div>
 <!-- partial -->
