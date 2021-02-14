@@ -170,8 +170,8 @@
                 saisissez votre localisation et nous nous occuperons du reste !
             </p> 
 
-            <form method="get" action="<c:url value="/searchHospital"/>" >
-                <input type="text" placeholder="Entrer votre localisation" class="localisation" name="adresse" id="" autocomplete="off" required />
+            <form method="get" action="<c:url value="/searchHospital"></c:url>" >
+                <input type="text" placeholder="Entrer votre localisation" class="localisation" name="adresse" id="adresse" autocomplete="off" required />
                 <input type="submit" class="submit" value="Chercher . . .">
             </form>
         </div >
@@ -190,8 +190,8 @@
                 Communiquez avec la meilleure clinique près de chez vous et reserver un rendez-vous ! 
             </p> 
 
-            <form method="get" action="<c:url value="/searchClinique"/>">
-                <input type="text" placeholder="Entrer votre localisation" class="localisation" name="adresse" id="" autocomplete="off" required />
+            <form method="get" action="<c:url value="/searchClinique"></c:url>">
+                <input type="text" placeholder="Entrer votre localisation" class="localisation" name="adresse" id="adresse" autocomplete="off" required />
                 <input type="submit" class="submit" value="Chercher . . .">
             </form>
         
