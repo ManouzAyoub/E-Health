@@ -9,8 +9,9 @@
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value="./assets/css/dashboard.css" />" >
-    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
-	<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <!-- toggle button -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- toggle button -->
     <style>
     
         .card-profile {
@@ -81,7 +82,7 @@
                 </li>
                 <li>
                     <a href="#" class="buttons btn-comment"  onclick="handleClick(event);show('comments_Section')">
-                        <span class="las la-user-circle"></span>
+                        <img id="cmt" src="https://img.icons8.com/metro/24/ffffff/comments.png" style="padding-right:12px"/>
                         Comments
                     </a>
                 </li>
@@ -582,7 +583,10 @@
                                                         <td>${entry.tel}</td>
                                                         <td>${entry.getVille()} </td>
                                                         <td>
-                                                            <input type="checkbox" data-toggle="toggle" data-on="Enabled" data-off="Disabled">
+                                                                      <div class="custom-control custom-switch">
+															          <input type="checkbox" class="custom-control-input" id="customSwitch1">
+															          <label class="custom-control-label" for="customSwitch1">Toggle this switch</label>
+															        </div>
                                                         </td>
                                                         <td>
                                                             <a class="btn btn-danger " href="<c:url value="/admin"><c:param name = "dlte_pharmacie" value = "${entry.idPharmacie}"/></c:url>">

@@ -153,6 +153,10 @@
       content:url("https://img.icons8.com/material/24/069c54/hospital-2.png");
 	
 }
+.sidebar-menu a.active #cmt{
+      content:url("https://img.icons8.com/metro/24/069c54/comments.png");
+	
+}
 
 .sidebar-menu a span:first-child {
   font-size: 1.5rem;
