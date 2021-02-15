@@ -11,7 +11,7 @@ import metier.dao.Implementations.DocteurDao;
 import metier.dao.beans.Docteur;
 
 @WebServlet("/docsInfo")
-public class docsInfo extends HttpServlet {
+public class DoctorInfoConfirmation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DocteurDao docdao=DocteurDao.getInstance();
 	public static final String VUE              = "/WEB-INF/docsInfo.jsp";

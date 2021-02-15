@@ -9,6 +9,7 @@
     <link rel="stylesheet"
 		href="https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css">
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="<c:url value="/FrontENd/Styling/home.css" />">
         <link rel="stylesheet" href="<c:url value="/FrontEnd/Styling/index.css" />">
         <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/searchClinique/pageLogo.png"></c:url>" />
       
@@ -218,6 +219,8 @@
         <img class="img-1" src="<c:url value="/FrontEnd/Includes/images/image-5.svg" />" alt="e-health" data-aos="fade-up">
     </section>
     <!-- Trouver Un Laboratoire -->
+    
+    <c:import url="/FrontEnd/footer.jsp"></c:import>
        
     <script type="text/javascript">
 	    function toggle(){

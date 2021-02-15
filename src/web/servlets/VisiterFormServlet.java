@@ -16,7 +16,7 @@ import metier.services.RoleImpl;
 import metier.services.UserImpl;
 
 @WebServlet( "/visiterForm" )
-public class visiterFormServlet extends HttpServlet {
+public class VisiterFormServlet extends HttpServlet {
     private static final long  serialVersionUID = 1L;
     public static final String ATT_VISITER      = "visiter";
     public static final String ATT_FORM         = "form";
@@ -28,7 +28,7 @@ public class visiterFormServlet extends HttpServlet {
     
     Role role=new Role();
     
-    public visiterFormServlet() {
+    public VisiterFormServlet() {
         super();
     }
 

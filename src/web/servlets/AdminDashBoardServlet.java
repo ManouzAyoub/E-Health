@@ -10,17 +10,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import metier.dao.beans.Docteur;
+import metier.dao.util.Instances;
 import metier.services.DocteurImpl;
 
-@WebServlet("/adminDash")
-public class AdminDash extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	DocteurImpl docimpl=DocteurImpl.getInstance();
+@WebServlet("/admin")
+public class AdminDashBoardServlet extends HttpServlet {
+	
 	public static final String VUE              = "/WEB-INF/AdminDashboard.jsp";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Docteur> docs=docimpl.getDoctorsAccordingToTheirAvailability(false);
-		request.setAttribute("docs", docs);
+		
+		// retourner les docteur qui nous sont pas encore confirmer
+//		List<Docteur> docs =	Instances.docteurImpl.getDoctorsAccordingToTheirAvailability(false);
+//		
+//		request.setAttribute("docs", docs);
+		
 		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 
 	}

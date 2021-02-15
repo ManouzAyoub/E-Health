@@ -18,7 +18,8 @@ public class Commentaire implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idCommentaire;
 	private String commentaire;
-	private Date date_commentaire;
+	private Boolean approv;
+	private Boolean del;
 	
 	@OneToOne
 	@JoinColumn(name = "idUser" , referencedColumnName = "cin")
@@ -116,14 +117,6 @@ public class Commentaire implements Serializable{
 	public void setCommentaire(String commentaire) {
 		this.commentaire = commentaire;
 	}
-	
-	public Date getDate_commentaire() {
-		return date_commentaire;
-	}
-	
-	public void setDate_commentaire(Date date_commentaire) {
-		this.date_commentaire = date_commentaire;
-	}
 		
 	public void setDocteur(Docteur docteur) {
 		this.docteur = docteur;
@@ -131,5 +124,21 @@ public class Commentaire implements Serializable{
 	
 	public Docteur getDocteur() {
 		return docteur;
+	}
+	
+	public Boolean getApprov() {
+		return approv;
+	}
+	
+	public void setApprov(Boolean approv) {
+		this.approv = approv;
+	}
+
+	public Boolean getDel() {
+		return del;
+	}
+	
+	public void setDel(Boolean del) {
+		this.del = del;
 	}
 }

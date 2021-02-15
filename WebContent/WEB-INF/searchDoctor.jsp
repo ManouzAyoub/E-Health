@@ -65,7 +65,7 @@
                 <!--Doctors List -->
                 <div class="col-lg-8" id="doctors_list">
 
-					<c:if test="${doctors != null }">
+					<c:if test="${!doctors.isEmpty() }">
 						<c:forEach var="entry" items="${doctors}">
 	                    	<c:set var="fullname" value="${doctors.getOrDefault(entry.key, entry.value).get(0)}"></c:set>
 	                    	<c:set var="speciality" value="${doctors.getOrDefault(entry.key, entry.value).get(1)}"></c:set>
@@ -186,8 +186,10 @@
 		                    </div>
 	                    </c:forEach>
 					</c:if>
-					<c:if test="${doctors==null }">
-						<c:out value="aucun docteur sur cette localisation"/>
+					<c:if test="${doctors.isEmpty() }">
+						<div class="border py-3 mt-3">
+							<span>Empty</span>
+						</div>
 					</c:if>
                     
                 </div>

@@ -20,6 +20,19 @@ public class CommentaireImpl {
 		
 	}
 	
+	public List<Commentaire> getCommentsNotApproved(Boolean approve , Boolean deleted){
+		String hql = "select c from Commentaire c where approv = :app and del = :del";
+		Query q = session.createQuery(hql);
+		q.setParameter("app", approve);
+		q.setParameter("del", deleted);
+		List<Commentaire> list = q.getResultList();
+		if (list.size() != 0) {
+			return list;
+		}else {
+			return null;
+		}
+	}
+	
 	public List<Commentaire> getComments(Long id, String par){
 		String hql = "select c from Commentaire c where "+ par +" = :id";
 		Query q = session.createQuery(hql);
