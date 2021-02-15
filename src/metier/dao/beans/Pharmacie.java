@@ -21,12 +21,14 @@ public class Pharmacie implements Serializable{
 	private Long idPharmacie;
 	private String name;
 	private String ville;
+	private String email;
 	private Boolean ouverte_jour;
 	private Boolean ouverte_nuit;
 	private Boolean ouverte_journer;
 	private String tel;
 	private String adresse;
 	private String id;
+	private Boolean dispo;
 	
 	
 	@OneToMany
@@ -127,5 +129,20 @@ public class Pharmacie implements Serializable{
 		this.id = id;
 	}
 	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public Boolean getDispo() {
+		return dispo;
+	}
+	
+	public void setDispo(Boolean dispo) {
+		this.dispo = dispo;
+	}
 	
 }

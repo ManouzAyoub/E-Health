@@ -7,25 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import metier.dao.Implementations.DocteurDao;
-import metier.dao.beans.Docteur;
-import metier.dao.util.Instances;
-
-@WebServlet("/docsInfo")
-public class DoctorInfoConfirmation extends HttpServlet {
+@WebServlet("/ProfileAdmin")
+public class ProfileAdminServlet extends HttpServlet {
 	
-	public static final String VUE              = "/WEB-INF/docsInfo.jsp";
-
+	private static final String CHAMP_PASSWORD = "password";
+	private static final String CHAMP_ADRESSE = "adresse";
+	private static final String CHAMP_EMAIL = "email";
+	private static final String CHAMP_TEL = "tel";
+	private static final String CHAMP_ID = "id";
+	private static final String CHAMP_CONFIRMATION_PASSWORD = "confirmation_password";
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id=request.getParameter("id");
-		Docteur doc= Instances.docteurDao.getById(Long.valueOf(id));
-		request.setAttribute("doc", doc);
-		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-            
+	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	        
+
 	}
 
 }

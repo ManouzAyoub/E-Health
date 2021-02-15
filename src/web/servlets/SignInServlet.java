@@ -16,6 +16,7 @@ import metier.dao.Implementations.UserDao;
 import metier.dao.beans.Commentaire;
 import metier.dao.beans.Docteur;
 import metier.dao.beans.User;
+import metier.dao.util.Instances;
 import metier.services.CliniqueImpl;
 import metier.services.CommentaireImpl;
 import metier.services.DocteurImpl;
@@ -38,16 +39,16 @@ public class SignInServlet extends HttpServlet {
     private static final String VUE              = "/WEB-INF/SignIn.jsp";
     private static final String HOME             = "/WEB-INF/Home.jsp";
     private static final String SUCESS_USER      = "/WEB-INF/Home.jsp";
-    private static final String SUCESS_ADMIN     = "/WEB-INF/AdminDashboard.jsp";
+    private static final String SUCESS_ADMIN     = "/DataAdmin";
     private static final String SUCESS_DOCTEUR   = "/WEB-INF/DoctorDashBoard.jsp";
     private static final String SUCESS_CLINIQUE  = "/WEB-INF/Home.jsp";
    
-	  public SignInServlet() {
-        super();
-    }
+    private Boolean aide = false;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+		if (!aide) {
+			this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+		}
 	}
 
 
@@ -58,34 +59,22 @@ public class SignInServlet extends HttpServlet {
 		SignInFormService form = SignInFormService.getInstance();
         
     	User visiter = form.SignInService( request );
-    	
-    	
-    	request.setAttribute( ATT_VISITER, visiter );
-        request.setAttribute( ATT_FORM, form );
+
+    	System.out.println("visiter role "+ visiter.getRole());
+    	HttpSession session = request.getSession();
     	
     	if ( visiter.getRole().getRole().equals("admin") ) {
-    		
-			HttpSession session = request.getSession();
-			session.setAttribute("admin", visiter);
-			List<Commentaire> comments = commentaireImpl.getCommentsNotApproved(false, false);
-			request.setAttribute("comments", comments);
-			request.setAttribute("clinics", cliniqueImpl.getAllClinicsAccordingToTheirAvailability( false ));
-			request.setAttribute("docs", docImpl.getDoctorsAccordingToTheirAvailability(false));
-			request.setAttribute("nbrUsers", userImpl.getNumbersOfUserVisiter(4) != null ? userImpl.getNumbersOfUserVisiter(4) : 0 );
-			request.setAttribute("nbrDoctors", userImpl.getNumbersOfUser("Docteur") != null ? userImpl.getNumbersOfUser("Docteur") : 0  );
-			request.setAttribute("nbrPharmacies", userImpl.getNumbersOfUser("Pharmacie") != null ? userImpl.getNumbersOfUser("Pharmacie") : 0 );
-			request.setAttribute("nbrClinics", userImpl.getNumbersOfUser("Clinique") != null ? userImpl.getNumbersOfUser("Clinique") : 0  );
+    		session.setAttribute("admin", visiter);
+			User u = (User) session.getAttribute("admin");
+			System.out.println("from sign in section admin is correct " + session.getAttribute("admin"));
+			request.setAttribute("adminUser", u);
+			this.getServletContext().getRequestDispatcher( "/toAdminData" ).forward( request, response );
 			
-			if ( form.getErreurs().isEmpty() ) {
-	            this.getServletContext().getRequestDispatcher( SUCESS_ADMIN ).forward(request, response );
-	        } else {
-	            this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-	        }
 		}
     	
     	if ( visiter.getRole().getRole().equals("utilisateur") ) {
     		
-    		HttpSession session = request.getSession();
+    		
         	session.setAttribute("visiter", visiter);
         	
         	if ( form.getErreurs().isEmpty() ) {
@@ -97,7 +86,7 @@ public class SignInServlet extends HttpServlet {
     	
     	if ( visiter.getRole().getRole().equals("docteur") ) {
     		
-    		HttpSession session = request.getSession();
+    		
         	session.setAttribute("docteur", visiter);
         	
         	Docteur d = docteurDao.getById(visiter.getCin());
@@ -117,7 +106,7 @@ public class SignInServlet extends HttpServlet {
     	
     	if ( visiter.getRole().getRole().equals("clinique") ) {
     		
-    		HttpSession session = request.getSession();
+    		
         	session.setAttribute("clinique", visiter);
         	
         	if ( form.getErreurs().isEmpty() ) {

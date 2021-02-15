@@ -31,7 +31,6 @@ public class Docteur extends User{
 	    private Boolean consultationDomicile;
 	    private String gender;
 	    private String practice;
-	    private String tel;
 	    private Boolean dispo;
 	    private int age;
 	    private String ville;
@@ -128,14 +127,6 @@ public class Docteur extends User{
 		public void setPractice(String practice) {
 			this.practice = practice;
 		}
-	
-		public String getTel() {
-			return tel;
-		}
-	
-		public void setTel(String tel) {
-			this.tel = tel;
-		}
 		
 	    public byte[] getId_scan() {
 			return id_scan;
@@ -205,12 +196,6 @@ public class Docteur extends User{
 
 		public void setDispo(Boolean dispo) {
 			this.dispo = dispo;
-		}
-
-		@Override
-		public String toString() {
-			return "Docteur [speciality=" + speciality + ", tel=" + tel + ", dispo=" + dispo + ", langues=" + langues
-					+ "]";
 		}	
 		
 		public String getAdresse() {

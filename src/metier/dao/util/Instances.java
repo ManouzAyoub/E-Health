@@ -5,6 +5,7 @@ import metier.dao.Implementations.CommentaireDao;
 import metier.dao.Implementations.DocteurDao;
 import metier.dao.Implementations.HopitalDao;
 import metier.dao.Implementations.LangueDao;
+import metier.dao.Implementations.PharmacieDao;
 import metier.dao.Implementations.RatingDao;
 import metier.dao.Implementations.RoleDao;
 import metier.dao.Implementations.UserDao;
@@ -14,9 +15,12 @@ import metier.services.DocteurImpl;
 import metier.services.EducationImpl;
 import metier.services.HopitalImpl;
 import metier.services.LangueImpl;
+import metier.services.PharmacieImpl;
 import metier.services.RatingImpl;
 import metier.services.RecompenseImpl;
 import metier.services.RoleImpl;
+import metier.services.SendEmailService;
+import metier.services.SignInFormService;
 import metier.services.UserImpl;
 
 public class Instances {
@@ -39,5 +43,9 @@ public class Instances {
 	public static RecompenseImpl recomImpl    = RecompenseImpl.getInstance();
 	public static LangueDao langueDao         = LangueDao.getInsctance();
 	public static LangueImpl langueImpl       = LangueImpl.getInstance();
+	public static PharmacieDao pharmacieDao = PharmacieDao.getInstance();
+	public static SignInFormService signInService = SignInFormService.getInstance();
+	public static SendEmailService send   = SendEmailService.getInstance();
+	public static PharmacieImpl pharmacieImpl = PharmacieImpl.getInstance();
 
 }

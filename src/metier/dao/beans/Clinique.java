@@ -25,7 +25,6 @@ public class Clinique extends User{
 	@Column(name="adresse",nullable=false)
 	private String adresse;
 	
-	private String tel;
 	private String description;
 	
 	@Column(name="emergency_tel",nullable=false)
@@ -35,6 +34,7 @@ public class Clinique extends User{
 	private String speciality;
 	
 	private Boolean dispo;
+	private String ville;
 	
 	@ManyToOne
 	@JoinColumn(name = "idUser" , referencedColumnName = "cin")
@@ -107,14 +107,6 @@ public class Clinique extends User{
 		this.adresse = adresse;
 	}
 
-	public String getTel() {
-		return tel;
-	}
-
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
-
 	public String getEmergency_tel() {
 		return emergency_tel;
 	}
@@ -155,5 +147,12 @@ public class Clinique extends User{
 		this.description = description;
 	}
 	
+	public String getVille() {
+		return ville;
+	}
+	
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
 	
 }

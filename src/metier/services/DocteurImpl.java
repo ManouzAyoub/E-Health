@@ -166,12 +166,14 @@ public class DocteurImpl {
 		data.put("adresse", docteur.getAdresse() );
 		data.put("age", String.valueOf(docteur.getAge())  );
 		data.put("speciality", docteur.getSpeciality() );
-		String[] str = docteur.getTel().split("");
-		String string ="";
-		for(int i = 1 ; i<str.length ; i++) {
-			string += str[i];
+		if (docteur.getTel() != null) {
+			String[] str = docteur.getTel().split("");
+			String string ="";
+			for(int i = 1 ; i<str.length ; i++) {
+				string += str[i];
+			}
+			data.put("phone", string  );
 		}
-		data.put("phone", string  );
 		data.put("telemedecine", docteur.getTeleMedcine() ? "T�l�m�decine" : "" );
 		data.put("adomicile", docteur.getConsultationDomicile() ? "Consultation a domicile" : ""  );
 		data.put("heureD", String.valueOf(docteur.getHeureDepart()) );

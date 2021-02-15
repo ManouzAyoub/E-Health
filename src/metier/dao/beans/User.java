@@ -23,6 +23,7 @@ public class User implements Serializable {
     private String lastname;
     private String email;
     private String password;
+    private String tel;
 
     @ManyToOne
     @JoinColumn( name = "idRole", referencedColumnName = "idRole" )
@@ -79,5 +80,13 @@ public class User implements Serializable {
     public void setPassword( String password ) {
         this.password = password;
     }
+    
+    public String getTel() {
+		return tel;
+	}
+    
+    public void setTel(String tel) {
+		this.tel = tel;
+	}
 
 }
