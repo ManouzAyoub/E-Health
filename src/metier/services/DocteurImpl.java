@@ -195,7 +195,11 @@ public class DocteurImpl {
 		q.setParameter("bool", bool);
 		q.setParameter(1, "%"+ ville + "%");
 		list = q.getResultList();
-		return list;
+		if (list.size() != 0) {
+			return list;
+		}else {
+			return null;
+		}
 	}
 	
 	

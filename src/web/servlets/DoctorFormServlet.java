@@ -34,11 +34,6 @@ public class DoctorFormServlet extends HttpServlet {
 
     Role role = new Role();
 
-    public DoctorFormServlet() {
-        super();
-
-    }
-
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 

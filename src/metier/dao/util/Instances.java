@@ -1,6 +1,7 @@
 package metier.dao.util;
 
 import metier.dao.Implementations.CliniqueDao;
+
 import metier.dao.Implementations.CommentaireDao;
 import metier.dao.Implementations.DocteurDao;
 import metier.dao.Implementations.EducationDao;

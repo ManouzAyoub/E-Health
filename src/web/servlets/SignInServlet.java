@@ -40,9 +40,8 @@ public class SignInServlet extends HttpServlet {
     private Boolean aide = false;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (!aide) {
-			this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-		}
+		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+		
 	}
 
 

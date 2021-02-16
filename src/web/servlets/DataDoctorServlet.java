@@ -49,6 +49,8 @@ public class DataDoctorServlet extends HttpServlet {
 		List<Recomponse> recompences = Instances.recomImpl.getRecompenseByDoctor(docteur);
 		request.setAttribute("educations", educations);
 		request.setAttribute("recompences", recompences);
+		request.setAttribute("progressBar", Instances.ratingImpl.getPercentageOfEtoiles(docteur.getCin(), "idDocteur"));
+		request.setAttribute("evaluations", Instances.ratingImpl.countDistinctValueOfRate(docteur.getCin(), "idDocteur") );
 		//rating section
 		
 		/*

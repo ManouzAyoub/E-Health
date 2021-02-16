@@ -39,6 +39,7 @@ public class Docteur extends User{
 	    private Boolean rtelephonique;
 	    private String biographie;
 	    private String id;
+	    private Boolean first_using;
 	    @Transient
 	    private String Base64image;
 	    
@@ -218,6 +219,14 @@ public class Docteur extends User{
 			return consultationDomicile;
 		}
 
+		
+		
+		@Override
+		public String toString() {
+			return "Docteur [speciality=" + speciality + ", dispo=" + dispo + ", ville=" + ville + ", user=" + user
+					+ "]";
+		}
+
 		public void setConsultationDomicile(Boolean consultationDomicile) {
 			this.consultationDomicile = consultationDomicile;
 		}
@@ -335,6 +344,13 @@ public class Docteur extends User{
 			this.ville = ville;
 		}
 		
+		public Boolean getFirst_using() {
+			return first_using;
+		}
+		
+		public void setFirst_using(Boolean first_using) {
+			this.first_using = first_using;
+		}
 		
 
 }

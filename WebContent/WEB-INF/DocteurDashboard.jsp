@@ -371,10 +371,11 @@
                         </div>
                     </div>
                         
-                        <form method="get" action="<c:url value="InformationPerso"></c:url>">
+                        <form method="POST" action="<c:url value="ChangeImageDoctor"></c:url>" enctype="multipart/form-data">
                             <div class="imagePerso">
                                 <div class="image-card">
                                     <img id="imageDoctor" src="data:image/png;base64,${image}" width="150px" alt=""><br>
+                                    <input type="hidden" name="docteur" value="${docteur.cin}">
                                     <input id="imageInput" accept="image/*" type="file" name="image" style="display: none;" onchange="loadImage(event)">
                                     <div class="image-card">
                                         <label id="modifierImagePerso" onclick="modifierImagePerso()">Changer l'image</label>
@@ -676,19 +677,22 @@
                             <div class="table-responsive">
                                 <table style="width: 100%;">
                                     <tr>
-                                        <td rowspan="2"><h1>3.2</h1></td>
+                                        <td rowspan="2"><h1>${average}</h1></td>
                                         <td>
+                                            <c:set var="nbr" value="${averageOfRating}"></c:set>
+                                            <c:set var="result" value="${ 5 - nbr }"></c:set>
                                             <div class="text-warnning">
-                                                <span><i class="las la-lg la-star"></i></span>
-                                                <span><i class="las la-lg la-star"></i></span>
-                                                <span><i class="las la-lg la-star"></i></span>
-                                                <span><i class="lar la-lg la-star"></i></span>
-                                                <span><i class="lar la-lg la-star"></i></span>
+                                                <c:forEach var="a" begin="1" end="{nbr}">
+                                                    <span><i class="las la-lg la-star"></i></span>
+                                                </c:forEach>
+                                                <c:forEach var="b" begin="1" end="${result}">
+                                                    <span><i class="lar la-lg la-star"></i></span>
+                                                </c:forEach>
                                             </div>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><span style="vertical-align : middle;" class="smallComment"> Basée sur 320 votes</span></td>
+                                        <td><span style="vertical-align : middle;" class="smallComment"> Basée sur ${numberOfRating} votes</span></td>
                                     </tr>
                                 </table>
                             </div>
@@ -699,50 +703,50 @@
                                         <td style="width: 25%;">5 étoiles</td>
                                         <td style="width: 65%;">
                                             <div class="meter orange nostripes">
-                                                <span style="width: 50.3%"></span>
+                                                <span style="width: ${progressBar.getOrDefault(Integer.valueOf(5),"0") }%"></span>
                                             </div>
                                         </td>
-                                        <td style="width: 10%;">(15)</td>
+                                        <td style="width: 10%;">(${ evaluations.getOrDefault(Integer.valueOf(5),Long.valueOf(0)) })</td>
                                     </tr>
 
                                     <tr>
                                         <td style="width: 25%;">4 étoiles</td>
                                         <td style="width: 65%;">
                                             <div class="meter orange nostripes">
-                                                <span style="width: 50.3%"></span>
+                                                <span style="width: ${progressBar.getOrDefault(Integer.valueOf(4),"0") }%"></span>
                                             </div>
                                         </td>
-                                        <td style="width: 10%;">(13)</td>
+                                        <td style="width: 10%;">(${ evaluations.getOrDefault(Integer.valueOf(4),Long.valueOf(0)) })</td>
                                     </tr>
 
                                     <tr>
                                         <td style="width: 25%;">3 étoiles</td>
                                         <td style="width: 65%;">
                                             <div class="meter orange nostripes">
-                                                <span style="width: 50.3%"></span>
+                                                <span style="width: ${progressBar.getOrDefault(Integer.valueOf(3),"0") }%"></span>
                                             </div>
                                         </td>
-                                        <td style="width: 10%;">(30)</td>
+                                        <td style="width: 10%;">(${ evaluations.getOrDefault(Integer.valueOf(3),Long.valueOf(0)) })</td>
                                     </tr>
 
                                     <tr>
                                         <td style="width: 25%;">2 étoiles</td>
                                         <td style="width: 65%;">
                                             <div class="meter orange nostripes">
-                                                <span style="width: 50.3%"></span>
+                                                <span style="width: ${progressBar.getOrDefault(Integer.valueOf(2),"0") }%"></span>
                                             </div>
                                         </td>
-                                        <td style="width: 10%;">(20)</td>
+                                        <td style="width: 10%;">(${ evaluations.getOrDefault(Integer.valueOf(2),Long.valueOf(0)) })</td>
                                     </tr>
 
                                     <tr>
                                         <td style="width: 25%;">1 étoile</td>
                                         <td style="width: 65%;">
                                             <div class="meter orange nostripes">
-                                                <span style="width: 50.3%"></span>
+                                                <span style="width: ${progressBar.getOrDefault(Integer.valueOf(1),"0") }%"></span>
                                             </div>
                                         </td>
-                                        <td style="width: 10%;">(10)</td>
+                                        <td style="width: 10%;">(${ evaluations.getOrDefault(Integer.valueOf(1),Long.valueOf(0)) })</td>
                                     </tr>
                                 </table>
                             </div>

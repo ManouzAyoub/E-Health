@@ -8,8 +8,6 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 
 import metier.dao.beans.Clinique;
-import metier.dao.beans.Docteur;
-import metier.dao.beans.Hopital;
 import metier.dao.util.HibernateUtil;
 
 public class CliniqueImpl {

@@ -7,8 +7,6 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 
-import metier.dao.beans.Clinique;
-import metier.dao.beans.Docteur;
 import metier.dao.beans.Pharmacie;
 import metier.dao.util.HibernateUtil;
 

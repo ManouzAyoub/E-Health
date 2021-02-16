@@ -70,7 +70,13 @@ public class InformationPerDocteurServlet extends HttpServlet {
 		docteur.setLastname(nom);
 		docteur.setLangues(languages);
 	
-		Instances.docteurDao.edit(docteur);
+		if (!docteur.getFirst_using()) {
+			
+			docteur.setFirst_using(false);
+			Instances.docteurDao.edit(docteur);
+		}else {
+			Instances.docteurDao.edit(docteur);
+		}
 		
 		Docteur d = Instances.docteurDao.getById(docteur.getCin());
 		

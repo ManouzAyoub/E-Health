@@ -150,7 +150,7 @@
                Vous êtes à la recherche d'une recommandation pour un medecin ?</br></br>
                 Trouver un medecin près de chez vous et prenez votre rendez-vous !
             </p> 
-          <form method="get" action="<c:url value="/searchDoctor"/>" >
+          <form method="get" action="<c:url value="searchDoctor"></c:url>" >
               <input type="text" placeholder="Entrer votre localisation" class="localisation" name="localisation" id="" autocomplete="off" required />
               <input type="submit" class="submit" value="Chercher . . .">
           </form>

@@ -582,12 +582,18 @@
                                                         <td> ${entry.name}</td>
                                                         <td>${entry.tel}</td>
                                                         <td>${entry.getVille()} </td>
-                                                        <td> 
+                                                        <td>
                                                         <form action="<c:url value="/ToggleGarde"/>" method="get">
                                                           <input type="hidden" name="idPharmacie" value="${entry.idPharmacie }">
                                                            <div class="custom-control custom-switch" >
-												          <input type="checkbox" name="checkgarde" onchange="toggleGarde()" class="custom-control-input keepcheck" id="customSwitch1">
-												          <label class="custom-control-label" for="customSwitch1">Toggle this switch</label>
+                                                               <c:set var="checked" value="chekeded"></c:set>
+                                                               <c:if test="${entry.en_garde}">
+                                                                    <input type="checkbox"  name="checkgarde" checked onchange="toggleGarde()" class="custom-control-input keepcheck" id="customSwitch${entry.idPharmacie}">
+                                                               </c:if>
+                                                               <c:if test="${!entry.en_garde}">
+                                                                    <input type="checkbox"  name="checkgarde" onchange="toggleGarde()" class="custom-control-input keepcheck" id="customSwitch${entry.idPharmacie}">
+                                                               </c:if>
+                                                            <label class="custom-control-label" for="customSwitch${entry.idPharmacie}">Toggle this switch</label>
 												          </div>
 												          <button id="submit-toggle" type="submit" style="display:none;"></button>
                                                         </form>
@@ -807,10 +813,10 @@
     </div>
 	    <script src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
 	    <script>
-				 $(function(){
-			    var test = localStorage.input === 'true'? true: false;
-			    $('.keepcheck').prop('checked', test || false);
-			});
+            $(function(){
+                var test = localStorage.input === 'true'? true: false;
+                $('.keepcheck').prop('checked', test || false);
+            });
 			
 			$('.keepcheck').on('change', function() {
 			    localStorage.input = $(this).is(':checked');
