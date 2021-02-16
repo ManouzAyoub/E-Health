@@ -13,31 +13,30 @@ import metier.dao.util.Instances;
 
 @WebServlet("/ToggleGarde")
 public class ToggleGarde extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+	
     public static final String VUE              = "/toAdminData";
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id=request.getParameter("idPharmacie");
-	       String checkbox=request.getParameter("checkgarde");
-	       Pharmacie pharmacie= Instances.pharmacieDao.getById(Long.valueOf(id));
-	       
-	       if(checkbox!=null) {
-	    	   System.out.print("true");
-	    	   pharmacie.setEn_garde(true);
-	       }
-	       else{
-	    	   System.out.print("false");
-	    	  pharmacie.setEn_garde(false); 
-	       }
-	       Instances.pharmacieDao.edit(pharmacie);
-	       request.setAttribute("pharmacie", pharmacie);
-	       this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+		  
       
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       
+		 String id = request.getParameter("idd");
+	       String checkbox=request.getParameter("checkgarde");
+	       Pharmacie pharmacie= Instances.pharmacieDao.getById(Long.valueOf(id));
+	       if(checkbox!=null) {
+	    	   System.out.println("true");
+	    	   pharmacie.setEn_garde(true);
+	       }
+	       else{
+	    	  System.out.println("false");
+	    	  pharmacie.setEn_garde(false); 
+	       }
+	       Pharmacie pharmaci = Instances.pharmacieDao.edit(pharmacie);
+	       
+	       this.getServletContext().getRequestDispatcher( "/toAdminData" ).forward( request, response );
 	}
 
 }

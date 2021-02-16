@@ -153,6 +153,13 @@ public class Pharmacie implements Serializable{
 	public void setEn_garde(Boolean en_garde) {
 		this.en_garde = en_garde;
 	}
+
+	@Override
+	public String toString() {
+		return "Pharmacie [idPharmacie=" + idPharmacie + ", name=" + name + ", ville=" + ville + ", dispo=" + dispo
+				+ ", en_garde=" + en_garde + "]";
+	}
+	
 	
 	
 }

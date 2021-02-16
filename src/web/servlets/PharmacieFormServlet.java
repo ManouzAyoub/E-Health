@@ -42,6 +42,7 @@ public class PharmacieFormServlet extends HttpServlet {
 		pharmacie.setEmail(email);
 		pharmacie.setVille(ville);
 		pharmacie.setDispo(true);
+		pharmacie.setEn_garde(false);
 		
 		Instances.pharmacieDao.add(pharmacie);
 		

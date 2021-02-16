@@ -583,19 +583,23 @@
                                                         <td>${entry.tel}</td>
                                                         <td>${entry.getVille()} </td>
                                                         <td>
-                                                        <form action="<c:url value="/ToggleGarde"/>" method="get">
-                                                          <input type="hidden" name="idPharmacie" value="${entry.idPharmacie }">
+                                                        <form method="POST" action="<c:url value="ToggleGarde"></c:url>" >
+                                                          
                                                            <div class="custom-control custom-switch" >
                                                                <c:set var="checked" value="chekeded"></c:set>
-                                                               <c:if test="${entry.en_garde}">
-                                                                    <input type="checkbox"  name="checkgarde" checked onchange="toggleGarde()" class="custom-control-input keepcheck" id="customSwitch${entry.idPharmacie}">
+                                                               <c:set var="id" value="${entry.idPharmacie}"></c:set>
+                                                               <c:if test="${pharmacieDao.getById(id).getEn_garde() == true}">
+                                                                   <c:out value="${entry.getEn_garde()}------ ture---------"></c:out>
+                                                                    <input type="checkbox"  name="checkgarde"  onchange="toggleGarde('${entry.idPharmacie}')" class="custom-control-input keepcheck" id="customSwitch${entry.idPharmacie}" checked>
                                                                </c:if>
-                                                               <c:if test="${!entry.en_garde}">
-                                                                    <input type="checkbox"  name="checkgarde" onchange="toggleGarde()" class="custom-control-input keepcheck" id="customSwitch${entry.idPharmacie}">
+                                                               <c:if test="${pharmacieDao.getById(id).getEn_garde() == false}">
+                                                                    <c:out value="${entry.getEn_garde()}------ false--------"></c:out>
+                                                                    <input type="checkbox"  name="checkgarde" onchange="toggleGarde('${entry.idPharmacie}')" class="custom-control-input keepcheck" id="customSwitch${entry.idPharmacie}">
                                                                </c:if>
-                                                            <label class="custom-control-label" for="customSwitch${entry.idPharmacie}">Toggle this switch</label>
+                                                                <label class="custom-control-label" for="customSwitch${entry.idPharmacie}">Toggle this switch</label>
 												          </div>
-												          <button id="submit-toggle" type="submit" style="display:none;"></button>
+                                                          <input type="text" hidden name="idd" value="${entry.idPharmacie }">
+												          <button id="submit-toggle${entry.idPharmacie}" type="submit" style="display:none;"></button>
                                                         </form>
                                                         </td>
                                                         <td>
@@ -813,20 +817,18 @@
     </div>
 	    <script src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
 	    <script>
-            $(function(){
-                var test = localStorage.input === 'true'? true: false;
-                $('.keepcheck').prop('checked', test || false);
-            });
+            // $(function(){
+            //     var test = localStorage.input === 'true'? true: false;
+            //     $('.keepcheck').prop('checked', test || false);
+            // });
 			
-			$('.keepcheck').on('change', function() {
-			    localStorage.input = $(this).is(':checked');
-			    console.log($(this).is(':checked'));
-			});
+			// $('.keepcheck').on('change', function() {
+			//     localStorage.input = $(this).is(':checked');
+			//     console.log($(this).is(':checked'));
+			// });
 			
-         function toggleGarde(event){
-
-        	localStorage.checked=true;
-        	document.getElementById('submit-toggle').click();
+         function toggleGarde(id){
+        	document.getElementById('submit-toggle'+id).click();
         } 
         
     

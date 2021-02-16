@@ -1,6 +1,7 @@
 package web.servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import metier.dao.beans.Commentaire;
+import metier.dao.beans.Pharmacie;
 import metier.dao.beans.User;
 import metier.dao.util.Instances;
 
@@ -22,15 +24,21 @@ public class DataAdminServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
+	
+	List<Pharmacie> list = new ArrayList<Pharmacie>();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		list.clear();
+		System.out.println("-------------- from admin servleet ------------");
 		User u = (User) request.getAttribute("adminUser");
 		HttpSession session = request.getSession(false);
 		User visiter = (User) session.getAttribute("admin");
 		session.setAttribute("admin", visiter);
 		List<Commentaire> comments = Instances.commentImpl.getCommentsNotApproved(false, false);
 		request.setAttribute("comments", comments);
-		request.setAttribute("allPharmacies", Instances.pharmacieImpl.getAllPharmaciesAccordingToTheirAvailability(true));
+		function();
+		request.setAttribute("pharmacieDao", Instances.pharmacieDao);
+		request.setAttribute("allPharmacies", list );
 		request.setAttribute("allHospitals", Instances.hopitalImpl.getAllHopitalesAccordingToTheirAvailability(true));
 		request.setAttribute("allCliniques", Instances.cliniqueImpl.getAllClinicsAccordingToTheirAvailability(true));
 		request.setAttribute("allDoctors", Instances.docteurImpl.getDoctorsAccordingToTheirAvailability(true));
@@ -42,6 +50,10 @@ public class DataAdminServlet extends HttpServlet {
 		request.setAttribute("nbrClinics", Instances.userImpl.getNumbersOfUser("Clinique") != null ? Instances.userImpl.getNumbersOfUser("Clinique") : 0  );
 		
 		this.getServletContext().getRequestDispatcher(VUE_ADMIN).forward(request, response);
+	}
+	
+	public void function() {
+		list = Instances.pharmacieImpl.getAllPharmaciesAccordingToTheirAvailability(true);
 	}
 
 }
