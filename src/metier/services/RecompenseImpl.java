@@ -24,7 +24,11 @@ public class RecompenseImpl {
 		Query q = session.createQuery(hql);
 		q.setParameter("idDocteur", docteur.getCin());
 		List<Recomponse> list = q.getResultList();
-		return list;
+		if (list.size() != 0) {
+			return list;
+		}else {
+			return null;
+		}
 	}
 	
 	public static RecompenseImpl getInstance() {

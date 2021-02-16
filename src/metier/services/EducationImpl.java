@@ -24,7 +24,11 @@ Session session = HibernateUtil.openSession();
 		Query q = session.createQuery(hql);
 		q.setParameter("idDocteur", docteur.getCin());
 		List<Education> list = q.getResultList();
-		return list;
+		if (list.size() != 0) {
+			return list;
+		}else {
+			return null;
+		}
 	}
 	
 	public static EducationImpl getInstance() {

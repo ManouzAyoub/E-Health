@@ -26,12 +26,6 @@ import metier.services.UserImpl;
 @WebServlet("/signIn")
 public class SignInServlet extends HttpServlet {	
 	
-	DocteurDao docteurDao 						 = DocteurDao.getInstance();
-	DocteurImpl docImpl 						 = DocteurImpl.getInstance();
-	UserImpl userImpl 							 = UserImpl.getInstance();
-	CliniqueImpl cliniqueImpl 					 = CliniqueImpl.getInstance();
-	CommentaireDao commentaireDao 			     = CommentaireDao.getInstance();
-	CommentaireImpl commentaireImpl = CommentaireImpl.getInstance();
     private static final String ATT_VISITER      = "visiter";
     private static final String ATT_FORM         = "form";
     private static final String ATT_RESULTAT     = "resultat";
@@ -80,22 +74,23 @@ public class SignInServlet extends HttpServlet {
     	
     	if ( visiter.getRole().getRole().equals("docteur") ) {
     		
+    		Docteur docteur = Instances.docteurDao.getById(visiter.getCin());
     		
-        	session.setAttribute("docteur", visiter);
+        	session.setAttribute("docteur", docteur);
         	
-        	Docteur d = docteurDao.getById(visiter.getCin());
+        	this.getServletContext().getRequestDispatcher("/DataDoctor").forward(request, response);
         	
-        	// if docteur est entrer le mot de passe génerique ----> dashborad docteur sinon Home
-        	
-        	if ( form.getErreurs().isEmpty() && d.getDispo() == false ) {
-                this.getServletContext().getRequestDispatcher( SUCESS_DOCTEUR ).forward(request, response );
-            }
-        	else if ( form.getErreurs().isEmpty() && d.getDispo() == true ) {
-                this.getServletContext().getRequestDispatcher( HOME ).forward(request, response );
-            }
-        	else {
-                this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-            }
+//        	// if docteur est entrer le mot de passe génerique ----> dashborad docteur sinon Home
+//        	
+//        	if ( form.getErreurs().isEmpty() && docteur.getDispo() == false ) {
+//                this.getServletContext().getRequestDispatcher( SUCESS_DOCTEUR ).forward(request, response );
+//            }
+//        	else if ( form.getErreurs().isEmpty() && docteur.getDispo() == true ) {
+//                this.getServletContext().getRequestDispatcher( HOME ).forward(request, response );
+//            }
+//        	else {
+//                this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+//            }
 		}
     	
     	if ( visiter.getRole().getRole().equals("clinique") ) {

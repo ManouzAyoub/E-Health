@@ -182,8 +182,8 @@ public class DocteurFormService {
         }
         doctor.setPractice(practice);
         
-        doctor.setHeureDepart(9);
-        doctor.setHeureFin(15);
+        doctor.setHeureDepart("9:00");
+        doctor.setHeureFin("15:00");
         doctor.setJourDepart("Lundi");
         doctor.setJourFin("Vendredi");
         doctor.setDispo(false);

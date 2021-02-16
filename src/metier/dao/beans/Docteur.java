@@ -23,8 +23,8 @@ public class Docteur extends User{
 	
 	    private String speciality;
 	    private String adresse;
-	    private int heureDepart;
-	    private int heureFin;
+	    private String heureDepart;
+	    private String heureFin;
 	    private String jourDepart;
 	    private String jourFin;
 	    private Boolean teleMedcine;
@@ -230,19 +230,19 @@ public class Docteur extends User{
 			this.gender = gender;
 		}
 
-		public int getHeureDepart() {
+		public String getHeureDepart() {
 			return heureDepart;
 		}
 
-		public void setHeureDepart(int heureDepart) {
+		public void setHeureDepart(String heureDepart) {
 			this.heureDepart = heureDepart;
 		}
 
-		public int getHeureFin() {
+		public String getHeureFin() {
 			return heureFin;
 		}
 
-		public void setHeureFin(int heureFin) {
+		public void setHeureFin(String heureFin) {
 			this.heureFin = heureFin;
 		}
 
