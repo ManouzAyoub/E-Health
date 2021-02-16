@@ -18,7 +18,7 @@
         <div class="sidebar-menu">
             <ul>
                 <li onClick="handleClick(event)">
-                    <a id="dash" href="#"  class="buttons active" >
+                    <a id="dashboard"  href="#"  class="buttons active " >
                         
                         <span class="las la-igloo"></span>
                          <span>Dashboard</span>
@@ -41,7 +41,7 @@
                
               
                 <li>
-                    <a href="#" class="buttons" onClick="handleClick(event)">
+                    <a id="compte" href="#" class="buttons" onClick="handleClick(event)">
                         
                         <span class="las la-user-circle"></span>
                          <span>Compte</span>
@@ -76,7 +76,7 @@
             </div>
         </header>
 
-        <main class="mainTag" id="DashboardSection" style="display: none;">
+        <main class="dashboard" id="DashboardSection" >
             <div class="cards">
                 <div class="card-single">
                     <div>
@@ -267,7 +267,7 @@
                 </div>
             </div>
         </main>
-        <main class="mainTag" id="commentsDash" style="display: none;">
+        <main class="commentaire hide" id="commentsDash" >
             <div class="recent-grid">
                 <div class="projects">
                     <div class="card">
@@ -391,7 +391,7 @@
                     </div>
                 </div>
         </main>
-        <main class="mainTag" id="doctorsDash" style="display: none;" >
+        <main id="doctorsDash" class="docteur hide" >
             <div class="recent-grid">
                 <div class="projects">
                     <div class="card">
@@ -533,7 +533,7 @@
 
 
 
-        <main class="mainTag" id="ProfileSection">
+        <main id="ProfileSection" class="compte hide">
             <div class="wrapper">
                 <div class="title">
                   Modifier vos Information :
@@ -609,9 +609,7 @@
     
     <script>
         var btn = document.getElementsByClassName('buttons');
-        var dashBtn=document.getElementsByID('dash');
-        var docBtn = document.getElementsByID('docteur');
-        var sections = document.querySelectorAll(".mainTag");
+        var mains = document.getElementsByTagName('main');
 
         function handleClick(event){
             if (event.target.parentElement.classList.contains('buttons')) {
@@ -622,10 +620,18 @@
                 }
                 event.target.parentElement.classList.add('active');  
             }
+            console.log(document.querySelector("."+event.target.parentElement.id));
+            if (document.querySelector("."+event.target.parentElement.id).classList.contains('hide'))
+            {
+                console.log(document.getElementsByClassName(event.target.parentElement.id));
+                for  (var i=0 ; i<mains.length ; i++)
+                {
+                        mains[i].classList.add('hide'); 
+                }
+                document.querySelector("."+event.target.parentElement.id).classList.remove('hide');
+            }
         }
-        dashBtn.addEventListner("click",function(){
-            
-        });
+        
 
         function clickSpan(event){
             var btn = document.getElementsByClassName('spans');

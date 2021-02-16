@@ -117,6 +117,9 @@ header {
 #nav-toggle {
   display: none;
 }
+.hide {
+  display : none;
+}
 
 header h2 {
   color: #555;
