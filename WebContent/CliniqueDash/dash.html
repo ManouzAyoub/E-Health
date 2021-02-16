@@ -17,8 +17,13 @@
         </div>
         <div class="sidebar-menu">
             <ul>
+<<<<<<< HEAD
                 <li onClick="handleClick(event);show('DashboardSection')">
                     <a id="dash" href="#"  class="buttons active" >
+=======
+                <li onClick="handleClick(event)">
+                    <a id="dashboard"  href="#"  class="buttons active " >
+>>>>>>> c62d6a81776ce92ce832b6da99a6211225e009b3
                         
                         <span class="las la-igloo"></span>
                          <span>Dashboard</span>
@@ -41,7 +46,11 @@
                
               
                 <li>
+<<<<<<< HEAD
                     <a href="#" class="buttons" onClick="handleClick(event);show('ProfileSection')">
+=======
+                    <a id="compte" href="#" class="buttons" onClick="handleClick(event)">
+>>>>>>> c62d6a81776ce92ce832b6da99a6211225e009b3
                         
                         <span class="las la-user-circle"></span>
                          <span>Compte</span>
@@ -76,7 +85,7 @@
             </div>
         </header>
 
-        <main class="mainTag" id="DashboardSection" style="display: none;">
+        <main class="dashboard" id="DashboardSection" >
             <div class="cards">
                 <div class="card-single">
                     <div>
@@ -267,7 +276,7 @@
                 </div>
             </div>
         </main>
-        <main class="mainTag" id="commentsDash" style="display: none;">
+        <main class="commentaire hide" id="commentsDash" >
             <div class="recent-grid">
                 <div class="projects">
                     <div class="card">
@@ -391,7 +400,7 @@
                     </div>
                 </div>
         </main>
-        <main class="mainTag" id="doctorsDash" style="display: none;" >
+        <main id="doctorsDash" class="docteur hide" >
             <div class="recent-grid">
                 <div class="projects">
                     <div class="card">
@@ -528,7 +537,16 @@
                     </div>
                 </div>
         </main>
+<<<<<<< HEAD
         <main class="mainTag" id="ProfileSection" style="display: none;">
+=======
+
+
+
+
+
+        <main id="ProfileSection" class="compte hide">
+>>>>>>> c62d6a81776ce92ce832b6da99a6211225e009b3
             <div class="wrapper">
                 <div class="title">
                   Modifier vos Information :
@@ -597,9 +615,7 @@
     
     <script>
         var btn = document.getElementsByClassName('buttons');
-        var dashBtn=document.getElementsByID('dash');
-        var docBtn = document.getElementsByID('docteur');
-        var sections = document.querySelectorAll(".mainTag");
+        var mains = document.getElementsByTagName('main');
 
         function handleClick(event){
             if (event.target.parentElement.classList.contains('buttons')) {
@@ -610,10 +626,18 @@
                 }
                 event.target.parentElement.classList.add('active');  
             }
+            console.log(document.querySelector("."+event.target.parentElement.id));
+            if (document.querySelector("."+event.target.parentElement.id).classList.contains('hide'))
+            {
+                console.log(document.getElementsByClassName(event.target.parentElement.id));
+                for  (var i=0 ; i<mains.length ; i++)
+                {
+                        mains[i].classList.add('hide'); 
+                }
+                document.querySelector("."+event.target.parentElement.id).classList.remove('hide');
+            }
         }
-        dashBtn.addEventListner("click",function(){
-            
-        });
+        
 
         function show(param_div_id) {
             document.getElementById('main_place').innerHTML = document.getElementById(param_div_id).innerHTML;
