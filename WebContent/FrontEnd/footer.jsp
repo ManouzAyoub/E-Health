@@ -8,7 +8,28 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
 	<link rel="stylesheet"
 		href="https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css">
-	
+		<style>
+			footer{
+    position: absolute;
+    bottom:0;
+    width: 100vw;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.5px;
+    background-color:#EDF8FF;
+    box-shadow: 8px 11px 15px 5px #27AAF0;
+}
+footer .container .row div h5{
+        font:20px 'Gilroy', sans-serif;
+        letter-spacing: 2px;
+        color:#24385A;
+        
+}
+footer .container .row div ul li a i:hover{
+    color:#F4AC25;
+    transition : 0.3s ease;
+}
+
+		</style>
 </head>
 <body>
 	<footer class="pt-5 pb-4">
