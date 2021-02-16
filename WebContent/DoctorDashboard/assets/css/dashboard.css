@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
 :root {
-  --main-color: #069c54;
+  --main-color: linear-gradient(90deg, rgba(0,168,255,1) 0%, rgba(10,196,240,1) 46%, rgba(106,221,251,1) 100%);
   --color-dark: #1d2231;
   --text-grey: #8390a2;
 }
@@ -14,86 +14,6 @@
   text-decoration: none;
   font-family: "Poppins", sans-serif;
 }
-
-/*comment section*/
-        #commentsSection{
-            background-color: #f1f5f9;
-            border: 3px solid green;
-        }
-        .recent-grid-comments{
-            display: grid;
-            grid-template-columns: 1fr;
-        }
-        .delete{
-        padding: 3px;
-        background-color: #d11a2a;
-        }
-        .approve {
-        padding: 3px;
-        background-color: 069c54;
-        }
-        button img {
-        display: inline-block;
-        vertical-align: middle;
-        }
-/*comment section*/
-/*admin profile section*/
-    .card-profile {
-    flex: 1 1 auto;
-    min-height: 1px;
-    padding: 1rem;
-   }
-    .profile_section_part1{
-            display:grid;
-            grid-template-columns: 200px auto;
-    }
-        .profile{
-            display:grid;
-            grid-row-gap:17px;
-            grid-template-rows: 350px 1fr; 
-        }
-            .card-form{
-            display: grid;
-            grid-template-columns: auto;
-            
-          }
-/*admin profile section*/
-.dash_grid{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.card-body{
-  overflow-y: auto;
-  max-height: 300px;
-}
-/*demmands section*/
-.demmande_card {
-  background: #fff;
-  border-radius: 5px;
-}
-.demmande-card-body {
-  padding: 1rem;
-  overflow-y: auto;
-  max-height: 500px;
-}
-.Form {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 0.7rem;
-}
-.viewBtn {
-  background-color: #4CAF50; /* Green */
-  border: none;
-  color: white;
-  padding: 10px 10px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 12px;
-  border-radius: 8px;
-}
-/*demmands section*/
 
 .sidebar {
   width: 345px;
@@ -129,6 +49,8 @@
 
 .sidebar-menu a {
   padding-left: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   display: block;
   color: #fff;
   font-size: 1.1rem;
@@ -141,21 +63,13 @@
   color: var(--main-color);
   border-radius: 30px 0px 0px 30px;
 }
-.sidebar-menu a.active #adm{
-      content:url("https://img.icons8.com/windows/24/069c54/change-user-male--v1.png");
-	
-}
-.sidebar-menu a.active #phar{
-      content:url("https://img.icons8.com/pastel-glyph/24/069c54/hand-with-a-pill.png");
-	
-}
-.sidebar-menu a.active #hos{
-      content:url("https://img.icons8.com/material/24/069c54/hospital-2.png");
-	
-}
-.sidebar-menu a.active #cmt{
-      content:url("https://img.icons8.com/metro/24/069c54/comments.png");
-	
+
+.sidebar-menu a:hover {
+  background: #fff;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: var(--main-color);
+  border-radius: 30px 0px 0px 30px;
 }
 
 .sidebar-menu a span:first-child {
@@ -294,6 +208,12 @@ main {
 .card-single:last-child {
   background:#fff;
 }
+
+/* .card-single:last-child h1,
+.card-single:last-child div:first-child span,
+.card-single:last-child div:last-child span {
+  color:var(--text-grey);
+} */
 .card-single:last-child h1{
   color:var(--color-dark);
 }
@@ -312,9 +232,34 @@ main {
   border-radius: 5px;
 }
 
+.Commentaires{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.Cliniques{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.demmande_card {
+  background: #fff;
+  border-radius: 5px;
+  padding-bottom: 10px;
+}
+
 .card-header,
 .card-body {
   padding: 1rem;
+  overflow-y: auto;
+}
+
+.demmande-card-body {
+  background: #fff;
+  border-radius: 5px;
+  padding: 1rem;
+  overflow-y: auto;
+  max-height: 500px;
 }
 
 .card-header {
@@ -324,22 +269,127 @@ main {
   border-bottom: 1px solid #f0f0f0;
 }
 
-/* .card-header button {
-  background: var(--main-color);
+.card-header button {
+  background: rgba(0,168,255,1);
   border-radius: 10px;
   color: #fff;
   font-size: 0.8rem;
   padding: 0.5rem 1rem;
-  border: 1px solid var(--main-color);
-} */
+  border: 1px solid rgba(0,168,255,1);
+}
 
-button {
-  background: var(--main-color);
+.card-header label {
+  background: rgba(0,168,255,1);
   border-radius: 10px;
   color: #fff;
   font-size: 0.8rem;
   padding: 0.5rem 1rem;
-  border: 1px solid var(--main-color);
+  border: 1px solid rgba(0,168,255,1);
+}
+
+.card-header label:hover {
+  background: #fff;
+  border-radius: 10px;
+  color: rgba(0,168,255,1);
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(0,168,255,1);
+}
+
+.image-card {
+  background: #fff;
+  border-radius: 5px;
+  padding: 1rem;
+  overflow-y: auto;
+  max-height: 500px;
+  text-align: center;
+}
+
+.image-card label{
+  margin-top: 10px;
+  background: rgba(0,168,255,1);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(0,168,255,1);
+  text-align: center;
+}
+
+.image-card input{
+  margin-top: 10px;
+  background: rgba(0,168,255,1);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(0,168,255,1);
+  text-align: center;
+}
+
+.image-card input:hover{
+  margin-top: 10px;
+  background: #fff;
+  border-radius: 10px;
+  color: rgba(0,168,255,1);
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(0,168,255,1);
+  text-align: center;
+}
+
+.seeplace{
+  margin-top: 10px;
+  background: rgba(0,168,255,1);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 10px;
+  padding: 0.5rem 0.5rem;
+  border: 1px solid rgba(0,168,255,1);
+  text-align: center;
+}
+
+.seeplace:hover{
+  margin-top: 10px;
+  background: #fff;
+  border-radius: 10px;
+  color: rgba(0,168,255,1);
+  font-size: 10px;
+  padding: 0.5rem 0.5rem;
+  border: 1px solid rgba(0,168,255,1);
+  text-align: center;
+}
+
+.image-card label:hover{
+  margin-top: 10px;
+  background: #fff;
+  border-radius: 10px;
+  color: rgba(0,168,255,1);
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(0,168,255,1);
+  text-align: center;
+}
+
+.image-card img {
+  border-radius: 50%;
+  margin-right: 1rem;
+  text-align: center;
+}
+
+.Form button {
+  margin-top: 10px;
+  background: rgba(0,168,255,1);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(0,168,255,1);
+}
+
+.Form img {
+  border-radius: 50%;
+  margin-right: 1rem;
 }
 
 table {
@@ -358,6 +408,11 @@ td {
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
   color: #222;
+}
+
+.text-warnning {
+  color: #FEC626;
+  width: 100%;
 }
 
 td .status {
@@ -389,7 +444,19 @@ tr td:last-child {
   overflow-x: auto;
 }
 
-.customer {
+.viewBtn {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  border-radius: 8px;
+}
+
+.Form {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -424,7 +491,15 @@ tr td:last-child {
   color: var(--main-color);
 }
 
+#map {
+  width: 95%;
+  height: 200px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 @media only screen and (max-width: 1200px) {
+
   .sidebar {
     width: 70px;
   }
@@ -454,7 +529,22 @@ tr td:last-child {
   }
 }
 
+.dashboard_icon{
+  color: rgba(0,168,255,1);
+}
+
+.demmande-grid {
+  max-height: 100px;
+  width: 100%;
+  margin-top: 20px;;
+}
+
+.stars {
+  width: fit-content;
+}
+
 @media only screen and (max-width: 960px) {
+  
   .cards {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -462,6 +552,11 @@ tr td:last-child {
   .recent-grid {
     width: 60% 40%;
   }
+
+  .stars {
+    width: 40%;
+  }
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -484,6 +579,16 @@ tr td:last-child {
   header h2 {
     display: flex;
     align-items: center;
+  }
+
+  textarea {
+    height: 100%;
+    width: 100%;
+  }
+  
+  #description, #biologie {
+    height: 100%;
+    width: 75%;
   }
 
   header h2 label {
@@ -547,6 +652,7 @@ tr td:last-child {
   #nav-toggle:checked ~ .main-content {
     margin-left: 0rem !important;
   }
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -559,4 +665,24 @@ tr td:last-child {
   .cards {
     grid-template-columns: 100%;
   }
+}
+
+.meter {
+  box-sizing: content-box;
+  height: 10px; /* Can be anything */
+  position: relative; /* Just for demo spacing */
+  background: #cbeaff;
+  border-radius: 25px;
+}
+
+.meter > span {
+  display: block;
+  height: 100%;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: rgb(91, 162, 255);
+  position: relative;
+  overflow: hidden;
 }
