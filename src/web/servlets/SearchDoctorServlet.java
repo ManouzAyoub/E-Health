@@ -32,9 +32,10 @@ public class SearchDoctorServlet extends HttpServlet {
 
 		DocteurImpl docteurImpl  = DocteurImpl.getInstance();
 		
-		RoleImpl roleimpl = RoleImpl.getInstance();
+		
 		
 		List<Docteur> allDoctors = docteurImpl.getDoctorsByYourAdress(adresse,true);
+		System.out.println("from search Doctor" + allDoctors.get(0));
 		
 		if(!allDoctors.isEmpty()) {
 

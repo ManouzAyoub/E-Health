@@ -33,10 +33,16 @@ public class DoctorProfileServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// recuperer le docteur choisi par le client
-		HttpSession session         = request.getSession(false);
+		Docteur docteur = new Docteur();
+		Docteur i = (Docteur) request.getAttribute("docteur");
 		String id = request.getParameter("docteur");
-		Docteur docteur                     = Instances.docteurDao.getById(Long.valueOf(id));
-		
+		if ( i != null) {
+			docteur                     = i;
+		}
+		if (id != null) {
+			docteur                     = Instances.docteurDao.getById(Long.valueOf(id));
+		}
+				
 		List<Commentaire> lcomments = Instances.commentImpl.getComments(docteur.getCin(),"idDocteur");
 		List<Clinique> lc           = docteur.getCliniques();
 		List<Hopital> lh            = docteur.getHopitales();

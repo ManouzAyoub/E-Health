@@ -23,15 +23,14 @@ public class Docteur extends User{
 	
 	    private String speciality;
 	    private String adresse;
-	    private int heureDepart;
-	    private int heureFin;
+	    private String heureDepart;
+	    private String heureFin;
 	    private String jourDepart;
 	    private String jourFin;
 	    private Boolean teleMedcine;
 	    private Boolean consultationDomicile;
 	    private String gender;
 	    private String practice;
-	    private String tel;
 	    private Boolean dispo;
 	    private int age;
 	    private String ville;
@@ -40,6 +39,7 @@ public class Docteur extends User{
 	    private Boolean rtelephonique;
 	    private String biographie;
 	    private String id;
+	    private Boolean first_using;
 	    @Transient
 	    private String Base64image;
 	    
@@ -128,14 +128,6 @@ public class Docteur extends User{
 		public void setPractice(String practice) {
 			this.practice = practice;
 		}
-	
-		public String getTel() {
-			return tel;
-		}
-	
-		public void setTel(String tel) {
-			this.tel = tel;
-		}
 		
 	    public byte[] getId_scan() {
 			return id_scan;
@@ -205,12 +197,6 @@ public class Docteur extends User{
 
 		public void setDispo(Boolean dispo) {
 			this.dispo = dispo;
-		}
-
-		@Override
-		public String toString() {
-			return "Docteur [speciality=" + speciality + ", tel=" + tel + ", dispo=" + dispo + ", langues=" + langues
-					+ "]";
 		}	
 		
 		public String getAdresse() {
@@ -233,6 +219,14 @@ public class Docteur extends User{
 			return consultationDomicile;
 		}
 
+		
+		
+		@Override
+		public String toString() {
+			return "Docteur [speciality=" + speciality + ", dispo=" + dispo + ", ville=" + ville + ", user=" + user
+					+ "]";
+		}
+
 		public void setConsultationDomicile(Boolean consultationDomicile) {
 			this.consultationDomicile = consultationDomicile;
 		}
@@ -245,19 +239,19 @@ public class Docteur extends User{
 			this.gender = gender;
 		}
 
-		public int getHeureDepart() {
+		public String getHeureDepart() {
 			return heureDepart;
 		}
 
-		public void setHeureDepart(int heureDepart) {
+		public void setHeureDepart(String heureDepart) {
 			this.heureDepart = heureDepart;
 		}
 
-		public int getHeureFin() {
+		public String getHeureFin() {
 			return heureFin;
 		}
 
-		public void setHeureFin(int heureFin) {
+		public void setHeureFin(String heureFin) {
 			this.heureFin = heureFin;
 		}
 
@@ -350,6 +344,13 @@ public class Docteur extends User{
 			this.ville = ville;
 		}
 		
+		public Boolean getFirst_using() {
+			return first_using;
+		}
+		
+		public void setFirst_using(Boolean first_using) {
+			this.first_using = first_using;
+		}
 		
 
 }

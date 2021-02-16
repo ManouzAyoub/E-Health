@@ -24,6 +24,10 @@ public class Hopital implements Serializable{
 	private String adresse;
 	private String description;
 	private String tel;
+	private String id;
+	private String email;
+	private String ville;
+	private Boolean dispo;
 	
 	@ManyToMany
     @JoinTable( name = "T_Hopital_Docteur",
@@ -104,5 +108,38 @@ public class Hopital implements Serializable{
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getVille() {
+		return ville;
+	}
+	
+	public void setVille(String ville) {
+		this.ville = ville;
+	}
+	
+	public Boolean getDispo() {
+		return dispo;
+	}
+	
+	public void setDispo(Boolean dispo) {
+		this.dispo = dispo;
+	}
+	
 	
 }

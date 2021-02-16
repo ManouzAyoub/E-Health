@@ -7,7 +7,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Document</title>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value="./assets/css/dashboard.css" />" >
+    <!-- toggle button -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- toggle button -->
+    <style>
+    
+        .card-profile {
+            flex: 1 1 auto;
+            min-height: 1px;
+            padding: 1rem;
+        }
+        .profile_section_part1{
+                display:grid;
+                grid-template-columns: 200px auto;
+        }
+        .profile{
+            display:grid;
+            grid-row-gap:17px;
+            grid-template-rows: 350px 1fr; 
+        }
+            .card-form{
+            display: grid;
+            grid-template-columns: auto;
+            
+          }
+
+    </style>
 </head>
 <body>
     <input type="checkbox" id="nav-toggle">
@@ -18,8 +45,15 @@
         </div>
         <div class="sidebar-menu">
             <ul>
+            
                 <li>
-                    <a href="#" class="buttons active" onclick="handleClick(event);show('dashboard')">
+                    <a href="#" class="buttons active" onclick="handleClick(event);show('profile')">
+                        
+                    <img id="adm" src="https://img.icons8.com/windows/24/ffffff/change-user-male--v1.png" style="padding-right:12px"/>                        Admin Profile
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="buttons" onclick="handleClick(event);show('dashboard')">
                         
                         <span class="las la-igloo"></span>
                         Dashboard
@@ -29,13 +63,51 @@
                     <a href="#" class="buttons dash" onClick="handleClick(event);show('Demmandes')">
                         
                         <span class="las la-clipboard-list"></span>
-                        Demmandes
+                        Demands
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="buttons dash" onClick="handleClick(event);show('pharmacy')">
+                        
+                        <img  id="phar" src="https://img.icons8.com/pastel-glyph/24/ffffff/hand-with-a-pill.png"  style="padding-right:12px"/>
+                        Pharmacy
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="buttons dash" onClick="handleClick(event);show('hospital')">
+                        
+                        <img id="hos" src="https://img.icons8.com/material/24/ffffff/hospital-2.png"  style="padding-right:12px"/>
+                        Hospital
                     </a>
                 </li>
                 <li>
                     <a href="#" class="buttons btn-comment"  onclick="handleClick(event);show('comments_Section')">
-                        <span class="las la-user-circle"></span>
+                        <img id="cmt" src="https://img.icons8.com/metro/24/ffffff/comments.png" style="padding-right:12px"/>
                         Comments
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="buttons dash"  onclick="handleClick(event);show('doctors_Section')">
+                        <span class="las la-user-circle"></span>
+                        List of profile doctors
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="buttons dash"  onclick="handleClick(event);show('cliniques_Section')">
+                        <span class="las la-user-circle"></span>
+                        List of profile clinics
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="buttons dash"  onclick="handleClick(event);show('pharmacies_Section')">
+                        <span class="las la-user-circle"></span>
+                        List of profile pharmacies
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="buttons dash"  onclick="handleClick(event);show('hospitals_Section')">
+                        <span class="las la-user-circle"></span>
+                        List of profile hospitals
                     </a>
                 </li>
             </ul>
@@ -54,7 +126,7 @@
             </div>
 
             <div class="user-wrapper">
-                <img src="<c:url value="./assets/img/unknown.png" />" width="40px" height="40px" alt="">
+                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" width="40px" height="40px" alt="">
                 <div class="user-wrapper-info">
                     <h4>${sessionScope.admin.firstname} ${sessionScope.admin.lastname}</h4>
                     <small>super admin</small>
@@ -80,7 +152,7 @@
                     </div>
         
                     <div class="user-wrapper">
-                        <img src="<c:url value="./assets/img/unknown.png" />" width="40px" height="40px" alt="">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" width="40px" height="40px" alt="">
                         <div class="user-wrapper-info">
                             <h4>${sessionScope.admin.firstname} ${sessionScope.admin.lastname}</h4>
                             <small>super admin</small>
@@ -89,7 +161,6 @@
                 </header>
         
                 <main>
-        
                     <div class="demmande-grid">
         
                         <div class="Dommendes-card">
@@ -128,6 +199,15 @@
                                         </div>
                                      </c:forEach>
                                   </c:if>
+                                  <c:if test="${clinics.isEmpty() && docs.isEmpty()}">
+                                    <div class="Form">
+                                        <div class="info">
+                                            <div>
+                                                <h4>aucun clinique / docteur a approver</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </c:if>
                                 </div>
                             </div>
                         </div>
@@ -135,6 +215,159 @@
                 </main>
             </div>
            <!-- demandes -->
+           
+           <!-- profile -->
+           <div  id="profile" style="display:none;">
+           <div class="profile">
+           <div class="profile_section_part1">
+           <div class="card-profile" style="border:5px solid green;width:200px;height: auto;">
+                <div class="d-flex flex-column align-items-center text-center">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                    <div class="mt-3">
+                        <h4> ${sessionScope.admin.firstname} ${sessionScope.admin.lastname}</h4>
+                        <p class="text-secondary mb-1">super admin</p>
+                        <!-- <p class="text-muted font-size-sm">Agadir,salam</p> -->
+                    </div>
+                </div>
+            </div>
+    
+           <div class="card-profile">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Full Name</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        ${sessionScope.admin.firstname} ${sessionScope.admin.lastname}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        ${sessionScope.admin.email}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Phone</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        ${sessionScope.admin.tel}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <h6 class="mb-0">Role</h6>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                      Administrateur
+                    </div>
+                  </div>
+                </div>
+           </div>
+           <div class="card-form">
+                          <form method="POST" action="<c:url value="/AdminProfile"></c:url>">
+                              <div class="form-group" style="display: none;">
+                                <label for="exampleInputEmail1">ID</label>
+                                <input type="text" name="id" value="${sessionScope.admin.cin}" class="form-control" id="exampleInputEmail1" placeholder="id">
+                              </div>
+                              <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" name="email" value="${sessionScope.admin.email}" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                              </div>
+                                <div class="form-group">
+                                <label for="exampleInputEmail1">Phone</label>
+                                <input type="text" name="tel" value="${sessionScope.admin.tel}" class="form-control" id="exampleInputPhone" placeholder="Phone Number">
+                              </div>
+                              <div class="form-group">
+                                <label for="ancien">Ancien mot de pass</label>
+                                <input type="password" name="acien_pass" class="form-control" id="ancien" placeholder="Ancien mot de pass">
+                              </div>
+                              <div class="form-group">
+                                <label for="exampleInputPassword1">Nouveau Password</label>
+                                <input type="password" name="nv_pass" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                              </div>
+                              <div class="form-group">
+                                <label for="exampleInputPassword2">Confirmation password</label>
+                                <input type="password" name="confirmation_password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+                              </div>
+                              <button type="submit">Submit</button>
+                            </form>    
+                       </div>
+                </div>     
+           </div>
+           <!-- profile -->
+           
+           <!-- pharmacie -->
+           <div id="pharmacy" style="display:none;">
+               <div class="card-form-pharmacy">
+                      <form  method="POST" action="<c:url value="/PharmacieForm" ></c:url>">
+                            <div class="form-group">
+                                <label for="inputName">Name</label>
+                                <input type="text" name="name" class="form-control" id="inputName" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="inpulVille">Ville</label>
+                                <input type="text" name="ville"  class="form-control" id="inpulVille" placeholder="Ville">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputLastName">Address</label>
+                                <input type="text" name="adresse"  class="form-control" id="inputAddress" placeholder="Address">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Phone</label>
+                                <input type="tel" name="tel" class="form-control" id="exampleInputTel" placeholder="Tel">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Location ID</label>
+                                <input type="text" name="id" class="form-control" id="exampleInputID" placeholder="LocationID">
+                            </div>
+                
+                              <button type="submit">Submit</button>
+                            </form>    
+    </div>
+           </div>
+           <!-- pharmacie -->
+           
+           <!-- hospital -->
+           <div id="hospital" style="display:none;">
+                        <form method="POST" action="<c:url value="/HospitalForm" ></c:url>">
+                            <div class="form-group">
+                                <label for="inputName">Name</label>
+                                <input type="text" name="name" class="form-control" id="inputName" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputVille">Ville</label>
+                                <input type="text" name="ville" class="form-control" id="inputVille" placeholder="Ville">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress">Address</label>
+                                <input type="text" name="adresse" class="form-control" id="inputAddress" placeholder="Address">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputTel">Phone</label>
+                                <input type="tel" name="tel" class="form-control" id="exampleInputTel" placeholder="Tel">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputID">Location ID</label>
+                                <input type="text" name="id" class="form-control" id="exampleInputID" placeholder="LocationID">
+                            </div>
+                               <button type="submit">Submit</button>
+                        </form>
+           </div>
+           <!-- hospital -->
 
             <!-- comment section -->
             <div class="commentsSection" id="comments_Section" style="display:none;">
@@ -158,42 +391,47 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
-                                            <c:forEach var="entry" items="${comments}">
+                                            <c:if test="${!comments.isEmpty()}">
+                                                <c:forEach var="entry" items="${comments}">
+                                                    <tr>
+                                                        <td> ${entry.getUser().getFirstname()} ${entry.getUser().getLastname()}</td>
+                                                        <c:if test="${entry.getDocteur() != null}">
+                                                            <td>Doctor</td>
+                                                            <td>${entry.getDocteur().getFirstname()} ${ entry.getDocteur().getLastname() }</td>
+                                                        </c:if>
+                                                        <c:if test="${entry.getClinique() != null}">
+                                                            <td>Doctor</td>
+                                                            <td>${entry.getClinique().getName()} </td>
+                                                        </c:if>
+                                                        <c:if test="${entry.getHopital() != null}">
+                                                            <td>Doctor</td>
+                                                            <td>${entry.getHopital().getName()} </td>
+                                                        </c:if>
+                                                        <td>
+                                                            <span class="status orange"></span>
+                                                            ${entry.commentaire}
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-danger " href="<c:url value="/GestionComment"><c:param name = "dlte" value = "${entry.idCommentaire}"/></c:url>">
+                                                                <img src="https://img.icons8.com/metro/14/ffffff/delete-sign.png" />
+                                                                &nbsp;delete
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-success " href="<c:url value="/GestionComment"><c:param name = "apprv" value = "${entry.idCommentaire}"/></c:url>">
+                                                                <img src="https://img.icons8.com/metro/14/ffffff/approve.png"/>
+                                                                &nbsp;approve
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                
+                                                </c:forEach>
+                                            </c:if>
+                                            <c:if test="${comments.isEmpty()}">
                                                 <tr>
-                                                    <td> ${entry.getUser().getFirstname()} ${entry.getUser().getLastname()}</td>
-                                                    <c:if test="${entry.getDocteur() != null}">
-                                                        <td>Doctor</td>
-                                                        <td>${entry.getDocteur().getFirstname()} ${ entry.getDocteur().getLastname() }</td>
-                                                    </c:if>
-                                                    <c:if test="${entry.getClinique() != null}">
-                                                        <td>Doctor</td>
-                                                        <td>${entry.getClinique().getName()} </td>
-                                                    </c:if>
-                                                    <c:if test="${entry.getHopital() != null}">
-                                                        <td>Doctor</td>
-                                                        <td>${entry.getHopital().getName()} </td>
-                                                    </c:if>
-                                                    <td>
-                                                        <span class="status orange"></span>
-                                                        ${entry.commentaire}
-                                                    </td>
-                                                    <td>
-                                                        <a class="delete" href="<c:url value="/GestionComment"><c:param name = "dlte" value = "${entry.idCommentaire}"/></c:url>">
-                                                            <img src="https://img.icons8.com/metro/14/ffffff/delete-sign.png" />
-                                                            &nbsp;delete
-                                                        </a>
-                                                    </td>
-                                                    <td>
-                                                        <a class="approve" href="<c:url value="/GestionComment"><c:param name = "apprv" value = "${entry.idCommentaire}"/></c:url>">
-                                                            
-                                                            <img src="https://img.icons8.com/metro/14/ffffff/approve.png"/>
-                                                            &nbsp;approve
-                                                        </a>
-                                                    </td>
+                                                    <td colspan="5"> aucun commentaire  -- modifier le text</td>
                                                 </tr>
-                                            </c:forEach>    
-            
+                                            </c:if>
                                         </tbody>
                                     </table>
                                 </div>
@@ -202,6 +440,244 @@
                     </div>
             </div>
             <!-- comment section -->
+
+            <!-- list doctor section -->
+            <div id="doctors_Section" style="display:none;">
+                <div class="recent-grid-comments">
+                    <div class="projects">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>List des docteurs</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table width="100%">
+                                        <thead>
+                                            <tr>
+                                                <td>Username</td>
+                                                <td>Speciality</td>
+                                                <td>ville</td>
+                                                <td>Delete</td>
+                                                <td>show profile</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:if test="${!allDoctors.isEmpty()}">
+                                                <c:forEach var="entry" items="${allDoctors}">
+                                                    <tr>
+                                                        <td> ${entry.getFirstname()} ${entry.getLastname()}</td>
+                                                        <td>${entry.getSpeciality()}</td>
+                                                        <td>${entry.getVille()} </td>
+                                                        <td>
+                                                            <a class="btn btn-danger " href="<c:url value="/admin"><c:param name = "dlte" value = "${entry.cin}"/></c:url>">
+                                                                <img src="https://img.icons8.com/metro/14/ffffff/delete-sign.png" />
+                                                                &nbsp;delete
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-success " href="<c:url value="/admin"><c:param name = "show" value = "${entry.cin}"/></c:url>">
+                                                                <img src="https://img.icons8.com/metro/14/ffffff/approve.png"/>
+                                                                &nbsp;show profile
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                
+                                                </c:forEach>
+                                            </c:if>
+                                            <c:if test="${allDoctors == null}">
+                                                <tr>
+                                                    <td colspan="5">AUCUN DOCTEUR</td>
+                                                </tr>
+                                            </c:if>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <!-- !list docteur section -->
+
+            <!-- list cliniques section -->
+            <div id="cliniques_Section" style="display:none;">
+                <div class="recent-grid-comments">
+                    <div class="projects">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>List des cliniques</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table width="100%">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>Speciality</td>
+                                                <td>ville</td>
+                                                <td>Delete</td>
+                                                <td>show profile</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:if test="${!allCliniques.isEmpty()}">
+                                                <c:forEach var="entry" items="${allCliniques}">
+                                                    <tr>
+                                                        <td> ${entry.name}</td>
+                                                        <td>${entry.speciality}</td>
+                                                        <td>${entry.getVille()} </td>
+                                                        <td>
+                                                            <a class="btn btn-danger " href="<c:url value="/admin"><c:param name = "dlte_clinique" value = "${entry.cin}"/></c:url>">
+                                                                <img src="https://img.icons8.com/metro/14/ffffff/delete-sign.png" />
+                                                                &nbsp;delete
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-success " href="<c:url value="/admin"><c:param name = "show_clinique" value = "${entry.cin}"/></c:url>">
+                                                                <img src="https://img.icons8.com/metro/14/ffffff/approve.png"/>
+                                                                &nbsp;show profile
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                
+                                                </c:forEach>
+                                            </c:if>
+                                            <c:if test="${allCliniques == null}">
+                                                <tr>
+                                                    <td colspan="5">AUCUN CLINIQUE</td>
+                                                </tr>
+                                            </c:if>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <!-- !list cliniques section -->
+
+            <!-- List Pharmacies section -->
+            <div id="pharmacies_Section" style="display:none;">
+                <div class="recent-grid-comments">
+                    <div class="projects">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>List des pharmacies</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table width="100%">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>telephone</td>
+                                                <td>ville</td>
+                                                <td>en garde</td>
+                                                <td>Delete</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:if test="${!allPharmacies.isEmpty()}">
+                                                <c:forEach var="entry" items="${allPharmacies}">
+                                                    <tr>
+                                                        <td> ${entry.name}</td>
+                                                        <td>${entry.tel}</td>
+                                                        <td>${entry.getVille()} </td>
+                                                        <td>
+                                                        <form action="<c:url value="/ToggleGarde"/>" method="get">
+                                                          <input type="hidden" name="idPharmacie" value="${entry.idPharmacie }">
+                                                           <div class="custom-control custom-switch" >
+                                                               <c:set var="checked" value="chekeded"></c:set>
+                                                               <c:if test="${entry.en_garde}">
+                                                                    <input type="checkbox"  name="checkgarde" checked onchange="toggleGarde()" class="custom-control-input keepcheck" id="customSwitch${entry.idPharmacie}">
+                                                               </c:if>
+                                                               <c:if test="${!entry.en_garde}">
+                                                                    <input type="checkbox"  name="checkgarde" onchange="toggleGarde()" class="custom-control-input keepcheck" id="customSwitch${entry.idPharmacie}">
+                                                               </c:if>
+                                                            <label class="custom-control-label" for="customSwitch${entry.idPharmacie}">Toggle this switch</label>
+												          </div>
+												          <button id="submit-toggle" type="submit" style="display:none;"></button>
+                                                        </form>
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-danger " href="<c:url value="/admin"><c:param name = "dlte_pharmacie" value = "${entry.idPharmacie}"/></c:url>">
+                                                                <img src="https://img.icons8.com/metro/14/ffffff/delete-sign.png" />
+                                                                &nbsp;delete
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                
+                                                </c:forEach>
+                                            </c:if>
+                                            <c:if test="${allPharmacies == null}">
+                                                <tr>
+                                                    <td colspan="5">AUCUN PHARMACIES</td>
+                                                </tr>
+                                            </c:if>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <!-- !List Pharmacies section -->
+
+            <!-- List Hospitals section -->
+            <div id="hospitals_Section" style="display:none;">
+                <div class="recent-grid-comments">
+                    <div class="projects">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3>List des hopitales</h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table width="100%">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>telephone</td>
+                                                <td>ville</td>
+                                                <td>Delete</td>
+                                                <td>show profile</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:if test="${!allHospitals.isEmpty()}">
+                                                <c:forEach var="entry" items="${allHospitals}">
+                                                    <tr>
+                                                        <td> ${entry.name}</td>
+                                                        <td>${entry.tel}</td>
+                                                        <td>${entry.getVille()} </td>
+                                                        <td>
+                                                            <a class="btn btn-danger " href="<c:url value="/admin"><c:param name = "dlte_hopital" value = "${entry.idHopital}"/></c:url>">
+                                                                <img src="https://img.icons8.com/metro/14/ffffff/delete-sign.png" />
+                                                                &nbsp;delete
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            <a class="btn btn-success " href="<c:url value="/admin"><c:param name = "show_hopital" value = "${entry.idHopital}"/></c:url>">
+                                                                <img src="https://img.icons8.com/metro/14/ffffff/approve.png"/>
+                                                                &nbsp;show profile
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                
+                                                </c:forEach>
+                                            </c:if>
+                                            <c:if test="${allHospitals == null}">
+                                                <tr>
+                                                    <td colspan="5">AUCUN Hopital</td>
+                                                </tr>
+                                            </c:if>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <!-- !List Hospitals section -->
 
             <!-- Dashboard -->
             <div id="dashboard"  class="dash_grid" style="display:none;">
@@ -335,8 +811,25 @@
 
         </main>
     </div>
+	    <script src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+	    <script>
+            $(function(){
+                var test = localStorage.input === 'true'? true: false;
+                $('.keepcheck').prop('checked', test || false);
+            });
+			
+			$('.keepcheck').on('change', function() {
+			    localStorage.input = $(this).is(':checked');
+			    console.log($(this).is(':checked'));
+			});
+			
+         function toggleGarde(event){
 
-    <script>
+        	localStorage.checked=true;
+        	document.getElementById('submit-toggle').click();
+        } 
+        
+    
         var btn = document.getElementsByClassName('buttons');
         function handleClick(event){
             if (event.target.classList.contains('buttons')) {
@@ -359,8 +852,15 @@
 
         }
         function show(param_div_id) {
-    document.getElementById('main_place').innerHTML = document.getElementById(param_div_id).innerHTML;
-  }
+            document.getElementById('main_place').innerHTML = document.getElementById(param_div_id).innerHTML;
+        }
+
+        function handleOnLoad(){
+            var btn = document.getElementById('dashboard');
+            btn.click();
+        }
+
+          
 
     </script>
 </body>

@@ -17,14 +17,19 @@
         </div>
         <div class="sidebar-menu">
             <ul>
+<<<<<<< HEAD
+                <li onClick="handleClick(event);show('DashboardSection')">
+                    <a id="dash" href="#"  class="buttons active" >
+=======
                 <li onClick="handleClick(event)">
                     <a id="dashboard"  href="#"  class="buttons active " >
+>>>>>>> c62d6a81776ce92ce832b6da99a6211225e009b3
                         
                         <span class="las la-igloo"></span>
                          <span>Dashboard</span>
                     </a>
                 </li>
-                <li onClick="handleClick(event)">
+                <li onClick="handleClick(event);show('doctorsDash')">
                     <a id="docteur" href="#" class="buttons" >
                         
                         <span class="las la-users"></span>
@@ -32,7 +37,7 @@
                     </a>
                 </li>
                 <li>
-                    <a id="commentaire" href="#" class="buttons" onClick="handleClick(event)">
+                    <a id="commentaire" href="#" class="buttons" onClick="handleClick(event);show('commentsDash')">
                         
                         <span class="las la-star"></span>
                          <span>Commentaires</span>
@@ -41,7 +46,11 @@
                
               
                 <li>
+<<<<<<< HEAD
+                    <a href="#" class="buttons" onClick="handleClick(event);show('ProfileSection')">
+=======
                     <a id="compte" href="#" class="buttons" onClick="handleClick(event)">
+>>>>>>> c62d6a81776ce92ce832b6da99a6211225e009b3
                         
                         <span class="las la-user-circle"></span>
                          <span>Compte</span>
@@ -528,12 +537,16 @@
                     </div>
                 </div>
         </main>
+<<<<<<< HEAD
+        <main class="mainTag" id="ProfileSection" style="display: none;">
+=======
 
 
 
 
 
         <main id="ProfileSection" class="compte hide">
+>>>>>>> c62d6a81776ce92ce832b6da99a6211225e009b3
             <div class="wrapper">
                 <div class="title">
                   Modifier vos Information :
@@ -594,13 +607,6 @@
             </div>
         </main>
 
-
-
-
-
-
-
-
     </div>
 
     <div>
@@ -633,8 +639,8 @@
         }
         
 
-        function clickSpan(event){
-            var btn = document.getElementsByClassName('spans');
+        function show(param_div_id) {
+            document.getElementById('main_place').innerHTML = document.getElementById(param_div_id).innerHTML;
         }
         
     </script>

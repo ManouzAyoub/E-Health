@@ -16,7 +16,7 @@
     <fieldset>
       <input placeholder="doc's name" type="text" tabindex="1" value="${doc.firstname }" autofocus>
     </fieldset>
-        <fieldset>
+    <fieldset>
       <input placeholder="doc's lastname" type="text" tabindex="1" value="${doc.lastname }" autofocus>
     </fieldset>
     <fieldset>
@@ -32,14 +32,13 @@
       <input placeholder="doc practices in a " type="text" value="${doc.practice }" tabindex="4" >
     </fieldset>
     <fieldset>
-      	<button name="submit" type="submit" id="demmande_approve" data-submit="...Sending">approve</button>
+      	<button name="approve" type="submit" id="demmande_approve" data-submit="...Sending">approve</button>
     </fieldset>
-  </form>
-  <form method="get" action="<c:url value="/SendEmail" />">
-  	<fieldset>
-  		<button name="submit" type="submit" id="demmande_desapprove" data-submit="...Sending" style="background-color: #d11a2a;">desapprove</button>
+    <fieldset>
+  		  <button name="desapprove" type="submit" id="demmande_desapprove" data-submit="...Sending" style="background-color: #d11a2a;">desapprove</button>
   	</fieldset>
   </form>
+  
 </div>
 <!-- partial -->
   

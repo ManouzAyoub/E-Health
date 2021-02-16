@@ -45,6 +45,18 @@ public class CommentaireImpl {
 		}
 	}
 	
+	public Long getNumbersOfComments(Long id, String par){
+		String hql = "select count(c) from Commentaire c where "+ par +" = :id";
+		Query q = session.createQuery(hql);
+		q.setParameter("id", id);
+		List<Long> list = q.getResultList();
+		if (list.size() != 0) {
+			return list.get(0);
+		}else {
+			return null;
+		}
+	}
+	
 	public static CommentaireImpl getInstance() {
 	    if (instance == null)
 	                   instance = new CommentaireImpl();

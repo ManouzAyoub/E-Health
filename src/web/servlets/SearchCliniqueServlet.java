@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import metier.dao.beans.Clinique;
+import metier.dao.util.Instances;
 import metier.services.CliniqueImpl;
 import metier.services.RatingImpl;
 
@@ -21,23 +22,21 @@ public class SearchCliniqueServlet extends HttpServlet {
 	private static final String HOME            = "/WEB-INF/Home.jsp";
 	private static final String CHAMP_RECHERCHE = "adresse";
 	List<Clinique> cliniques                    = new ArrayList<Clinique>();
-	CliniqueImpl cliniqueImpl                   = CliniqueImpl.getInstance();
-	RatingImpl ratingImpl                       = RatingImpl.getInstance();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String adresse = request.getParameter(CHAMP_RECHERCHE);
 		
-		cliniques                               = cliniqueImpl.getAllClinicsAccordingToTheirAvailabilityAndAdress(adresse, true);
+		cliniques                               = Instances.cliniqueImpl.getAllClinicsAccordingToTheirAvailabilityAndAdress(adresse, true);
 		
 		
 		
 		if (cliniques != null) {
 			request.setAttribute("cliniques", cliniques);
-			request.setAttribute("impl", ratingImpl);
+			request.setAttribute("impl", Instances.ratingImpl);
 			this.getServletContext().getRequestDispatcher( VUE ).forward(request, response);
 		}else {
 			request.setAttribute("cliniques", cliniques);
-			request.setAttribute("impl", ratingImpl);
+			request.setAttribute("impl", Instances.ratingImpl);
 			this.getServletContext().getRequestDispatcher( VUE ).forward(request, response);
 		}
 	}

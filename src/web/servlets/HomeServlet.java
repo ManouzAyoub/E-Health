@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import metier.dao.Implementations.LangueDao;
-import metier.dao.Implementations.RoleDao;
 import metier.dao.beans.Langue;
 import metier.dao.beans.Role;
 import metier.dao.beans.User;
