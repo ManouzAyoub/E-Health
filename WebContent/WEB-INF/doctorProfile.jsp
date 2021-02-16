@@ -339,7 +339,7 @@
                                             </div>
                                         </div>
                                         <form method="get" action="<c:url value="signIn"></c:url>">
-                                            <button id="rateBtn" type="submit" class="btn font-size-16 font-gilroy-bold color-second">Sign in</button>
+                                            <button id="rateBtn" type="submit" class="btn font-size-16 font-gilroy-bold color-second">Se connecter</button>
                                         </form>
                                     </c:if>
                                     <c:if test="${ sessionScope.visiter != null }">
@@ -400,6 +400,7 @@
 
                             </div>
                         </div>
+                        
                     </div>
                     
                 </div>

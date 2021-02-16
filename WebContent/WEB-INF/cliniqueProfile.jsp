@@ -269,16 +269,33 @@
                                     <h6 class="card-title mb-2 text-muted">Donnez votre évaluation</h6>
                                     <p class="card-text card-doctor-text"></p>
                                     <!-- If he already voted -->
-                                    <div class="container">
-                                        <div class="rating font-size-20 text-warning">
-                                            <span><i class="fas fa-star"></i></span>
-                                            <span><i class="fas fa-star"></i></span>
-                                            <span><i class="fas fa-star"></i></span>
-                                            <span><i class="far fa-star"></i></span>
-                                            <span><i class="far fa-star"></i></span>
+                                   
+                                    <c:if test="${ sessionScope.visiter == null }">
+                                        <div class="container">
+                                            <div class="rating font-size-20 text-warning">
+                                                <span><i class="far fa-star"></i></span>
+                                                <span><i class="far fa-star"></i></span>
+                                                <span><i class="far fa-star"></i></span>
+                                                <span><i class="far fa-star"></i></span>
+                                                <span><i class="far fa-star"></i></span>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <button id="rateBtn" class="btn font-size-16 font-gilroy-bold color-second">Laisser une évaluation</button>
+                                        <form method="get" action="<c:url value="signIn"></c:url>">
+                                            <button id="rateBtn" type="submit" class="btn font-size-16 font-gilroy-bold color-second">Se connecter</button>
+                                        </form>
+                                    </c:if>
+                                    <c:if test="${ sessionScope.visiter != null }">
+                                        <!-- <div class="container">
+                                            <div class="rating font-size-20 text-warning">
+                                                <span><i class="far fa-star"></i></span>
+                                                <span><i class="far fa-star"></i></span>
+                                                <span><i class="far fa-star"></i></span>
+                                                <span><i class="far fa-star"></i></span>
+                                                <span><i class="far fa-star"></i></span>
+                                            </div>
+                                        </div> -->
+                                        <button id="rateBtn" class="btn font-size-16 font-gilroy-bold color-second">Laisser une évaluation</button>
+                                    </c:if>
 
                                     <!-- The Modal -->
                                     <div id="myModal" class="modal">
@@ -291,70 +308,41 @@
                                                     <h6 class="card-title mb-2 text-muted">Donnez votre évaluation</h6>
                                                     <p class="card-text card-doctor-text"></p>
 
-                                                    <c:if test="${ sessionScope.visiter == null }">
-                                                        <form action="<%=request.getContextPath()%>/signIn" method="get">
-                                                            <div class="container">
-                                                                <div class="font-size-20 starrating risingstar d-flex justify-content-center flex-row-reverse">
-                                                                    <input type="radio" id="star5" name="ratingStars" value="5" /><label for="star5" title="5 star"></label>
-                                                                    <input type="radio" id="star4" name="ratingStars" value="4" /><label for="star4" title="4 star"></label>
-                                                                    <input type="radio" id="star3" name="ratingStars" value="3" /><label for="star3" title="3 star"></label>
-                                                                    <input type="radio" id="star2" name="ratingStars" value="2" /><label for="star2" title="2 star"></label>
-                                                                    <input type="radio" id="star1" name="ratingStars" value="1" /><label for="star1" title="1 star"></label>
-                                                                    <input type="text" id="userRating" hidden>
-                                                                </div>
-        
-                                                                <div id="OwnComment" class="card bg-light">
-                                                                    <div class="user-card card-body">
-                                                                        <div >
-                                                                            <h3 class="font-size-16 font-golroy-bold">Laisser un commentaire</h3>
-                                                                            <h4 id="comment_header" class="font-size-14 font-montserrat">Quesque vous penser apropot de service de </h4>
-                                                                        </div>
-                                            
-                                                                        <textarea name="userOwnComment" id="userOwnComment" class="form-control" rows="3" disabled></textarea>
-                                                                        <h3 id="rating_notice" class="font-size-12 font-golroy-bold"><em>** Vous devez laisser une évaluation avant de commenter !!</em></h3>
-                                                                    </div>
-                                                                </div>
-                                                                <input type="submit" value="Evaluer" class="btn btn-outline-info my-2 border-0 font-size-16 font-gilroy-bold" id="CommentBtn" disabled>
+                                                    <form action="<%=request.getContextPath()%>/Evaluation" method="get">
+                                                        <div class="container">
+                                                            <div class="font-size-20 starrating risingstar d-flex justify-content-center flex-row-reverse">
+                                                                <input type="radio" id="star5" name="ratingStars" value="5" /><label for="star5" title="5 star"></label>
+                                                                <input type="radio" id="star4" name="ratingStars" value="4" /><label for="star4" title="4 star"></label>
+                                                                <input type="radio" id="star3" name="ratingStars" value="3" /><label for="star3" title="3 star"></label>
+                                                                <input type="radio" id="star2" name="ratingStars" value="2" /><label for="star2" title="2 star"></label>
+                                                                <input type="radio" id="star1" name="ratingStars" value="1" /><label for="star1" title="1 star"></label>
+                                                                <input type="text" id="userRating" hidden>
                                                             </div>
-                                                        </form>
-                                                    </c:if>
-
-                                                    <c:if test="${ sessionScope.visiter != null }">
-                                                        <form action="<%=request.getContextPath()%>/addComment" method="post">
-                                                            <div class="container">
-                                                                <div class="font-size-20 starrating risingstar d-flex justify-content-center flex-row-reverse">
-                                                                    <input type="radio" id="star5" name="ratingStars" value="5" /><label for="star5" title="5 star"></label>
-                                                                    <input type="radio" id="star4" name="ratingStars" value="4" /><label for="star4" title="4 star"></label>
-                                                                    <input type="radio" id="star3" name="ratingStars" value="3" /><label for="star3" title="3 star"></label>
-                                                                    <input type="radio" id="star2" name="ratingStars" value="2" /><label for="star2" title="2 star"></label>
-                                                                    <input type="radio" id="star1" name="ratingStars" value="1" /><label for="star1" title="1 star"></label>
-                                                                    <input type="text" id="userRating" hidden>
-                                                                </div>
-        
-                                                                <div id="OwnComment" class="card bg-light">
-                                                                    <div class="user-card card-body">
-                                                                        <div >
-                                                                            <h3 class="font-size-16 font-golroy-bold">Laisser un commentaire</h3>
-                                                                            <h4 id="comment_header" class="font-size-14 font-montserrat">Quesque vous penser apropot de service de </h4>
-                                                                        </div>
-                                            
-                                                                        <textarea name="userOwnComment" id="userOwnComment" class="form-control" rows="3" disabled></textarea>
-                                                                        <h3 id="rating_notice" class="font-size-12 font-golroy-bold"><em>** Vous devez laisser une évaluation avant de commenter !!</em></h3>
+    
+                                                            <div id="OwnComment" class="card bg-light">
+                                                                <div class="user-card card-body">
+                                                                    <div >
+                                                                        <h3 class="font-size-16 font-golroy-bold">Laisser un commentaire</h3>
+                                                                        <h4 id="comment_header" class="font-size-14 font-montserrat">Quesque vous penser apropot de service de </h4>
                                                                     </div>
+                                        
+                                                                    <textarea name="userOwnComment" id="userOwnComment" class="form-control" rows="3" disabled></textarea>
+                                                                    <h3 id="rating_notice" class="font-size-12 font-golroy-bold"><em>** Vous devez laisser une évaluation avant de commenter !!</em></h3>
                                                                 </div>
-                                                                <input type="submit" value="Evaluer" class="btn btn-outline-info my-2 border-0 font-size-16 font-gilroy-bold" id="CommentBtn" disabled>
-                                                            </div>    
-                                                        </form>
-                                                    </c:if>
+                                                            </div>
+                                                            <input type="submit" value="Evaluer" class="btn btn-outline-info my-2 border-0 font-size-16 font-gilroy-bold" id="CommentBtn" disabled>
+                                                        </div>
+                                                    </form>
 
                                                 </div>
                                             </div>
                                         </div>
-                                    
                                     </div>
                                 </div>
+
                             </div>
                         </div>
+                        
                     </div>
                     
                 </div>
