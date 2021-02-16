@@ -582,11 +582,15 @@
                                                         <td> ${entry.name}</td>
                                                         <td>${entry.tel}</td>
                                                         <td>${entry.getVille()} </td>
-                                                        <td>
-                                                                      <div class="custom-control custom-switch">
-															          <input type="checkbox" class="custom-control-input" id="customSwitch1">
-															          <label class="custom-control-label" for="customSwitch1">Toggle this switch</label>
-															        </div>
+                                                        <td> 
+                                                        <form action="<c:url value="/ToggleGarde"/>" method="get">
+                                                          <input type="hidden" name="idPharmacie" value="${entry.idPharmacie }">
+                                                           <div class="custom-control custom-switch" >
+												          <input type="checkbox" name="checkgarde" onchange="toggleGarde()" class="custom-control-input keepcheck" id="customSwitch1">
+												          <label class="custom-control-label" for="customSwitch1">Toggle this switch</label>
+												          </div>
+												          <button id="submit-toggle" type="submit" style="display:none;"></button>
+                                                        </form>
                                                         </td>
                                                         <td>
                                                             <a class="btn btn-danger " href="<c:url value="/admin"><c:param name = "dlte_pharmacie" value = "${entry.idPharmacie}"/></c:url>">
@@ -801,8 +805,25 @@
 
         </main>
     </div>
+	    <script src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
+	    <script>
+				 $(function(){
+			    var test = localStorage.input === 'true'? true: false;
+			    $('.keepcheck').prop('checked', test || false);
+			});
+			
+			$('.keepcheck').on('change', function() {
+			    localStorage.input = $(this).is(':checked');
+			    console.log($(this).is(':checked'));
+			});
+			
+         function toggleGarde(event){
+
+        	localStorage.checked=true;
+        	document.getElementById('submit-toggle').click();
+        } 
+        
     
-    <script>
         var btn = document.getElementsByClassName('buttons');
         function handleClick(event){
             if (event.target.classList.contains('buttons')) {
@@ -833,12 +854,7 @@
             btn.click();
         }
 
-        $(function() {
-            $('#toggle-two').bootstrapToggle({
-              on: 'Enabled',
-              off: 'Disabled'
-            });
-          })
+          
 
     </script>
 </body>

@@ -29,6 +29,7 @@ public class Pharmacie implements Serializable{
 	private String adresse;
 	private String id;
 	private Boolean dispo;
+	private Boolean en_garde;
 	
 	
 	@OneToMany
@@ -144,5 +145,14 @@ public class Pharmacie implements Serializable{
 	public void setDispo(Boolean dispo) {
 		this.dispo = dispo;
 	}
+
+	public Boolean getEn_garde() {
+		return en_garde;
+	}
+
+	public void setEn_garde(Boolean en_garde) {
+		this.en_garde = en_garde;
+	}
+	
 	
 }
