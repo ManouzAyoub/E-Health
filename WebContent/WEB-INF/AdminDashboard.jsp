@@ -35,7 +35,7 @@
 
     </style>
 </head>
-<body onload="handleOnLoad()">
+<body>
     <input type="checkbox" id="nav-toggle">
 
     <div class="sidebar">

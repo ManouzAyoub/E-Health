@@ -27,7 +27,6 @@ public class DataAdminServlet extends HttpServlet {
 		User u = (User) request.getAttribute("adminUser");
 		HttpSession session = request.getSession(false);
 		User visiter = (User) session.getAttribute("admin");
-		System.out.println("Data Admin ---- Admin" + visiter.getRole().getRole());
 		session.setAttribute("admin", visiter);
 		List<Commentaire> comments = Instances.commentImpl.getCommentsNotApproved(false, false);
 		request.setAttribute("comments", comments);

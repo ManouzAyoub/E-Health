@@ -54,20 +54,14 @@ public class SignInServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
-		System.out.println("fonction correctement");
-        
 		SignInFormService form = SignInFormService.getInstance();
         
     	User visiter = form.SignInService( request );
 
-    	System.out.println("visiter role "+ visiter.getRole());
     	HttpSession session = request.getSession();
     	
     	if ( visiter.getRole().getRole().equals("admin") ) {
     		session.setAttribute("admin", visiter);
-			User u = (User) session.getAttribute("admin");
-			System.out.println("from sign in section admin is correct " + session.getAttribute("admin"));
-			request.setAttribute("adminUser", u);
 			this.getServletContext().getRequestDispatcher( "/toAdminData" ).forward( request, response );
 			
 		}

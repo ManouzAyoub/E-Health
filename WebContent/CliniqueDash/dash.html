@@ -17,14 +17,14 @@
         </div>
         <div class="sidebar-menu">
             <ul>
-                <li onClick="handleClick(event)">
+                <li onClick="handleClick(event);show('DashboardSection')">
                     <a id="dash" href="#"  class="buttons active" >
                         
                         <span class="las la-igloo"></span>
                          <span>Dashboard</span>
                     </a>
                 </li>
-                <li onClick="handleClick(event)">
+                <li onClick="handleClick(event);show('doctorsDash')">
                     <a id="docteur" href="#" class="buttons" >
                         
                         <span class="las la-users"></span>
@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li>
-                    <a id="commentaire" href="#" class="buttons" onClick="handleClick(event)">
+                    <a id="commentaire" href="#" class="buttons" onClick="handleClick(event);show('commentsDash')">
                         
                         <span class="las la-star"></span>
                          <span>Commentaires</span>
@@ -41,7 +41,7 @@
                
               
                 <li>
-                    <a href="#" class="buttons" onClick="handleClick(event)">
+                    <a href="#" class="buttons" onClick="handleClick(event);show('ProfileSection')">
                         
                         <span class="las la-user-circle"></span>
                          <span>Compte</span>
@@ -528,7 +528,7 @@
                     </div>
                 </div>
         </main>
-        <main class="mainTag" id="ProfileSection">
+        <main class="mainTag" id="ProfileSection" style="display: none;">
             <div class="wrapper">
                 <div class="title">
                   Modifier vos Information :
@@ -614,6 +614,10 @@
         dashBtn.addEventListner("click",function(){
             
         });
+
+        function show(param_div_id) {
+            document.getElementById('main_place').innerHTML = document.getElementById(param_div_id).innerHTML;
+        }
         
     </script>
 </body>
