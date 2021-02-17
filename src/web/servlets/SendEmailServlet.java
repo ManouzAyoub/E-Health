@@ -33,15 +33,15 @@ public class SendEmailServlet extends HttpServlet {
 		
 		if ( s != null) {
 			
-			String email = request.getParameter("email");
+			String id = request.getParameter("id");
 			
-			Docteur docteur = Instances.docteurImpl.getDocteurByEmail(email);
+			Docteur docteur = Instances.docteurDao.getById(Long.valueOf(id));
 			
 			String message = "message envoyer au docteur dans l'email";
 			
 			String password = Instances.send.generateRandomPassword(8);
 			
-			Instances.send.sendEMailToUser(message, password, email);
+			Instances.send.sendEMailToUser(message, password, docteur.getEmail());
 			
 			docteur.setPassword(password);
 			

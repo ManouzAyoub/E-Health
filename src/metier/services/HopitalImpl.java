@@ -23,7 +23,7 @@ public class HopitalImpl {
 	
 	public List<Hopital> getAllHospitalsAccordingToTheirAvailabilityAndAdress(String adresse){
 		List<Hopital> list = new ArrayList<Hopital>();
-		String hql = "select h from Hopital h where adresse like ?1";
+		String hql = "select h from Hopital h where ville like ?1";
 		Query q = session.createQuery(hql);
 		q.setParameter(1, "%"+adresse + "%");
 		list = q.getResultList();

@@ -116,7 +116,7 @@
 
     <div class="main-content">
         <header>
-            <div class="header-title">
+            <div class="header-title" style="float:left">
                 <h2>
                     <label for="nav-toggle">
                         <span class="las la-bars"></span>
@@ -125,7 +125,7 @@
                 </h2>
             </div>
 
-            <div class="user-wrapper">
+            <div class="user-wrapper" style="float:right">
                 <img src="https://bootdey.com/img/Content/avatar/avatar7.png" width="40px" height="40px" alt="">
                 <div class="user-wrapper-info">
                     <h4>${sessionScope.admin.firstname} ${sessionScope.admin.lastname}</h4>

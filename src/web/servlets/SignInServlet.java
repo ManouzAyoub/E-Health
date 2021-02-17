@@ -61,14 +61,10 @@ public class SignInServlet extends HttpServlet {
     	
     	if ( visiter.getRole().getRole().equals("utilisateur") ) {
     		
-    		
+    		System.out.println(visiter.getEmail() + " " + visiter.getPassword() + " " + visiter.getCin());
         	session.setAttribute("visiter", visiter);
         	
-        	if ( form.getErreurs().isEmpty() ) {
-                this.getServletContext().getRequestDispatcher( SUCESS_USER ).forward(request, response );
-            } else {
-                this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-            }
+        	this.getServletContext().getRequestDispatcher( HOME ).forward( request, response );
 		}
     	
     	if ( visiter.getRole().getRole().equals("docteur") ) {

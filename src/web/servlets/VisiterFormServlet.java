@@ -24,7 +24,7 @@ public class VisiterFormServlet extends HttpServlet {
     public static final String ATT_ERROR        = "erreurs";
 
     public static final String VUE              = "/WEB-INF/VisiterForm.jsp";
-    public static final String SUCESS           = "/WEB-INF/afficherVisiter.jsp";
+    public static final String SUCESS           = "/WEB-INF/Home.jsp";
     
     Role role=new Role();
     

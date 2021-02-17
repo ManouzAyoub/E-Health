@@ -73,6 +73,54 @@ public class Rating implements Serializable {
     public void setDocteur(Docteur docteur) {
 		this.docteur = docteur;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Clinique getClinique() {
+		return clinique;
+	}
+
+	public void setClinique(Clinique clinique) {
+		this.clinique = clinique;
+	}
+
+	public Hopital getHopital() {
+		return hopital;
+	}
+
+	public void setHopital(Hopital hopital) {
+		this.hopital = hopital;
+	}
+
+	public Laboratoire getLaboratoire() {
+		return laboratoire;
+	}
+
+	public void setLaboratoire(Laboratoire laboratoire) {
+		this.laboratoire = laboratoire;
+	}
+
+	public Pharmacie getPharmacie() {
+		return pharmacie;
+	}
+
+	public void setPharmacie(Pharmacie pharmacie) {
+		this.pharmacie = pharmacie;
+	}
+
+	public Cabinet getCabinet() {
+		return cabinet;
+	}
+
+	public void setCabinet(Cabinet cabinet) {
+		this.cabinet = cabinet;
+	}
     
     
 

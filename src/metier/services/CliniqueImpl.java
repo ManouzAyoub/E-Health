@@ -20,7 +20,7 @@ public class CliniqueImpl {
 	
 	public List<Clinique> getAllClinicsAccordingToTheirAvailabilityAndAdress(String adresse , Boolean bool){
 		List<Clinique> list = new ArrayList<Clinique>();
-		String hql = "select c from Clinique c where dispo = :bool and  adresse like ?1";
+		String hql = "select c from Clinique c where dispo = :bool and  ville like ?1";
 		Query q = session.createQuery(hql);
 		q.setParameter("bool", bool);
 		q.setParameter(1, "%"+adresse + "%");

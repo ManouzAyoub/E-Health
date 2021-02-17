@@ -35,6 +35,7 @@ public class Clinique extends User{
 	
 	private Boolean dispo;
 	private String ville;
+	private String id;
 	private Boolean first_using;
 	
 	@ManyToOne
@@ -78,6 +79,13 @@ public class Clinique extends User{
 	
 	public Set<Docteur> getWorks() {
 		return works;
+	}
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	public void setWorks(Set<Docteur> works) {

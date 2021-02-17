@@ -20,6 +20,8 @@ import metier.dao.beans.Clinique;
 import metier.dao.beans.Commentaire;
 import metier.dao.beans.Docteur;
 import metier.dao.beans.Hopital;
+import metier.dao.beans.Langue;
+import metier.dao.beans.Rating;
 import metier.dao.beans.User;
 import metier.dao.util.Instances;
 import metier.services.CommentaireImpl;
@@ -35,6 +37,7 @@ public class AddCommentServlet extends HttpServlet {
 	private static final String COMMENT_DOCTEUR      = "userOwnComment";
 	private static final String COMMENT_HOPITAL      = "comment_hopital";
 	private static final String COMMENT_CLINIQUE     = "comment_clinique";
+	private static final String RAT_HOPITAL = "ratingStars";
 	
 	User user                   = new User();
 	Docteur docteur             = new Docteur();
@@ -54,21 +57,43 @@ public class AddCommentServlet extends HttpServlet {
 		String commentaire         = request.getParameter(COMMENT_DOCTEUR);
 		String commentaire_hopital = request.getParameter(COMMENT_HOPITAL);
 		String comment_clinique    = request.getParameter(COMMENT_CLINIQUE);
+		String[] nbretoilerath = request.getParameterValues(RAT_HOPITAL); 
+		int nbr = 0;
+		if (nbretoilerath != null) {
+			for (int i = 0; i < nbretoilerath.length; i++) {
+				if (nbretoilerath[i] != null) {
+					nbr = Integer.valueOf(nbretoilerath[0]);
+				}
+			}
+		}
+		
+		System.out.println("sssss you sssss" + nbr);
 		
 		// commentaire pour un docteur
 		if (commentaire != null) {
 			docteur = (Docteur) session.getAttribute("DisplayProfileDocteur");
+			Rating rating = new Rating();
+			rating.setDocteur(docteur);
+			rating.setNumberEtoile(nbr);
+			rating.setUser(user);
+			Instances.ratingDao.add(rating);
 			request.setAttribute("data", Instances.docteurImpl.displayDataInProfilePage(docteur));
 			request.setAttribute("doctor", docteur);
 			request.setAttribute("image", Base64.getEncoder().encodeToString(docteur.getProfile_image()));
 			addComment(commentaire, "Docteur", docteur, null, null, user);
-			request.setAttribute("comments", Instances.commentImpl.getComments(docteur.getCin(),"idDocteur"));			
+			request.setAttribute("comments", Instances.commentImpl.getComments(docteur.getCin(),"idDocteur"));	
+			commentaire = null;
 			this.getServletContext().getRequestDispatcher( VUE_DOCTEUR_PROFILE ).forward(request, response);
 		}
 		
 		// commentaire pour un hopital
-		if (commentaire_hopital != null) {
+		if (commentaire_hopital != null ) {
 			hopital = (Hopital) session.getAttribute("DisplayProfileHospital");
+			Rating rating = new Rating();
+			rating.setHopital(hopital);
+			rating.setNumberEtoile(nbr);
+			rating.setUser(user);
+			Instances.ratingDao.add(rating);
 			addComment(commentaire_hopital, "Hopital", null,  hopital,null, user);
 			request.setAttribute("comments", Instances.commentImpl.getComments(hopital.getIdHopital(),"idHopital"));
 			request.setAttribute("hopital", hopital);
@@ -85,6 +110,11 @@ public class AddCommentServlet extends HttpServlet {
 		// commentaire pour un clinique
 		if (comment_clinique != null) {
 			clinique = (Clinique) session.getAttribute("DisplayProfileClinique");
+			Rating rating = new Rating();
+			rating.setClinique(clinique);
+			rating.setNumberEtoile(nbr);
+			rating.setUser(user);
+			Instances.ratingDao.add(rating);
 			addComment(comment_clinique, "Clinique", null, null, clinique, user);
 			request.setAttribute("comments", Instances.commentImpl.getComments(clinique.getCin(),"idClinique"));
 			request.setAttribute("clinique", clinique);

@@ -14,6 +14,7 @@
   <form id="contact" action="<c:url value="SendEmail"/>" method="post">
     <h3>Doctor's infos</h3>
     <fieldset>
+    	<input type="text" value="${ doc.cin }" hidden />
       <input placeholder="doc's name" type="text" tabindex="1" value="${doc.firstname }" autofocus>
     </fieldset>
     <fieldset>

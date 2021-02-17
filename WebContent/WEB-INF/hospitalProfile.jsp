@@ -36,10 +36,10 @@
 </head>
 <body>
 
-    <header class="color-primary-bg py-2" style="width: 100%;">
+        <header class="color-primary-bg py-2" style="width: 100%;">
         <div class="row" >
             <div class="col-lg-3 d-flex justify-content-start">
-                <a class="navbar-brand mx-3" href="/Home"><img src="./EHealthLogo.png" width="200px" alt=""></a>
+                <a class="navbar-brand mx-3" href="<c:url value="/Home"></c:url>"><img src="<c:url value="/DoctorProfile/EHealthLogo.png"></c:url>" width="200px" alt=""></a>
                 <button type="button" class="btn show-mobile font-size-20 mt-2 font-gilroy-bold color-second text-right" id="showNavBarBtn" data-target="#nav_bar">
                     <i class="fas fa-bars"></i>                      
                 </button>
@@ -51,23 +51,23 @@
                     <div class="col-sm-1"></div>
 
                     <div class="col-sm-2">
-                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="/Home#section-1">Acceuil</a>
+                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-1"></c:url>">Acceuil</a>
                     </div>
 
                     <div class="col-sm-2">
-                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="/Home#section-2">Medecin</a>
+                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-2"></c:url>">Medecin</a>
                     </div>
 
                     <div class="col-sm-2">
-                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="/Home#section-3">Hopital</a>
+                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-3"></c:url>">Hopital</a>
                     </div>
 
                     <div class="col-sm-2">
-                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="/Home#section-4">Clinique</a>
+                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-4"></c:url>">Clinique</a>
                     </div>
 
                     <div class="col-sm-2">
-                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="/Home#section-5">Pharmacie</a>
+                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-5"></c:url>">Pharmacie</a>
                     </div>
 
                     <div class="col-sm-1"></div>
@@ -77,11 +77,15 @@
             <div class="col-lg-3 d-flex justify-content-lg-end">
                 <table>
                     <tr>
-                        <td rowspan="2"><img src="/maleDoctorPic.jpg" width="50px" class="rounded ml-2" alt=""></td>
-                        <td class="py-0"><h5 class=" font-size-14 text-white font-montserrat">Youssef El Gourari</h5></td>
+                        <td class="py-0"><h5 class=" font-size-14 text-white font-montserrat">${ sessionScope.visiter.getFirstname() } ${ sessionScope.visiter.getLastname() }</h5></td>
                     </tr>
                     <tr>
-                        <td class="py-0"><a href="" class="btn btn-outline-dark btn-info font-size-12 py-1 text-white">Deconnexion</a></td>
+                        <c:if test="${ sessionScope.visiter != null}">
+                        	<td class="py-0"><a href="<c:url value="Deconnexion"></c:url>" class="btn btn-outline-dark btn-info font-size-12 py-1 text-white">Deconnexion</a></td>
+                        </c:if>
+                        <c:if test="${ sessionScope.visiter == null}">
+                        	<td class="py-0"><a href="<c:url value="signIn"></c:url>" class="btn btn-outline-dark btn-info font-size-12 py-1 text-white">connexion</a></td>
+                        </c:if>
                     </tr>
                 </table>
             </div>
@@ -194,7 +198,7 @@
                 <!-- Localisation on Map -->
                 <div class="px-5 mt-3" id="mapLocalisation">
                     <div id="map" class="z-depth-1-half map-container my-5 mx-5">
-                        <span id="place_id" hidden>ChIJZ-9nzYm2sw0RDYd2yIxC6iA</span>
+                        <span id="place_id" hidden>${hopital.id}</span>
                     </div>
 
                     <div class="border py-3 px-3">
@@ -363,7 +367,7 @@
                                                     <h6 class="card-title mb-2 text-muted">Donnez votre évaluation</h6>
                                                     <p class="card-text card-doctor-text"></p>
 
-                                                    <form action="<%=request.getContextPath()%>/Evaluation" method="get">
+                                                    <form action="<%=request.getContextPath()%>/addComment" method="post">
                                                         <div class="container">
                                                             <div class="font-size-20 starrating risingstar d-flex justify-content-center flex-row-reverse">
                                                                 <input type="radio" id="star5" name="ratingStars" value="5" /><label for="star5" title="5 star"></label>
@@ -371,7 +375,7 @@
                                                                 <input type="radio" id="star3" name="ratingStars" value="3" /><label for="star3" title="3 star"></label>
                                                                 <input type="radio" id="star2" name="ratingStars" value="2" /><label for="star2" title="2 star"></label>
                                                                 <input type="radio" id="star1" name="ratingStars" value="1" /><label for="star1" title="1 star"></label>
-                                                                <input type="text" id="userRating" hidden>
+                                                                <input type="text" name="nbretoilerat" value="" id="userRating" hidden>
                                                             </div>
     
                                                             <div id="OwnComment" class="card bg-light">
@@ -381,7 +385,7 @@
                                                                         <h4 id="comment_header" class="font-size-14 font-montserrat">Quesque vous penser apropot de service de </h4>
                                                                     </div>
                                         
-                                                                    <textarea name="userOwnComment" id="userOwnComment" class="form-control" rows="3" disabled></textarea>
+                                                                    <textarea name="comment_hopital" id="userOwnComment" class="form-control" rows="3" disabled></textarea>
                                                                     <h3 id="rating_notice" class="font-size-12 font-golroy-bold"><em>** Vous devez laisser une évaluation avant de commenter !!</em></h3>
                                                                 </div>
                                                             </div>
