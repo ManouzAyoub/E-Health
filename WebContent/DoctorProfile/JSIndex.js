@@ -15,6 +15,14 @@ $(document).ready(function(){
         $("#search_bar").slideToggle();
     });
     
+    $( "#showNavBarBtn" ).click(function(event){
+        if(document.getElementById('nav_bar').style.display == 'flex'){
+            document.getElementById('nav_bar').style.display='none';
+        } else {
+            document.getElementById('nav_bar').style.display='flex';
+        }
+    });
+    
     $( "#clearAllBtn" ).click(function(event){
         $('#NameInput').val('');
         $('#Telemedecine').prop( "checked", true );
@@ -35,6 +43,11 @@ $(document).ready(function(){
     $(window).resize(function() {
         if($("#search_bar").is(':hidden') && $( document ).width() >= 960){
             $("#search_bar").slideToggle();
+        }
+        if($("#nav_bar").is(':hidden') && $( document ).width() >= 960){
+            document.getElementById('nav_bar').style.display='flex';
+        }else if($( document ).width() < 960){
+            document.getElementById('nav_bar').style.display='none';
         }
     });
 

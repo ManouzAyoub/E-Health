@@ -15,6 +15,14 @@ $(document).ready(function(){
         $("#search_bar").slideToggle();
     });
     
+    $( "#showNavBarBtn" ).click(function(event){
+        if(document.getElementById('nav_bar').style.display == 'flex'){
+            document.getElementById('nav_bar').style.display='none';
+        } else {
+            document.getElementById('nav_bar').style.display='flex';
+        }
+    });
+    
     $( "#clearAllBtn" ).click(function(event){
         $('#NameInput').val('');
         $('#Telemedecine').prop( "checked", true );
@@ -36,6 +44,11 @@ $(document).ready(function(){
         if($("#search_bar").is(':hidden') && $( document ).width() >= 960){
             $("#search_bar").slideToggle();
         }
+        if($("#nav_bar").is(':hidden') && $( document ).width() >= 960){
+            document.getElementById('nav_bar').style.display='flex';
+        }else if($( document ).width() < 960){
+            document.getElementById('nav_bar').style.display='none';
+        }
     });
 
     $(function () {
@@ -44,22 +57,40 @@ $(document).ready(function(){
             var $InformationsPersonelle = $("#InformationsPersonelle");
             $nav.toggleClass('scrolled', $(this).scrollTop() > $InformationsPersonelle.height());
 
-            var $Localisation = $("#Localisation");
-            var $Evaluation = $("#Evaluation");
-            var $PlusInformations = $("#PlusInformations");
-            var $HopitauxCliniques = $("#HopitauxCliniques");
+            if(document.getElementById("DoctorProfile") != null){
+                var $Localisation = $("#Localisation");
+                var $Evaluation = $("#Evaluation");
+                var $PlusInformations = $("#PlusInformations");
+                var $HopitauxCliniques = $("#HopitauxCliniques");
 
-            if($Localisation.position() != null){
-                if($(this).scrollTop() < $Localisation.position().top){
-                    $("#InformationsPersonelleBtn").click();
-                }else if($(this).scrollTop() < $Evaluation.position().top){
-                    $("#LocalisationBtn").click();
-                }else if($(this).scrollTop() < $PlusInformations.position().top){
-                    $("#EvaluationBtn").click();
-                }else if($(this).scrollTop() < $HopitauxCliniques.position().top){
-                    $("#PlusInformationsBtn").click();
-                }else {
-                    $("#HopitauxCliniquesBtn").click();
+                if($Localisation.position() != null){
+                    if($(this).scrollTop() < $Localisation.position().top){
+                        $("#InformationsPersonelleBtn").click();
+                    }else if($(this).scrollTop() < $Evaluation.position().top){
+                        $("#LocalisationBtn").click();
+                    }else if($(this).scrollTop() < $PlusInformations.position().top){
+                        $("#EvaluationBtn").click();
+                    }else if($(this).scrollTop() < $HopitauxCliniques.position().top){
+                        $("#PlusInformationsBtn").click();
+                    }else {
+                        $("#HopitauxCliniquesBtn").click();
+                    }
+                }
+            }else if(document.getElementById("HopitalProfile") != null){
+                var $Localisation = $("#Localisation");
+                var $Evaluation = $("#Evaluation");
+                var $Docteurs = $("#Docteurs");
+
+                if($Localisation.position() != null){
+                    if($(this).scrollTop() < $Localisation.position().top){
+                        $("#InformationsPersonelleBtn").click();
+                    }else if($(this).scrollTop() < $Evaluation.position().top){
+                        $("#LocalisationBtn").click();
+                    }else if($(this).scrollTop() < $Docteurs.position().top){
+                        $("#EvaluationBtn").click();
+                    }else {
+                        $("#DocteursBtn").click();
+                    }
                 }
             }
             
@@ -67,7 +98,9 @@ $(document).ready(function(){
     });
 
     $("#evaluation_upper_text").text("Evaluation de notres visiteurs au service de Dr." + $(".fullName").text() + " :");
+    $("#evaluation_upper_text_hospital").text("Evaluation de notres visiteurs au service de " + $(".fullName").text() + " :");
     $(".card-doctor-text").text("Combien vous devez évaluer Dr." + $(".fullName").text() + "?");
+    $(".card-hopital-text").text("Combien vous devez évaluer " + $(".fullName").text() + "?");
 
     $('[name = "ratingStars"]').click( function() {
         var rates = document.getElementsByName('ratingStars');
@@ -129,7 +162,7 @@ $(document).ready(function(){
     $("#show-more-comments").click(function(event) {
         if(document.getElementById("show-more-comments").innerHTML == "Afficher plus de commentaires"){
             for(var i=3; i < comment_cards.length; i++){
-                comment_cards[i].style.display = "inline";
+                comment_cards[i].style.display = "block";
             }
             document.getElementById("show-more-comments").innerHTML = "Afficher moins de commentaires";
         }else {
@@ -141,26 +174,39 @@ $(document).ready(function(){
         
     });
 
+    var doctor_cards = document.getElementsByClassName('doctor_card');
+    if(doctor_cards.length > 8){
+        
+        for(var i=8; i < doctor_cards.length; i++){
+            doctor_cards[i].style.display = "none";
+        }
+        document.getElementById("moredoctorsBtn").style.visibility = "visible";
+    }
+
+    $("#show-more-doctors").click(function(event) {
+        if(document.getElementById("show-more-doctors").innerHTML == "Afficher plus de docteurs"){
+            for(var i=8; i < doctor_cards.length; i++){
+                doctor_cards[i].style.display = "block";
+            }
+            document.getElementById("show-more-doctors").innerHTML = "Afficher moins de docteurs";
+        }else {
+            for(var i=8; i < doctor_cards.length; i++){
+                doctor_cards[i].style.display = "none";
+            }
+            document.getElementById("show-more-doctors").innerHTML = "Afficher plus de docteurs";
+        }
+        
+    });
+
     $("#comment_header").text("Quesque vous pensez à propos de service de Dr." + $(".fullName").text() + " ?");
+    $("#comment_hospital_header").text("Quesque vous pensez à propos de service de " + $(".fullName").text() + " ?");
     
     $("[name = ratingStars]").click(function(){
         document.getElementById("userOwnComment").disabled = false;
+        document.getElementById("CommentBtn").disabled = false;
         document.getElementById("rating_notice").style.display = 'none';
     });
-
-    var CommentTextArea = document.getElementById("userOwnComment");
-    if(CommentTextArea != null){
-        CommentTextArea.addEventListener("input", function(event) {
-            var mytext = CommentTextArea.value; //You already have the element as a variable
-            if(mytext != ''){
-                document.getElementById("CommentBtn").disabled = false;
-            }else {
-                document.getElementById("CommentBtn").disabled = true;
-            }
-        });
-    }
     
-
     $("#BiographieBtn").click(function(event) {
         var BiographieText = document.getElementById("BiographieText");
         if(BiographieText.style.display == "none"){
@@ -195,6 +241,7 @@ $(document).ready(function(){
     });
     
 });
+
 
 var autocomplete;
 function initialize() {
@@ -236,6 +283,50 @@ function initMap() {
                 infowindow.setContent(
                     "<div class='text-center justify-content-center'>" +
                         "<img src='"+ document.getElementById("item_img").src + "' width='100 px' class='mx-3 img-fluid img-responsive border border-3 rounded'>" +
+                        "<h2 class='font-gilroy-bold font-size-14'>" + place.name + "</h2>" +
+                        "<i class='fas fa-map-marker-alt text-danger'></i>" +
+                        "<span class='font-size-12 font-weight-bold font-montserrat color-primary'> &nbsp;" + place.formatted_address + "</span>" +
+                    "</div>"
+                );
+                infowindow.open(map, this);
+            });
+
+            document.getElementById("place_adresse").innerHTML = place.formatted_address;
+            document.getElementById("direction_anchor").href = "https://www.google.com/maps/search/?api=1&query=Google&query_place_id=" + place.place_id;
+        }
+    });
+}
+
+function initMapHospitalProfile() {
+    const uluru = { lat: 31.791702, lng: -7.09262 };
+    
+    const request = {
+      placeId: document.getElementById("place_id").innerHTML,
+      fields: ["name", "formatted_address", "place_id", "geometry"],
+    };
+    
+    
+    const map = new google.maps.Map(document.getElementById("map"), {
+      center: uluru,
+      zoom: 15,
+    });
+    
+    const infowindow = new google.maps.InfoWindow();
+    const service = new google.maps.places.PlacesService(map);
+    
+    service.getDetails(request, (place, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            const marker = new google.maps.Marker({
+                position: place.geometry.location,
+                map: new google.maps.Map(document.getElementById("map"), {
+                center: place.geometry.location,
+                zoom: 15,
+                })
+            });
+
+            google.maps.event.addListener(marker, "click", function () {
+                infowindow.setContent(
+                    "<div class='text-center justify-content-center'>" +
                         "<h2 class='font-gilroy-bold font-size-14'>" + place.name + "</h2>" +
                         "<i class='fas fa-map-marker-alt text-danger'></i>" +
                         "<span class='font-size-12 font-weight-bold font-montserrat color-primary'> &nbsp;" + place.formatted_address + "</span>" +
@@ -310,6 +401,108 @@ function initHospitalMap() {
     
 }
 
+function checkWorkingTime(btn){
+    var items = document.getElementsByClassName('item');
+
+    for(var i = 0; i < items.length; i++){
+        if(items[i].getElementsByClassName("fullName")[0] == btn){
+            var item = items[i];
+        }
+    }
+
+    if(item.classList.contains("jour_nuit")){
+        return "jour_nuit";
+    }else if(item.classList.contains("jour")){
+        return "jour";
+    }else if(item.classList.contains("nuit")){
+        return "nuit";
+    }
+}
+
+function showPharmaClicked(event){
+    btn = event.target;
+    var items = document.getElementsByClassName('item');
+
+    for(var i = 0; i < items.length; i++){
+        if(items[i].getElementsByClassName("fullName")[0] == btn){
+            google.maps.event.trigger(markers[i], 'click');
+        }
+    }
+}
+
+var markers = [];
+function initPharmacyMap() {
+    const uluru = { lat: 31.791702, lng: -7.09262 };
+    
+    
+    var map = new google.maps.Map(document.getElementById("map"), {
+      center: uluru,
+      zoom: 15,
+    });
+    
+    const infowindow = new google.maps.InfoWindow();
+    const service = new google.maps.places.PlacesService(map);
+
+    var items = document.getElementsByClassName("item");
+    var places_id = document.getElementsByClassName("place_id");
+    var Directions = document.getElementsByClassName("direction_anchor");
+    
+    
+    for(var i=0; i<items.length; i++){
+        const request = {
+            placeId: places_id[i].innerHTML,
+            fields: ["name", "formatted_address", "place_id", "geometry"]
+        };
+        var loop = 0;
+        service.getDetails(request, (place, status) => {
+            loop++;
+            setWorkingTimes();
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                if(loop==1){
+                    map = new google.maps.Map(document.getElementById("map"), {
+                        center: place.geometry.location,
+                        zoom: 13,
+                        streetViewControl: false,
+                        scaleControl: true,
+                        mapTypeControl: false
+                    });
+                    
+                }
+
+                const marker = new google.maps.Marker({
+                    position: place.geometry.location,
+                    map: map,
+                    animation: google.maps.Animation.DROP,
+                    icon: markers_icons[loop-1]
+                });
+    
+                google.maps.event.addListener(marker, "click", function () {
+                    infowindow.setContent(
+                        "<div class='text-center justify-content-center'>" +
+                            "<h2 class='font-gilroy-bold font-size-14'>" + place.name + "</h2>" +
+                            "<i class='fas fa-map-marker-alt text-danger'></i>" +
+                            "<span class='font-size-12 font-weight-bold font-montserrat color-primary'> &nbsp;" + place.formatted_address + "</span>" +
+                        "</div>"
+                    );
+                    infowindow.open(map, this);
+                });
+
+                marker.addListener("click", function() {
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                    map.setZoom(16);
+                    setTimeout(function(){ marker.setAnimation(null); }, 1000);
+                });
+
+                markers.push(marker);
+    
+                Directions[loop-1].href = "https://www.google.com/maps/search/?api=1&query=Google&query_place_id=" + place.place_id;
+            }
+        });
+        
+    }
+    
+}
+
 function filterHospitals(){
     var items = document.getElementsByClassName('item');
 
@@ -325,6 +518,42 @@ function filterHospitals(){
     }
 
     return items;
+}
+
+function filterPharmacies(){
+    var items = document.getElementsByClassName('item');
+
+    for(var i = 0; i < items.length; i++){
+        items[i].style.display = 'none';
+    }
+
+    items = filterRadio(items, 'working_time');
+    items = filterByName(items);
+
+    for(var i = 0; i < items.length; i++){
+        items[i].style.display = "inline";
+    }
+
+    return items;
+}
+
+var markers_icons = [];
+function setWorkingTimes(){
+    var items = document.getElementsByClassName('item');
+    var working_times = document.getElementsByClassName('working_time');
+
+    for(var i = 0; i < items.length; i++){
+        if(items[i].classList.contains("jour_nuit")){
+            working_times[i].innerHTML = '</span><span class="font-size-12 font-montserrat text-success"><i class="fas fa-check-double"></i> &nbsp; Ouvert toute la journée (24 heures)';
+            markers_icons.push("geo_green.png");
+        }else if(items[i].classList.contains("jour")){
+            working_times[i].innerHTML = '</span><span class="font-size-12 font-montserrat text-primary"><i class="fas fa-sun"></i> &nbsp; Ouvert seulement le jour';
+            markers_icons.push("geo_blue.png");
+        }else if(items[i].classList.contains("nuit")){
+            working_times[i].innerHTML = '</span><span class="font-size-12 font-montserrat text-muted"><i class="fas fa-moon"></i> &nbsp; Ouvert seulement la nuit';
+            markers_icons.push("geo_gray.png");
+        }
+    }
 }
 
 function filter() {
@@ -417,4 +646,30 @@ function filterByName(items) {
         }
         return choosen_items;
     }
+}
+
+// Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("rateBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
 }

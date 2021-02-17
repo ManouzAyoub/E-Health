@@ -38,9 +38,63 @@
     <link rel="stylesheet" href="<c:url value="/searchClinique/style.css"></c:url>">
 </head>
 <body onload="initialize()">
-    <section class="py-3" id="doctorSearchList">
 
-        <div class="color-search-pannel-bg py-3">
+    <header class="color-primary-bg py-2" style="width: 100%;">
+        <div class="row" >
+            <div class="col-lg-3 d-flex justify-content-start">
+                <a class="navbar-brand mx-3" href="/Home"><img src="./EHealthLogo.png" width="200px" alt=""></a>
+                <button type="button" class="btn show-mobile font-size-20 mt-2 font-gilroy-bold color-second text-right" id="showNavBarBtn" data-target="#nav_bar">
+                    <i class="fas fa-bars"></i>                      
+                </button>
+            </div>
+
+            <div class="col-lg-6 d-flex justify-content-center">
+                <div class="row" id="nav_bar">
+
+                    <div class="col-sm-1"></div>
+
+                    <div class="col-sm-2">
+                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="/Home#section-1">Acceuil</a>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="/Home#section-2">Medecin</a>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="/Home#section-3">Hopital</a>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="/Home#section-4">Clinique</a>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="/Home#section-5">Pharmacie</a>
+                    </div>
+
+                    <div class="col-sm-1"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 d-flex justify-content-lg-end">
+                <table>
+                    <tr>
+                        <td rowspan="2"><img src="/maleDoctorPic.jpg" width="50px" class="rounded ml-2" alt=""></td>
+                        <td class="py-0"><h5 class=" font-size-14 text-white font-montserrat">Youssef El Gourari</h5></td>
+                    </tr>
+                    <tr>
+                        <td class="py-0"><a href="" class="btn btn-outline-dark btn-info font-size-12 py-1 text-white">Deconnexion</a></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </header>
+
+    <section class="pb-3" id="doctorSearchList">
+
+        <div class="color-primary-bg py-3">
             <div class="container py-2">
                 <div class="row font-montserrat font-size-20" align="center" style="font-weight: bold;">
                     <div class="col-lg-2" style="color: white;">Localisation : </div>
