@@ -93,15 +93,6 @@
                 <div class="cards">
                     <div class="card-single">
                         <div>
-                            <h1>70</h1>
-                            <span>Visiteurs</span>
-                        </div>
-                        <div class="dashboard_icon">
-                            <span class="las la-users"></span>
-                        </div>
-                    </div>
-                    <div class="card-single">
-                        <div>
                             <h1>${numberOfRating}</h1>
                             <span>Votes</span>
                         </div>
@@ -492,8 +483,8 @@
                                                 <c:if test="${!recompences.isEmpty()}">
                                                     <c:forEach var="recompence" items="${recompences}">
                                                         <tr>
-                                                            <td>${recompence.name}</td>
                                                             <td>${recompence.annee}</td>
+                                                            <td>${recompence.name}</td>
                                                         </tr>
                                                     </c:forEach>
                                                 </c:if>
@@ -682,7 +673,7 @@
                                             <c:set var="nbr" value="${averageOfRating}"></c:set>
                                             <c:set var="result" value="${ 5 - nbr }"></c:set>
                                             <div class="text-warnning">
-                                                <c:forEach var="a" begin="1" end="{nbr}">
+                                                <c:forEach var="a" begin="1" end="${nbr}">
                                                     <span><i class="las la-lg la-star"></i></span>
                                                 </c:forEach>
                                                 <c:forEach var="b" begin="1" end="${result}">

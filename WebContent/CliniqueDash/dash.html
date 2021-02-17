@@ -17,41 +17,34 @@
         </div>
         <div class="sidebar-menu">
             <ul>
-<<<<<<< HEAD
-                <li onClick="handleClick(event);show('DashboardSection')">
-                    <a id="dash" href="#"  class="buttons active" >
-=======
-                <li onClick="handleClick(event)">
-                    <a id="dashboard"  href="#"  class="buttons active " >
->>>>>>> c62d6a81776ce92ce832b6da99a6211225e009b3
+
+                <!-- <li onClick="handleClick(event);show('DashboardSection')">
+                    <aaaaaaaaaa id="dash" href="#"  class="buttons active" > -->
+
+                <li  onClick="handleClick(event)">
+                    <a id="dashboard"  href="#"  class="buttons active " onClick="handleClick(event)" >
                         
                         <span class="las la-igloo"></span>
                          <span>Dashboard</span>
                     </a>
                 </li>
-                <li onClick="handleClick(event);show('doctorsDash')">
-                    <a id="docteur" href="#" class="buttons" >
+                <li  onClick="handleClick(event)">
+                    <a id="docteur" href="#" class="buttons" onClick="handleClick(event);show('doctorsDash')" >
                         
                         <span class="las la-users"></span>
                           <span>Docteurs</span>
                     </a>
                 </li>
-                <li>
+                <li onClick="handleClick(event)">
                     <a id="commentaire" href="#" class="buttons" onClick="handleClick(event);show('commentsDash')">
-                        
                         <span class="las la-star"></span>
                          <span>Commentaires</span>
                     </a>
                 </li>
                
               
-                <li>
-<<<<<<< HEAD
-                    <a href="#" class="buttons" onClick="handleClick(event);show('ProfileSection')">
-=======
-                    <a id="compte" href="#" class="buttons" onClick="handleClick(event)">
->>>>>>> c62d6a81776ce92ce832b6da99a6211225e009b3
-                        
+                <li onClick="handleClick(event)">
+                    <a id="compte" href="#" class="buttons" onClick="handleClick(event);show('InfoClinique')">
                         <span class="las la-user-circle"></span>
                          <span>Compte</span>
                     </a>
@@ -276,6 +269,7 @@
                 </div>
             </div>
         </main>
+
         <main class="commentaire hide" id="commentsDash" >
             <div class="recent-grid">
                 <div class="projects">
@@ -400,6 +394,7 @@
                     </div>
                 </div>
         </main>
+
         <main id="doctorsDash" class="docteur hide" >
             <div class="recent-grid">
                 <div class="projects">
@@ -537,17 +532,10 @@
                     </div>
                 </div>
         </main>
-<<<<<<< HEAD
-        <main class="mainTag" id="ProfileSection" style="display: none;">
-=======
+        <!-- <main class="mainTag" id="ProfileSection" style="display: none;"> -->
 
-
-
-
-
-        <main id="ProfileSection" class="compte hide">
->>>>>>> c62d6a81776ce92ce832b6da99a6211225e009b3
-            <div class="wrapper">
+        <main id="InfoClinique" class="compte hide" >
+            <div class="wrapper" >
                 <div class="title">
                   Modifier vos Information :
                 </div>
@@ -590,26 +578,12 @@
                         </select>
                       </div>
                    </div> 
-                   <div class="inputfield">
-                    <label>Disponibilité :</label>
-                    <div class="custom_select">
-                      <select>
-                        <option value="">Disponible</option>
-                        <option value="male">Non Disponible</option>
-                        
-                      </select>
-                    </div>
-                 </div> 
                   <div class="inputfield">
                     <input type="submit" value="Enregistrer" class="btn">
                   </div>
                 </div>
             </div>
         </main>
-
-    </div>
-
-    <div>
 
     </div>
     

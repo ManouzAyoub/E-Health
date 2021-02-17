@@ -10,8 +10,8 @@
 		href="https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css">
 		<style>
 			footer{
-    position: absolute;
-    bottom:0;
+    position: relative;
+    top:0;
     width: 100vw;
     font-family: 'Montserrat', sans-serif;
     letter-spacing: 0.5px;

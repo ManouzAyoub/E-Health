@@ -589,11 +589,9 @@
                                                                <c:set var="checked" value="chekeded"></c:set>
                                                                <c:set var="id" value="${entry.idPharmacie}"></c:set>
                                                                <c:if test="${pharmacieDao.getById(id).getEn_garde() == true}">
-                                                                   <c:out value="${entry.getEn_garde()}------ ture---------"></c:out>
                                                                     <input type="checkbox"  name="checkgarde"  onchange="toggleGarde('${entry.idPharmacie}')" class="custom-control-input keepcheck" id="customSwitch${entry.idPharmacie}" checked>
                                                                </c:if>
                                                                <c:if test="${pharmacieDao.getById(id).getEn_garde() == false}">
-                                                                    <c:out value="${entry.getEn_garde()}------ false--------"></c:out>
                                                                     <input type="checkbox"  name="checkgarde" onchange="toggleGarde('${entry.idPharmacie}')" class="custom-control-input keepcheck" id="customSwitch${entry.idPharmacie}">
                                                                </c:if>
                                                                 <label class="custom-control-label" for="customSwitch${entry.idPharmacie}">Toggle this switch</label>
