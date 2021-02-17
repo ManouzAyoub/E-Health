@@ -1,6 +1,10 @@
 /*    Sass template   */
 /*  Global Classes  */
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
 /*  Typography Classes  */
 .font-gilroy {
@@ -67,11 +71,6 @@
   background: #D46374;
 }
 
-.color-search-pannel-bg {
-  background: rgb(0,118,255);
-  background: linear-gradient(90deg, rgba(0,118,255,1) 0%, rgba(0,207,255,1) 58%, rgba(249,249,249,1) 100%);
-}
-
 .readMoreArea {
   opacity: 0;
   max-height: 0;
@@ -87,10 +86,20 @@
   #search_bar {
     display: inline;
   }
+  
+  #nav_bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 @media (max-width: 960px) {
   #search_bar {
+    display: none;
+  }
+  
+  #nav_bar {
     display: none;
   }
 
@@ -113,6 +122,11 @@
   top: 0;
   z-index: 1;
   width: 100%;
+}
+
+#Pharmacies_list {
+  max-height: 700px;
+  overflow-y: auto;
 }
 
 .map-container{
@@ -186,7 +200,6 @@ pre {
   white-space: -o-pre-wrap;    /* Opera 7 */
   word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
-/*# sourceMappingURL=style.css.map */
 
 .modal {
   display: none; /* Hidden by default */
@@ -225,4 +238,3 @@ pre {
   text-decoration: none;
   cursor: pointer;
 }
-
