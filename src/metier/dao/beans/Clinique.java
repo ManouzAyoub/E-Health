@@ -35,6 +35,7 @@ public class Clinique extends User{
 	
 	private Boolean dispo;
 	private String ville;
+	private Boolean first_using;
 	
 	@ManyToOne
 	@JoinColumn(name = "idUser" , referencedColumnName = "cin")
@@ -154,5 +155,22 @@ public class Clinique extends User{
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
+	
+	public Boolean getFirst_using() {
+		return first_using;
+	}
+	
+	public void setFirst_using(Boolean first_using) {
+		this.first_using = first_using;
+	}
+
+	@Override
+	public String toString() {
+		return "Clinique [name=" + name + ", adresse=" + adresse + ", description=" + description + ", emergency_tel="
+				+ emergency_tel + ", speciality=" + speciality + ", dispo=" + dispo + ", ville=" + ville
+				+ ", first_using=" + first_using + ", user=" + user + ", docteurs=" + docteurs + ", works=" + works
+				+ ", rating=" + rating + ", comments=" + comments + "]";
+	}
+	
 	
 }

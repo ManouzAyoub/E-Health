@@ -50,11 +50,12 @@ public class InformationPerDocteurServlet extends HttpServlet {
 		String id = request.getParameter(CHAMP_ID);
 		List<Langue> languages = new ArrayList<Langue>();
 		System.out.println(" -- speciality -- : "+speciality);
-		for (int i = 0; i < langue.length; i++) {
-			System.out.println(langue[i]);
-		    Langue l = Instances.langueImpl.getLangueByString(langue[i]);
-		    languages.add(l);
-
+		if (langue != null) {
+			for (int i = 0; i < langue.length; i++) {
+				System.out.println(langue[i]);
+			    Langue l = Instances.langueImpl.getLangueByString(langue[i]);
+			    languages.add(l);
+			}
 		}
 		
 		Docteur docteur = Instances.docteurDao.getById(Long.valueOf(id));
@@ -72,7 +73,8 @@ public class InformationPerDocteurServlet extends HttpServlet {
 	
 		if (!docteur.getFirst_using()) {
 			
-			docteur.setFirst_using(false);
+			docteur.setFirst_using(true);
+			docteur.setDispo(true);
 			Instances.docteurDao.edit(docteur);
 		}else {
 			Instances.docteurDao.edit(docteur);

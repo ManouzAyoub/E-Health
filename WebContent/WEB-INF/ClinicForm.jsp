@@ -60,7 +60,7 @@
                             <span class="erreur" >${form.erreurs['name']}</span>      
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-input" name="address" id="address" placeholder="Your clinic's address" value="<c:out value="${requestScope.clinic.address}"/>" />
+                            <input type="text" class="form-input" name="adresse" id="adresse" placeholder="Your clinic's address" value="<c:out value="${requestScope.clinic.adresse}"/>" />
                             <span class="erreur" >${form.erreurs['adress']}</span>      
                         </div>
                         

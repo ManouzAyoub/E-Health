@@ -14,14 +14,14 @@ import metier.dao.util.Instances;
 @WebServlet("/InformationClinique")
 public class InformationCliniqueFormServlet extends HttpServlet {
 	
-	private static final String CHAMP_NAME = "";
-	private static final String CHAMP_ADRESSE = "";
-	private static final String CHAMP_EMAIL = "";
-	private static final String CHAMP_TEL = "";
-	private static final String CHAMP_DESC = "";
-	private static final String CHAMP_TEL_URGENCE = "";
-	private static final String CHAMP_SPECIALITY = "";
-	private static final String CHAMP_ID = "";
+	private static final String CHAMP_NAME = "nom";
+	private static final String CHAMP_ADRESSE = "adresse";
+	private static final String CHAMP_EMAIL = "email";
+	private static final String CHAMP_TEL = "tel";
+	private static final String CHAMP_DESC = "desc";
+	private static final String CHAMP_TEL_URGENCE = "urgence";
+	private static final String CHAMP_SPECIALITY = "speciality";
+	private static final String CHAMP_ID = "id";
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
@@ -39,7 +39,7 @@ public class InformationCliniqueFormServlet extends HttpServlet {
 		String id = request.getParameter(CHAMP_ID);
 		
 		Clinique clinique = Instances.cliniqueDao.getById(Long.valueOf(id));
-		
+		System.out.println(clinique.toString());
 		clinique.setAdresse(adresse);
 		clinique.setName(name);
 		clinique.setAdresse(adresse);
@@ -47,8 +47,16 @@ public class InformationCliniqueFormServlet extends HttpServlet {
 		clinique.setDescription(description);
 		clinique.setTel(tel);
 		clinique.setEmergency_tel(tel_urgence);
+		Clinique  c = new Clinique();
+		if (clinique.getFirst_using()) {
+			c = Instances.cliniqueDao.edit(clinique);
+		}else {
+			clinique.setFirst_using(true);
+			clinique.setDispo(true);
+			c = Instances.cliniqueDao.edit(clinique);
+		}
 		
-		Clinique  c = Instances.cliniqueDao.edit(clinique);
+		
 		
 		HttpSession session = request.getSession(false);
 		session.setAttribute("clinique", c);

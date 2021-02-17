@@ -12,15 +12,15 @@ import metier.dao.beans.Clinique;
 import metier.dao.beans.Docteur;
 import metier.dao.util.Instances;
 
-@WebServlet("/docsInfo")
-public class DoctorInfoConfirmation extends HttpServlet {
+@WebServlet("/clinicInfo")
+public class CliniqueInfoConfirmation extends HttpServlet {
 	
 	public static final String VUE              = "/WEB-INF/clinicInfo.jsp";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id=request.getParameter("id");
-		Clinique doc= Instances.cliniqueDao.getById(Long.valueOf(id));
-		request.setAttribute("clinic", doc);
+		Clinique clinique = Instances.cliniqueDao.getById(Long.valueOf(id));
+		request.setAttribute("clinic", clinique);
 		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
             
 	}

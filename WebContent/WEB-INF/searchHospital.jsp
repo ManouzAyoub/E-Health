@@ -72,7 +72,7 @@
             <div class="container border-top row flex-column-reverse flex-lg-row">
                 <!--hopitaux List -->
                 <div class="col-lg-7" id="hopitaux_list">
-					<c:if test="${hospitals != null }">
+					<c:if test="${!hospitals.isEmpty() }">
 						<c:forEach var="entry" items="${hospitals}">
 	                        <!-- Element -->
 	                        <c:set var="nbr" value="${impl.getAverageOfRating(entry.idHopital,\"idHopital\")}"></c:set>

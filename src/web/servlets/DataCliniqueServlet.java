@@ -19,12 +19,15 @@ import metier.dao.util.Instances;
 public class DataCliniqueServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		this.getServletContext().getRequestDispatcher("/WEB-INF/dashboardClinique.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		HttpSession session = request.getSession(false);
+		
 		Clinique clinique = (Clinique) session.getAttribute("clinique");
+		request.setAttribute("clinique", clinique);
 		
 		List<Docteur> docteurs = clinique.getDocteurs();
 		request.setAttribute("nbrDoctors", docteurs.size());
@@ -32,7 +35,14 @@ public class DataCliniqueServlet extends HttpServlet {
 		List<Commentaire> comments = Instances.commentImpl.getComments(clinique.getCin(), "idClinique");
 		request.setAttribute("comments", comments);
 		
+		request.setAttribute("nbrComments", comments != null ? comments.size() : 0);
+		
 		request.setAttribute("doctors", docteurs);
+		request.setAttribute("nbrDoctors", docteurs.size());
+		
+		request.setAttribute("nbrRating", Instances.ratingImpl.getNumberOfRating(clinique.getCin(), "idClinique"));
+		
+		this.getServletContext().getRequestDispatcher("/WEB-INF/dashboardClinique.jsp").forward(request, response);
 	}
 
 }

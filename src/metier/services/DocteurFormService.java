@@ -191,6 +191,7 @@ public class DocteurFormService {
         doctor.setConsultationDomicile(false);
         doctor.setId("ChIJyRyt2um2sw0RdIT0i7fQ-Lw");
         doctor.setVille(ville);
+        doctor.setFirst_using(false);
 
         
         if ( erreurs.isEmpty() ) {

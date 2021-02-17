@@ -14,7 +14,7 @@ public class CliniqueFormImpl {
 	   private static CliniqueFormImpl instance = null;
 	
 	    private static final String CHAMP_NAME        = "name";
-	    private static final String CHAMP_ADDRESS     = "address";
+	    private static final String CHAMP_ADDRESS     = "adresse";
 	    private static final String CHAMP_EMAIL       = "email";
 	    private static final String CHAMP_TEL         = "tel";
 	    private static final String CHAMP_EMER_TEL    = "emergency_tel";
@@ -40,7 +40,7 @@ public class CliniqueFormImpl {
 	    }
  public Clinique clinicFormService(HttpServletRequest request) {
      String name = request.getParameter( CHAMP_NAME );
-     String address = request.getParameter( CHAMP_ADDRESS );
+     String adresse = request.getParameter( CHAMP_ADDRESS );
      String email = request.getParameter( CHAMP_EMAIL);
      String tel = request.getParameter( CHAMP_TEL );
      String emer_tel = request.getParameter( CHAMP_EMER_TEL );
@@ -56,13 +56,14 @@ public class CliniqueFormImpl {
          erreurs.put( CHAMP_NAME, e.getMessage() );
      }
      clinic.setName(name);
+     clinic.setFirst_using(false);
      
      try {
-         validationAddress( address );
+         validationAddress( adresse );
      } catch ( Exception e ) {
          erreurs.put( CHAMP_ADDRESS, e.getMessage() );
      }
-     clinic.setAdresse(address);;
+     clinic.setAdresse(adresse);;
      
      try {
          validationTel( tel );
@@ -84,7 +85,7 @@ public class CliniqueFormImpl {
          erreurs.put( CHAMP_EMAIL, e.getMessage() );
      }
      clinic.setEmail( email );
-     
+     System.out.println(speciality[0]);
      clinic.setSpeciality(speciality[0]);
      clinic.setDispo(false);
        

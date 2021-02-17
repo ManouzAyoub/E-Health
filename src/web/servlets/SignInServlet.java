@@ -94,14 +94,9 @@ public class SignInServlet extends HttpServlet {
     	
     	if ( visiter.getRole().getRole().equals("clinique") ) {
     		
-    		
-        	session.setAttribute("clinique", visiter);
-        	
-        	if ( form.getErreurs().isEmpty() ) {
-                this.getServletContext().getRequestDispatcher( SUCESS_CLINIQUE ).forward(request, response );
-            } else {
-                this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-            }
+    		System.out.println("c'est un clinique qui vient de se connecter");
+    		session.setAttribute("clinique", visiter);
+			this.getServletContext().getRequestDispatcher( "/DataClinique" ).forward( request, response );
 		}
 
 	}

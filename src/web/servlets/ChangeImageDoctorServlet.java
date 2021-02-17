@@ -23,10 +23,11 @@ public class ChangeImageDoctorServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String id = request.getParameter("docteur");
+		String id = request.getParameter("d");
 		Part part = request.getPart("image");
 		
 		Docteur docteur = Instances.docteurDao.getById(Long.valueOf(id));
+		System.out.println(docteur.toString());
 		
 		InputStream inputStream = null;
 		byte[] bite = null;
