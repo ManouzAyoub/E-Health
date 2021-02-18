@@ -9,6 +9,72 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="<c:url value="/CliniqueDash/dashboard.css"/>">
+      
+        <style>
+             .popup_section1 {
+        filter:blur(8px);
+        pointer-events:none;
+        user-select:none;
+        }
+         
+        #popup{
+        position:fixed;
+        top:40%;
+        left:50%;
+        transform:translate(-50%,-50%);
+        width:700px;
+        padding:50px;
+        box-shadow:0 5px 30px rgba(0,0,0,.30);
+        background:#fff;
+        visibility:hidden; 
+        opacity:0; 
+        transition:0.5s;
+        
+        }
+        
+        #popup.active{
+        top:50%;
+        visibility:visible;
+        opacity:1;
+        transition:0.5s;
+        }
+        #popup > h2{
+        text-align:center;
+                margin-bottom:40px;
+        }
+        .popup-buttons{
+                        display:flex;
+        justify-content:space-around;
+        }
+        .signup{
+            height: 40px;
+    width: 100px;
+    border-radius: 5px;
+    border: none;
+    font-family:'Gilroy';
+    font-weight: 500;
+    font-size: 16px;
+    filter: drop-shadow(3px 3px 3px #BCDAE8);
+    outline: none;
+    cursor: pointer;
+    background-color: #27AAF0;
+    opacity: 0.7;
+    color: #EDF8FF ;}
+    #popup .custom_select select{
+        -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  border: 0px;
+  padding: 8px 10px;
+  font-size: 15px;
+  border: 1px solid #d5dbd9;
+  border-radius: 3px;
+    }
+  
+        </style>
 </head>
 <body>
     
@@ -129,9 +195,7 @@
                                                     ${entry.commentaire}
                                                 </td>
                                             </tr>
-                                        </c:forEach>
-                                       
-                                            
+                                        </c:forEach>   
         
                                     </tbody>
                                 </table>
@@ -200,13 +264,13 @@
                 </div>
         </main>
 
-        <main id="doctorsDash" class="docteur hide" >
+        <main id="doctorsDash" class=" docteur hide" >
             <div class="recent-grid">
                 <div class="projects">
                     <div class="card">
                         <div class="card-header">
                             <h3>Docteurs :</h3>
-                            <div> <button style="background-color:#27AAF0;border:#27AAF0;cursor:pointer;">Ajouter  <span class="fas fa-plus"></span></button>
+                            <div> <button class="ajouterDocteur" style="background-color:#27AAF0;border:#27AAF0;cursor:pointer;">Ajouter  <span class="fas fa-plus"></span></button>
                                 <button style="background-color:#E33A49;border:#E33A49;cursor:pointer;">Supprimer tous  <span class="fas fa-trash"></span></button></div>
                            
                         </div>
@@ -240,7 +304,22 @@
                         </div>
                     </div>
                 </div>
+                
         </main>
+        <div id="popup" >
+            <h2>Vous souhaitez vous inscrire en tant que :</h2> 
+            <div class="popup-buttons">
+                <div class="custom_select">
+                    <select name="speciality">
+                      <option value="">spécialité 5</option>
+                      <option value="male">Spécialité 3</option>
+                      <option value="female">Spécialité 2</option>
+                      <option value="male">Spécialité 1</option>
+                      <option value="female">Spécialité 4</option>
+                    </select>
+                  </div>
+             <a href="#"><button class="signup"  >Utilisateur</button></a></div>
+             </div>
         <!-- <main class="mainTag" id="ProfileSection" style="display: none;"> -->
 
         <main id="InfoClinique" class="compte hide" >
@@ -302,6 +381,22 @@
     <script>
         var btn = document.getElementsByClassName('buttons');
         var mains = document.getElementsByTagName('main');
+        var popupBtn = document.querySelector(".ajouterDocteur");
+        var popup = document.querySelector("#popup");
+        var blured = document.querySelector("#doctorsDash");
+
+        popupBtn.addEventListener("click",function(){
+            popup.classList.toggle("active");
+            blured.cla ssList.toggle("popup_section1");
+
+        });
+        blured.addEventListener("click",()=>{
+            if(blured.classList.contains("popup_section1")){
+              //  blured.classList.remove("popup_section1");
+               // popup.classList.remove("active");
+            }
+        });
+       
 
         function handleClick(event){
             if (event.target.parentElement.classList.contains('buttons')) {

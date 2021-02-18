@@ -269,8 +269,12 @@
                                                 <td><label for="">Sexe :</label></td>
                                                 <td>
                                                     <select name="sexe" class="select-css infoInput" disabled>
-                                                        <option value="Homme">Homme</option>
+                                                        <c:if test="${docteur.sexe == 'Homme'}"><option selected value="Homme">Homme</option>
                                                         <option value="Femme">Femme</option>
+                                                        </c:if>
+                                                        <c:if test="${docteur.sexe == 'Femme' }"><option selected value="Femme">Femme</option>
+                                                        <option value="Homme">Homme</option>
+                                                        </c:if>
                                                     </select>
                                                 </td>
                                             </tr>
@@ -293,9 +297,21 @@
                                             <tr>
                                                 <td rowspan="2"><label for="">Langues :</label></td>
                                                 <td>
-                                                    <label style="margin-right: 5px;" for="English"><input style="margin-right: 2px;" name="langue" value="English" id="English" type="checkbox" class="infoInput" disabled>English</label>
+                                                <c:if test="${docteur.langues == 'English'}">
+                                                    <label style="margin-right: 5px;" for="English"><input style="margin-right: 2px;" name="langue" value="English" id="English" type="checkbox" class="infoInput" checked disabled>English</label>
                                                     <label style="margin-right: 5px;" for="Spanish"><input style="margin-right: 2px;" name="langue" value="Spanish" id="Spanish" type="checkbox" class="infoInput" disabled>Spanish</label>
                                                     <label style="margin-right: 5px;" for="Chinese"><input style="margin-right: 2px;" name="langue" value="Chinese" id="Chinese" type="checkbox" class="infoInput" disabled>Chinese</label>
+                                                    </c:if>
+                                                     <c:if test="${docteur.langues == 'Spanish'}">
+                                                    <label style="margin-right: 5px;" for="English"><input style="margin-right: 2px;" name="langue" value="English" id="English" type="checkbox" class="infoInput" disabled>English</label>
+                                                    <label style="margin-right: 5px;" for="Spanish"><input style="margin-right: 2px;" name="langue" value="Spanish" id="Spanish" type="checkbox" class="infoInput" checked disabled>Spanish</label>
+                                                    <label style="margin-right: 5px;" for="Chinese"><input style="margin-right: 2px;" name="langue" value="Chinese" id="Chinese" type="checkbox" class="infoInput" disabled>Chinese</label>
+                                                    </c:if>
+                                                    <c:if test="${docteur.langues == 'Chinese'}">
+                                                    <label style="margin-right: 5px;" for="English"><input style="margin-right: 2px;" name="langue" value="English" id="English" type="checkbox" class="infoInput" disabled>English</label>
+                                                    <label style="margin-right: 5px;" for="Spanish"><input style="margin-right: 2px;" name="langue" value="Spanish" id="Spanish" type="checkbox" class="infoInput" disabled>Spanish</label>
+                                                    <label style="margin-right: 5px;" for="Chinese"><input style="margin-right: 2px;" name="langue" value="Chinese" id="Chinese" type="checkbox" class="infoInput" checked disabled>Chinese</label>
+                                                    </c:if>
                                                 </td>
                                             </tr>
 
@@ -310,12 +326,12 @@
                                                 <td><label for="">Spécialité :</label></td>
                                                 <td>
                                                     <select name="speciality"  class="select-css infoInput" disabled>
-                                                        <option>Chirurgie esthétique</option>
-                                                        <option>Chirurgie pédiatrique</option>
-                                                        <option>Chirurgie vasculaire</option>
-                                                        <option>Chirurgie viscérale et digestive</option>
-                                                        <option>Gynécologie obstétrique</option>
-                                                        <option>Neurochirurgie </option>
+                                                        <option <c:if test="${docteur.speciality == 'Chirurgie esthétique'}"><c:out value="selected"/></c:if>>Chirurgie esthétique</option>
+                                                        <option <c:if test="${docteur.speciality == 'Chirurgie pédiatrique'}"><c:out value="selected"/></c:if>>Chirurgie pédiatrique</option>
+                                                        <option <c:if test="${docteur.speciality == 'Chirurgie vasculaire'}"><c:out value="selected"/></c:if>>Chirurgie vasculaire</option>
+                                                        <option <c:if test="${docteur.speciality == 'Chirurgie viscérale et digestive'}"><c:out value="selected"/></c:if>>Chirurgie viscérale et digestive</option>
+                                                        <option<c:if test="${docteur.speciality == 'Gynécologie obstétrique'}"><c:out value="selected"/></c:if> >Gynécologie obstétrique</option>
+                                                        <option <c:if test="${docteur.speciality == 'Neurochirurgie'}"><c:out value="selected"/></c:if>>Neurochirurgie </option>
                                                         <option>Allergologie</option>
                                                         <option>Anatomie et cytologie pathologique</option>
                                                         <option>Anesthésie</option>
