@@ -269,10 +269,10 @@
                                                 <td><label for="">Sexe :</label></td>
                                                 <td>
                                                     <select name="sexe" class="select-css infoInput" disabled>
-                                                        <c:if test="${docteur.sexe == 'Homme'}"><option selected value="Homme">Homme</option>
+                                                        <c:if test="${docteur.gender == 'Homme'}"><option selected value="Homme">Homme</option>
                                                         <option value="Femme">Femme</option>
                                                         </c:if>
-                                                        <c:if test="${docteur.sexe == 'Femme' }"><option selected value="Femme">Femme</option>
+                                                        <c:if test="${docteur.gender == 'Femme' }"><option selected value="Femme">Femme</option>
                                                         <option value="Homme">Homme</option>
                                                         </c:if>
                                                     </select>
@@ -297,28 +297,17 @@
                                             <tr>
                                                 <td rowspan="2"><label for="">Langues :</label></td>
                                                 <td>
-                                                <c:if test="${docteur.langues == 'English'}">
-                                                    <label style="margin-right: 5px;" for="English"><input style="margin-right: 2px;" name="langue" value="English" id="English" type="checkbox" class="infoInput" checked disabled>English</label>
-                                                    <label style="margin-right: 5px;" for="Spanish"><input style="margin-right: 2px;" name="langue" value="Spanish" id="Spanish" type="checkbox" class="infoInput" disabled>Spanish</label>
-                                                    <label style="margin-right: 5px;" for="Chinese"><input style="margin-right: 2px;" name="langue" value="Chinese" id="Chinese" type="checkbox" class="infoInput" disabled>Chinese</label>
-                                                    </c:if>
-                                                     <c:if test="${docteur.langues == 'Spanish'}">
-                                                    <label style="margin-right: 5px;" for="English"><input style="margin-right: 2px;" name="langue" value="English" id="English" type="checkbox" class="infoInput" disabled>English</label>
-                                                    <label style="margin-right: 5px;" for="Spanish"><input style="margin-right: 2px;" name="langue" value="Spanish" id="Spanish" type="checkbox" class="infoInput" checked disabled>Spanish</label>
-                                                    <label style="margin-right: 5px;" for="Chinese"><input style="margin-right: 2px;" name="langue" value="Chinese" id="Chinese" type="checkbox" class="infoInput" disabled>Chinese</label>
-                                                    </c:if>
-                                                    <c:if test="${docteur.langues == 'Chinese'}">
-                                                    <label style="margin-right: 5px;" for="English"><input style="margin-right: 2px;" name="langue" value="English" id="English" type="checkbox" class="infoInput" disabled>English</label>
-                                                    <label style="margin-right: 5px;" for="Spanish"><input style="margin-right: 2px;" name="langue" value="Spanish" id="Spanish" type="checkbox" class="infoInput" disabled>Spanish</label>
-                                                    <label style="margin-right: 5px;" for="Chinese"><input style="margin-right: 2px;" name="langue" value="Chinese" id="Chinese" type="checkbox" class="infoInput" checked disabled>Chinese</label>
-                                                    </c:if>
+	                                                <label style="margin-right: 5px;" for="English"><input style="margin-right: 2px;" name="langue" value="English" id="English" type="checkbox" class="infoInput" <c:forEach var="langue" items="${docteur.langues}"><c:if test="${ langue.langue == 'English' }"><c:out value='checked'></c:out> </c:if></c:forEach> disabled>English</label>
+	                                                <label style="margin-right: 5px;" for="Spanish"><input style="margin-right: 2px;" name="langue" value="Spanish" id="Spanish" type="checkbox" class="infoInput" <c:forEach var="langue" items="${docteur.langues}"><c:if test="${ langue.langue == 'Spanish' }"><c:out value='checked'></c:out></c:if></c:forEach> disabled>Spanish</label>
+	                                                <label style="margin-right: 5px;" for="Chinese"><input style="margin-right: 2px;" name="langue" value="Chinese" id="Chinese" type="checkbox" class="infoInput" <c:forEach var="langue" items="${docteur.langues}"><c:if test="${ langue.langue == 'Chinese' }"><c:out value='checked'></c:out></c:if></c:forEach> disabled>Chinese</label>
+                                                
                                                 </td>
                                             </tr>
 
                                             <tr>
                                                 <td>
-                                                    <label style="margin-right: 5px;" for="Frensh"><input style="margin-right: 2px;" name="langue" value="Frensh" id="Frensh" type="checkbox" class="infoInput" disabled>Frensh</label>
-                                                    <label style="margin-right: 5px;" for="Arabic"><input style="margin-right: 2px;" name="langue" value="Arabic" id="Arabic" type="checkbox" class="infoInput" disabled>Arabic</label>
+                                                    <label style="margin-right: 5px;" for="Frensh"><input style="margin-right: 2px;" name="langue" value="Frensh" id="Frensh" type="checkbox" class="infoInput" <c:forEach var="langue" items="${docteur.langues}"><c:if test="${ langue.langue == 'Frensh' }"><c:out value='checked'></c:out> </c:if></c:forEach> disabled>Frensh</label>
+                                                    <label style="margin-right: 5px;" for="Arabic"><input style="margin-right: 2px;" name="langue" value="Arabic" id="Arabic" type="checkbox" class="infoInput" <c:forEach var="langue" items="${docteur.langues}"><c:if test="${ langue.langue == 'Arabic' }"><c:out value='checked'></c:out> </c:if></c:forEach> disabled>Arabic</label>
                                                 </td>
                                             </tr>
     
@@ -357,12 +346,12 @@
                                             
                                             <tr>
                                                 <td><label for="">Description :</label></td>
-                                                <td><textarea name="description" value="${docteur.description}" id="description" cols="60" rows="5" class="infoInput" disabled></textarea></td>
+                                                <td><textarea name="description" id="description" cols="60" rows="5" class="infoInput" disabled>${docteur.description}</textarea></td>
                                             </tr>
     
                                             <tr>
-                                                <td><label for="">Biologie:</label></td>
-                                                <td><textarea name="biographie" id="biologie" value="${docteur.biographie}" cols="60" rows="5" class="infoInput" disabled></textarea></td>
+                                                <td><label for="">Biographie:</label></td>
+                                                <td><textarea name="biographie" id="biologie"  cols="60" rows="5" class="infoInput" disabled>${docteur.biographie}</textarea></td>
                                             </tr>
                                         </table>
                                     </div>
@@ -602,19 +591,19 @@
                                                 <tr>
                                                     <td rowspan="3"><label for="services">Services :</label></td>
                                                     <td>
-                                                        <label for="telemedecine"><input name="telemedecine" type="checkbox" class="infoInputCabinet" value="Télémédecine" disabled> &nbsp; Télémédecine</label>
+                                                        <label for="telemedecine"><input name="telemedecine" type="checkbox" class="infoInputCabinet" value="Télémédecine" <c:if test="${docteur.teleMedcine == true }">checked</c:if> disabled> &nbsp; Télémédecine</label>
                                                     </td>
                                                 </tr>
     
                                                 <tr>
                                                     <td>
-                                                        <label for="Consultation_domicile"><input name="Consultation_domicile" type="checkbox" class="infoInputCabinet" value="Consultation a domicile" disabled> &nbsp; Consultation a domicile</label>
+                                                        <label for="Consultation_domicile"><input name="Consultation_domicile" type="checkbox" class="infoInputCabinet" value="Consultation a domicile" <c:if test="${docteur.consultationDomicile == true }">checked</c:if> disabled> &nbsp; Consultation a domicile</label>
                                                     </td>
                                                 </tr>
     
                                                 <tr>
                                                     <td>
-                                                        <label for="renderVousTelephone"><input name="renderVousTelephone" type="checkbox" class="infoInputCabinet" value="Prend rendez-vous par téléphone" disabled> &nbsp; Prend rendez-vous par téléphone</label>
+                                                        <label for="renderVousTelephone"><input name="renderVousTelephone" type="checkbox" class="infoInputCabinet" value="Prend rendez-vous par téléphone" <c:if test="${docteur.rtelephonique == true }">checked</c:if> disabled> &nbsp; Prend rendez-vous par téléphone</label>
                                                         
                                                     </td>
                                                 </tr>

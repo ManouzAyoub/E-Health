@@ -40,12 +40,18 @@ public class InfoCabinetServlet extends HttpServlet {
 		
 		if (telemedecine != null) {
 			docteur.setTeleMedcine(true);
+		}else {
+			docteur.setTeleMedcine(false);
 		}
 		if (domicile != null) {
 			docteur.setConsultationDomicile(true);
+		} else {
+			docteur.setConsultationDomicile(false);
 		}
 		if (rendezVous != null) {
 			docteur.setRtelephonique(true);
+		}else {
+			docteur.setRtelephonique(false);
 		}
 		
 		Instances.docteurDao.edit(docteur);

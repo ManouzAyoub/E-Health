@@ -7,8 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import metier.dao.Implementations.DocteurDao;
-import metier.dao.beans.Clinique;
 import metier.dao.beans.Docteur;
 import metier.dao.util.Instances;
 
@@ -20,6 +18,7 @@ public class DoctorInfoConfirmation extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id=request.getParameter("id");
 		Docteur doc= Instances.docteurDao.getById(Long.valueOf(id));
+		System.out.println(doc.toString());
 		request.setAttribute("doc", doc);
 		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
             
