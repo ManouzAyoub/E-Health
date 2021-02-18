@@ -12,67 +12,67 @@
       
         <style>
              .popup_section1 {
-        filter:blur(8px);
-        pointer-events:none;
-        user-select:none;
-        }
-         
-        #popup{
-        position:fixed;
-        top:40%;
-        left:50%;
-        transform:translate(-50%,-50%);
-        width:700px;
-        padding:50px;
-        box-shadow:0 5px 30px rgba(0,0,0,.30);
-        background:#fff;
-        visibility:hidden; 
-        opacity:0; 
-        transition:0.5s;
-        
-        }
-        
-        #popup.active{
-        top:50%;
-        visibility:visible;
-        opacity:1;
-        transition:0.5s;
-        }
-        #popup > h2{
-        text-align:center;
-                margin-bottom:40px;
-        }
-        .popup-buttons{
-                        display:flex;
-        justify-content:space-around;
-        }
-        .signup{
-            height: 40px;
-    width: 100px;
-    border-radius: 5px;
-    border: none;
-    font-family:'Gilroy';
-    font-weight: 500;
-    font-size: 16px;
-    filter: drop-shadow(3px 3px 3px #BCDAE8);
+            filter:blur(8px);
+            pointer-events:none;
+            user-select:none;
+            }
+            
+            #popup{
+            position:fixed;
+            top:40%;
+            left:50%;
+            transform:translate(-50%,-50%);
+            width:700px;
+            padding:50px;
+            box-shadow:0 5px 30px rgba(0,0,0,.30);
+            background:#fff;
+            visibility:hidden; 
+            opacity:0; 
+            transition:0.5s;
+            
+            }
+            
+            #popup.active{
+            top:50%;
+            visibility:visible;
+            opacity:1;
+            transition:0.5s;
+            }
+            #popup > h2{
+            text-align:center;
+                    margin-bottom:40px;
+            }
+            .popup-buttons{
+                            display:flex;
+            justify-content:space-around;
+            }
+            .signup{
+                height: 40px;
+        width: 100px;
+        border-radius: 5px;
+        border: none;
+        font-family:'Gilroy';
+        font-weight: 500;
+        font-size: 16px;
+        filter: drop-shadow(3px 3px 3px #BCDAE8);
+        outline: none;
+        cursor: pointer;
+        background-color: #27AAF0;
+        opacity: 0.7;
+        color: #EDF8FF ;}
+        #popup .custom_select select{
+            -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
     outline: none;
-    cursor: pointer;
-    background-color: #27AAF0;
-    opacity: 0.7;
-    color: #EDF8FF ;}
-    #popup .custom_select select{
-        -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  outline: none;
-  width: 100%;
-  height: 100%;
-  border: 0px;
-  padding: 8px 10px;
-  font-size: 15px;
-  border: 1px solid #d5dbd9;
-  border-radius: 3px;
-    }
+    width: 100%;
+    height: 100%;
+    border: 0px;
+    padding: 8px 10px;
+    font-size: 15px;
+    border: 1px solid #d5dbd9;
+    border-radius: 3px;
+        }
   
         </style>
 </head>
@@ -306,20 +306,20 @@
                 </div>
                 
         </main>
+        
         <div id="popup" >
             <h2>Vous souhaitez vous inscrire en tant que :</h2> 
             <div class="popup-buttons">
                 <div class="custom_select">
                     <select name="speciality">
-                      <option value="">spécialité 5</option>
-                      <option value="male">Spécialité 3</option>
-                      <option value="female">Spécialité 2</option>
-                      <option value="male">Spécialité 1</option>
-                      <option value="female">Spécialité 4</option>
+                    	<c:forEach var="specia" items="${Instances.specialities()}">
+                    		<option value="${specia}" ${ clinique.speciality == specia ? 'selected' : '' } }>${specia}</option>
+                    	</c:forEach>
+                      
                     </select>
                   </div>
              <a href="#"><button class="signup"  >Utilisateur</button></a></div>
-             </div>
+        </div>
         <!-- <main class="mainTag" id="ProfileSection" style="display: none;"> -->
 
         <main id="InfoClinique" class="compte hide" >
@@ -359,13 +359,11 @@
                         <div class="inputfield">
                           <label>Spécialité :</label>
                           <div class="custom_select">
-                            <select name="speciality">
-                              <option value="">spécialité 5</option>
-                              <option value="male">Spécialité 3</option>
-                              <option value="female">Spécialité 2</option>
-                              <option value="male">Spécialité 1</option>
-                              <option value="female">Spécialité 4</option>
-                            </select>
+                              <select name="speciality">
+		                    	<c:forEach var="specia" items="${Instances.specialities()}">
+		                    		<option value="${specia}" ${ clinique.speciality == specia ? 'selected' : '' } }>${specia}</option>
+		                    	</c:forEach>
+                   			 </select>
                           </div>
                        </div> 
                       <div class="inputfield">
@@ -387,7 +385,7 @@
 
         popupBtn.addEventListener("click",function(){
             popup.classList.toggle("active");
-            blured.cla ssList.toggle("popup_section1");
+            blured.classList.toggle("popup_section1");
 
         });
         blured.addEventListener("click",()=>{

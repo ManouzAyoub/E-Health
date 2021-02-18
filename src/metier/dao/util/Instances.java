@@ -1,5 +1,8 @@
 package metier.dao.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import metier.dao.Implementations.CliniqueDao;
 
 import metier.dao.Implementations.CommentaireDao;
@@ -52,5 +55,59 @@ public class Instances {
 	public static SignInFormService signInService = SignInFormService.getInstance();
 	public static SendEmailService send   = SendEmailService.getInstance();
 	public static PharmacieImpl pharmacieImpl = PharmacieImpl.getInstance();
+	
+	public static List<String> languages = new ArrayList<String>();
+
+	public static List<String> specialities(){
+		languages.add("Chirurgie esthétique");
+		languages.add("Chirurgie vasculaire");
+		languages.add("Chirurgie viscérale et digestive");
+		languages.add("Gynécologie obstétrique");
+		languages.add("Neurochirurgie");
+		languages.add("Allergologie");
+		languages.add("Anatomie et cytologie pathologique");
+		languages.add("Anesthésie");
+		languages.add("Cardiologie");
+		languages.add("Dermatologie");
+		languages.add("Endocrinologie-nutrition");
+		languages.add("Génétique");
+		languages.add("Allergologie");
+		languages.add("Gynécologie médicale");
+		languages.add("Hématologie");
+		languages.add("Urgentiste");
+		languages.add("Santé publique");
+		languages.add("Réanimation");
+		languages.add("Radiologie");
+		languages.add("Psychiatrie");
+		languages.add("Neurologie");
+		languages.add("Néphrologie");
+		languages.add("Médecine physique et réadaptation");
+		languages.add("Médecine générale");
+		languages.add("Chirurgie pédiatrique");
+		languages.add("Chirurgie visc�rale et digestive");
+		languages.add("Gyn�cologie obst�trique");
+		languages.add("Neurochirurgie");
+		languages.add("Allergologie");
+		languages.add("Anatomie et cytologie pathologique");
+		languages.add("Anesth�sie");
+		languages.add("Cardiologie");
+		languages.add("Dermatologie");
+		languages.add("Endocrinologie-nutrition");
+		languages.add("G�n�tique");
+		languages.add("Allergologie");
+		languages.add("Gyn�cologie m�dicale");
+		languages.add("H�matologie");
+		languages.add("Urgentiste");
+		languages.add("Sant� publique");
+		languages.add("R�animation");
+		languages.add("Radiologie");
+		languages.add("Psychiatrie");
+		languages.add("Neurologie");
+		languages.add("N�phrologie");
+		languages.add("M�decine physique et r�adaptation");
+		languages.add("M�decine g�n�rale");
+		languages.add("Chirurgie p�diatrique");
+		return languages;
+	}
 
 }

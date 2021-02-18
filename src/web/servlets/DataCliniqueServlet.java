@@ -39,6 +39,8 @@ public class DataCliniqueServlet extends HttpServlet {
 		
 		request.setAttribute("doctors", docteurs);
 		request.setAttribute("nbrDoctors", docteurs.size());
+		Instances.languages.clear();
+		request.setAttribute("Instances", new Instances());
 		
 		request.setAttribute("nbrRating", Instances.ratingImpl.getNumberOfRating(clinique.getCin(), "idClinique"));
 		

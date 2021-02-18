@@ -56,58 +56,58 @@
                     <a href="#" class="buttons" onclick="handleClick(event);show('dashboard')">
                         
                         <span class="las la-igloo"></span>
-                        Dashboard
+                        <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" class="buttons dash" onClick="handleClick(event);show('Demmandes')">
                         
                         <span class="las la-clipboard-list"></span>
-                        Demands
+                        <span>Demands</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" class="buttons dash" onClick="handleClick(event);show('pharmacy')">
                         
                         <img  id="phar" src="https://img.icons8.com/pastel-glyph/24/ffffff/hand-with-a-pill.png"  style="padding-right:12px"/>
-                        Pharmacy
+                        <span>Pharmacy</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" class="buttons dash" onClick="handleClick(event);show('hospital')">
                         
                         <img id="hos" src="https://img.icons8.com/material/24/ffffff/hospital-2.png"  style="padding-right:12px"/>
-                        Hospital
+                        <span>Hospital</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" class="buttons btn-comment"  onclick="handleClick(event);show('comments_Section')">
                         <img id="cmt" src="https://img.icons8.com/metro/24/ffffff/comments.png" style="padding-right:12px"/>
-                        Comments
+                        <span>Comments</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" class="buttons dash"  onclick="handleClick(event);show('doctors_Section')">
                         <span class="las la-user-circle"></span>
-                        List of profile doctors
+                        <span>List of profile doctors</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" class="buttons dash"  onclick="handleClick(event);show('cliniques_Section')">
                         <span class="las la-user-circle"></span>
-                        List of profile clinics
+                        <span>List of profile clinics</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" class="buttons dash"  onclick="handleClick(event);show('pharmacies_Section')">
                         <span class="las la-user-circle"></span>
-                        List of profile pharmacies
+                        <span>List of profile pharmacies</span>
                     </a>
                 </li>
                 <li>
                     <a href="#" class="buttons dash"  onclick="handleClick(event);show('hospitals_Section')">
                         <span class="las la-user-circle"></span>
-                        List of profile hospitals
+                        <span>List of profile hospitals</span>
                     </a>
                 </li>
             </ul>

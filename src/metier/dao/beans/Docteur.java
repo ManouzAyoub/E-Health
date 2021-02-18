@@ -40,6 +40,7 @@ public class Docteur extends User{
 	    private String biographie;
 	    private String id;
 	    private Boolean first_using;
+	    private Long nbrVisiters;
 	    @Transient
 	    private String Base64image;
 	    
@@ -350,6 +351,14 @@ public class Docteur extends User{
 		
 		public void setFirst_using(Boolean first_using) {
 			this.first_using = first_using;
+		}
+		
+		public Long getNbrVisiters() {
+			return nbrVisiters;
+		}
+		
+		public void setNbrVisiters(Long nbrVisiters) {
+			this.nbrVisiters = nbrVisiters;
 		}
 		
 
