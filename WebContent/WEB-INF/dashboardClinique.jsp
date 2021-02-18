@@ -66,10 +66,6 @@
                     Dashboard
                 </h2>
             </div>
-            <div class="search-wrapper">
-                <span class="las la-search"></span>
-                <input type="search" placeholder="search here">
-            </div>
 
             <div class="user-wrapper">
                 <img src="./assets/img/plate1.png" width="40px" height="40px" alt="">
@@ -274,7 +270,7 @@
                        </div>  
                       <div class="inputfield">
                           <label>Description :</label>
-                          <textarea class="input" name="desc" value="${clinique.description}" cols="30" rows="4"></textarea>
+                          <textarea class="input" name="desc" cols="30" rows="4">${clinique.description}</textarea>
                        </div> 
                        <div class="inputfield">
                         <label>Téléphone D'urgence :</label>

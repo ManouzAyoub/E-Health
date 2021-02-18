@@ -341,12 +341,12 @@
                                             
                                             <tr>
                                                 <td><label for="">Description :</label></td>
-                                                <td><textarea name="description" value="${docteur.description}" id="description" cols="60" rows="5" class="infoInput" disabled></textarea></td>
+                                                <td><textarea name="description" id="description" cols="60" rows="5" class="infoInput" disabled>${docteur.description}</textarea></td>
                                             </tr>
     
                                             <tr>
                                                 <td><label for="">Biologie:</label></td>
-                                                <td><textarea name="biographie" id="biologie" value="${docteur.biographie}" cols="60" rows="5" class="infoInput" disabled></textarea></td>
+                                                <td><textarea name="biographie" id="biologie" cols="60" rows="5" class="infoInput" disabled>${docteur.biographie}</textarea></td>
                                             </tr>
                                         </table>
                                     </div>
