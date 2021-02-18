@@ -34,6 +34,8 @@ public class ClinicFormServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// afficher la formulaire d'inscription d'un clinuque au client
+		Instances.languages.clear();
+        request.setAttribute("Instances", new Instances());
 		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 	}
 
@@ -45,6 +47,7 @@ public class ClinicFormServlet extends HttpServlet {
 
         request.setAttribute( ATT_CLINIC, clinic );
         request.setAttribute( ATT_FORM, form );
+        
 
         if ( form.getErreurs().isEmpty() ) {
         	

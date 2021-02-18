@@ -48,32 +48,44 @@
             }
             .signup{
                 height: 40px;
-        width: 100px;
-        border-radius: 5px;
-        border: none;
-        font-family:'Gilroy';
-        font-weight: 500;
-        font-size: 16px;
-        filter: drop-shadow(3px 3px 3px #BCDAE8);
-        outline: none;
-        cursor: pointer;
-        background-color: #27AAF0;
-        opacity: 0.7;
-        color: #EDF8FF ;}
+                width: 100px;
+                border-radius: 5px;
+                border: none;
+                font-family:'Gilroy';
+                font-weight: 500;
+                font-size: 16px;
+                filter: drop-shadow(3px 3px 3px #BCDAE8);
+                outline: none;
+                cursor: pointer;
+                background-color: #27AAF0;
+                opacity: 0.7;
+                color: #EDF8FF ;
+                padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+            }
         #popup .custom_select select{
             -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    outline: none;
-    width: 100%;
-    height: 100%;
-    border: 0px;
-    padding: 8px 10px;
-    font-size: 15px;
-    border: 1px solid #d5dbd9;
-    border-radius: 3px;
+            -moz-appearance: none;
+            appearance: none;
+            outline: none;
+            width: 100%;
+            height: 100%;
+            border: 0px;
+            padding: 8px 10px;
+            font-size: 15px;
+            border: 1px solid #d5dbd9;
+            border-radius: 3px;
         }
-  
+
+        .doctor_email_input {
+            width: 200px;
+        }
+
+        #infosDocByEmail {
+            display: none;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
         </style>
 </head>
 <body>
@@ -134,10 +146,10 @@
             </div>
 
             <div class="user-wrapper">
-                <img src="./assets/img/plate1.png" width="40px" height="40px" alt="">
+                <i class="far fa-hospital fa-3x" style="color:#27aaf0; margin-right:1rem;"></i>
                 <div class="user-wrapper-info">
                     <h4>${clinique.name}</h4>
-                    <small>${clinique.adresse}</small>
+                    <small style="color:black;">Hopital</small>
                 </div>
             </div>
         </header>
@@ -223,6 +235,7 @@
                                 </div>
                             </c:forEach>
                         </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -308,17 +321,46 @@
         </main>
         
         <div id="popup" >
-            <h2>Vous souhaitez vous inscrire en tant que :</h2> 
+            <h2>Insérer l'email du docteur :</h2> 
             <div class="popup-buttons">
                 <div class="custom_select">
-                    <select name="speciality">
-                    	<c:forEach var="specia" items="${Instances.specialities()}">
-                    		<option value="${specia}" ${ clinique.speciality == specia ? 'selected' : '' } }>${specia}</option>
-                    	</c:forEach>
-                      
-                    </select>
-                  </div>
-             <a href="#"><button class="signup"  >Utilisateur</button></a></div>
+                    <input type="search" class="doctor_email_input">
+                    <label onclick="handle_doctor_email_button()" class="signup">Chercher</label>
+                </div>
+            </div>
+            <div id='infosDocByEmail' >
+                <form action="">
+                    <table>
+                        <tr>
+                            <td rowspan="4"><img src="https://img.icons8.com/ios/50/069c54/doctor-male.png" width="150px" alt=""></td>
+                            <td><label>Nom complet :</label></td>
+                            <td><input type="text"></td>
+                        </tr>
+                        
+                        <tr>
+                            <td><label>Specialité :</label></td>
+                            <td><input type="text"></td>
+                        </tr>
+                        
+                        <tr>
+                            <td><label>Email :</label></td>
+                            <td><input type="text"></td>
+                        </tr>
+    
+                        <tr>
+                            <td><label>Telephone :</label></td>
+                            <td><input type="text"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" name="id" value="id" hidden></td>
+                            <td><input type="submit" class="signup" value="Ajouter"></td>
+                            <td><input class="signup" value="Annuler"></input></td>
+                        </tr>
+                    </table>
+                </form>
+                
+            </div>
+            
         </div>
         <!-- <main class="mainTag" id="ProfileSection" style="display: none;"> -->
 
@@ -361,7 +403,8 @@
                           <div class="custom_select">
                               <select name="speciality">
 		                    	<c:forEach var="specia" items="${Instances.specialities()}">
-		                    		<option value="${specia}" ${ clinique.speciality == specia ? 'selected' : '' } }>${specia}</option>
+		                    	
+		                    		<option value="${specia}" ${ clinique.speciality.equals(specia) ? 'selected' : '' } }>${specia}</option>
 		                    	</c:forEach>
                    			 </select>
                           </div>
@@ -394,6 +437,10 @@
                // popup.classList.remove("active");
             }
         });
+
+        function handle_doctor_email_button() {
+            document.getElementById('infosDocByEmail').style.display='block';
+        }
        
 
         function handleClick(event){

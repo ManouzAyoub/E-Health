@@ -82,9 +82,13 @@
 
 					<div class="div" onmouseover="showSelect('visible')" onmouseout="showSelect('hidden')">
 				        &nbsp;&nbsp;&nbsp;&nbsp;Veuillez choisir votre/vos specialités <span class="arrow">&#9660;&nbsp;&nbsp;</span>
-				
 				        <select multiple="multiple" class="hidden" id="sel" name="speciality">
-				            <option value="gynécologie et obstétrique">gynécologie et obstétrique</option>
+				        	<c:forEach var="specia" items="${Instances.specialities()}">
+		                    	
+		                    		<option value="${specia}">${specia}</option>
+		                    </c:forEach>
+				        
+				            <!-- <option value="gynécologie et obstétrique">gynécologie et obstétrique</option>
 				            <option value="gastro-entérologie">gastro-entérologie</option>
 				            <option value="chirurgie esthétique">chirurgie esthétique</option>
 				            <option value="Santé sexuelle et contraceptifs">Santé sexuelle et contraceptifs</option>
@@ -96,7 +100,7 @@
 				            <option value="oncologie médicale et chirurgicale">oncologie médicale et chirurgicale</option>
 				            <option value="radiologie diagnostique et interventionnelle">radiologie diagnostique et interventionnelle</option>
 				            <option value="neurochirurgie">neurochirurgie</option>
-				            <option value="chirurgie orthopédique et traumatologique">chirurgie orthopédique et traumatologique</option>
+				            <option value="chirurgie orthopédique et traumatologique">chirurgie orthopédique et traumatologique</option> -->
 				
 				        </select>
 				    </div>
