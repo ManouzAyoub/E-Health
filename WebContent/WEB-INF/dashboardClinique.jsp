@@ -139,7 +139,7 @@
             <div class="header-title">
                 <h2>
                     <label for="nav-toggle">
-                        <span class="las la-bars"></span>
+                        <span id="burger" class="las la-bars"></span>
                     </label>
                     Dashboard
                 </h2>
@@ -321,6 +321,7 @@
         </main>
         
         <div id="popup" >
+            <span class="closepopup" style="position: absolute; top :2px ; margin-left: 90%;cursor:pointer;"><i class="fas fa-times"></i></span>
             <h2>Insérer l'email du docteur :</h2> 
             <div class="popup-buttons">
                 <div class="custom_select">
@@ -354,7 +355,7 @@
                         <tr>
                             <td><input type="text" name="id" value="id" hidden></td>
                             <td><input type="submit" class="signup" value="Ajouter"></td>
-                            <td><input class="signup" value="Annuler"></input></td>
+                            <td><input type="button" class="signup closepopup" value="Annuler"></input></td>
                         </tr>
                     </table>
                 </form>
@@ -383,36 +384,36 @@
                         <div class="inputfield">
                           <label>Adresse :</label>
                           <input type="text" name="adresse" value="${clinique.adresse}" class="input">
-                       </div>  
-                       <div class="inputfield">
+                     </div>  
+                      <div class="inputfield"> 
                           <label>Téléphone :</label>
                           <input type="text" name="tel" value="${clinique.tel}" class="input">
                           
-                       </div>  
+                      </div>   
                       <div class="inputfield">
                           <label>Description :</label>
                           <textarea class="input" name="desc" cols="30" rows="4">${clinique.description}</textarea>
                        </div> 
                        <div class="inputfield">
-                        <label>Téléphone D'urgence :</label>
+                       <label>Téléphone D'urgence :</label>
                         <input type="text" name="urgence" value="${clinique.emergency_tel}" class="input">
                         
                      </div> 
                         <div class="inputfield">
                           <label>Spécialité :</label>
-                          <div class="custom_select">
+                         <div class="custom_select">
                               <select name="speciality">
 		                    	<c:forEach var="specia" items="${Instances.specialities()}">
 		                    	
 		                    		<option value="${specia}" ${clinique.speciality.equals(specia) ? 'selected' : '' } }>${specia}</option>
 		                    	</c:forEach>
-                   			 </select>
+                  			 </select>
                           </div>
                        </div> 
                       <div class="inputfield">
                         <input type="submit" value="Enregistrer" class="btn">
                       </div>
-                    </div>
+                    </div> 
                 </div>
             </form>
         </main>
@@ -425,18 +426,26 @@
         var popupBtn = document.querySelector(".ajouterDocteur");
         var popup = document.querySelector("#popup");
         var blured = document.querySelector("#doctorsDash");
-
+        var burgerBtn = document.querySelector("#burger");
+        var closepop = document.querySelectorAll(".closepopup");
+    
+        console.log(closepop);
         popupBtn.addEventListener("click",function(){
             popup.classList.toggle("active");
             blured.classList.toggle("popup_section1");
+            burgerBtn.click();
 
         });
-        blured.addEventListener("click",()=>{
+        for (var i=0 ,len=closepop.length; i<len ;i++){
+            closepop[i].addEventListener("click",()=>{
             if(blured.classList.contains("popup_section1")){
-              //  blured.classList.remove("popup_section1");
-               // popup.classList.remove("active");
+               blured.classList.remove("popup_section1");
+               popup.classList.remove("active");
+               burgerBtn.click();
             }
         });
+        }
+    
 
         function handle_doctor_email_button() {
             document.getElementById('infosDocByEmail').style.display='block';
