@@ -11,27 +11,24 @@ import javax.servlet.http.HttpSession;
 import metier.dao.beans.Docteur;
 import metier.dao.util.Instances;
 
-
-@WebServlet("/ChangeLocalisation")
-public class ChangeLocalisationServlet extends HttpServlet {
+@WebServlet("/IDLocalisation")
+public class IDLocalisationServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String localisation = request.getParameter("place_id");
-		String id = request.getParameter("loca_id");
+		String place_id = request.getParameter("place_id");
+		String loca_id = request.getParameter("loca_id");
 		
-		Docteur docteur = Instances.docteurDao.getById(Long.valueOf(id));
-		
-		docteur.setId(localisation);
+		Docteur docteur = Instances.docteurDao.getById(Long.valueOf(loca_id));
 		
 		Docteur d = Instances.docteurDao.edit(docteur);
 		
 		HttpSession session = request.getSession(false);
 		session.setAttribute("docteur", d);
+		
 		this.getServletContext().getRequestDispatcher("/DataDoctor").forward(request, response);
 	}
 

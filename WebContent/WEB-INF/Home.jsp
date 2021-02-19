@@ -90,14 +90,14 @@
             </nav>
             <c:if test="${ sessionScope.visiter == null }">
             	<div class="account">
-	               	<a href="<c:url value="/signIn" />"><button class="sign-in">Connexion</button></a>
-	                <button class="sign-up" id="toggle" >Inscription</button>
+	               	<a id="conBtn" href="<c:url value="/signIn" />"><button  class="sign-in">Connexion</button></a>
+	                <button class="sign-up" onclick="toggle()" id="toggle" >Inscription</button>
             	</div>
             </c:if>
             <c:if test="${ sessionScope.visiter != null }">
             	<div class="account">
 	               	<%-- <a href="<c:url value="/signIn" />"><button class="sign-in">Deconnexion</button></a> --%>
-	               	<button class="sign-up" id="toggle" style="padding:0px 5px" >Log Out</button>
+	               	<button class="sign-up" style="padding:0px 5px" >Log Out</button>
             	</div>
             </c:if>
             
@@ -119,10 +119,10 @@
                 eniet hic nesciunt 
             </p> 
             <div class="buttons">
-                <button class="sign-in cta">
+                <button onclick="handleClickConnexion()" class="sign-in cta">
                     Connectez vous
                 </button>
-                <button class="sign-up cta">
+                <button onclick="toggle()" class="sign-up cta">
                     rejoignez nous ! 
                 </button>
             </div>
@@ -231,7 +231,7 @@
 	    	var popup=document.getElementById('popup');
 	    	popup.classList.toggle('active');
 	    }
-	    document.getElementById("toggle").addEventListener("click", toggle);
+	    //document.getElementById("toggle").addEventListener("click", toggle);
         
 	    function untoggle(){
 	    	var blur=document.getElementById('blur');
@@ -240,6 +240,10 @@
 	        blurimg.classList.toggle("active",false);
 	    	var popup=document.getElementById('popup');
 	    	popup.classList.toggle("active",false);
+	    }
+	    
+	    function handleClickConnexion(){
+	    	document.getElementById('conBtn').click();
 	    }
         
     </script>

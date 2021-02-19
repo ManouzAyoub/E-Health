@@ -49,9 +49,15 @@ public class DataDoctorServlet extends HttpServlet {
 		List<Recomponse> recompences = Instances.recomImpl.getRecompenseByDoctor(docteur);
 		request.setAttribute("educations", educations);
 		request.setAttribute("recompences", recompences);
+		Map<Integer,String> dictinct = Instances.ratingImpl.getPercentageOfEtoiles(docteur.getCin(), "idDocteur");
+		System.out.println("xx -- xx -- :"+dictinct.getOrDefault(5, "0"));
 		request.setAttribute("progressBar", Instances.ratingImpl.getPercentageOfEtoiles(docteur.getCin(), "idDocteur"));
 		request.setAttribute("evaluations", Instances.ratingImpl.countDistinctValueOfRate(docteur.getCin(), "idDocteur") );
 		//rating section
+		Instances.heurs.clear();
+		Instances.jours.clear();
+		Instances.languages.clear();
+		request.setAttribute("Instances", new Instances());
 		
 		/*
 		 * Number Of Associations || besoin d'une function apres
@@ -64,6 +70,7 @@ public class DataDoctorServlet extends HttpServlet {
 		request.setAttribute("numberOfRating", numberOfRating != null ? numberOfRating : 0);
 		request.setAttribute("averageOfRating", averageOfRating );
 		request.setAttribute("average", average);
+		request.setAttribute("nbrVisiters", Instances.docteurImpl.getNumberOfVisiters(docteur));
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/DocteurDashboard.jsp").forward(request, response);
 	}

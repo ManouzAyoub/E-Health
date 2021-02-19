@@ -80,11 +80,25 @@ public class DocteurImpl {
 		}
 	}
 	
+<<<<<<< HEAD
 	public String returnImage( Docteur docteur) {
 		String image = Base64.getEncoder().encodeToString(docteur.getProfile_image());
 		return image;
 	}
 	
+=======
+	public Long getNumberOfVisiters(Docteur docteur) {
+		String hql = "select o.nbrVisiters from Docteur o  where cin = :idDocteur";
+		Query q = session.createQuery(hql);
+		q.setParameter("idDocteur", docteur.getCin());
+		List<Long> nbr = q.getResultList();
+		if (nbr.size() != 0) {
+			return nbr.get(0);
+		}else {
+			return Long.valueOf(0);
+		}
+	}
+>>>>>>> a6fb0ff92da8555936a84f5b7c31cd2a8d5db21e
 
 	public Map<Long, List<String>> displayDoctorsInPage(List<Docteur> list) {
 		function();
@@ -277,6 +291,24 @@ public class DocteurImpl {
 		}
 		
 	}
+	
+	public void validationDescription(String description) throws Exception {
+		if ( description != null ) {
+            if ( description.trim().length() < 10 ) {
+                throw new Exception( "Veuillez saisir une description de 3 caracteres au moins." );
+            }
+        }
+	}
+	
+	public void validationBiographie(String biographie) throws Exception {
+		if ( biographie != null ) {
+            if ( biographie.trim().length() < 10 ) {
+                throw new Exception( "Veuillez saisir une biographie de 3 caracteres au moins." );
+            }
+        }
+	}
+	
+	
 	
 	
 }

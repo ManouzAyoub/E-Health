@@ -17,7 +17,7 @@
     <input type="checkbox" id="nav-toggle">
     <div class="sidebar">
         <div class="sidebar-brand">
-            <img src="./assets/img/EHealthLogo.png" style="width: 250px;" alt="">
+            <img src="<c:url value="/DoctorDashboard/assets/img/EHealthLogo.png"></c:url>" style="width: 250px;" alt="">
         </div>
         <div class="sidebar-menu">
             <ul>
@@ -58,7 +58,7 @@
                 </li>
 
                 <li>
-                    <a class="deconnexion" href="#">
+                    <a class="deconnexion" href="<c:url value="/Deconnexion"></c:url>">
                         
                         <span class="las la-door-open"></span>
                         <span class="sideebarText">Déconnexion</span>
@@ -91,6 +91,15 @@
         <main>
             <div class="slidebar-menu"  id="dashboard">
                 <div class="cards">
+                    <div class="card-single">
+                        <div>
+                            <h1>${nbrVisiters }</h1>
+                            <span>Visiteurs</span>
+                        </div>
+                        <div class="dashboard_icon">
+                            <span class="las la-users"></span>
+                        </div>
+                    </div>
                     <div class="card-single">
                         <div>
                             <h1>${numberOfRating}</h1>
@@ -268,13 +277,12 @@
                                             <tr>
                                                 <td><label for="">Sexe :</label></td>
                                                 <td>
+                                                	<c:set var="h" value="Homme"></c:set>
+                                                	<c:set var="f" value="Femme"></c:set>
                                                     <select name="sexe" class="select-css infoInput" disabled>
-                                                        <c:if test="${docteur.gender == 'Homme'}"><option selected value="Homme">Homme</option>
-                                                        <option value="Femme">Femme</option>
-                                                        </c:if>
-                                                        <c:if test="${docteur.gender == 'Femme' }"><option selected value="Femme">Femme</option>
-                                                        <option value="Homme">Homme</option>
-                                                        </c:if>
+                                                    	<option value="${h }" <c:if test="${docteur.gender == h }"><c:out value="selected"/></c:if> >${h }</option>
+                                                    	<option value="${f }" <c:if test="${docteur.gender == f }"><c:out value="selected"/></c:if>>${f }</option>
+                                                        
                                                     </select>
                                                 </td>
                                             </tr>
@@ -314,33 +322,12 @@
                                             <tr>
                                                 <td><label for="">Spécialité :</label></td>
                                                 <td>
-                                                    <select name="speciality"  class="select-css infoInput" disabled>
-                                                        <option <c:if test="${docteur.speciality == 'Chirurgie esthétique'}"><c:out value="selected"/></c:if>>Chirurgie esthétique</option>
-                                                        <option <c:if test="${docteur.speciality == 'Chirurgie pédiatrique'}"><c:out value="selected"/></c:if>>Chirurgie pédiatrique</option>
-                                                        <option <c:if test="${docteur.speciality == 'Chirurgie vasculaire'}"><c:out value="selected"/></c:if>>Chirurgie vasculaire</option>
-                                                        <option <c:if test="${docteur.speciality == 'Chirurgie viscérale et digestive'}"><c:out value="selected"/></c:if>>Chirurgie viscérale et digestive</option>
-                                                        <option<c:if test="${docteur.speciality == 'Gynécologie obstétrique'}"><c:out value="selected"/></c:if> >Gynécologie obstétrique</option>
-                                                        <option <c:if test="${docteur.speciality == 'Neurochirurgie'}"><c:out value="selected"/></c:if>>Neurochirurgie </option>
-                                                        <option>Allergologie</option>
-                                                        <option>Anatomie et cytologie pathologique</option>
-                                                        <option>Anesthésie</option>
-                                                        <option>Cardiologie</option>
-                                                        <option>Dermatologie</option>
-                                                        <option>Endocrinologie-nutrition</option>
-                                                        <option>Génétique</option>
-                                                        <option>Allergologie</option>
-                                                        <option>Gynécologie médicale</option>
-                                                        <option>Hématologie</option>
-                                                        <option>Médecine générale</option>
-                                                        <option>Médecine physique et réadaptation</option>
-                                                        <option>Néphrologie</option>
-                                                        <option>Neurologie</option>
-                                                        <option>Psychiatrie</option>
-                                                        <option>Radiologie</option>
-                                                        <option>Réanimation</option>
-                                                        <option>Santé publique</option>
-                                                        <option>Urgentiste</option>
-                                                    </select>
+                                                	<select name="speciality" class="select-css infoInput" disabled>
+								                    	<c:forEach var="specia" items="${Instances.specialities()}">
+								                    		<option value="${specia}" ${ docteur.speciality.equals(specia) ? 'selected' : '' } }>${specia}</option>
+								                    	</c:forEach>
+						                   			 </select>
+                                                    
                                                 </td>
                                             </tr>
                                             
@@ -350,13 +337,8 @@
                                             </tr>
     
                                             <tr>
-<<<<<<< HEAD
-                                                <td><label for="">Biologie:</label></td>
-                                                <td><textarea name="biographie" id="biologie" cols="60" rows="5" class="infoInput" disabled>${docteur.biographie}</textarea></td>
-=======
                                                 <td><label for="">Biographie:</label></td>
                                                 <td><textarea name="biographie" id="biologie"  cols="60" rows="5" class="infoInput" disabled>${docteur.biographie}</textarea></td>
->>>>>>> a7ab643dd658249776e5dab40a6c35f5a86b9834
                                             </tr>
                                         </table>
                                     </div>
@@ -376,7 +358,7 @@
                             <div class="imagePerso">
                                 <div class="image-card">
                                     <img id="imageDoctor" src="data:image/png;base64,${image}" width="150px" alt=""><br>
-                                    <input type="text" name="d" value="${docteur.cin}">
+                                    <input type="hidden" name="docteur_id" value="${docteur.cin}">
                                     <input id="imageInput" accept="image/*" type="file" name="image" style="display: none;" onchange="loadImage(event)">
                                     <div class="image-card">
                                         <label id="modifierImagePerso" onclick="modifierImagePerso()">Changer l'image</label>
@@ -578,18 +560,38 @@
                                                     <td rowspan="2"><label>Horaires de travail :</label></td>
                                                     <td>
                                                         Le : &nbsp;
-                                                        <select name="jour_debut" class="infoInputCabinet" id="jour_debut" disabled></select>
+                                                        <select name="jour_debut" class="infoInputCabinet" id="jour_debut" disabled>
+									                    	<c:forEach var="day" items="${Instances.days()}">
+									                    		<option value="${day}" ${ docteur.jourDepart.equals(day) ? 'selected' : '' } }>${day}</option>
+									                    	</c:forEach>
+							                   			 </select>
+                                                        <!-- <select name="jour_debut" class="infoInputCabinet" id="jour_debut" disabled></select> -->
                                                         &nbsp; Jusqu'à : &nbsp;
-                                                        <select name="jour_fin" class="infoInputCabinet" id="jour_fin" disabled></select>
+                                                        <select name="jour_fin" class="infoInputCabinet" id="jour_fin" disabled>
+									                    	<c:forEach var="day" items="${Instances.days()}">
+									                    		<option value="${day}" ${ docteur.jourFin.equals(day) ? 'selected' : '' } }>${day}</option>
+									                    	</c:forEach>
+							                   			 </select>
+                                                        <!-- <select name="jour_fin" class="infoInputCabinet" id="jour_fin" disabled></select> -->
                                                     </td>
                                                 </tr>
     
                                                 <tr>
                                                     <td>
                                                         De : &nbsp;
-                                                        <select name="heure_debut" class="infoInputCabinet" id="heure_debut" disabled></select>
+                                                        <select name="heure_debut" class="infoInputCabinet" id="heure_debut" disabled>
+									                    	<c:forEach var="heur" items="${Instances.Heurs()}">
+									                    		<option value="${heur}" ${ docteur.heureDepart.equals(heur) ? 'selected' : '' } }>${heur}</option>
+									                    	</c:forEach>
+							                   			 </select>
+                                                        <!-- <select name="heure_debut" class="infoInputCabinet" id="heure_debut" disabled></select> -->
                                                         &nbsp; Jusqu'à : &nbsp;
-                                                        <select name="heure_fin" class="infoInputCabinet" id="heure_fin" disabled></select>
+                                                        <select name="heure_fin" class="infoInputCabinet" id="heure_fin" disabled>
+									                    	<c:forEach var="heur" items="${Instances.Heurs()}">
+									                    		<option value="${heur}" ${ docteur.heureFin.equals(heur) ? 'selected' : '' } }>${heur}</option>
+									                    	</c:forEach>
+							                   			 </select>
+                                                        <!-- <select name="heure_fin" class="infoInputCabinet" id="heure_fin" disabled></select> -->
                                                     </td>
                                                 </tr>
     
@@ -642,18 +644,21 @@
                                             <table style="width: 100%;">
                                                 <tr>
                                                     <td><label for="place_id">Id de location :</label></td>
-                                                    <td><input name="place_id" id="place_id" style="width: 100%;" value="ChIJSZHKs5O3sw0R-zl1pDjBn_4" type="text" disabled></td>
+                                                    <td><input name="place_id" id="place_id" style="width: 100%;" value="${docteur.id }" type="text" disabled></td>
                                                 </tr>
                                             </table>
                                            
                                         </div>
-                                        <div class="image-card">
-                                            <label class="seeplace" onclick="initMap()">Afficher en map</label>
-                                            <label id="modifierplace_id" onclick="modifierplace_id()">Modifier</label>
-                                            <label id="Trouverplace_id" onclick="Trouverplace_id()" style="display: none;">Trouver id</label>
-                                            <input type="submit" id="enregistrerplace_id" value="Enregistrer" style="display: none;">
-                                            <label id="annulerplace_id" onclick="reloadPage()" style="display: none;">Annuler</label>
-                                        </div>
+                                        <form method="POST" action="<c:url value="IDLocalisation"></c:url>">
+                                        	<div class="image-card">
+                                        		<input type="hidden" name="loca_id" value="${ docteur.cin }"/>
+	                                            <label class="seeplace" onclick="initMap()">Afficher en map</label>
+	                                            <label id="modifierplace_id" onclick="modifierplace_id()">Modifier</label>
+	                                            <label id="Trouverplace_id" onclick="Trouverplace_id()" style="display: none;">Trouver id</label>
+	                                            <input type="submit" id="enregistrerplace_id" value="Enregistrer" style="display: none;">
+	                                            <label id="annulerplace_id" onclick="reloadPage()" style="display: none;">Annuler</label>
+	                                        </div>
+                                        </form>
                                         
                                         <div id="map"></div>
     

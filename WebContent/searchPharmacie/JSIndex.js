@@ -414,8 +414,6 @@ function checkWorkingTime(btn){
         return "jour_nuit";
     }else if(item.classList.contains("jour")){
         return "jour";
-    }else if(item.classList.contains("nuit")){
-        return "nuit";
     }
 }
 
@@ -545,13 +543,10 @@ function setWorkingTimes(){
     for(var i = 0; i < items.length; i++){
         if(items[i].classList.contains("jour_nuit")){
             working_times[i].innerHTML = '</span><span class="font-size-12 font-montserrat text-success"><i class="fas fa-check-double"></i> &nbsp; Ouvert toute la journée (24 heures)';
-            markers_icons.push("geo_green.png");
+            markers_icons.push("/searchPharmacie/geo_green.png");
         }else if(items[i].classList.contains("jour")){
             working_times[i].innerHTML = '</span><span class="font-size-12 font-montserrat text-primary"><i class="fas fa-sun"></i> &nbsp; Ouvert seulement le jour';
-            markers_icons.push("geo_blue.png");
-        }else if(items[i].classList.contains("nuit")){
-            working_times[i].innerHTML = '</span><span class="font-size-12 font-montserrat text-muted"><i class="fas fa-moon"></i> &nbsp; Ouvert seulement la nuit';
-            markers_icons.push("geo_gray.png");
+            markers_icons.push("/searchPharmacie/geo_blue.png");
         }
     }
 }

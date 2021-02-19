@@ -187,6 +187,7 @@ public class DocteurFormService {
         doctor.setJourDepart("Lundi");
         doctor.setJourFin("Vendredi");
         doctor.setDispo(false);
+        doctor.setNbrVisiters(0L);
         doctor.setTeleMedcine(false);
         doctor.setConsultationDomicile(false);
         doctor.setId("ChIJyRyt2um2sw0RdIT0i7fQ-Lw");

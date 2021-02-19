@@ -29,16 +29,25 @@ public class RatingImpl {
 	}
 	
 	public Map<Integer, String> getPercentageOfEtoiles(Long idDeQui , String par) {
-		Long nbr = getNumberOfRating(idDeQui, par);
-		Double aide_one = Double.valueOf(nbr);
 		Map<Integer, String> percentages = new HashMap<Integer, String>();
 		Map<Integer, Long> distinct = countDistinctValueOfRate(idDeQui, par);
-		Double variable;
+		
+		Long nbr = getNumberOfRating(idDeQui, par);
+		Double aide_one = null;
+		if (nbr != null) {
+			 aide_one = Double.valueOf(nbr);
+		} else {
+			aide_one = 0.0;
+		}
+		
 		for(int i=1; i<6; i++) {
 			Double aide_two = Double.valueOf(distinct.getOrDefault(i, Long.valueOf(0)));
-			variable = (double) ((aide_two/aide_one)*100);
-			percentages.put(i, new DecimalFormat("##.##").format(variable));
-			System.out.println( i + " -- : " + new DecimalFormat("##.##").format(variable));
+			if (aide_one != 0.0) {
+				Double variable = (double) ((aide_two/aide_one)*100);
+				percentages.put(i, new DecimalFormat("##.##").format(variable));
+			} else {
+				percentages.put(i, new DecimalFormat("##.##").format(0));
+			}
 		}
 		
 		return percentages;

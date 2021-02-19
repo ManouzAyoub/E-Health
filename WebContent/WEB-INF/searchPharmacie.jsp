@@ -134,13 +134,10 @@
                 <div class="col-lg-7" id="Pharmacies_list">
 
                     <c:forEach var="entry" items="${ pharmacies }">
-                    	<c:if test="${entry.ouverte_jour}"> 
+                    	<c:if test="${entry.en_garde == false}"> 
                     		<c:set var="permanence" value="jour"></c:set>                   	
                     	</c:if>
-                    	<c:if test="${entry.ouverte_nuit}"> 
-                    		<c:set var="permanence" value="nuit"></c:set>                   	
-                    	</c:if>
-                    	<c:if test="${entry.ouverte_journer}"> 
+                    	<c:if test="${entry.en_garde}"> 
                     		<c:set var="permanence" value="jour_nuit"></c:set>                   	
                     	</c:if>
                     	<div class="item ${permanence }">
@@ -210,14 +207,7 @@
                                 </div>
                             </div>
 
-                            <div class="row mx-2">
-                                <div class="col-xs-2">
-                                    <img src="<c:url value="/searchPharmacie/geo_gray.png"/>" alt="geo_gray" width="16px">
-                                </div>
-                                <div class="col-xs-10">
-                                    <span class="text-muted">&nbsp; Ouvert seulement la nuit</span>
-                                </div>
-                            </div>
+                           
 
                         </div>
                     </div>
@@ -267,13 +257,6 @@
                                     <input class="form-check-input" type="radio" value="Ouvert seulement le jour" id="jour" name="working_time" onclick="filterPharmacies()">
                                     <label class="form-check-label" for="working_time">
                                         Ouvert seulement le jour
-                                    </label>
-                                </div>
-
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" value="Ouvert seulement la nuit" id="nuit" name="working_time" onclick="filterPharmacies()">
-                                    <label class="form-check-label" for="working_time">
-                                        Ouvert seulement la nuit
                                     </label>
                                 </div>
 

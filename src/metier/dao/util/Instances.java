@@ -57,6 +57,8 @@ public class Instances {
 	public static PharmacieImpl pharmacieImpl = PharmacieImpl.getInstance();
 	
 	public static List<String> languages = new ArrayList<String>();
+	public static List<String> jours = new ArrayList<String>();
+	public static List<String> heurs = new ArrayList<String>();
 
 	public static List<String> specialities(){
 		languages.add("Chirurgie esthétique");
@@ -108,6 +110,27 @@ public class Instances {
 		languages.add("M�decine g�n�rale");
 		languages.add("Chirurgie p�diatrique");
 		return languages;
+	}
+	
+	public List<String> days(){
+		jours.add("Lundi");
+		jours.add("Mardi");
+		jours.add("Mercredi");
+		jours.add("Jeudi");
+		jours.add("Vendredi");
+		jours.add("Samedi");
+		jours.add("Dimanche");
+		return jours;
+	}
+	
+	public List<String> Heurs(){
+		for (int i = 1; i < 10; i++) {
+			heurs.add("0" + i + ":00");
+		}
+		for (int i = 10; i < 25; i++) {
+			heurs.add( i + ":00");
+		}
+		return heurs;
 	}
 
 }

@@ -416,7 +416,7 @@
                               <select name="speciality">
 		                    	<c:forEach var="specia" items="${Instances.specialities()}">
 		                    	
-		                    		<option value="${specia}" ${ clinique.speciality.equals(specia) ? 'selected' : '' } }>${specia}</option>
+		                    		<option value="${specia}" ${clinique.speciality.equals(specia) ? 'selected' : '' } }>${specia}</option>
 		                    	</c:forEach>
                   			 </select>
                           </div>
