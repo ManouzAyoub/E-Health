@@ -13,7 +13,14 @@ public class DeconnexionServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		session.removeAttribute("visiter");
+		if (session.getAttribute("visiter") != null) {
+			session.removeAttribute("visiter");
+		}
+		
+		if (session.getAttribute("docteur") != null) {
+			session.removeAttribute("docteur");
+		}
+		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request, response);
 	}
 

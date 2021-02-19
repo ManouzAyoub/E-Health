@@ -150,7 +150,7 @@ for(var i = 1970; i < currentDate.getFullYear() + 1; i++){
     recompenseYearsSelect.appendChild(opt); 
 }
 
-for(var i = 0; i < 24; i++) {
+/*for(var i = 0; i < 24; i++) {
     var hour = '';
     if(i<10) {
         hour += "0";
@@ -172,9 +172,9 @@ for(var i = 0; i < 24; i++) {
     opt.appendChild( document.createTextNode(hour) );
     opt.value = hour;
     document.getElementById("heure_fin").appendChild(opt); 
-}
+}*/
 
-var jours = ["Lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
+/*var jours = ["Lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
 for(var i = 0; i < jours.length; i++){
     var opt = document.createElement('option');
     opt.appendChild( document.createTextNode(jours[i]) );
@@ -186,7 +186,7 @@ for(var i = 0; i < jours.length; i++){
     opt.appendChild( document.createTextNode(jours[i]) );
     opt.value = jours[i];
     document.getElementById("jour_fin").appendChild(opt); 
-}
+}*/
 
 function initMap() {
     const uluru = { lat: 31.791702, lng: -7.09262 };

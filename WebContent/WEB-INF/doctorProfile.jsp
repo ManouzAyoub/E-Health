@@ -1,4 +1,4 @@
-²<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,61 +37,61 @@
 <body>
 
         <header class="color-primary-bg py-2" style="width: 100%;">
-        <div class="row" >
-            <div class="col-lg-3 d-flex justify-content-start">
-                <a class="navbar-brand mx-3" href="<c:url value="/Home"></c:url>"><img src="<c:url value="/DoctorProfile/EHealthLogo.png"></c:url>" width="200px" alt=""></a>
-                <button type="button" class="btn show-mobile font-size-20 mt-2 font-gilroy-bold color-second text-right" id="showNavBarBtn" data-target="#nav_bar">
-                    <i class="fas fa-bars"></i>                      
-                </button>
-            </div>
-
-            <div class="col-lg-6 d-flex justify-content-center">
-                <div class="row" id="nav_bar">
-
-                    <div class="col-sm-1"></div>
-
-                    <div class="col-sm-2">
-                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-1"></c:url>">Acceuil</a>
-                    </div>
-
-                    <div class="col-sm-2">
-                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-2"></c:url>">Medecin</a>
-                    </div>
-
-                    <div class="col-sm-2">
-                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-3"></c:url>">Hopital</a>
-                    </div>
-
-                    <div class="col-sm-2">
-                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-4"></c:url>">Clinique</a>
-                    </div>
-
-                    <div class="col-sm-2">
-                        <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-5"></c:url>">Pharmacie</a>
-                    </div>
-
-                    <div class="col-sm-1"></div>
+            <div class="row" >
+                <div class="col-lg-3 d-flex justify-content-start">
+                    <a class="navbar-brand mx-3" href="<c:url value="/Home"></c:url>"><img src="<c:url value="/DoctorProfile/EHealthLogo.png"></c:url>" width="200px" alt=""></a>
+                    <button type="button" class="btn show-mobile font-size-20 mt-2 font-gilroy-bold color-second text-right" id="showNavBarBtn" data-target="#nav_bar">
+                        <i class="fas fa-bars"></i>                      
+                    </button>
                 </div>
-            </div>
 
-            <div class="col-lg-3 d-flex justify-content-lg-end">
-                <table>
-                    <tr>
-                        <td class="py-0"><h5 class=" font-size-14 text-white font-montserrat">${ sessionScope.visiter.getFirstname() } ${ sessionScope.visiter.getLastname() }</h5></td>
-                    </tr>
-                    <tr>
-                        <c:if test="${ sessionScope.visiter != null}">
-                        	<td class="py-0"><a href="<c:url value="Deconnexion"></c:url>" class="btn btn-outline-dark btn-info font-size-12 py-1 text-white">Deconnexion</a></td>
-                        </c:if>
-                        <c:if test="${ sessionScope.visiter == null}">
-                        	<td class="py-0"><a href="<c:url value="signIn"></c:url>" class="btn btn-outline-dark btn-info font-size-12 py-1 text-white">connexion</a></td>
-                        </c:if>
-                    </tr>
-                </table>
-            </div>
+                <div class="col-lg-6 d-flex justify-content-center">
+                    <div class="row" id="nav_bar">
 
-        </div>
-    </header>
+                        <div class="col-sm-1"></div>
+
+                        <div class="col-sm-2">
+                            <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-1"></c:url>">Acceuil</a>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-2"></c:url>">Medecin</a>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-3"></c:url>">Hopital</a>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-4"></c:url>">Clinique</a>
+                        </div>
+
+                        <div class="col-sm-2">
+                            <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-5"></c:url>">Pharmacie</a>
+                        </div>
+
+                        <div class="col-sm-1"></div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 d-flex justify-content-lg-end">
+                    <table>
+                        <tr>
+                            <td class="py-0"><h5 class=" font-size-14 text-white font-montserrat">${ sessionScope.visiter.getFirstname() } ${ sessionScope.visiter.getLastname() }</h5></td>
+                        </tr>
+                        <tr>
+                            <c:if test="${ sessionScope.visiter != null}">
+                                <td class="py-0"><a href="<c:url value="Deconnexion"></c:url>" class="btn btn-outline-dark btn-info font-size-12 py-1 text-white">Deconnexion</a></td>
+                            </c:if>
+                            <c:if test="${ sessionScope.visiter == null}">
+                                <td class="py-0"><a href="<c:url value="signIn"></c:url>" class="btn btn-outline-dark btn-info font-size-12 py-1 text-white">connexion</a></td>
+                            </c:if>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </header>
     
     <!-- DoctorProfile -->
     <section  id="DoctorProfile">
@@ -147,7 +147,7 @@
                             </div>
                             <div class="col-md-8 border-left">
                                 <span class="font-noto font-size-12"><i class="fas fa-map-marker-alt"></i> &nbsp; ${data.getOrDefault("adresse", "") }</span><br>
-                                <span class="font-noto font-size-12"><i class="fas fa-calendar-alt"></i> &nbsp; ${data.getOrDefault("heureD", "") }:00-${data.getOrDefault("heureF", "") }:00 - ${data.getOrDefault("jourD", "") } à ${data.getOrDefault("jourF", "") }</span><br>
+                                <span class="font-noto font-size-12"><i class="fas fa-calendar-alt"></i> &nbsp; ${data.getOrDefault("heureD", "") }-${data.getOrDefault("heureF", "") } - ${data.getOrDefault("jourD", "") } à ${data.getOrDefault("jourF", "") }</span><br>
                                 <!-- Si n'est pas congé -->
                                 <c:if test="${!doctor.getConger() }">
                                 	<span class="font-noto font-size-12"><i class="far fa-calendar-check"></i> &nbsp; Accepte nouveaux patients</span><br>
@@ -283,7 +283,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Evaluation -->
         <div class="row py-3" id="Evaluation">
             <div class="container py-5">

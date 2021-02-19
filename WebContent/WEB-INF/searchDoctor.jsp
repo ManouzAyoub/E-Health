@@ -218,7 +218,7 @@
 		                                        </div>
 		                                    </div>
 		                                    <div class="col-md-6 border-left">
-		                                        <span class="font-noto text-secondary font-size-12"><i class="fas fa-calendar-alt"></i> ${HD}:00-${HF}:00 - ${JD} a ${JF}</span><br>
+		                                        <span class="font-noto text-secondary font-size-12"><i class="fas fa-calendar-alt"></i> ${HD}-${HF} - ${JD} a ${JF}</span><br>
 		                                        <c:if test=" ${adress != null} ">
 		                                        	<span class="font-noto text-secondary font-size-12"><i class="fas fa-map-marker-alt"></i> ${adress}</span>
 		                                        </c:if>     

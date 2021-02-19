@@ -32,15 +32,24 @@
 	    transition:all 0.2s ease-in-out;
 	    cursor: pointer;
 	}
+	
+	.logo{
+		position: fixed;
+		top: 60px;
+		left: 150px;
+	}
 
 </style>
 </head>
 <body class="signIn">
-
+    <div class="logo">
+    	<a href="<c:url value="/Home"></c:url>"><img src="<c:url value="/DoctorProfile/EHealthLogo.png"></c:url>" width="250px" alt=""></a>
+    </div>
     <div class="main">
 
         <section class="signup">
             <div class="signIn_container" >
+            	
                 <div class="signup-content">
                     <form action ="<c:url value="/signIn" />" method="post" id="signup-form" class="signup-form">
                         <h2 class="form-title">Sign In</h2>

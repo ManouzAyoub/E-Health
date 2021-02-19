@@ -80,6 +80,17 @@ public class DocteurImpl {
 		}
 	}
 	
+	public Long getNumberOfVisiters(Docteur docteur) {
+		String hql = "select o.nbrVisiters from Docteur o  where cin = :idDocteur";
+		Query q = session.createQuery(hql);
+		q.setParameter("idDocteur", docteur.getCin());
+		List<Long> nbr = q.getResultList();
+		if (nbr.size() != 0) {
+			return nbr.get(0);
+		}else {
+			return Long.valueOf(0);
+		}
+	}
 
 	public Map<Long, List<String>> displayDoctorsInPage(List<Docteur> list) {
 		function();

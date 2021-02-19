@@ -130,7 +130,7 @@ public class CliniqueFormImpl {
 	 private void validationTel( String tel ) throws Exception {
 	     if ( tel != null ) {
 	         if ( tel.trim().length() != 10 ) {
-	             throw new Exception( "on demande votre numero de tel r�el" );
+	             throw new Exception( "on demande votre numero de tel reel" );
 	         }
 	     } else {
 	         throw new Exception( "Veuillez saisir votre numero de Telephone" );

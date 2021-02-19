@@ -65,7 +65,7 @@ public class AdminDashBoardServlet extends HttpServlet {
 		}
 		
 		if (showHopital != null) {
-			Hopital hopital = Instances.hopitalDao.getById(Long.valueOf(deleteHopital));
+			Hopital hopital = Instances.hopitalDao.getById(Long.valueOf(showHopital));
 			request.setAttribute("hopital", hopital);
 			HttpSession session = request.getSession(false);
 			session.setAttribute("DisplayProfileHospital", hopital);
