@@ -284,5 +284,23 @@ public class DocteurImpl {
 		
 	}
 	
+	public void validationDescription(String description) throws Exception {
+		if ( description != null ) {
+            if ( description.trim().length() < 10 ) {
+                throw new Exception( "Veuillez saisir une description de 3 caracteres au moins." );
+            }
+        }
+	}
+	
+	public void validationBiographie(String biographie) throws Exception {
+		if ( biographie != null ) {
+            if ( biographie.trim().length() < 10 ) {
+                throw new Exception( "Veuillez saisir une biographie de 3 caracteres au moins." );
+            }
+        }
+	}
+	
+	
+	
 	
 }

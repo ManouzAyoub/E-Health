@@ -277,13 +277,12 @@
                                             <tr>
                                                 <td><label for="">Sexe :</label></td>
                                                 <td>
+                                                	<c:set var="h" value="Homme"></c:set>
+                                                	<c:set var="f" value="Femme"></c:set>
                                                     <select name="sexe" class="select-css infoInput" disabled>
-                                                        <c:if test="${docteur.gender == 'Homme'}"><option selected value="Homme">Homme</option>
-                                                        <option value="Femme">Femme</option>
-                                                        </c:if>
-                                                        <c:if test="${docteur.gender == 'Femme' }"><option selected value="Femme">Femme</option>
-                                                        <option value="Homme">Homme</option>
-                                                        </c:if>
+                                                    	<option value="${h }" <c:if test="${docteur.gender == h }"><c:out value="selected"/></c:if> >${h }</option>
+                                                    	<option value="${f }" <c:if test="${docteur.gender == f }"><c:out value="selected"/></c:if>>${f }</option>
+                                                        
                                                     </select>
                                                 </td>
                                             </tr>

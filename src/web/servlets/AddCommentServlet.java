@@ -71,7 +71,7 @@ public class AddCommentServlet extends HttpServlet {
 		
 		// commentaire pour un docteur
 		if (commentaire != null) {
-			docteur = (Docteur) session.getAttribute("DisplayProfileDocteur");
+			docteur = (Docteur) session.getAttribute("CommentDoctor");
 			Rating rating = new Rating();
 			rating.setDocteur(docteur);
 			rating.setNumberEtoile(nbr);

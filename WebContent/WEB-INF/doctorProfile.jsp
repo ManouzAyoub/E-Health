@@ -444,6 +444,7 @@
                                                                     <h3 id="rating_notice" class="font-size-12 font-golroy-bold"><em>** Vous devez laisser une évaluation avant de commenter !!</em></h3>
                                                                 </div>
                                                             </div>
+                                                            <c:set var="CommentDoctor" value="${doctor}" scope="session"></c:set>
                                                             <input type="submit" value="Evaluer" class="btn btn-outline-info my-2 border-0 font-size-16 font-gilroy-bold" id="CommentBtn" disabled>
                                                         </div>
                                                     </form>

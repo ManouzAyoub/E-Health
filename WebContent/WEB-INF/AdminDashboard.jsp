@@ -47,13 +47,14 @@
             <ul>
             
                 <li>
-                    <a href="#" class="buttons active" onclick="handleClick(event);show('profile')">
+                    <a href="#" class="buttons dash" onclick="handleClick(event);show('profile')">
                         
-                    <img id="adm" src="https://img.icons8.com/windows/24/ffffff/change-user-male--v1.png" style="padding-right:12px"/>                        Admin Profile
+                    <img id="adm" src="https://img.icons8.com/windows/24/ffffff/change-user-male--v1.png" style="padding-right:12px"/>
+                    <span>Admin Profile</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="buttons" onclick="handleClick(event);show('dashboard')">
+                    <a href="#" class="buttons active" onclick="handleClick(event);show('dashboard')">
                         
                         <span class="las la-igloo"></span>
                         <span>Dashboard</span>
@@ -110,6 +111,13 @@
                         <span>List of profile hospitals</span>
                     </a>
                 </li>
+                <br>
+                <li>
+                    <a href="<c:url value="Deconnexion"></c:url>" class="buttons dash"  onclick="handleClick(event)">
+                        <span class="las la-user-circle"></span>
+                        <span>Déconnexion</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -141,24 +149,6 @@
              
             <!-- demandes -->
             <div class="main-content" id="Demmandes" style="display:none;">
-                <header>
-                    <div class="header-title">
-                        <h2>
-                            <label for="nav-toggle">
-                                <span class="las la-bars"></span>
-                            </label>
-                            Demmandes
-                        </h2>
-                    </div>
-        
-                    <div class="user-wrapper">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" width="40px" height="40px" alt="">
-                        <div class="user-wrapper-info">
-                            <h4>${sessionScope.admin.firstname} ${sessionScope.admin.lastname}</h4>
-                            <small>super admin</small>
-                        </div>
-                    </div>
-                </header>
         
                 <main>
                     <div class="demmande-grid">
@@ -217,10 +207,10 @@
            <!-- demandes -->
            
            <!-- profile -->
-           <div  id="profile" style="display:none;">
+           <div  id="profile"  style="display:none;">
            <div class="profile">
            <div class="profile_section_part1">
-           <div class="card-profile" style="border:5px solid green;width:200px;height: auto;">
+           <div class="card-profile" style="border:5px solid green;width:200px;height: 300px;">
                 <div class="d-flex flex-column align-items-center text-center">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
@@ -303,70 +293,92 @@
            <!-- profile -->
            
            <!-- pharmacie -->
-           <div id="pharmacy" style="display:none;">
-               <div class="card-form-pharmacy">
-                      <form  method="POST" action="<c:url value="/PharmacieForm" ></c:url>">
-                            <div class="form-group">
-                                <label for="inputName">Name</label>
-                                <input type="text" name="name" class="form-control" id="inputName" placeholder="Name">
+           <div id="pharmacy" class="recent-grid-comments" style="display:none;">
+            
+                <div class="projects">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Ajouter un nouveau pharmacie</h3>
+                        </div>
+                        <div style="padding: 1rem;">
+                            <div class="table-responsive">
+                                <form  method="POST" action="<c:url value="/PharmacieForm" ></c:url>">
+                                    <div class="form-group">
+                                        <label for="inputName">Name</label>
+                                        <input type="text" name="name" class="form-control" id="inputName" placeholder="Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inpulVille">Ville</label>
+                                        <input type="text" name="ville"  class="form-control" id="inpulVille" placeholder="Ville">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputLastName">Address</label>
+                                        <input type="text" name="adresse"  class="form-control" id="inputAddress" placeholder="Address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email</label>
+                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Phone</label>
+                                        <input type="tel" name="tel" class="form-control" id="exampleInputTel" placeholder="Tel">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Location ID</label>
+                                        <input type="text" name="id" class="form-control" id="exampleInputID" placeholder="LocationID">
+                                    </div>
+                        
+                                      <button type="submit">Submit</button>
+                                    </form>
                             </div>
-                            <div class="form-group">
-                                <label for="inpulVille">Ville</label>
-                                <input type="text" name="ville"  class="form-control" id="inpulVille" placeholder="Ville">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputLastName">Address</label>
-                                <input type="text" name="adresse"  class="form-control" id="inputAddress" placeholder="Address">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Phone</label>
-                                <input type="tel" name="tel" class="form-control" id="exampleInputTel" placeholder="Tel">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputPassword1">Location ID</label>
-                                <input type="text" name="id" class="form-control" id="exampleInputID" placeholder="LocationID">
-                            </div>
-                
-                              <button type="submit">Submit</button>
-                            </form>    
-    </div>
+                        </div>
+                    </div>
+                </div>
            </div>
            <!-- pharmacie -->
            
            <!-- hospital -->
-           <div id="hospital" style="display:none;">
-                        <form method="POST" action="<c:url value="/HospitalForm" ></c:url>">
-                            <div class="form-group">
-                                <label for="inputName">Name</label>
-                                <input type="text" name="name" class="form-control" id="inputName" placeholder="Name">
+           <diva id="hospital" style="display:none;">
+                <div class="projects">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Ajouter un nouveau hopital</h3>
+                        </div>
+                        <div style="padding: 1rem;">
+                            <div class="table-responsive">
+                                <form method="POST" action="<c:url value="/HospitalForm" ></c:url>">
+                                    <div class="form-group">
+                                        <label for="inputName">Name</label>
+                                        <input type="text" name="name" class="form-control" id="inputName" placeholder="Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email</label>
+                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputVille">Ville</label>
+                                        <input type="text" name="ville" class="form-control" id="inputVille" placeholder="Ville">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputAddress">Address</label>
+                                        <input type="text" name="adresse" class="form-control" id="inputAddress" placeholder="Address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputTel">Phone</label>
+                                        <input type="tel" name="tel" class="form-control" id="exampleInputTel" placeholder="Tel">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputID">Location ID</label>
+                                        <input type="text" name="id" class="form-control" id="exampleInputID" placeholder="LocationID">
+                                    </div>
+                                       <button type="submit">Submit</button>
+                                </form>
                             </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Email</label>
-                                <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputVille">Ville</label>
-                                <input type="text" name="ville" class="form-control" id="inputVille" placeholder="Ville">
-                            </div>
-                            <div class="form-group">
-                                <label for="inputAddress">Address</label>
-                                <input type="text" name="adresse" class="form-control" id="inputAddress" placeholder="Address">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputTel">Phone</label>
-                                <input type="tel" name="tel" class="form-control" id="exampleInputTel" placeholder="Tel">
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputID">Location ID</label>
-                                <input type="text" name="id" class="form-control" id="exampleInputID" placeholder="LocationID">
-                            </div>
-                               <button type="submit">Submit</button>
-                        </form>
-           </div>
+                        </div>
+                    </div>
+                </div>
+                        
+           </diva>
            <!-- hospital -->
 
             <!-- comment section -->
@@ -683,47 +695,47 @@
 
             <!-- Dashboard -->
             <div id="dashboard"  class="dash_grid" style="display:none;">
-            <div class="cards">
-                <div class="card-single">
-                    <div>
-                        <h1>${nbrUsers}</h1>
-                        <span>Users</span>
-                    </div>
-                    <div>
-                        <span class="las la-users">
-    
-                        </span>
-                    </div>
-                </div>
-                <div class="card-single">
-                    <div>
-                        <h1>${nbrDoctors}</h1>
-                        <span>Doctors</span>
-                    </div>
-                    <div>
-                        <img src="https://img.icons8.com/ios/50/069c54/doctor-male.png"/>                    
-                    </div>
-                </div>
-                <div class="card-single">
-                    <div>
-                        <h1>${nbrClinics}</h1>
-                        <span>Clinics</span>
-                    </div>
-                    <div>
-                        <img src="https://img.icons8.com/carbon-copy/60/069c54/clinic.png"/>
-                    </div>
-                </div>
-                <div class="card-single">
-                    <div>
-                        <h1>${nbrPharmacies}</h1>
-                        <span>Pharmacies</span>
-                    </div>
-                    <div>
-                        <img src="https://img.icons8.com/pastel-glyph/60/069c54/hand-with-a-pill.png"/>
-                    </div>
-                </div>
-            </div>
-            <div  class="recent-grid" >
+	            <div class="cards">
+	                <div class="card-single">
+	                    <div>
+	                        <h1>${nbrUsers}</h1>
+	                        <span>Users</span>
+	                    </div>
+	                    <div>
+	                        <span class="las la-users">
+	    
+	                        </span>
+	                    </div>
+	                </div>
+	                <div class="card-single">
+	                    <div>
+	                        <h1>${nbrDoctors}</h1>
+	                        <span>Doctors</span>
+	                    </div>
+	                    <div>
+	                        <img src="https://img.icons8.com/ios/50/069c54/doctor-male.png"/>                    
+	                    </div>
+	                </div>
+	                <div class="card-single">
+	                    <div>
+	                        <h1>${nbrClinics}</h1>
+	                        <span>Clinics</span>
+	                    </div>
+	                    <div>
+	                        <img src="https://img.icons8.com/carbon-copy/60/069c54/clinic.png"/>
+	                    </div>
+	                </div>
+	                <div class="card-single">
+	                    <div>
+	                        <h1>${nbrPharmacies}</h1>
+	                        <span>Pharmacies</span>
+	                    </div>
+	                    <div>
+	                        <img src="https://img.icons8.com/pastel-glyph/60/069c54/hand-with-a-pill.png"/>
+	                    </div>
+	                </div>
+	            </div>
+	            <div  class="recent-grid" >
                 <div class="projects">
                     <div class="card">
                         <div class="card-header">
@@ -776,7 +788,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3>New doctors waiting </br> be approved</h3>
-                            <button onclick="document.getElementsByName('btn-comment')[0].classList.add('active')">See all <span class="las la-arrow-right"></span></button>
+                            <button onclick="show('Demmandes')">See all <span class="las la-arrow-right"></span></button>
                         </div>
                         <div class="card-body">
                             <c:if test="${ !docs.isEmpty() }">
@@ -815,15 +827,6 @@
     </div>
 	    <script src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
 	    <script>
-            // $(function(){
-            //     var test = localStorage.input === 'true'? true: false;
-            //     $('.keepcheck').prop('checked', test || false);
-            // });
-			
-			// $('.keepcheck').on('change', function() {
-			//     localStorage.input = $(this).is(':checked');
-			//     console.log($(this).is(':checked'));
-			// });
 			
          function toggleGarde(id){
         	document.getElementById('submit-toggle'+id).click();
@@ -851,6 +854,8 @@
             document.getElementsByClassName("commentsSection")[0].style.display="block";
 
         }
+        document.getElementById('main_place').innerHTML = document.getElementById('dashboard').innerHTML;
+        
         function show(param_div_id) {
             document.getElementById('main_place').innerHTML = document.getElementById(param_div_id).innerHTML;
         }

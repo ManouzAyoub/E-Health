@@ -21,6 +21,10 @@ public class DeconnexionServlet extends HttpServlet {
 			session.removeAttribute("docteur");
 		}
 		
+		if (session.getAttribute("admin") != null) {
+			session.removeAttribute("admin");
+		}
+		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request, response);
 	}
 
