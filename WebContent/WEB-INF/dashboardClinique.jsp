@@ -139,7 +139,7 @@
             <div class="header-title">
                 <h2>
                     <label for="nav-toggle">
-                        <span class="las la-bars"></span>
+                        <span id="burger" class="las la-bars"></span>
                     </label>
                     Dashboard
                 </h2>
@@ -388,7 +388,7 @@
                           <label>Téléphone :</label>
                           <input type="text" name="tel" value="${clinique.tel}" class="input">
                           
-                       </div>  
+                       </div>   
                       <div class="inputfield">
                           <label>Description :</label>
                           <textarea class="input" name="desc" cols="30" rows="4">${clinique.description}</textarea>
@@ -425,10 +425,12 @@
         var popupBtn = document.querySelector(".ajouterDocteur");
         var popup = document.querySelector("#popup");
         var blured = document.querySelector("#doctorsDash");
+        var burgerBtn = document.querySelector("#burger");
 
         popupBtn.addEventListener("click",function(){
             popup.classList.toggle("active");
             blured.classList.toggle("popup_section1");
+            burgerBtn.click();
 
         });
         blured.addEventListener("click",()=>{
