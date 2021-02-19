@@ -80,6 +80,11 @@ public class DocteurImpl {
 		}
 	}
 	
+	public String returnImage( Docteur docteur) {
+		String image = Base64.getEncoder().encodeToString(docteur.getProfile_image());
+		return image;
+	}
+	
 
 	public Map<Long, List<String>> displayDoctorsInPage(List<Docteur> list) {
 		function();

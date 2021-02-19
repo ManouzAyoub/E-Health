@@ -28,7 +28,7 @@ public class DataAdminServlet extends HttpServlet {
 	List<Pharmacie> list = new ArrayList<Pharmacie>();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		list.clear();
+		
 		System.out.println("-------------- from admin servleet ------------");
 		User u = (User) request.getAttribute("adminUser");
 		HttpSession session = request.getSession(false);

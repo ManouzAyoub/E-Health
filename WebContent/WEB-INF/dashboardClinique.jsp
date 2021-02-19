@@ -317,6 +317,46 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div id="tableDoctors" style="display: none;">
+                <c:forEach var="docteur" items="${ allDocteurs }">
+
+                    <div class="infosTable">
+
+                        <form method="POST" action="<c:url value="cliniqueAssociation"></c:url>">
+                            <table>
+                                <tr>
+                                    <td rowspan="4"><img src="data:image/png;base64,${docteurImpl.returnImage(docteur)}" width="150px"></td>
+                                    <td><label>Nom complet :</label></td> 
+                                    <td><input type="text" value="${docteur.firstname} ${docteur.lastname}"></td>
+                                </tr>
+                                        
+                                <tr>
+                                    <td><label>Specialité :</label></td>
+                                    <td><input type="text" value="${docteur.speciality}"></td>
+                                </tr>
+                                        
+                                <tr>
+                                    <td><label>Email :</label></td>
+                                    <td><input type="text" class="docteurEmail" value="${docteur.email}"></td>
+                                </tr>
+                    
+                                <tr>
+                                    <td><label>Telephone :</label></td>
+                                    <td><input type="text" value="${docteur.tel}"></td>
+                                </tr>
+
+                                <tr>
+                                    <td><input type="text" name="id" value="${docteur.cin}" hidden><input type="text" name="idClinique" value="${clinique.cin}" hidden></td>
+                                    <td><input type="submit" class="signup" value="Ajouter"></td>
+                                    <td><input type="button" class="signup closepopup" value="Annuler"></input></td>
+                                </tr>
+                            </table>
+                        </form>
+                    </div>
+                </c:forEach>
+            </div>
                 
         </main>
         
@@ -325,40 +365,11 @@
             <h2>Insérer l'email du docteur :</h2> 
             <div class="popup-buttons">
                 <div class="custom_select">
-                    <input type="search" class="doctor_email_input">
+                    <input type="search" id="doctor_email_input">
                     <label onclick="handle_doctor_email_button()" class="signup">Chercher</label>
                 </div>
             </div>
             <div id='infosDocByEmail' >
-                <form action="">
-                    <table>
-                        <tr>
-                            <td rowspan="4"><img src="https://img.icons8.com/ios/50/069c54/doctor-male.png" width="150px" alt=""></td>
-                            <td><label>Nom complet :</label></td>
-                            <td><input type="text"></td>
-                        </tr>
-                        
-                        <tr>
-                            <td><label>Specialité :</label></td>
-                            <td><input type="text"></td>
-                        </tr>
-                        
-                        <tr>
-                            <td><label>Email :</label></td>
-                            <td><input type="text"></td>
-                        </tr>
-    
-                        <tr>
-                            <td><label>Telephone :</label></td>
-                            <td><input type="text"></td>
-                        </tr>
-                        <tr>
-                            <td><input type="text" name="id" value="id" hidden></td>
-                            <td><input type="submit" class="signup" value="Ajouter"></td>
-                            <td><input type="button" class="signup closepopup" value="Annuler"></input></td>
-                        </tr>
-                    </table>
-                </form>
                 
             </div>
             
@@ -428,8 +439,7 @@
         var blured = document.querySelector("#doctorsDash");
         var burgerBtn = document.querySelector("#burger");
         var closepop = document.querySelectorAll(".closepopup");
-    
-        console.log(closepop);
+
         popupBtn.addEventListener("click",function(){
             popup.classList.toggle("active");
             blured.classList.toggle("popup_section1");
@@ -448,6 +458,23 @@
     
 
         function handle_doctor_email_button() {
+            var email = document.getElementById("doctor_email_input").value;
+            var exist = false;
+            var index;
+            var infosTables = document.getElementsByClassName('infosTable');
+            for(var i = 0; i < infosTables.length; i++) {
+                if(email == infosTables[i].getElementsByClassName('docteurEmail')[0].value){
+                    index = i;
+                    exist = true;
+                    break;
+                }
+            }
+
+            if(exist){
+                document.getElementById('infosDocByEmail').innerHTML = infosTables[index].innerHTML;
+            }else {
+                document.getElementById('infosDocByEmail').innerHTML = "<h4>Cet email n'existe pas !!</h4>"
+            }
             document.getElementById('infosDocByEmail').style.display='block';
         }
        
@@ -461,10 +488,8 @@
                 }
                 event.target.parentElement.classList.add('active');  
             }
-            console.log(document.querySelector("."+event.target.parentElement.id));
             if (document.querySelector("."+event.target.parentElement.id).classList.contains('hide'))
             {
-                console.log(document.getElementsByClassName(event.target.parentElement.id));
                 for  (var i=0 ; i<mains.length ; i++)
                 {
                         mains[i].classList.add('hide'); 
@@ -477,6 +502,8 @@
         function show(param_div_id) {
             document.getElementById('main_place').innerHTML = document.getElementById(param_div_id).innerHTML;
         }
+
+
         
     </script>
 </body>

@@ -37,6 +37,9 @@ public class DataCliniqueServlet extends HttpServlet {
 		
 		request.setAttribute("nbrComments", comments != null ? comments.size() : 0);
 		
+		request.setAttribute("allDocteurs", Instances.docteurDao.getAll());
+		request.setAttribute("docteurImpl", Instances.docteurImpl);
+		
 		request.setAttribute("doctors", docteurs);
 		request.setAttribute("nbrDoctors", docteurs.size());
 		Instances.languages.clear();
