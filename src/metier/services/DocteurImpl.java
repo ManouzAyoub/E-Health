@@ -80,13 +80,11 @@ public class DocteurImpl {
 		}
 	}
 	
-<<<<<<< HEAD
 	public String returnImage( Docteur docteur) {
 		String image = Base64.getEncoder().encodeToString(docteur.getProfile_image());
 		return image;
 	}
 	
-=======
 	public Long getNumberOfVisiters(Docteur docteur) {
 		String hql = "select o.nbrVisiters from Docteur o  where cin = :idDocteur";
 		Query q = session.createQuery(hql);
@@ -98,7 +96,6 @@ public class DocteurImpl {
 			return Long.valueOf(0);
 		}
 	}
->>>>>>> a6fb0ff92da8555936a84f5b7c31cd2a8d5db21e
 
 	public Map<Long, List<String>> displayDoctorsInPage(List<Docteur> list) {
 		function();
