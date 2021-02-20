@@ -11,40 +11,39 @@
     <link rel="stylesheet" href="<c:url value="/CliniqueDash/dashboard.css"/>">
       
         <style>
-             .popup_section1 {
-            filter:blur(8px);
-            pointer-events:none;
-            user-select:none;
+            .popup_section1 {
+                filter:blur(8px);
+                pointer-events:none;
+                user-select:none;
             }
             
             #popup{
-            position:fixed;
-            top:40%;
-            left:50%;
-            transform:translate(-50%,-50%);
-            width:700px;
-            padding:50px;
-            box-shadow:0 5px 30px rgba(0,0,0,.30);
-            background:#fff;
-            visibility:hidden; 
-            opacity:0; 
-            transition:0.5s;
-            
+                position:fixed;
+                top:40%;
+                left:50%;
+                transform:translate(-50%,-50%);
+                width:700px;
+                padding:50px;
+                box-shadow:0 5px 30px rgba(0,0,0,.30);
+                background:#fff;
+                visibility:hidden; 
+                opacity:0; 
+                transition:0.5s;
             }
             
             #popup.active{
-            top:50%;
-            visibility:visible;
-            opacity:1;
-            transition:0.5s;
+                top:50%;
+                visibility:visible;
+                opacity:1;
+                transition:0.5s;
             }
             #popup > h2{
-            text-align:center;
-                    margin-bottom:40px;
+                text-align:center;
+                margin-bottom:40px;
             }
             .popup-buttons{
-                            display:flex;
-            justify-content:space-around;
+                display:flex;
+                justify-content:space-around;
             }
             .signup{
                 height: 40px;
@@ -62,38 +61,46 @@
                 color: #EDF8FF ;
                 padding: 0.5rem 0.5rem 0.5rem 0.5rem;
             }
-        #popup .custom_select select{
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            outline: none;
-            width: 100%;
-            height: 100%;
-            border: 0px;
-            padding: 8px 10px;
-            font-size: 15px;
-            border: 1px solid #d5dbd9;
-            border-radius: 3px;
-        }
 
-        .doctor_email_input {
-            width: 200px;
-        }
+            #popup .custom_select select{
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                appearance: none;
+                outline: none;
+                width: 100%;
+                height: 100%;
+                border: 0px;
+                padding: 8px 10px;
+                font-size: 15px;
+                border: 1px solid #d5dbd9;
+                border-radius: 3px;
+            }
 
-        #infosDocByEmail {
-            display: none;
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
+            .doctor_email_input {
+                width: 200px;
+            }
+
+            #infosDocByEmail {
+                display: none;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            .center {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
 
         </style>
 </head>
+
 <body>
     
     <input type="checkbox" id="nav-toggle">
     <div class="sidebar">
         <div class="sidebar-brand">
-            <h2><span class="lab la-accusoft"></span> <span>E-Health</span></h2>
+            <img src="<c:url value="/inc/images/whiteEHealthLogo.png"></c:url>" width="250px" alt="">
         </div>
         <div class="sidebar-menu">
             <ul>
@@ -101,35 +108,43 @@
                 <!-- <li onClick="handleClick(event);show('DashboardSection')">
                     <aaaaaaaaaa id="dash" href="#"  class="buttons active" > -->
 
-                <li  onClick="handleClick(event)">
-                    <a id="dashboard"  href="#"  class="buttons active " onClick="handleClick(event)" >
+                <li>
+                    <a id="dashboard" class="buttons active " onClick="handleClick(event, 'DashboardSection')"  style="cursor: pointer;">
                         
                         <span class="las la-igloo"></span>
                          <span>Dashboard</span>
                     </a>
                 </li>
-                <li  onClick="handleClick(event)">
-                    <a id="docteur" href="#" class="buttons" onClick="handleClick(event);show('doctorsDash')" >
+                <li>
+                    <a id="docteur" class="buttons" onClick="handleClick(event, 'doctorsDash')"  style="cursor: pointer;">
                         
                         <span class="las la-users"></span>
                           <span>Docteurs</span>
                     </a>
                 </li>
-                <li onClick="handleClick(event)">
-                    <a id="commentaire" href="#" class="buttons" onClick="handleClick(event);show('commentsDash')">
+                <li>
+                    <a id="commentaire" class="buttons" onClick="handleClick(event, 'commentsDash')" style="cursor: pointer;">
                         <span class="las la-star"></span>
                          <span>Commentaires</span>
                     </a>
                 </li>
                
               
-                <li onClick="handleClick(event)">
-                    <a id="compte" href="#" class="buttons" onClick="handleClick(event);show('InfoClinique')">
+                <li>
+                    <a id="compte" class="buttons" onClick="handleClick(event, 'InfoClinique')" style="cursor: pointer;">
                         <span class="las la-user-circle"></span>
                          <span>Compte</span>
                     </a>
                 </li>
-              
+                <br><br>
+                <br><br>
+                <li>
+                    <a href="<c:url value="Deconnexion"></c:url>" class="buttons" style="cursor: pointer;">
+                        <span class="las la-door-open"></span>
+                         <span>Déconnexion</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>
@@ -154,23 +169,34 @@
             </div>
         </header>
 
-        <main class="dashboard" id="DashboardSection" >
+        <main class="dashboard slideBar_main" id="DashboardSection" >
             <div class="cards">
+            	<div class="card-single">
+                  <div>
+                      <h1>${nbrVisiters }</h1>
+                      <span>Visiteurs</span>
+                  </div>
+                  <div class="dashboard_icon">
+                      <span class="las la-users"></span>
+                  </div>
+                </div>
+                 
                 <div class="card-single">
                     <div>
                         <h1>${nbrDoctors}</h1>
                         <span>Doctors</span>
                     </div>
-                    <div>
-                        <img src="https://img.icons8.com/ios/50/069c54/doctor-male.png" style="color:blue;"/>                    </div>
+                    <div class="dashboard_icon">
+                        <span class="las la-user-nurse"></span>
+                    </div>
                 </div>
                 <div class="card-single">
                     <div>
                         <h1>${nbrComments}</h1>
                         <span>Commentaires</span>
                     </div>
-                    <div>
-                        <img src="https://img.icons8.com/carbon-copy/60/069c54/clinic.png" style="color:blue;"/>
+                    <div class="dashboard_icon">
+                        <span class="las la-comment"></span>
                     </div>
                 </div>
                 <div class="card-single">
@@ -178,78 +204,101 @@
                         <h1>${nbrRating}</h1>
                         <span>Rating</span>
                     </div>
-                    <div>
-                        <img src="https://img.icons8.com/emoji/48/000000/star-emoji.png" style="color:blue;" />                    </div>
+                    <div class="dashboard_icon">
+                        <span class="las la-star"></span>
+                    </div>
                 </div>
             </div>
-
+    
             <div class="recent-grid">
                 <div class="projects">
                     <div class="card">
                         <div class="card-header">
                             <h3>Commantaires :</h3>
-                            <button>See all <span class="las la-arrow-right"></span></button>
+                            <button onclick="seeAll('commentaire', 'commentsDash')">See all <span class="las la-arrow-right"></span></button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table width="100%">
-                                    <thead>
-                                        <tr>
-                                            <td>Utilisateur</td>
-                                            <td>Commentaire</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="entry" items="${comments}">
+                                <c:if test="${comments == null}">
+                                    <img src="<c:url value="/inc/images/noCommentPic.png"></c:url>" class="center" width="200px"></td>
+                                    <h2 style="text-align: center;">Pas de commentaires !</h2>
+                                </c:if>
+
+                                <c:if test="${comments != null}">
+                                    <table width="100%">
+                                        <thead>
                                             <tr>
-                                                <td>${entry.getUser().getFirstname()} ${entry.getUser().getLastname()}</td>                                               
-                                                <td>
-                                                    ${entry.commentaire}
-                                                </td>
+                                                <td>Utilisateur</td>
+                                                <td>Commentaire</td>
                                             </tr>
-                                        </c:forEach>   
-        
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            <c:forEach var="entry" items="${comments}">
+                                                <tr>
+                                                    <td>${entry.getUser().getFirstname()} ${entry.getUser().getLastname()}</td>                                               
+                                                    <td>
+                                                        ${entry.commentaire}
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>   
+            
+                                        </tbody>
+                                    </table>
+                                </c:if>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
-
+    
                 <div class="customers">
                     <div class="card">
                         <div class="card-header">
                             <h3>Vos Docteurs :</h3>
-                            <button>See all <span class="las la-arrow-right"></span></button>
+                            <button onclick="seeAll('docteur', 'doctorsDash')">See all <span class="las la-arrow-right"></span></button>
                         </div>
                         <div class="card-body">
-                            <c:forEach var="entry" items="${doctors}">
-                                <div class="customer">
-                                    <div class="info">
-                                        <img src="./assets/img/plate1.png" width="40px" height="40px" alt="">
-                                        <div>
-                                            <h4>${entry.getUser().getFirstname()} ${entry.getUser().getLastname()}</h4>
-                                            <small>Docteur</small>
+                            <c:if test="${doctors == null}">
+                                <img src="<c:url value="/inc/images/noDoctorPic.png"></c:url>" class="center" width="100px"></td>
+                                <h3 style="text-align: center;">Aucun docteur !</h3>
+                            </c:if>
+
+                            <c:if test="${doctors != null}">
+                                <c:forEach var="entry" items="${doctors}">
+                                    <div class="customer">
+                                        <div class="info">
+                                            <img src="data:image/png;base64,${docteurImpl.returnImage(entry)}" width="40px" height="40px" alt="">
+                                            <div>
+                                                <h4>${entry.getFirstname()} ${entry.getLastname()}</h4>
+                                                <small>Docteur</small>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </c:forEach>
+                                </c:forEach>
+                            </c:if>
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </main>
+    
+        <main class="commentaire hide slideBar_main" id="commentsDash" >
+            <div class="projects">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Commantaires :</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <c:if test="${comments == null}">
+                                <img src="<c:url value="/inc/images/noCommentPic.png"></c:url>" class="center" width="250px"></td>
+                                <h2 style="text-align: center;">Pas de commentaires !</h2>
+                            </c:if>
+                            
 
-        <main class="commentaire hide" id="commentsDash" >
-            <div class="recent-grid">
-                <div class="projects">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Commantaires :</h3>
-                            <button style="background-color:#E33A49;border:#E33A49;cursor:pointer;">Delete All  <span class="fas fa-trash"></span></button>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
+                            <c:if test="${comments != null}">
                                 <table width="100%" >
                                     <thead>
                                         <tr>
@@ -271,59 +320,66 @@
         
                                     </tbody>
                                 </table>
-                            </div>
+                            </c:if>
+
                         </div>
                     </div>
                 </div>
+            </div>
         </main>
-
-        <main id="doctorsDash" class=" docteur hide" >
-            <div class="recent-grid">
-                <div class="projects">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Docteurs :</h3>
-                            <div> <button class="ajouterDocteur" style="background-color:#27AAF0;border:#27AAF0;cursor:pointer;">Ajouter  <span class="fas fa-plus"></span></button>
-                                <button style="background-color:#E33A49;border:#E33A49;cursor:pointer;">Supprimer tous  <span class="fas fa-trash"></span></button></div>
-                           
+    
+        <main id="doctorsDash" class=" docteur hide slideBar_main" >
+            <div class="projects">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Docteurs :</h3>
+                        <div>
+                            <button class="ajouterDocteur" style="background-color:#27AAF0;border:#27AAF0;cursor:pointer;">Ajouter  <span class="fas fa-plus"></span></button>
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
+                       
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <c:if test="${doctors == null}">
+                                <img src="<c:url value="/inc/images/noDoctorPic.png"></c:url>" class="center" width="250px"></td>
+                                <h2 style="text-align: center;">Aucun docteur !</h2>
+                            </c:if>
+
+                            <c:if test="${doctors != null}">
                                 <table width="100%">
                                     <thead>
                                         <tr>
+                                            <td>Image</td>
                                             <td>Docteur</td>
                                             <td>Spécialité</td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>Consulter</td>
+                                            <td>Suprimer</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <c:forEach var="entry" items="${doctors}">
                                             <tr>
-                                                <td>${entry.getUser().getFirstname()} ${entry.getUser().getLastname()}</td>
-                                                <td>
-                                                    ${entry.speciality}
-                                                </td>
+                                                <td><img src="data:image/png;base64,${docteurImpl.returnImage(entry)}" width="100px"></td>
+                                                <td>${entry.getFirstname()} ${entry.getLastname()}</td>
+                                                <td> ${entry.speciality} </td>
                                                 <td><a href="#"><span class="fas fa-user"></span></a></td>
                                                 <td><a href="#"><span class="fas fa-trash"></span></a></td>
-                                                
                                             </tr>
                                         </c:forEach>
         
                                     </tbody>
                                 </table>
-                            </div>
+                            </c:if>
                         </div>
                     </div>
                 </div>
             </div>
-
+    
             <div id="tableDoctors" style="display: none;">
                 <c:forEach var="docteur" items="${ allDocteurs }">
-
+    
                     <div class="infosTable">
-
+    
                         <form method="POST" action="<c:url value="cliniqueAssociation"></c:url>">
                             <table>
                                 <tr>
@@ -346,7 +402,7 @@
                                     <td><label>Telephone :</label></td>
                                     <td><input type="text" value="${docteur.tel}"></td>
                                 </tr>
-
+    
                                 <tr>
                                     <td><input type="text" name="id" value="${docteur.cin}" hidden><input type="text" name="idClinique" value="${clinique.cin}" hidden></td>
                                     <td><input type="submit" class="signup" value="Ajouter"></td>
@@ -357,10 +413,9 @@
                     </div>
                 </c:forEach>
             </div>
-                
         </main>
-        
-        <div id="popup" >
+
+        <div id="popup">
             <span class="closepopup" style="position: absolute; top :2px ; margin-left: 90%;cursor:pointer;"><i class="fas fa-times"></i></span>
             <h2>Insérer l'email du docteur :</h2> 
             <div class="popup-buttons">
@@ -374,7 +429,6 @@
             </div>
             
         </div>
-        <!-- <main class="mainTag" id="ProfileSection" style="display: none;"> -->
 
         <main id="InfoClinique" class="compte hide" >
             <form method="POST" action="<c:url value="InformationClinique"></c:url>">
@@ -414,11 +468,11 @@
                           <label>Spécialité :</label>
                          <div class="custom_select">
                               <select name="speciality">
-		                    	<c:forEach var="specia" items="${Instances.specialities()}">
-		                    	
-		                    		<option value="${specia}" ${clinique.speciality.equals(specia) ? 'selected' : '' } }>${specia}</option>
-		                    	</c:forEach>
-                  			 </select>
+                                <c:forEach var="specia" items="${Instances.specialities()}">
+                                
+                                    <option value="${specia}" ${clinique.speciality.equals(specia) ? 'selected' : '' } }>${specia}</option>
+                                </c:forEach>
+                               </select>
                           </div>
                        </div> 
                       <div class="inputfield">
@@ -430,7 +484,7 @@
         </main>
 
     </div>
-    
+
     <script>
         var btn = document.getElementsByClassName('buttons');
         var mains = document.getElementsByTagName('main');
@@ -446,17 +500,17 @@
             burgerBtn.click();
 
         });
+
         for (var i=0 ,len=closepop.length; i<len ;i++){
             closepop[i].addEventListener("click",()=>{
-            if(blured.classList.contains("popup_section1")){
-               blured.classList.remove("popup_section1");
-               popup.classList.remove("active");
-               burgerBtn.click();
-            }
-        });
+                if(blured.classList.contains("popup_section1")){
+                blured.classList.remove("popup_section1");
+                popup.classList.remove("active");
+                burgerBtn.click();
+                }
+            });
         }
     
-
         function handle_doctor_email_button() {
             var email = document.getElementById("doctor_email_input").value;
             var exist = false;
@@ -478,33 +532,80 @@
             document.getElementById('infosDocByEmail').style.display='block';
         }
        
-
-        function handleClick(event){
-            if (event.target.parentElement.classList.contains('buttons')) {
+        var btn = document.getElementsByClassName('buttons');
+        function handleClick(event, param_div_id){
+            var j;
+            if (event.target.classList.contains('buttons')) {
                 for(var i=0; i<btn.length; i++){
                     if(btn[i].classList.contains('active')){
                         btn[i].classList.remove('active');
                     }
+
+                    if(btn[i] === event.target){
+                        j = i;
+                    }
                 }
-                event.target.parentElement.classList.add('active');  
-            }
-            if (document.querySelector("."+event.target.parentElement.id).classList.contains('hide'))
-            {
-                for  (var i=0 ; i<mains.length ; i++)
-                {
-                        mains[i].classList.add('hide'); 
+                
+            } else {
+                for(var i=0; i<btn.length; i++){
+                    
+                    if(btn[i].classList.contains('active')){
+                        btn[i].classList.remove('active');
+                    }
+
+                    if(event.target === btn[i].getElementsByTagName("span")[0] || event.target === btn[i].getElementsByTagName("span")[1]){
+                        j = i;
+                    }
                 }
-                document.querySelector("."+event.target.parentElement.id).classList.remove('hide');
             }
+
+            btn[j].classList.add('active');
+            slideBar_mains = document.getElementsByClassName('slideBar_main');
+            for(var i=0; i<slideBar_mains.length; i++){
+                if(!slideBar_mains[i].classList.contains('hide')){
+                    slideBar_mains[i].classList.add('hide');
+                }
+            }
+            document.getElementById(param_div_id).classList.remove('hide');
         }
-        
 
-        function show(param_div_id) {
-            document.getElementById('main_place').innerHTML = document.getElementById(param_div_id).innerHTML;
+        function seeAll(btnId, param_div_id) {
+            var j;
+            var seeAllBtn = document.getElementById(btnId);
+            if (seeAllBtn.classList.contains('buttons')) {
+                for(var i=0; i<btn.length; i++){
+                    if(btn[i].classList.contains('active')){
+                        btn[i].classList.remove('active');
+                    }
+
+                    if(btn[i] === seeAllBtn){
+                        j = i;
+                    }
+                }
+                
+            } else {
+                for(var i=0; i<btn.length; i++){
+                    
+                    if(btn[i].classList.contains('active')){
+                        btn[i].classList.remove('active');
+                    }
+
+                    if(seeAllBtn === btn[i].getElementsByTagName("span")[0] || event.target === btn[i].getElementsByTagName("span")[1]){
+                        j = i;
+                    }
+                }
+            }
+
+            btn[j].classList.add('active');
+            slideBar_mains = document.getElementsByClassName('slideBar_main');
+            for(var i=0; i<slideBar_mains.length; i++){
+                if(!slideBar_mains[i].classList.contains('hide')){
+                    slideBar_mains[i].classList.add('hide');
+                }
+            }
+            document.getElementById(param_div_id).classList.remove('hide');
         }
 
-
-        
     </script>
 </body>
 </html>

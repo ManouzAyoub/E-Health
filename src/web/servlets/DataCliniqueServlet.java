@@ -45,6 +45,8 @@ public class DataCliniqueServlet extends HttpServlet {
 		Instances.languages.clear();
 		request.setAttribute("Instances", new Instances());
 		
+		request.setAttribute("nbrVisiters", 0);
+		
 		request.setAttribute("nbrRating", Instances.ratingImpl.getNumberOfRating(clinique.getCin(), "idClinique"));
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/dashboardClinique.jsp").forward(request, response);

@@ -176,7 +176,7 @@ main {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-gap: 2rem;
   margin-top: 1rem;
 }
@@ -234,7 +234,6 @@ main {
   max-width: 100%;
   width: 100%;
   background: #fff;
-  margin: 50px auto;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.125);
   padding: 30px;
 }
