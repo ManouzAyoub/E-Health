@@ -32,12 +32,9 @@ public class SearchDoctorServlet extends HttpServlet {
 
 		DocteurImpl docteurImpl  = DocteurImpl.getInstance();
 		
-		
-		
 		List<Docteur> allDoctors = docteurImpl.getDoctorsByYourAdress(adresse,true);
-		System.out.println("from search Doctor" + allDoctors.get(0));
 		
-		if(!allDoctors.isEmpty()) {
+		if( allDoctors != null ) {
 
 			data_doctors = docteurImpl.displayDoctorsInPage(allDoctors);
 			
@@ -45,7 +42,6 @@ public class SearchDoctorServlet extends HttpServlet {
 			request.setAttribute("docteurDao", docteurDao);
 			this.getServletContext().getRequestDispatcher( SUCESS ).forward(request, response);
 		}else {
-			request.setAttribute(ATT_DOCTORS, data_doctors);
 			request.setAttribute("docteurDao", docteurDao);
 			this.getServletContext().getRequestDispatcher( SUCESS ).forward(request, response);
 		}

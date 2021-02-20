@@ -9,8 +9,12 @@ import javax.persistence.Query;
 
 import org.hibernate.Session;
 
+import metier.dao.beans.Clinique;
+import metier.dao.beans.Commentaire;
 import metier.dao.beans.Docteur;
 import metier.dao.beans.Hopital;
+import metier.dao.beans.Rating;
+import metier.dao.beans.User;
 import metier.dao.util.HibernateUtil;
 
 public class RatingImpl {
@@ -130,5 +134,55 @@ public class RatingImpl {
 		}
 	}
 	
+	public int getNumberOfEtoileByUserAndDocteur(User user , Docteur docteur) {
+		String hql = "select c.numberEtoile from Rating c where idUser = :idUser and idDocteur = :idDocteur";
+		Query q = session.createQuery(hql);
+		q.setParameter("idUser", user.getCin());
+		q.setParameter("idDocteur", docteur.getCin());
+		List<Integer> list = q.getResultList();
+		if (list.size() != 0) {
+			return list.get(0);
+		}else {
+			return 0;
+		}
+	}
 	
+	public int getNumberOfEtoileByUserAndHopital(User user , Hopital hopital) {
+		String hql = "select c.numberEtoile from Rating c where idUser = :idUser and idHopital = :idHopital";
+		Query q = session.createQuery(hql);
+		q.setParameter("idUser", user.getCin());
+		q.setParameter("idHopital", hopital.getIdHopital());
+		List<Integer> list = q.getResultList();
+		if (list.size() != 0) {
+			return list.get(0);
+		}else {
+			return 0;
+		}
+	}
+	
+	public int getNumberOfEtoileByUserAndClinique(User user , Clinique clinique) {
+		String hql = "select c.numberEtoile from Rating c where idUser = :idUser and idClinique = :idClinique";
+		Query q = session.createQuery(hql);
+		q.setParameter("idUser", user.getCin());
+		q.setParameter("idClinique", clinique.getCin());
+		List<Integer> list = q.getResultList();
+		if (list.size() != 0) {
+			return list.get(0);
+		}else {
+			return 0;
+		}
+	}
+	
+	public Rating getRatingByClass(Long id ,Long id_, String par) {
+		String hql = "select r from Rating r where idUser = :idUser and " + par +" = :id";
+		Query q = session.createQuery(hql);
+		q.setParameter("idUser", id);
+		q.setParameter("id", id_);
+		List<Rating> list = q.getResultList();
+		if (list.size() != 0) {
+			return list.get(0);
+		}else {
+			return null;
+		}
+	}
 }

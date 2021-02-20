@@ -341,15 +341,18 @@
                                         </form>
                                     </c:if>
                                     <c:if test="${ sessionScope.visiter != null }">
-                                        <!-- <div class="container">
-                                            <div class="rating font-size-20 text-warning">
-                                                <span><i class="far fa-star"></i></span>
-                                                <span><i class="far fa-star"></i></span>
-                                                <span><i class="far fa-star"></i></span>
-                                                <span><i class="far fa-star"></i></span>
-                                                <span><i class="far fa-star"></i></span>
-                                            </div>
-                                        </div> -->
+                                        <c:set var="nbrEtoileUser" value="${ ratingImpl.getNumberOfEtoileByUserAndClinique(sessionScope.visiter, clinique) != null ? ratingImpl.getNumberOfEtoileByUserAndClinique( sessionScope.visiter , clinique) : Long.valueOf(0) }"></c:set>
+	    								<c:set var="resultUser" value="${ 5 - nbrEtoileUser }"></c:set>
+	                                    <div class="container">
+	                                        <div class="rating font-size-20 text-warning">
+	                                            <c:forEach var="counter" begin="1" end="${ nbrEtoileUser }">
+	                                            	<span><i class="fas fa-star"></i></span>
+	                                            </c:forEach>
+	                                            <c:forEach var="counr" begin="1" end="${ resultUser }">
+		                                           	<span><i class="far fa-star"></i></span>
+	                                            </c:forEach>
+	                                        </div>
+	                                    </div>
                                         <button id="rateBtn" class="btn font-size-16 font-gilroy-bold color-second">Laisser une évaluation</button>
                                     </c:if>
 
@@ -418,18 +421,7 @@
                                    <div class="col-6">
                                        <h6 class="card-title mb-2 text-muted">${commentaire.getUser().getFirstname()}</h6>
                                    </div>
-
-                                   <!-- <div class="col-6 text-right">
-                                       <div class="rating text-warning font-size-14">
-                                           <span><i class="fas fa-star"></i></span>
-                                           <span><i class="fas fa-star"></i></span>
-                                           <span><i class="fas fa-star"></i></span>
-                                           <span><i class="fas fa-star"></i></span>
-                                           <span><i class="far fa-star"></i></span>
-                                       </div>
-                                   </div> -->
-                                    <c:set var="str" value="idUser"></c:set>
-    								<c:set var="nbrEtoileUser" value="${ ratingImpl.getAverageOfRating(commentaire.getUser().getCin(), str) != null ? ratingImpl.getAverageOfRating(commentaire.getUser().getCin(), str) : Long.valueOf(0) }"></c:set>
+    								<c:set var="nbrEtoileUser" value="${ ratingImpl.getNumberOfEtoileByUserAndClinique(commentaire.getUser(), commentaire.getClinique()) != null ? ratingImpl.getNumberOfEtoileByUserAndClinique(commentaire.getUser(), commentaire.getClinique()) : Long.valueOf(0) }"></c:set>
     								<c:set var="resultUser" value="${ 5 - nbrEtoileUser }"></c:set>
                                     <div class="col-6 text-right">
                                         <div class="rating text-warning font-size-14">

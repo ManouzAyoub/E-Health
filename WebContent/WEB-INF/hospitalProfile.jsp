@@ -344,15 +344,18 @@
                                         </form>
                                     </c:if>
                                     <c:if test="${ sessionScope.visiter != null }">
-                                        <!-- <div class="container">
-                                            <div class="rating font-size-20 text-warning">
-                                                <span><i class="far fa-star"></i></span>
-                                                <span><i class="far fa-star"></i></span>
-                                                <span><i class="far fa-star"></i></span>
-                                                <span><i class="far fa-star"></i></span>
-                                                <span><i class="far fa-star"></i></span>
-                                            </div>
-                                        </div> -->
+                                        <c:set var="nbrEtoileUser" value="${ ratingImpl.getNumberOfEtoileByUserAndHopital(sessionScope.visiter, hopital) != null ? ratingImpl.getNumberOfEtoileByUserAndHopital( sessionScope.visiter , hopital) : Long.valueOf(0) }"></c:set>
+	    								<c:set var="resultUser" value="${ 5 - nbrEtoileUser }"></c:set>
+	                                    <div class="container">
+	                                        <div class="rating font-size-20 text-warning">
+	                                            <c:forEach var="counter" begin="1" end="${ nbrEtoileUser }">
+	                                            	<span><i class="fas fa-star"></i></span>
+	                                            </c:forEach>
+	                                            <c:forEach var="counr" begin="1" end="${ resultUser }">
+		                                           	<span><i class="far fa-star"></i></span>
+	                                            </c:forEach>
+	                                        </div>
+	                                    </div>
                                         <button id="rateBtn" class="btn font-size-16 font-gilroy-bold color-second">Laisser une évaluation</button>
                                     </c:if>
 
@@ -419,7 +422,7 @@
                            <div class="user-card card-body">
                                <div class="row">
                                    <div class="col-6">
-                                       <h6 class="card-title mb-2 text-muted">${commentaire.getUser().getFirstname()}</h6>
+                                       <h6 class="card-title mb-2 text-muted">${commentaire.getUser().getFirstname()} ${commentaire.getUser().getLastname()}</h6>
                                    </div>
 
                                    <!-- <div class="col-6 text-right">
@@ -431,8 +434,8 @@
                                            <span><i class="far fa-star"></i></span>
                                        </div>
                                    </div> -->
-                                    <c:set var="str" value="idUser"></c:set>
-    							    <c:set var="nbrEtoileUser" value="${ ratingImpl.getAverageOfRating(commentaire.getUser().getCin(), str) != null ? ratingImpl.getAverageOfRating(commentaire.getUser().getCin(), str) : Long.valueOf(0) }"></c:set>
+                                   	
+                                    <c:set var="nbrEtoileUser" value="${ ratingImpl.getNumberOfEtoileByUserAndHopital(commentaire.getUser(), commentaire.getHopital()) != null ? ratingImpl.getNumberOfEtoileByUserAndHopital(commentaire.getUser(), commentaire.getHopital()) : Long.valueOf(0) }"></c:set>
     								<c:set var="resultUser" value="${ 5 - nbrEtoileUser }"></c:set>
                                     <div class="col-6 text-right">
                                         <div class="rating text-warning font-size-14">
@@ -474,23 +477,28 @@
                 <div class="mt-5 text-center justify-content-center" id="Docteurs">
                     <div class="container">
                         <div class="row">
-                            <!-- Element-->
-                            <c:forEach var="docteur" items="${docteurs}">
-                                <div class="col-md-3 doctor_card">
-                                    <a href="" class="btn btn-fluid text-center">
-                                        <div class="card">
-                                            <div class="text-center justify-content-center mt-2">
-                                                <img id="item_img" src="data:image/png;base64,${docteurImpl.getImageAsString(docteur)}" width="150 px" class="img-fluid img-responsive border border-3 rounded">
-                                            </div>
-                                            <div class="card-body">
-                                                <h5 class="card-title font-gilroy-bold color-primary">Dr. <span class="DoctorName"> ${docteur.firstname} </span></h5>
-                                                <span class="font-montserrat font-size-12">Spï¿½cialitï¿½ : <span class="font-size-14 font-gilroy-bold"> ${docteur.speciality}</span></span><br>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </c:forEach>
-                            <!-- !Element-->                            
+                            <c:if test="${!docteurs.isEmpty() }">
+                            	<!-- Element-->
+	                            <c:forEach var="docteur" items="${docteurs}">
+	                                <div class="col-md-3 doctor_card">
+	                                    <a href="" class="btn btn-fluid text-center">
+	                                        <div class="card">
+	                                            <div class="text-center justify-content-center mt-2">
+	                                                <img id="item_img" src="data:image/png;base64,${docteurImpl.getImageAsString(docteur)}" width="150 px" class="img-fluid img-responsive border border-3 rounded">
+	                                            </div>
+	                                            <div class="card-body">
+	                                                <h5 class="card-title font-gilroy-bold color-primary">Dr. <span class="DoctorName"> ${docteur.firstname} </span></h5>
+	                                                <span class="font-montserrat font-size-12">Spï¿½cialitï¿½ : <span class="font-size-14 font-gilroy-bold"> ${docteur.speciality}</span></span><br>
+	                                            </div>
+	                                        </div>
+	                                    </a>
+	                                </div>
+	                            </c:forEach>
+	                            <!-- !Element-->  
+                            </c:if>   
+                            <c:if test="${docteurs.isEmpty() }">
+                            	<c:out value="aucun docteur"></c:out>
+                            </c:if>                       
                             
                             <div class="border d-flex justify-content-center mt-2" id="moredoctorsBtn" style="visibility: hidden;width: 100%;">
                                 <a id="show-more-doctors" class="btn font-size-16 font-gilroy-bold color-second">Afficher plus de docteurs</a>

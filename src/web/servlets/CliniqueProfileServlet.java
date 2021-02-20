@@ -29,6 +29,7 @@ public class CliniqueProfileServlet extends HttpServlet {
 		// Afficher les donnée du docteur choisi dans la page de son profile
 		request.setAttribute("clinique", clinique);
 		request.setAttribute("docteurImpl", Instances.docteurImpl);
+		request.setAttribute("ratingImpl", Instances.ratingImpl);
 		request.setAttribute("progressBar", Instances.ratingImpl.getPercentageOfEtoiles(clinique.getCin(), "idClinique"));
 		request.setAttribute("nbrRating", Instances.ratingImpl.getNumberOfRating(clinique.getCin(), "idClinique"));
 		request.setAttribute("average", Instances.ratingImpl.average(clinique.getCin(), "idClinique"));

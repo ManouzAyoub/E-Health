@@ -1,15 +1,19 @@
 package metier.dao.util;
 
 import metier.dao.beans.Docteur;
+import metier.dao.beans.Hopital;
+import metier.dao.beans.User;
 
 public class Test {
 
 	public static void main(String[] args) {
 		
-		Docteur docteur = Instances.docteurDao.getById(1L);
-		Long a = Instances.docteurImpl.getNumberOfVisiters(docteur);
-		System.out.println("value is" + a);
+		User user = Instances.userDao.getById(5L);
+		Hopital hopital = Instances.hopitalDao.getById(6L);
 		
+		
+		int a = Instances.ratingImpl.getNumberOfEtoileByUserAndHopital(user, hopital);
+		System.out.println(a);
 
 	}
 
