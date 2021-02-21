@@ -2,9 +2,8 @@ package metier.dao.Implementations;
 
 import java.util.List;
 
-import org.hibernate.Session;
 
-import metier.dao.beans.Cabinet;
+import org.hibernate.Session;
 import metier.dao.beans.Langue;
 import metier.dao.util.HibernateUtil;
 import metier.dao.util.functionStd;

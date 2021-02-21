@@ -35,30 +35,8 @@ public class Hopital implements Serializable{
                 inverseJoinColumns = @JoinColumn( name = "cin" ) )
     private List<Docteur> docteurs = new ArrayList<>();
 	
-	@OneToMany
-	Set<Rating> rating;
-	
-	@OneToMany
-	Set<Commentaire> comments;
-	
 	public Hopital() {
 		super();
-	}
-	
-	public Set<Commentaire> getComments() {
-		return comments;
-	}
-	
-	public void setComments(Set<Commentaire> comments) {
-		this.comments = comments;
-	}
-	
-	public Set<Rating> getRating() {
-		return rating;
-	}
-	
-	public void setRating(Set<Rating> rating) {
-		this.rating = rating;
 	}
 	
 	public void setIdHopital(long idHopital) {

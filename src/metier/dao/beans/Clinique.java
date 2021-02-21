@@ -48,23 +48,6 @@ public class Clinique extends User{
                 joinColumns = @JoinColumn( name = "cin" ),
                 inverseJoinColumns = @JoinColumn( name = "email" ) )
     private List<Docteur> docteurs = new ArrayList<>();
-
-	@ManyToMany
-	Set<Docteur> works;
-	
-	@OneToMany
-	Set<Rating> rating;
-	
-	@OneToMany
-	Set<Commentaire> comments;
-	
-	public Set<Rating> getRating() {
-		return rating;
-	}
-
-	public void setRating(Set<Rating> rating) {
-		this.rating = rating;
-	}
 	
 	public Long getNbrVisiters() {
 		return nbrVisiters;
@@ -74,20 +57,8 @@ public class Clinique extends User{
 		this.nbrVisiters = nbrVisiters;
 	}
 
-	public Set<Commentaire> getComments() {
-		return comments;
-	}
-
-	public void setComments(Set<Commentaire> comments) {
-		this.comments = comments;
-	}
-
 	public Clinique() {
 		super();
-	}
-	
-	public Set<Docteur> getWorks() {
-		return works;
 	}
 	
 	public String getId() {
@@ -95,10 +66,6 @@ public class Clinique extends User{
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	
-	public void setWorks(Set<Docteur> works) {
-		this.works = works;
 	}
 	
 	public User getUser() {
@@ -179,14 +146,6 @@ public class Clinique extends User{
 	
 	public void setFirst_using(Boolean first_using) {
 		this.first_using = first_using;
-	}
-
-	@Override
-	public String toString() {
-		return "Clinique [name=" + name + ", adresse=" + adresse + ", description=" + description + ", emergency_tel="
-				+ emergency_tel + ", speciality=" + speciality + ", dispo=" + dispo + ", ville=" + ville
-				+ ", first_using=" + first_using + ", user=" + user + ", docteurs=" + docteurs + ", works=" + works
-				+ ", rating=" + rating + ", comments=" + comments + "]";
 	}
 	
 	

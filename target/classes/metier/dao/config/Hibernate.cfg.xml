@@ -25,13 +25,10 @@
 
 		<mapping class="metier.dao.beans.User"/>
 		<mapping class="metier.dao.beans.Clinique"/>
-		<mapping class="metier.dao.beans.Laboratoire"/>
 		<mapping class="metier.dao.beans.Commentaire"/>
 		<mapping class="metier.dao.beans.Docteur"/>
 		<mapping class="metier.dao.beans.Pharmacie"/>
-		<mapping class="metier.dao.beans.Profil"/>
 		<mapping class="metier.dao.beans.Role"/>
-		<mapping class="metier.dao.beans.Cabinet"/>
 		<mapping class="metier.dao.beans.Rating"/>
 		<mapping class="metier.dao.beans.Hopital"/>
 		<mapping class="metier.dao.beans.Langue"/>

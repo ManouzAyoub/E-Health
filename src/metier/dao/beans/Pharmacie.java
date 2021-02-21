@@ -31,13 +31,6 @@ public class Pharmacie implements Serializable{
 	private Boolean dispo;
 	private Boolean en_garde;
 	
-	
-	@OneToMany
-	Set<Rating> rating;
-	
-	@OneToMany
-	Set<Commentaire> comments;
-	
 	public Pharmacie() {
 		super();
 	}
@@ -48,22 +41,6 @@ public class Pharmacie implements Serializable{
 	
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
-	}
-	
-	public Set<Commentaire> getComments() {
-		return comments;
-	}
-	
-	public void setComments(Set<Commentaire> comments) {
-		this.comments = comments;
-	}
-	
-	public Set<Rating> getRating() {
-		return rating;
-	}
-	
-	public void setRating(Set<Rating> rating) {
-		this.rating = rating;
 	}
 	
 	public String getName() {

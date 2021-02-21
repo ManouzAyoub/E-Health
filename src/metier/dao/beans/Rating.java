@@ -31,16 +31,8 @@ public class Rating implements Serializable {
     private Hopital     hopital;
 
     @ManyToOne
-    @JoinColumn( name = "idLaboratoire", referencedColumnName = "idProfil" )
-    private Laboratoire laboratoire;
-
-    @ManyToOne
     @JoinColumn( name = "idPharmacie", referencedColumnName = "idPharmacie" )
     private Pharmacie   pharmacie;
-
-    @ManyToOne
-    @JoinColumn( name = "idCabinet", referencedColumnName = "idProfil" )
-    private Cabinet     cabinet;
     
     @ManyToOne
     @JoinColumn( name = "idDocteur", referencedColumnName = "cin" )
@@ -98,28 +90,12 @@ public class Rating implements Serializable {
 		this.hopital = hopital;
 	}
 
-	public Laboratoire getLaboratoire() {
-		return laboratoire;
-	}
-
-	public void setLaboratoire(Laboratoire laboratoire) {
-		this.laboratoire = laboratoire;
-	}
-
 	public Pharmacie getPharmacie() {
 		return pharmacie;
 	}
 
 	public void setPharmacie(Pharmacie pharmacie) {
 		this.pharmacie = pharmacie;
-	}
-
-	public Cabinet getCabinet() {
-		return cabinet;
-	}
-
-	public void setCabinet(Cabinet cabinet) {
-		this.cabinet = cabinet;
 	}
     
     

@@ -62,9 +62,6 @@ public class Docteur extends User{
 	                inverseJoinColumns = @JoinColumn( name = "idHopital" ) )
 	    private List<Hopital> hopitales = new ArrayList<>();
 	    
-	    @ManyToMany
-		private Set<Langue> parlerPar;
-	    
 		@Lob
 	    @Column(name = "id_scan", columnDefinition="LONGBLOB")
 	    private byte[] id_scan;
@@ -85,14 +82,6 @@ public class Docteur extends User{
 		@JoinColumn(name = "idUser" , referencedColumnName = "cin")
 		private User user;
 		
-		@OneToOne
-		@JoinColumn(name = "idProfil", nullable = true , referencedColumnName = "idProfil")
-		private Profil profil;
-		
-		
-		@ManyToMany
-		private Set<Clinique> travaille;
-		
 	
 		public Docteur() {
 			super();
@@ -100,14 +89,6 @@ public class Docteur extends User{
 		
 		public User getUser() {
 			return user;
-		}
-		
-		public Set<Clinique> getTravaille() {
-			return travaille;
-		}
-		
-		public void setTravaille(Set<Clinique> travaille) {
-			this.travaille = travaille;
 		}
 		
 		public void setUser(User user) {
@@ -184,14 +165,6 @@ public class Docteur extends User{
 			this.langues = langues;
 		}
 
-		public Set<Langue> getParlerPar() {
-			return parlerPar;
-		}
-
-		public void setParlerPar(Set<Langue> parlerPar) {
-			this.parlerPar = parlerPar;
-		}
-
 		public Boolean getDispo() {
 			return dispo;
 		}
@@ -218,14 +191,6 @@ public class Docteur extends User{
 
 		public Boolean getConsultationDomicile() {
 			return consultationDomicile;
-		}
-
-		
-		
-		@Override
-		public String toString() {
-			return "Docteur [speciality=" + speciality + ", dispo=" + dispo + ", ville=" + ville + ", user=" + user
-					+ "]";
 		}
 
 		public void setConsultationDomicile(Boolean consultationDomicile) {

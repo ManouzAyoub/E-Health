@@ -39,19 +39,20 @@ public class HomeServlet extends HttpServlet {
 			AjouterLangues(langues);
 		}
     	
-    	if ( Instances.userImpl.getNumbersOfUserVisiter(1) == null ) {
+    	if ( Instances.userDao.getAll().size() == 0 ) {
 			AjouterAdmin();
 		}
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		if ( session.getAttribute("admin") != null ) {
-			response.sendRedirect(request.getContextPath() + "/toAdminData");
-		}
-		else {
-			this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-		}
+//		if ( session.getAttribute("admin") != null ) {
+//			response.sendRedirect(request.getContextPath() + "/toAdminData");
+//		}
+//		else {
+//			this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+//		}
+		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 	}
 
 
