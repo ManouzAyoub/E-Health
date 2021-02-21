@@ -31,7 +31,7 @@ public class HomeServlet extends HttpServlet {
     		AjouterLesRoles("admin","desc");
     		AjouterLesRoles("docteur","desc");
     		AjouterLesRoles("clinique","desc");
-    		AjouterLesRoles("utiliseur","desc");
+    		AjouterLesRoles("utilisateur","desc");
 		}
     	List<Langue> languages = Instances.langueDao.getAll();
     	if (languages.size() == 0) {

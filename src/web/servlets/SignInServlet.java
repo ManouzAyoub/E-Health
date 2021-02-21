@@ -56,11 +56,11 @@ public class SignInServlet extends HttpServlet {
     		session.setAttribute("admin", visiter);
 			this.getServletContext().getRequestDispatcher( SUCESS_ADMIN ).forward( request, response );
 			
-		} else if ( form.getErreurs().isEmpty() && visiter.getRole().getRole().equals("utilisateur") ) {
+		} else if ( visiter.getRole().getRole().equals("utilisateur") ) {
     		
     		System.out.println(visiter.getEmail() + " " + visiter.getPassword() + " " + visiter.getCin());
         	session.setAttribute("visiter", visiter);
-        	
+        	System.out.println("visiter connect correctement");
         	this.getServletContext().getRequestDispatcher( SUCESS_USER ).forward( request, response );
         	
 		} else if ( form.getErreurs().isEmpty() && visiter.getRole().getRole().equals("docteur") ) {

@@ -57,9 +57,6 @@ public class AddCommentServlet extends HttpServlet {
 			}
 		}
 		
-		System.out.println("sssss you sssss" + nbr);
-		
-		// commentaire pour un docteur
 		if (commentaire != null) {
 			docteur = (Docteur) session.getAttribute("CommentDoctor");
 			Rating rating = Instances.ratingImpl.getRatingByClass(user.getCin(), docteur.getCin(), "idDocteur");
@@ -127,7 +124,7 @@ public class AddCommentServlet extends HttpServlet {
 		
 		// commentaire pour un clinique
 		if (comment_clinique != null) {
-			clinique = (Clinique) session.getAttribute("DisplayProfileClinique");
+			clinique = Instances.cliniqueDao.getById(Long.valueOf(request.getParameter("clinique_id_comment")));
 			Rating rating = Instances.ratingImpl.getRatingByClass(user.getCin(), clinique.getCin(), "idClinique");
 			if (rating != null) {
 				rating.setClinique(clinique);

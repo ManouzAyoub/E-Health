@@ -23,9 +23,13 @@ public class CliniqueProfileServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// recuperer quel docteur a ete choisi par le client
-		HttpSession session = request.getSession(false);
-		Clinique clinique   = (Clinique) session.getAttribute("DisplayProfileClinique");
-
+		Long id_clinique = Long.valueOf(request.getParameter("idd"));
+		
+		Clinique c   = Instances.cliniqueDao.getById(id_clinique);
+		
+		c.setNbrVisiters(c.getNbrVisiters() + 1);
+		Clinique clinique = Instances.cliniqueDao.edit(c);
+		
 		// Afficher les donnée du docteur choisi dans la page de son profile
 		request.setAttribute("clinique", clinique);
 		request.setAttribute("docteurImpl", Instances.docteurImpl);

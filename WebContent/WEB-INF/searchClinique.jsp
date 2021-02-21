@@ -164,7 +164,7 @@
 	            
 	                                <div class="col-md-10 text-xs-center justify-content-center">
 	                                    <div class="border-bottom">
-	                                        <a href="<c:url value="/CliniqueProfile"><c:set var="DisplayProfileClinique" value="${entry}" scope="session" /></c:url>" class="btn"><h4 class="font-gilroy-bold color-primary fullName">${entry.name}</h4></a>
+	                                        <a href="<c:url value="/CliniqueProfile?idd=${entry.cin}"></c:url>" class="btn"><h4 class="font-gilroy-bold color-primary fullName">${entry.name}</h4></a>
 	                                    </div>
 	                                    <table>
 	                                        <tr style="width:100%">
@@ -173,7 +173,7 @@
 	                                        </tr>
 	                                    </table>
 	                                </div>
-	                                <span class="place_id" hidden>ChIJ59WUR1m2sw0RZblX2csO_9c</span><br>
+	                                <span class="place_id" hidden>${entry.id}</span><br>
 	                            </div>
 	                        </div>
 	                        <!-- !Element -->

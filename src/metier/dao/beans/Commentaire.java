@@ -141,4 +141,12 @@ public class Commentaire implements Serializable{
 	public void setDel(Boolean del) {
 		this.del = del;
 	}
+
+	@Override
+	public String toString() {
+		return "Commentaire [idCommentaire=" + idCommentaire + ", commentaire=" + commentaire + ", approv=" + approv
+				+ ", del=" + del + ", clinique=" + clinique + "]";
+	}
+	
+	
 }

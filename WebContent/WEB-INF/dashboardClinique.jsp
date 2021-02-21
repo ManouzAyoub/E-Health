@@ -259,12 +259,12 @@
                             <button onclick="seeAll('docteur', 'doctorsDash')">See all <span class="las la-arrow-right"></span></button>
                         </div>
                         <div class="card-body">
-                            <c:if test="${doctors == null}">
+                            <c:if test="${doctors.isEmpty()}">
                                 <img src="<c:url value="/inc/images/noDoctorPic.png"></c:url>" class="center" width="100px"></td>
                                 <h3 style="text-align: center;">Aucun docteur !</h3>
                             </c:if>
 
-                            <c:if test="${doctors != null}">
+                            <c:if test="${!doctors.isEmpty()}">
                                 <c:forEach var="entry" items="${doctors}">
                                     <div class="customer">
                                         <div class="info">
@@ -314,7 +314,14 @@
                                                 <td>
                                                     ${entry.commentaire}
                                                 </td>
-                                                <td><a href="#"><span class="fas fa-trash"></span></a></td>
+                                                <td>
+                                                	<form method="get" action="<c:url value="GestionComment"></c:url>">
+                                                		
+                                                		<input type="text" name="delete_comment_clinique" value="${entry.idCommentaire }">
+                                                		<input type="text" value="${ entry.getClinique().getCin() }" name="clinic" />
+                                                		<button type="submit" ><span class="fas fa-trash"></span></button>
+                                                	</form>
+                                                </td>
                                             </tr>
                                         </c:forEach>
         
@@ -340,12 +347,12 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <c:if test="${doctors == null}">
+                            <c:if test="${doctors.isEmpty()}">
                                 <img src="<c:url value="/inc/images/noDoctorPic.png"></c:url>" class="center" width="250px"></td>
                                 <h2 style="text-align: center;">Aucun docteur !</h2>
                             </c:if>
 
-                            <c:if test="${doctors != null}">
+                            <c:if test="${!doctors.isEmpty()}">
                                 <table width="100%">
                                     <thead>
                                         <tr>
@@ -359,11 +366,17 @@
                                     <tbody>
                                         <c:forEach var="entry" items="${doctors}">
                                             <tr>
-                                                <td><img src="data:image/png;base64,${docteurImpl.returnImage(entry)}" width="100px"></td>
+                                                <td><img src="data:image/png;base64,${docteurImpl.returnImage(entry)}" style="border-radius:40%" width="100px"></td>
                                                 <td>${entry.getFirstname()} ${entry.getLastname()}</td>
                                                 <td> ${entry.speciality} </td>
-                                                <td><a href="#"><span class="fas fa-user"></span></a></td>
-                                                <td><a href="#"><span class="fas fa-trash"></span></a></td>
+                                                <td><a href="<c:url value="/doctorProfile?docteur=${ entry.cin }"></c:url>" target="_blank"><span class="fas fa-user"></span></a></td>
+                                                <td>
+                                                	<form method="POST" action="<c:url value="cliniqueAssociation"></c:url>">
+                                                		<input type="hidden" name="idClinique" value="${ clinique.cin }">
+                                                		<input type="hidden" name="docteurId" value="${ entry.cin }">
+                                                		<button type="submit"><span class="fas fa-trash"></span></button>
+                                                	</form>
+                                                </td>
                                             </tr>
                                         </c:forEach>
         
@@ -604,6 +617,10 @@
                 }
             }
             document.getElementById(param_div_id).classList.remove('hide');
+        }
+        
+        function handleDeleteClick(){
+        	document.getElementById('delete_comment_btn').click();
         }
 
     </script>

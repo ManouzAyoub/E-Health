@@ -88,16 +88,20 @@
                     </div>
                 </ul>
             </nav>
-            <c:if test="${ sessionScope.visiter == null }">
+            <c:if test="${ sessionScope.visiter == null && sessionScope.admin == null && sessionScope.clinique == null && sessionScope.docteur == null  }">
+            	
             	<div class="account">
 	               	<a id="conBtn" href="<c:url value="/signIn" />"><button  class="sign-in">Connexion</button></a>
 	                <button class="sign-up" onclick="toggle()" id="toggle" >Inscription</button>
             	</div>
             </c:if>
-            <c:if test="${ sessionScope.visiter != null }">
+            <c:if test="${ sessionScope.visiter != null && sessionScope.admin == null && sessionScope.clinique == null && sessionScope.docteur == null }">
             	<div class="account">
-	               	<%-- <a href="<c:url value="/signIn" />"><button class="sign-in">Deconnexion</button></a> --%>
-	               	<button class="sign-up" style="padding:0px 5px" >Log Out</button>
+            	
+            		<form method="get" action="<c:url value="Deconnexion" />">
+            			<button type="submit" class="sign-up" style="padding:0px 5px" >Log Out</button>
+            		</form>
+	               	
             	</div>
             </c:if>
             

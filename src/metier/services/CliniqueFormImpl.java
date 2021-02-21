@@ -88,6 +88,7 @@ public class CliniqueFormImpl {
      System.out.println(speciality[0]);
      clinic.setSpeciality(speciality[0]);
      clinic.setDispo(false);
+     clinic.setNbrVisiters(0L);
        
      if ( erreurs.isEmpty() ) {
          resultat = "Succés d'inscription!";

@@ -37,6 +37,7 @@ public class Clinique extends User{
 	private String ville;
 	private String id;
 	private Boolean first_using;
+	private Long nbrVisiters;
 	
 	@ManyToOne
 	@JoinColumn(name = "idUser" , referencedColumnName = "cin")
@@ -63,6 +64,14 @@ public class Clinique extends User{
 
 	public void setRating(Set<Rating> rating) {
 		this.rating = rating;
+	}
+	
+	public Long getNbrVisiters() {
+		return nbrVisiters;
+	}
+	
+	public void setNbrVisiters(Long nbrVisiters) {
+		this.nbrVisiters = nbrVisiters;
 	}
 
 	public Set<Commentaire> getComments() {

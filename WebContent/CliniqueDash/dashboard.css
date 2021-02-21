@@ -451,10 +451,6 @@ td .status {
   margin-right: 1rem;
 }
 
-tr td:last-child {
-  display: flex;
-  align-items: center;
-}
 .status.purple {
   background: rebeccapurple;
 }

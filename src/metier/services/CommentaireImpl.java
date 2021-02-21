@@ -45,6 +45,19 @@ public class CommentaireImpl {
 		}
 	}
 	
+	public List<Commentaire> getCommentsClinique(Long id, String par, Boolean bool){
+		String hql = "select c from Commentaire c where "+ par +" = :id and del = :bool";
+		Query q = session.createQuery(hql);
+		q.setParameter("id", id);
+		q.setParameter("bool", bool);
+		List<Commentaire> list = q.getResultList();
+		if (list.size() != 0) {
+			return list;
+		}else {
+			return null;
+		}
+	}
+	
 	public Long getNumbersOfComments(Long id, String par){
 		String hql = "select count(c) from Commentaire c where "+ par +" = :id";
 		Query q = session.createQuery(hql);

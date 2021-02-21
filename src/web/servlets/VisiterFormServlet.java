@@ -54,7 +54,7 @@ public class VisiterFormServlet extends HttpServlet {
 
             UserDao userdao = UserDao.getInstance();
             
-            role=roleimpl.getRolebyrole("utiliseur");
+            role=roleimpl.getRolebyrole("utilisateur");
             
             visiter.setRole(role);
             userdao.add( visiter );

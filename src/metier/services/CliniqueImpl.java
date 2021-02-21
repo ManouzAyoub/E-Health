@@ -8,6 +8,7 @@ import javax.persistence.Query;
 import org.hibernate.Session;
 
 import metier.dao.beans.Clinique;
+import metier.dao.beans.Docteur;
 import metier.dao.util.HibernateUtil;
 
 public class CliniqueImpl {
@@ -31,6 +32,18 @@ public class CliniqueImpl {
 			return null;
 		}
 		
+	}
+	
+	public Long getNumberOfVisiters(Clinique clinique) {
+		String hql = "select o.nbrVisiters from Clinique o  where cin = :idClinique";
+		Query q = session.createQuery(hql);
+		q.setParameter("idClinique", clinique.getCin());
+		List<Long> nbr = q.getResultList();
+		if (nbr.size() != 0) {
+			return nbr.get(0);
+		}else {
+			return Long.valueOf(0);
+		}
 	}
 	
 	public List<Clinique> getAllClinicsAccordingToTheirAvailability(Boolean bool){

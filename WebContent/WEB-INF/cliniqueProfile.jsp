@@ -384,7 +384,7 @@
                                                                         <h3 class="font-size-16 font-golroy-bold">Laisser un commentaire</h3>
                                                                         <h4 id="comment_header" class="font-size-14 font-montserrat">Quesque vous penser apropot de service de </h4>
                                                                     </div>
-                                        
+                                        							<input type="hidden" value="${clinique.cin }" name="clinique_id_comment" >
                                                                     <textarea name="comment_clinique" id="userOwnComment" class="form-control" rows="3" disabled></textarea>
                                                                     <h3 id="rating_notice" class="font-size-12 font-golroy-bold"><em>** Vous devez laisser une évaluation avant de commenter !!</em></h3>
                                                                 </div>
