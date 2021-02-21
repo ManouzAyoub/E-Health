@@ -543,10 +543,10 @@ function setWorkingTimes(){
     for(var i = 0; i < items.length; i++){
         if(items[i].classList.contains("jour_nuit")){
             working_times[i].innerHTML = '</span><span class="font-size-12 font-montserrat text-success"><i class="fas fa-check-double"></i> &nbsp; Ouvert toute la journée (24 heures)';
-            markers_icons.push("/searchPharmacie/geo_green.png");
+            markers_icons.push("https://i.ibb.co/cDt5BR9/geo-green.png");
         }else if(items[i].classList.contains("jour")){
             working_times[i].innerHTML = '</span><span class="font-size-12 font-montserrat text-primary"><i class="fas fa-sun"></i> &nbsp; Ouvert seulement le jour';
-            markers_icons.push("/searchPharmacie/geo_blue.png");
+            markers_icons.push("https://i.ibb.co/FJg8GLs/geo-blue.png");
         }
     }
 }
@@ -652,19 +652,21 @@ var btn = document.getElementById("rateBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
+if(btn!=null) {
+	// When the user clicks on the button, open the modal
+	btn.onclick = function() {
+	  modal.style.display = "block";
+	}
+	
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+	  modal.style.display = "none";
+	}
+	
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	  if (event.target == modal) {
+	    modal.style.display = "none";
+	  }
+	}
 }

@@ -29,11 +29,6 @@
     <!-- LOGO -->
     <link rel="shortcut icon" type="image/x-icon" href="pageLogo.png" />
 
-    <!-- Google API-->
-    <script defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcybDNa2i9CePsLK9l7rAhcAafXMGALcY&libraries=places&callback=initPharmacyMap">
-    </script>
-
     <!-- Custom CSS file -->
     <link rel="stylesheet" href="<c:url value="/searchPharmacie/style.css" />">
 </head>
@@ -278,6 +273,11 @@
     <!-- Owl Carousel Js file -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0=" crossorigin="anonymous"></script>
 
+	<!-- Google API-->
+    <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcybDNa2i9CePsLK9l7rAhcAafXMGALcY&libraries=places&callback=initPharmacyMap">
+    </script>
+    
     <!--  isotope plugin cdn  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
 
