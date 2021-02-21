@@ -44,7 +44,8 @@ public class AdminProfileServlet extends HttpServlet {
 				Instances.userDao.edit(user);
 			}
 		}
-		this.getServletContext().getRequestDispatcher("/toAdminData").forward(request, response);
+		response.sendRedirect( request.getContextPath() + "/toAdminData");
+		//this.getServletContext().getRequestDispatcher("/toAdminData").forward(request, response);
 	}
 
 }

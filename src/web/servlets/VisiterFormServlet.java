@@ -59,8 +59,7 @@ public class VisiterFormServlet extends HttpServlet {
             visiter.setRole(role);
             userdao.add( visiter );
 
-            this.getServletContext().getRequestDispatcher( SUCESS ).forward(
-                    request, response );
+            this.getServletContext().getRequestDispatcher( SUCESS ).forward( request, response );
 
         } else {
             this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );

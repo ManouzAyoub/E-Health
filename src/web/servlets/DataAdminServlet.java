@@ -29,7 +29,6 @@ public class DataAdminServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("-------------- from admin servleet ------------");
 		User u = (User) request.getAttribute("adminUser");
 		HttpSession session = request.getSession(false);
 		User visiter = (User) session.getAttribute("admin");
@@ -48,7 +47,7 @@ public class DataAdminServlet extends HttpServlet {
 		request.setAttribute("nbrDoctors", Instances.userImpl.getNumbersOfUser("Docteur") != null ? Instances.userImpl.getNumbersOfUser("Docteur") : 0  );
 		request.setAttribute("nbrPharmacies", Instances.userImpl.getNumbersOfUser("Pharmacie") != null ? Instances.userImpl.getNumbersOfUser("Pharmacie") : 0 );
 		request.setAttribute("nbrClinics", Instances.userImpl.getNumbersOfUser("Clinique") != null ? Instances.userImpl.getNumbersOfUser("Clinique") : 0  );
-		
+		//response.sendRedirect(request.getContextPath() + VUE_ADMIN);
 		this.getServletContext().getRequestDispatcher(VUE_ADMIN).forward(request, response);
 	}
 	

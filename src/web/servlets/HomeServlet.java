@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import metier.dao.beans.Langue;
 import metier.dao.beans.Role;
@@ -44,7 +45,13 @@ public class HomeServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+		HttpSession session = request.getSession(false);
+		if ( session.getAttribute("admin") != null ) {
+			response.sendRedirect(request.getContextPath() + "/toAdminData");
+		}
+		else {
+			this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+		}
 	}
 
 

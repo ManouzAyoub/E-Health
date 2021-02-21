@@ -75,8 +75,8 @@ public class cliniqueAssociation extends HttpServlet {
 				session.setAttribute("clinique", clinic);
 			}
 		}
-		
-		this.getServletContext().getRequestDispatcher("/DataClinique").forward(request, response);
+		response.sendRedirect( request.getContextPath() + "/DataClinique");
+		//this.getServletContext().getRequestDispatcher("/DataClinique").forward(request, response);
 	}
 
 }

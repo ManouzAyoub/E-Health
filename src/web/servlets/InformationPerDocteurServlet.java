@@ -84,8 +84,8 @@ public class InformationPerDocteurServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 		session.setAttribute("docteur", d);
-		
-		this.getServletContext().getRequestDispatcher("/DataDoctor").forward(request, response);
+		response.sendRedirect( request.getContextPath() + "/DataDoctor");
+		//this.getServletContext().getRequestDispatcher("/DataDoctor").forward(request, response);
 	}
 
 }

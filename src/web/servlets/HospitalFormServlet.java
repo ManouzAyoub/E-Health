@@ -46,8 +46,8 @@ public class HospitalFormServlet extends HttpServlet {
 		hopital.setDispo(true);
 		
 		Instances.hopitalDao.add(hopital);
-		
-		this.getServletContext().getRequestDispatcher(SUCESS).forward(request, response);
+		response.sendRedirect( request.getContextPath() + SUCESS);
+		//this.getServletContext().getRequestDispatcher(SUCESS).forward(request, response);
 	}
 
 }

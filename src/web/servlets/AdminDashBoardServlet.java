@@ -40,20 +40,23 @@ public class AdminDashBoardServlet extends HttpServlet {
 			Docteur docteur = Instances.docteurDao.getById(Long.valueOf(delete));
 			docteur.setDispo(false);
 			Instances.docteurDao.edit(docteur);
-			this.getServletContext().getRequestDispatcher( "/toAdminData" ).forward( request, response );
+			response.sendRedirect( request.getContextPath() + "/toAdminData");
+			//this.getServletContext().getRequestDispatcher( "/toAdminData" ).forward( request, response );
 		}
 		
 		if (show != null) {
 			Docteur docteur = Instances.docteurDao.getById(Long.valueOf(show));
 			request.setAttribute("docteur", docteur);
-			this.getServletContext().getRequestDispatcher( "/doctorProfile" ).forward( request, response );
+			response.sendRedirect( request.getContextPath() + "/doctorProfile");
+			//this.getServletContext().getRequestDispatcher( "/doctorProfile" ).forward( request, response );
 		}
 		
 		if (deleteClinique != null) {
 			Clinique clinique = Instances.cliniqueDao.getById(Long.valueOf(deleteClinique));
 			clinique.setDispo(false);
 			Instances.cliniqueDao.edit(clinique);
-			this.getServletContext().getRequestDispatcher( "/toAdminData" ).forward( request, response );
+			response.sendRedirect( request.getContextPath() + "/toAdminData");
+			//this.getServletContext().getRequestDispatcher( "/toAdminData" ).forward( request, response );
 		}
 		
 		if (showClinique != null) {
@@ -61,7 +64,8 @@ public class AdminDashBoardServlet extends HttpServlet {
 			request.setAttribute("clinique", clinique);
 			HttpSession session = request.getSession(false);
 			session.setAttribute("DisplayProfileClinique", clinique);
-			this.getServletContext().getRequestDispatcher( "/CliniqueProfile" ).forward( request, response );
+			response.sendRedirect( request.getContextPath() + "/CliniqueProfile");
+			//this.getServletContext().getRequestDispatcher( "/CliniqueProfile" ).forward( request, response );
 		}
 		
 		if (showHopital != null) {
@@ -69,21 +73,24 @@ public class AdminDashBoardServlet extends HttpServlet {
 			request.setAttribute("hopital", hopital);
 			HttpSession session = request.getSession(false);
 			session.setAttribute("DisplayProfileHospital", hopital);
-			this.getServletContext().getRequestDispatcher( "/HospitalProfile" ).forward( request, response );
+			response.sendRedirect( request.getContextPath() + "/HospitalProfile");
+			//this.getServletContext().getRequestDispatcher( "/HospitalProfile" ).forward( request, response );
 		}
 		
 		if (deletePharmacie != null) {
 			Pharmacie pharmacie = Instances.pharmacieDao.getById(Long.valueOf(deletePharmacie));
 			pharmacie.setDispo(false);
 			Instances.pharmacieDao.edit(pharmacie);
-			this.getServletContext().getRequestDispatcher( "/toAdminData" ).forward( request, response );
+			response.sendRedirect( request.getContextPath() + "/toAdminData");
+			//this.getServletContext().getRequestDispatcher( "/toAdminData" ).forward( request, response );
 		}
 		
 		if (deleteHopital != null) {
 			Hopital hopital = Instances.hopitalDao.getById(Long.valueOf(deleteHopital));
 			hopital.setDispo(false);
 			Instances.hopitalDao.edit(hopital);
-			this.getServletContext().getRequestDispatcher( "/toAdminData" ).forward( request, response );
+			response.sendRedirect( request.getContextPath() + "/toAdminData");
+			//this.getServletContext().getRequestDispatcher( "/toAdminData" ).forward( request, response );
 		}
 		
 		

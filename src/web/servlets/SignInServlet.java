@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -54,28 +55,29 @@ public class SignInServlet extends HttpServlet {
     	
     	if ( form.getErreurs().isEmpty() && visiter.getRole().getRole().equals("admin") ) {
     		session.setAttribute("admin", visiter);
-			this.getServletContext().getRequestDispatcher( SUCESS_ADMIN ).forward( request, response );
+    		response.sendRedirect( request.getContextPath() + SUCESS_ADMIN);
+			//this.getServletContext().getRequestDispatcher( SUCESS_ADMIN ).forward( request, response );
 			
 		} else if ( visiter.getRole().getRole().equals("utilisateur") ) {
     		
-    		System.out.println(visiter.getEmail() + " " + visiter.getPassword() + " " + visiter.getCin());
-        	session.setAttribute("visiter", visiter);
-        	System.out.println("visiter connect correctement");
-        	this.getServletContext().getRequestDispatcher( SUCESS_USER ).forward( request, response );
+				session.setAttribute("visiter", visiter);
+				response.sendRedirect( request.getContextPath() + SUCESS_USER);
+	        	//this.getServletContext().getRequestDispatcher( SUCESS_USER ).forward( request, response );
+			
         	
 		} else if ( form.getErreurs().isEmpty() && visiter.getRole().getRole().equals("docteur") ) {
     		
     		Docteur docteur = Instances.docteurDao.getById(visiter.getCin());
     		
         	session.setAttribute("docteur", docteur);
-        	
-        	this.getServletContext().getRequestDispatcher( SUCESS_DOCTEUR ).forward(request, response);
+        	response.sendRedirect( request.getContextPath() + SUCESS_DOCTEUR);
+        	//this.getServletContext().getRequestDispatcher( SUCESS_DOCTEUR ).forward(request, response);
         	
 		} else if ( form.getErreurs().isEmpty() && visiter.getRole().getRole().equals("clinique") ) {
 
     		session.setAttribute("clinique", visiter);
-		
-    		this.getServletContext().getRequestDispatcher( SUCESS_CLINIQUE ).forward( request, response );
+    		response.sendRedirect( request.getContextPath() + SUCESS_CLINIQUE);
+    		//this.getServletContext().getRequestDispatcher( SUCESS_CLINIQUE ).forward( request, response );
     		
 		} else {
 

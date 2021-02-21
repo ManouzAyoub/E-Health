@@ -60,8 +60,8 @@ public class InformationCliniqueFormServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 		session.setAttribute("clinique", c);
-		
-		this.getServletContext().getRequestDispatcher("/DataClinique").forward(request, response);
+		response.sendRedirect( request.getContextPath() + "/DataClinique");
+		//this.getServletContext().getRequestDispatcher("/DataClinique").forward(request, response);
 	}
 	
 

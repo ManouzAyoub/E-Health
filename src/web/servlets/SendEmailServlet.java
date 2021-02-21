@@ -47,7 +47,8 @@ public class SendEmailServlet extends HttpServlet {
 			
 			Instances.docteurDao.edit(docteur);
 			
-			this.getServletContext().getRequestDispatcher("/toAdminData").forward(request, response);
+			response.sendRedirect( request.getContextPath() + "/toAdminData");
+			//this.getServletContext().getRequestDispatcher("/toAdminData").forward(request, response);
 			
 		}
 		

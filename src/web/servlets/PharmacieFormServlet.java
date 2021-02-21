@@ -45,8 +45,8 @@ public class PharmacieFormServlet extends HttpServlet {
 		pharmacie.setEn_garde(false);
 		
 		Instances.pharmacieDao.add(pharmacie);
-		
-		this.getServletContext().getRequestDispatcher( SUCESS ).forward(request, response);
+		response.sendRedirect( request.getContextPath() + SUCESS);
+		//this.getServletContext().getRequestDispatcher( SUCESS ).forward(request, response);
 	}
 
 }

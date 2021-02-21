@@ -35,8 +35,8 @@ public class ToggleGarde extends HttpServlet {
 	    	  pharmacie.setEn_garde(false); 
 	       }
 	       Pharmacie pharmaci = Instances.pharmacieDao.edit(pharmacie);
-	       
-	       this.getServletContext().getRequestDispatcher( "/toAdminData" ).forward( request, response );
+	       response.sendRedirect( request.getContextPath() + "/toAdminData");
+	       //this.getServletContext().getRequestDispatcher( "/toAdminData" ).forward( request, response );
 	}
 
 }

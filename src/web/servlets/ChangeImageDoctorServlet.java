@@ -26,10 +26,8 @@ public class ChangeImageDoctorServlet extends HttpServlet {
 		String id = request.getParameter("docteur_id");
 		Part part = request.getPart("image");
 		
-		System.out.println("uuuuuu " + id);
 		
 		Docteur docteur = Instances.docteurDao.getById(Long.valueOf(id));
-		System.out.println(docteur.toString());
 		
 		InputStream inputStream = null;
 		byte[] bite = null;
@@ -43,7 +41,8 @@ public class ChangeImageDoctorServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		
 		session.setAttribute("docteur", d);
-		this.getServletContext().getRequestDispatcher("/DataDoctor").forward(request, response);
+		response.sendRedirect( request.getContextPath() + "/DataDoctor");
+		//this.getServletContext().getRequestDispatcher("/DataDoctor").forward(request, response);
 	}
 	
 	private byte[] convert(InputStream inputstream) throws IOException {

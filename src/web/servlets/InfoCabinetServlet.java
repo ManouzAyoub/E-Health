@@ -58,7 +58,8 @@ public class InfoCabinetServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 		session.setAttribute("docteur", Instances.docteurDao.getById(docteur.getCin()));
-		this.getServletContext().getRequestDispatcher("/DataDoctor").forward(request, response);
+		response.sendRedirect( request.getContextPath() + "/DataDoctor");
+		//this.getServletContext().getRequestDispatcher("/DataDoctor").forward(request, response);
 		
 	}
 

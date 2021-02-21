@@ -71,8 +71,8 @@ public class GestionCommentServlet extends HttpServlet {
 			c.setDel(true);
 			Commentaire r = Instances.commentDao.edit(c);
 			System.out.println(r.toString());
-			
-			this.getServletContext().getRequestDispatcher("/DataClinique").forward(request, response);
+			response.sendRedirect( request.getContextPath() + "/DataClinique");
+			//this.getServletContext().getRequestDispatcher("/DataClinique").forward(request, response);
 		}
 		
 		
