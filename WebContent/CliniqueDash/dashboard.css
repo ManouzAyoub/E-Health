@@ -15,6 +15,21 @@
   font-family: "Poppins", sans-serif;
 }
 
+.styleIcon {
+  color: rgb(0, 0, 64);
+  border: 0;
+  width: 20px;
+  background-color: transparent;
+}
+
+.styleIcon:focus {
+	color: orangered;
+}
+
+.styleIcon:hover {
+	color: rgb(0, 132, 255);
+}
+	
 .sidebar {
   width: 345px;
   position: fixed;

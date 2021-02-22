@@ -319,7 +319,7 @@
                                                 		
                                                 		<input type="text" name="delete_comment_clinique" value="${entry.idCommentaire }">
                                                 		<input type="text" value="${ entry.getClinique().getCin() }" name="clinic" />
-                                                		<button type="submit" ><span class="fas fa-trash"></span></button>
+                                                		<button class="styleIcon" type="submit" ><span class="fas fa-trash"></span></button>
                                                 	</form>
                                                 </td>
                                             </tr>
@@ -369,12 +369,12 @@
                                                 <td><img src="data:image/png;base64,${docteurImpl.returnImage(entry)}" style="border-radius:40%" width="100px"></td>
                                                 <td>${entry.getFirstname()} ${entry.getLastname()}</td>
                                                 <td> ${entry.speciality} </td>
-                                                <td><a href="<c:url value="/doctorProfile?docteur=${ entry.cin }"></c:url>" target="_blank"><span class="fas fa-user"></span></a></td>
+                                                <td><a class="styleIcon" style="text-decoration: none;" href="<c:url value="/doctorProfile?docteur=${ entry.cin }"></c:url>" target="_blank"><span class="fas fa-user"></span></a></td>
                                                 <td>
                                                 	<form method="POST" action="<c:url value="cliniqueAssociation"></c:url>">
                                                 		<input type="hidden" name="idClinique" value="${ clinique.cin }">
                                                 		<input type="hidden" name="docteurId" value="${ entry.cin }">
-                                                		<button type="submit"><span class="fas fa-trash"></span></button>
+                                                		<button class="styleIcon" type="submit"><span class="fas fa-trash"></span></button>
                                                 	</form>
                                                 </td>
                                             </tr>

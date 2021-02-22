@@ -56,8 +56,6 @@ public class GestionCommentServlet extends HttpServlet {
 			commentaire.setDel(true);
 			if (session.getAttribute("admin") != null) {
 				Instances.commentDao.edit(commentaire);
-			} else {
-				response.sendRedirect(request.getContextPath() + "/Home");
 			}
 			List<Commentaire> comments = Instances.commentImpl.getCommentsNotApproved(false, false);
 			request.setAttribute("comments", comments);
