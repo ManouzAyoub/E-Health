@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import metier.dao.beans.Pharmacie;
 import metier.dao.util.Instances;
@@ -43,8 +44,10 @@ public class PharmacieFormServlet extends HttpServlet {
 		pharmacie.setVille(ville);
 		pharmacie.setDispo(true);
 		pharmacie.setEn_garde(false);
-		
-		Instances.pharmacieDao.add(pharmacie);
+		HttpSession session = request.getSession(false);
+		if (session.getAttribute("admin") != null) {
+			Instances.pharmacieDao.add(pharmacie);
+		}
 		response.sendRedirect( request.getContextPath() + SUCESS);
 		//this.getServletContext().getRequestDispatcher( SUCESS ).forward(request, response);
 	}

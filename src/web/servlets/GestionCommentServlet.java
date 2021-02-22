@@ -28,6 +28,7 @@ public class GestionCommentServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Commentaire commentaire = new Commentaire();
+		HttpSession session = request.getSession();
 		String approve = request.getParameter(CHAMP_APPROVE);
 		String delete  = request.getParameter(CHAMP_DELETE);
 		String delete_comment_clinique  = request.getParameter("delete_comment_clinique");
@@ -35,7 +36,9 @@ public class GestionCommentServlet extends HttpServlet {
 		if (approve != null) {
 			commentaire = Instances.commentDao.getById(Long.valueOf(approve));
 			commentaire.setApprov(true);
-			Instances.commentDao.edit(commentaire);
+			if (session.getAttribute("admin") != null) {
+				Instances.commentDao.edit(commentaire);
+			}
 			List<Commentaire> comments = Instances.commentImpl.getCommentsNotApproved(false, false);
 			request.setAttribute("comments", comments);
 			request.setAttribute("clinics", Instances.cliniqueImpl.getAllClinicsAccordingToTheirAvailability( false ));
@@ -51,7 +54,9 @@ public class GestionCommentServlet extends HttpServlet {
 		if (delete != null) {
 			commentaire = Instances.commentDao.getById(Long.valueOf(delete));
 			commentaire.setDel(true);
-			Instances.commentDao.edit(commentaire);
+			if (session.getAttribute("admin") != null) {
+				Instances.commentDao.edit(commentaire);
+			}
 			List<Commentaire> comments = Instances.commentImpl.getCommentsNotApproved(false, false);
 			request.setAttribute("comments", comments);
 			request.setAttribute("clinics", Instances.cliniqueImpl.getAllClinicsAccordingToTheirAvailability( false ));

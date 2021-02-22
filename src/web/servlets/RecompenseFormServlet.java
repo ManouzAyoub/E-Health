@@ -37,8 +37,10 @@ public class RecompenseFormServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession(false);
 		session.setAttribute("docteur", docteur);
+		if (session.getAttribute("docteur") != null) {
+			Instances.recomDao.add(recompense);
+		}
 		
-		Instances.recomDao.add(recompense);
 		response.sendRedirect( request.getContextPath() + "/DataDoctor");
 		//this.getServletContext().getRequestDispatcher("/DataDoctor").forward(request, response);
 	}
