@@ -2,6 +2,8 @@ package web.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -46,13 +48,24 @@ public class HomeServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-//		if ( session.getAttribute("admin") != null ) {
-//			response.sendRedirect(request.getContextPath() + "/toAdminData");
-//		}
-//		else {
-//			this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-//		}
-		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+		
+		if (session != null) {
+			
+			if ( session.getAttribute("admin") != null ) {
+				response.sendRedirect(request.getContextPath() + "/toAdminData");
+			} else if (session.getAttribute("docteur") != null) {
+				response.sendRedirect(request.getContextPath() + "/DataDoctor");
+			} else if (session.getAttribute("clinique") != null) {
+				response.sendRedirect(request.getContextPath() + "/DataClinique");
+			} else {
+				this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+			}
+			 
+		}else {
+			System.out.println("ici home 2");
+			this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+		}
+		
 	}
 
 

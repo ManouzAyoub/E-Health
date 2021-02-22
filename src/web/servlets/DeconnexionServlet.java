@@ -12,24 +12,47 @@ import javax.servlet.http.HttpSession;
 public class DeconnexionServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		HttpSession session_visiter = request.getSession(false);
+		if (session_visiter != null) {
+			if (session_visiter.getAttribute("visiter") != null) {
+				session_visiter.invalidate();
+				response.sendRedirect(request.getContextPath() + "/Home");
+				return;
+			}
+		}
+		HttpSession session_docteur = request.getSession(false);
+		if (session_docteur != null) {
+			if (session_docteur.getAttribute("docteur") != null) {
+				session_docteur.invalidate();
+				response.sendRedirect(request.getContextPath() + "/Home");
+				return;
+			}
+		}
+		HttpSession session_admin = request.getSession(false);
+		if (session_admin != null) {
+			if (session_admin.getAttribute("admin") != null) {
+				System.out.println(session_admin);
+				session_admin.invalidate();
+				System.out.println(session_admin);
+				System.out.println("la session existe ou pas ?");
+				response.sendRedirect(request.getContextPath() + "/Home");
+				return;
+			}
+		}
+		HttpSession session_clinique = request.getSession(false);
+		if (session_clinique != null) {
+			if (session_clinique.getAttribute("clinique") != null) {
+				session_clinique.invalidate();
+				response.sendRedirect(request.getContextPath() + "/Home");
+				return;
+			}
+		}
 		HttpSession session = request.getSession(false);
-		if (session.getAttribute("visiter") != null) {
-			session.removeAttribute("visiter");
+		if (session == null) {
+			this.getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request, response);
 		}
-		
-		if (session.getAttribute("docteur") != null) {
-			session.removeAttribute("docteur");
-		}
-		
-		if (session.getAttribute("admin") != null) {
-			session.removeAttribute("admin");
-		}
-		
-		if (session.getAttribute("clinique") != null) {
-			session.removeAttribute("clinique");
-		}
-		
-		this.getServletContext().getRequestDispatcher("/WEB-INF/Home.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
