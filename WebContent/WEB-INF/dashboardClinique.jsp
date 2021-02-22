@@ -319,7 +319,7 @@
                                                 		
                                                 		<input type="text" name="delete_comment_clinique" value="${entry.idCommentaire }">
                                                 		<input type="text" value="${ entry.getClinique().getCin() }" name="clinic" />
-                                                		<button type="submit" ><span class="fas fa-trash"></span></button>
+                                                		<button class="styleIcon" type="submit" ><span class="fas fa-trash"></span></button>
                                                 	</form>
                                                 </td>
                                             </tr>

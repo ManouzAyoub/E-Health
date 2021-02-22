@@ -27,7 +27,7 @@ public class AddCommentServlet extends HttpServlet {
 	private static final String COMMENT_DOCTEUR      = "userOwnComment";
 	private static final String COMMENT_HOPITAL      = "comment_hopital";
 	private static final String COMMENT_CLINIQUE     = "comment_clinique";
-	private static final String RAT_HOPITAL          = "ratingStars";
+	private static final String RAT_HOPITAL = "ratingStars";
 	
 	User user                   = new User();
 	Docteur docteur             = new Docteur();

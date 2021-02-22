@@ -49,8 +49,6 @@ public class HospitalFormServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		if (session.getAttribute("admin") != null) {
 			Instances.hopitalDao.add(hopital);
-		}  else {
-			response.sendRedirect(request.getContextPath() + "/Home");
 		}
 		
 		response.sendRedirect( request.getContextPath() + SUCESS);
