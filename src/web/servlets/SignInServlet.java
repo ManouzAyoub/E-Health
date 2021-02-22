@@ -53,37 +53,42 @@ public class SignInServlet extends HttpServlet {
 
     	HttpSession session = request.getSession();
     	
-    	if ( form.getErreurs().isEmpty() && visiter.getRole().getRole().equals("admin") ) {
-    		session.setAttribute("admin", visiter);
-    		response.sendRedirect( request.getContextPath() + SUCESS_ADMIN);
-			//this.getServletContext().getRequestDispatcher( SUCESS_ADMIN ).forward( request, response );
-			
-		} else if ( visiter.getRole().getRole().equals("utilisateur") ) {
-    		
-				session.setAttribute("visiter", visiter);
-				response.sendRedirect( request.getContextPath() + SUCESS_USER);
-	        	//this.getServletContext().getRequestDispatcher( SUCESS_USER ).forward( request, response );
-			
-        	
-		} else if ( form.getErreurs().isEmpty() && visiter.getRole().getRole().equals("docteur") ) {
-    		
-    		Docteur docteur = Instances.docteurDao.getById(visiter.getCin());
-    		
-        	session.setAttribute("docteur", docteur);
-        	response.sendRedirect( request.getContextPath() + SUCESS_DOCTEUR);
-        	//this.getServletContext().getRequestDispatcher( SUCESS_DOCTEUR ).forward(request, response);
-        	
-		} else if ( form.getErreurs().isEmpty() && visiter.getRole().getRole().equals("clinique") ) {
+    	if ( visiter != null) {
+    		if ( form.getErreurs().isEmpty() && visiter.getRole().getRole().equals("admin") ) {
+        		session.setAttribute("admin", visiter);
+        		response.sendRedirect( request.getContextPath() + SUCESS_ADMIN);
+    			//this.getServletContext().getRequestDispatcher( SUCESS_ADMIN ).forward( request, response );
+    			
+    		} else if ( form.getErreurs().isEmpty() && visiter.getRole().getRole().equals("utilisateur") ) {
+        		
+    				session.setAttribute("visiter", visiter);
+    				response.sendRedirect( request.getContextPath() + SUCESS_USER);
+    	        	//this.getServletContext().getRequestDispatcher( SUCESS_USER ).forward( request, response );
+    			
+            	
+    		} else if ( form.getErreurs().isEmpty() && visiter.getRole().getRole().equals("docteur") ) {
+        		
+        		Docteur docteur = Instances.docteurDao.getById(visiter.getCin());
+        		
+            	session.setAttribute("docteur", docteur);
+            	response.sendRedirect( request.getContextPath() + SUCESS_DOCTEUR);
+            	//this.getServletContext().getRequestDispatcher( SUCESS_DOCTEUR ).forward(request, response);
+            	
+    		} else if ( form.getErreurs().isEmpty() && visiter.getRole().getRole().equals("clinique") ) {
 
-    		session.setAttribute("clinique", visiter);
-    		response.sendRedirect( request.getContextPath() + SUCESS_CLINIQUE);
-    		//this.getServletContext().getRequestDispatcher( SUCESS_CLINIQUE ).forward( request, response );
-    		
+        		session.setAttribute("clinique", visiter);
+        		response.sendRedirect( request.getContextPath() + SUCESS_CLINIQUE);
+        		//this.getServletContext().getRequestDispatcher( SUCESS_CLINIQUE ).forward( request, response );
+        		
+    		} else {
+
+    			request.setAttribute(ATT_FORM, form);
+    			this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+    			
+    		}
 		} else {
-
-			request.setAttribute(ATT_FORM, form);
+			request.setAttribute("message_erreur", "votre email ou bien password est incorrect");
 			this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-			
 		}
     	
     	

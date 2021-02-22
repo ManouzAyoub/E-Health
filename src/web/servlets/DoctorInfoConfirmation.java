@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import metier.dao.beans.Docteur;
 import metier.dao.util.Instances;
@@ -20,7 +21,12 @@ public class DoctorInfoConfirmation extends HttpServlet {
 		Docteur doc= Instances.docteurDao.getById(Long.valueOf(id));
 		System.out.println(doc.toString());
 		request.setAttribute("doc", doc);
-		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+		HttpSession session = request.getSession(false);
+		if ( session.getAttribute("admin") != null ) {
+			this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
+		} else {
+			response.sendRedirect(request.getContextPath() + "/Home");
+		}
             
 	}
 

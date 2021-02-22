@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import metier.dao.beans.Docteur;
 import metier.dao.beans.Pharmacie;
@@ -34,8 +35,14 @@ public class ToggleGarde extends HttpServlet {
 	    	  System.out.println("false");
 	    	  pharmacie.setEn_garde(false); 
 	       }
-	       Pharmacie pharmaci = Instances.pharmacieDao.edit(pharmacie);
-	       response.sendRedirect( request.getContextPath() + "/toAdminData");
+	       HttpSession session = request.getSession(false);
+	       if (session.getAttribute("admin") != null) {
+	    	   Pharmacie pharmaci = Instances.pharmacieDao.edit(pharmacie);
+	    	   response.sendRedirect( request.getContextPath() + "/toAdminData");
+			}  else {
+				response.sendRedirect(request.getContextPath() + "/Home");
+			}
+	       
 	       //this.getServletContext().getRequestDispatcher( "/toAdminData" ).forward( request, response );
 	}
 

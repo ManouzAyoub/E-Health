@@ -358,8 +358,8 @@
                             <div class="imagePerso">
                                 <div class="image-card">
                                     <img id="imageDoctor" src="data:image/png;base64,${image}" width="150px" alt=""><br>
-                                    <input type="hidden" name="docteur_id" value="${docteur.cin}">
-                                    <input id="imageInput" accept="image/*" type="file" name="image" style="display: none;" onchange="loadImage(event)">
+                                    <c:set var="ChangeImageProfileDocteur" value="${docteur }" scope="session"></c:set>
+                                    <input id="imageInput" accept="image/*" type="file" name="change_image_profile" style="display: none;" onchange="loadImage(event)">
                                     <div class="image-card">
                                         <label id="modifierImagePerso" onclick="modifierImagePerso()">Changer l'image</label>
                                         <input type="submit" id="enregistrerImagePerso" value="Enregistrer" style="display: none;">

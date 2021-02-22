@@ -24,21 +24,24 @@ public class ChangeImageDoctorServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("docteur_id");
-		Part part = request.getPart("image");
+		HttpSession session = request.getSession(false);
+		Docteur docteur = (Docteur) session.getAttribute("ChangeImageProfileDocteur");
+		Part part = request.getPart("change_image_profile");
 		
-		
-		Docteur docteur = Instances.docteurDao.getById(Long.valueOf(id));
+		//Docteur docteur = Instances.docteurDao.getById(Long.valueOf(id));
 		
 		InputStream inputStream = null;
 		byte[] bite = null;
 		
-		inputStream = part.getInputStream();
-		bite = convert(inputStream);
+		if (part != null) {
+			inputStream = part.getInputStream();
+			bite = convert(inputStream);
+		}
 		
 		docteur.setProfile_image(bite);
 		
 		Docteur d = Instances.docteurDao.edit(docteur);
-		HttpSession session = request.getSession(false);
+		//HttpSession session = request.getSession(false);
 		
 		session.setAttribute("docteur", d);
 		response.sendRedirect( request.getContextPath() + "/DataDoctor");

@@ -26,56 +26,59 @@ public class cliniqueAssociation extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		Boolean existe = false;
-		
-		String idDocteur = request.getParameter("id");
-		
-		String docteurId = request.getParameter("docteurId");
-		
-		
-		String idClinique = request.getParameter("idClinique");
-		
-		Clinique clinique = Instances.cliniqueDao.getById(Long.valueOf(idClinique));
-		
-		List<Docteur> docteurs = clinique.getDocteurs();
-		
-		if (idDocteur != null) {
-			Docteur doc = Instances.docteurDao.getById(Long.valueOf(idDocteur));
+		HttpSession session = request.getSession(false);
+		if ( session.getAttribute("clinique") != null) {
+			Boolean existe = false;
 			
-			for(Docteur d : docteurs) {
-				if ( d.getCin() == doc.getCin()) {
-					existe = true;
-				}
-			}
+			String idDocteur = request.getParameter("id");
 			
-			if (!existe) {
+			String docteurId = request.getParameter("docteurId");
+			
+			
+			String idClinique = request.getParameter("idClinique");
+			
+			Clinique clinique = Instances.cliniqueDao.getById(Long.valueOf(idClinique));
+			
+			List<Docteur> docteurs = clinique.getDocteurs();
+			
+			if (idDocteur != null) {
+				Docteur doc = Instances.docteurDao.getById(Long.valueOf(idDocteur));
 				
-				docteurs.add(doc);
-				clinique.setDocteurs(docteurs);
-				Clinique clinic = Instances.cliniqueDao.edit(clinique);
-				HttpSession session = request.getSession(false);
-				session.setAttribute("clinique", clinic);
-			}
-		}
-		
-		if (docteurId != null && !docteurs.isEmpty()) {
-			Docteur doc_2 = Instances.docteurDao.getById(Long.valueOf(docteurId));
-			Docteur aide_docteur = null;
-			for(Docteur d : docteurs) {
-				if(d.getCin() == doc_2.getCin()) {
-					aide_docteur = d;
+				for(Docteur d : docteurs) {
+					if ( d.getCin() == doc.getCin()) {
+						existe = true;
+					}
+				}
+				
+				if (!existe) {
+					
+					docteurs.add(doc);
+					clinique.setDocteurs(docteurs);
+					Clinique clinic = Instances.cliniqueDao.edit(clinique);
+					session.setAttribute("clinique", clinic);
 				}
 			}
-			if (aide_docteur != null) {
-				docteurs.remove(aide_docteur);
-				clinique.setDocteurs(docteurs);
-				Clinique clinic = Instances.cliniqueDao.edit(clinique);
-				HttpSession session = request.getSession(false);
-				session.setAttribute("clinique", clinic);
+			
+			if (docteurId != null && !docteurs.isEmpty()) {
+				Docteur doc_2 = Instances.docteurDao.getById(Long.valueOf(docteurId));
+				Docteur aide_docteur = null;
+				for(Docteur d : docteurs) {
+					if(d.getCin() == doc_2.getCin()) {
+						aide_docteur = d;
+					}
+				}
+				if (aide_docteur != null) {
+					docteurs.remove(aide_docteur);
+					clinique.setDocteurs(docteurs);
+					Clinique clinic = Instances.cliniqueDao.edit(clinique);
+					session.setAttribute("clinique", clinic);
+				}
 			}
+			response.sendRedirect( request.getContextPath() + "/DataClinique");
+		} else {
+			response.sendRedirect( request.getContextPath() + "/Home");
 		}
-		response.sendRedirect( request.getContextPath() + "/DataClinique");
+		
 		//this.getServletContext().getRequestDispatcher("/DataClinique").forward(request, response);
 	}
 
