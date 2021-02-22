@@ -47,8 +47,11 @@ public class PharmacieFormServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		if (session.getAttribute("admin") != null) {
 			Instances.pharmacieDao.add(pharmacie);
+			response.sendRedirect( request.getContextPath() + SUCESS);
+		}  else {
+			response.sendRedirect(request.getContextPath() + "/Home");
 		}
-		response.sendRedirect( request.getContextPath() + SUCESS);
+
 		//this.getServletContext().getRequestDispatcher( SUCESS ).forward(request, response);
 	}
 
