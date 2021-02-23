@@ -44,7 +44,7 @@ public class CliniqueFormImpl {
      String email = request.getParameter( CHAMP_EMAIL);
      String tel = request.getParameter( CHAMP_TEL );
      String emer_tel = request.getParameter( CHAMP_EMER_TEL );
-     String[] speciality = request.getParameterValues( CHAMP_SPECIALITY );
+     String speciality = request.getParameter( CHAMP_SPECIALITY );
      
      //System.out.print("sssssss"+speciality[0]);
 
@@ -84,11 +84,14 @@ public class CliniqueFormImpl {
      } catch ( Exception e ) {
          erreurs.put( CHAMP_EMAIL, e.getMessage() );
      }
+     
      clinic.setEmail( email );
-     System.out.println(speciality[0]);
-     clinic.setSpeciality(speciality[0]);
+     clinic.setSpeciality(speciality);
      clinic.setDispo(false);
+     clinic.setFirst_using(false);
+     clinic.setAdmin_confirmation(false);
      clinic.setNbrVisiters(0L);
+     
        
      if ( erreurs.isEmpty() ) {
          resultat = "Succés d'inscription!";

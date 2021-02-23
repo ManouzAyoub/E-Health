@@ -30,8 +30,8 @@ public class Docteur extends User{
 	    private Boolean teleMedcine;
 	    private Boolean consultationDomicile;
 	    private String gender;
-	    private String practice;
 	    private Boolean dispo;
+	    private Boolean admin_confirmation;
 	    private int age;
 	    private String ville;
 	    private Boolean conger;
@@ -63,21 +63,10 @@ public class Docteur extends User{
 	    private List<Hopital> hopitales = new ArrayList<>();
 	    
 		@Lob
-	    @Column(name = "id_scan", columnDefinition="LONGBLOB")
-	    private byte[] id_scan;
-
-		@Lob
 	    @Column(name = "profile_image", columnDefinition="LONGBLOB")
 	    private byte[] profile_image;
-	    
-	    @Lob
-	    @Column(name = "med_certificate", columnDefinition="LONGBLOB")
-	    private byte[] med_certificate;
-	    
-	    @Lob
-	    @Column(name = "local_contract", columnDefinition="LONGBLOB")
-	    private byte[] local_contract;
-	    	
+		
+	    @Transient
 		@ManyToOne
 		@JoinColumn(name = "idUser" , referencedColumnName = "cin")
 		private User user;
@@ -103,44 +92,12 @@ public class Docteur extends User{
 			this.speciality = speciality;
 		}
 	
-		public String getPractice() {
-			return practice;
-		}
-	
-		public void setPractice(String practice) {
-			this.practice = practice;
-		}
-		
-	    public byte[] getId_scan() {
-			return id_scan;
-		}
-	
-		public void setId_scan(byte[] id_scan) {
-			this.id_scan = id_scan;
-		}
-	
 		public byte[] getProfile_image() {
 			return profile_image;
 		}
 	
 		public void setProfile_image(byte[] profile_image) {
 			this.profile_image = profile_image;
-		}
-	
-		public byte[] getMed_certificate() {
-			return med_certificate;
-		}
-	
-		public void setMed_certificate(byte[] med_certificate) {
-			this.med_certificate = med_certificate;
-		}
-	
-		public byte[] getLocal_contract() {
-			return local_contract;
-		}
-	
-		public void setLocal_contract(byte[] local_contract) {
-			this.local_contract = local_contract;
 		}
 		
 	    public String getBase64image() {
@@ -324,6 +281,14 @@ public class Docteur extends User{
 		
 		public void setNbrVisiters(Long nbrVisiters) {
 			this.nbrVisiters = nbrVisiters;
+		}
+		
+		public Boolean getAdmin_confirmation() {
+			return admin_confirmation;
+		}
+		
+		public void setAdmin_confirmation(Boolean admin_confirmation) {
+			this.admin_confirmation = admin_confirmation;
 		}
 		
 

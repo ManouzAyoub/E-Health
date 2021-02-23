@@ -33,8 +33,10 @@ public class SearchHospitalServlet extends HttpServlet {
 		if (hospitals != null) {
 			request.setAttribute("hospitals", hospitals);
 			request.setAttribute("impl", Instances.ratingImpl);
+			request.setAttribute("adresse", adresse);
 			this.getServletContext().getRequestDispatcher( VUE ).forward(request, response);
 		}else {
+			request.setAttribute("adresse", adresse);
 			this.getServletContext().getRequestDispatcher( VUE ).forward(request, response);
 		}
 		

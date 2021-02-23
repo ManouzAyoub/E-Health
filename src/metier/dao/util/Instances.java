@@ -15,6 +15,7 @@ import metier.dao.Implementations.RatingDao;
 import metier.dao.Implementations.RecompenceDao;
 import metier.dao.Implementations.RoleDao;
 import metier.dao.Implementations.UserDao;
+import metier.dao.beans.Docteur;
 import metier.services.CliniqueImpl;
 import metier.services.CommentaireImpl;
 import metier.services.DocteurImpl;
@@ -131,6 +132,19 @@ public class Instances {
 			heurs.add( i + ":00");
 		}
 		return heurs;
+	}
+	
+	public static String convertNumberPhone(String telephone) {
+		if (telephone != null) {
+			String[] str = telephone.split("");
+			String string ="";
+			for(int i = 1 ; i<str.length ; i++) {
+				string += str[i];
+			}
+			return string;
+		} else {
+			return null;
+		}
 	}
 
 }

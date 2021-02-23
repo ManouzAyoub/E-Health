@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import metier.dao.beans.Hopital;
 import metier.dao.util.Instances;
@@ -45,7 +46,11 @@ public class HospitalFormServlet extends HttpServlet {
 		hopital.setVille(ville);
 		hopital.setDispo(true);
 		
-		Instances.hopitalDao.add(hopital);
+		HttpSession session = request.getSession(false);
+		if (session.getAttribute("admin") != null) {
+			Instances.hopitalDao.add(hopital);
+		}
+		
 		response.sendRedirect( request.getContextPath() + SUCESS);
 		//this.getServletContext().getRequestDispatcher(SUCESS).forward(request, response);
 	}

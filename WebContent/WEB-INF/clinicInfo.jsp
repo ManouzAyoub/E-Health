@@ -12,7 +12,7 @@
 <!-- partial:index.partial.html -->
 <div class="container">  
   <form id="contact" action="<c:url value="SendEmail"/>" method="post">
-    <h3>Doctor's infos</h3>
+    <h3>Informations du clinique</h3>
     <fieldset>
       <input type="hidden" name="id" value="${clinic.cin}">
       <input placeholder="clinic's name" type="text" tabindex="1" value="${clinic.name }" autofocus>
@@ -30,7 +30,7 @@
       <input placeholder="clinic's emergency tel" type="text" value="${clinic.emergency_tel }" tabindex="4" >
     </fieldset>
     <fieldset>
-      <input placeholder="clinic speciality " type="text" value="${doc.speciality }" tabindex="4" >
+      <input placeholder="clinic speciality " type="text" value="${clinic.speciality }" tabindex="4" >
     </fieldset>
     <fieldset>
       	<button name="approvec" type="submit" id="demmande_approve" data-submit="...Sending">approve</button>

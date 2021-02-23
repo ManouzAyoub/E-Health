@@ -141,7 +141,7 @@
                                     <div class="mt-3 text-white font-size-16 font-montserrat" type="button">
                                         <span class="btn btn-info rounded py-1">
                                             <i class="fas fa-phone-alt"></i>
-                                            <span class="weight-bold">&nbsp; +212${hopital.tel}</span> 
+                                            <span class="weight-bold">&nbsp; +212${telephone}</span> 
                                         </span>
                                     </div>
                                 </div>
@@ -339,9 +339,11 @@
                                                 <span><i class="far fa-star"></i></span>
                                             </div>
                                         </div>
-                                        <form method="get" action="<c:url value="signIn"></c:url>">
-                                            <button id="rateBtn" type="submit" class="btn font-size-16 font-gilroy-bold color-second">Se connecter</button>
-                                        </form>
+                                        <c:if test="${ sessionScope.visiter != null && sessionScope.docteur == null && sessionScope.clinique == null && sessionScope.admin == null }">
+                                        	<form method="get" action="<c:url value="signIn"></c:url>">
+	                                            <button id="rateBtn" type="submit" class="btn font-size-16 font-gilroy-bold color-second">Se connecter</button>
+	                                        </form>
+                                        </c:if>
                                     </c:if>
                                     <c:if test="${ sessionScope.visiter != null }">
                                         <c:set var="nbrEtoileUser" value="${ ratingImpl.getNumberOfEtoileByUserAndHopital(sessionScope.visiter, hopital) != null ? ratingImpl.getNumberOfEtoileByUserAndHopital( sessionScope.visiter , hopital) : Long.valueOf(0) }"></c:set>

@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import metier.dao.beans.User;
 import metier.dao.util.Instances;
@@ -25,6 +26,7 @@ public class AdminProfileServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(false);
 		String acien_pass   = request.getParameter(CHAMP_ANCIEN_PASSWORD);
 		String id   = request.getParameter(CHAMP_ID);
 		String email = request.getParameter(CHAMP_EMAIL);
@@ -38,14 +40,17 @@ public class AdminProfileServlet extends HttpServlet {
 		user.setTel(tel);
 		
 		User u = Instances.signInService.VerifyUser(email, acien_pass);
-		if ( u != null ) {
-			if (nv_pass.equals(confirmation_password)) {
+		if ( u != null && session.getAttribute("admin") != null ) {
+			if (nv_pass.equals(confirmation_password) ) {
 				user.setPassword(nv_pass);
 				Instances.userDao.edit(user);
+				response.sendRedirect( request.getContextPath() + "/toAdminData");
 			}
+		} else if ( u == null && session.getAttribute("admin") != null) {
+			response.sendRedirect( request.getContextPath() + "/toAdminData");
+		} else {
+			response.sendRedirect( request.getContextPath() + "/Home");
 		}
-		response.sendRedirect( request.getContextPath() + "/toAdminData");
-		//this.getServletContext().getRequestDispatcher("/toAdminData").forward(request, response);
 	}
 
 }

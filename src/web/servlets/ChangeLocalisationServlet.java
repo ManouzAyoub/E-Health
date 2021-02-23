@@ -21,18 +21,21 @@ public class ChangeLocalisationServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String localisation = request.getParameter("place_id");
-		String id = request.getParameter("loca_id");
-		
-		Docteur docteur = Instances.docteurDao.getById(Long.valueOf(id));
-		
-		docteur.setId(localisation);
-		
-		Docteur d = Instances.docteurDao.edit(docteur);
 		
 		HttpSession session = request.getSession(false);
-		session.setAttribute("docteur", d);
-		response.sendRedirect( request.getContextPath() + "/DataDoctor");
+		if (session.getAttribute("docteur") != null) {
+			String localisation = request.getParameter("place_id");
+			String id = request.getParameter("loca_id");
+			
+			Docteur docteur = Instances.docteurDao.getById(Long.valueOf(id));
+			
+			docteur.setId(localisation);
+			Docteur d = Instances.docteurDao.edit(docteur);
+			session.setAttribute("docteur", d);
+			response.sendRedirect( request.getContextPath() + "/DataDoctor");
+		} else {
+			response.sendRedirect( request.getContextPath() + "/Home");
+		}
 		//this.getServletContext().getRequestDispatcher("/DataDoctor").forward(request, response);
 	}
 

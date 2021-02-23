@@ -38,11 +38,14 @@ public class EducationFormServlet extends HttpServlet {
 		education.setDescEduc(diplome);
 		education.setDocteur(docteur);
 		
-		Instances.educDao.add(education);
 		HttpSession session = request.getSession(false);
-		session.setAttribute("docteur", docteur);
-		response.sendRedirect( request.getContextPath() + "/DataDoctor");
-		//this.getServletContext().getRequestDispatcher("/DataDoctor").forward(request, response);
+		if (session.getAttribute("docteur") != null) {
+			Instances.educDao.add(education);
+			session.setAttribute("docteur", docteur);
+			response.sendRedirect( request.getContextPath() + "/DataDoctor");
+		} else {
+			response.sendRedirect( request.getContextPath() + "/Home");
+		}
 		
 	}
 

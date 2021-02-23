@@ -75,10 +75,10 @@
                         <td class="py-0"><h5 class=" font-size-14 text-white font-montserrat">${ sessionScope.visiter.getFirstname() } ${ sessionScope.visiter.getLastname() }</h5></td>
                     </tr>
                     <tr>
-                        <c:if test="${ sessionScope.visiter != null}">
+                        <c:if test="${ sessionScope.visiter != null || sessionScope.admin != null || sessionScope.clinique != null || sessionScope.docteur != null }">
                         	<td class="py-0"><a href="<c:url value="Deconnexion"></c:url>" class="btn btn-outline-dark btn-info font-size-12 py-1 text-white">Deconnexion</a></td>
                         </c:if>
-                        <c:if test="${ sessionScope.visiter == null}">
+                        <c:if test="${ sessionScope.visiter == null && sessionScope.admin != null && sessionScope.clinique != null && sessionScope.docteur != null}">
                         	<td class="py-0"><a href="<c:url value="signIn"></c:url>" class="btn btn-outline-dark btn-info font-size-12 py-1 text-white">connexion</a></td>
                         </c:if>
                     </tr>
@@ -96,7 +96,7 @@
 	                <div class="row font-montserrat font-size-20" align="center" style="font-weight: bold;">
 	                    <div class="col-lg-2" style="color: white;">Localisation : </div>
 	                    <div class="col-lg-10 input-group">
-	                        <input class="form-control py-2 border-right-0 border" name="localisation" placeholder="Localisation">
+	                        <input class="form-control py-2 border-right-0 border" name="localisation" value="${adresse }" placeholder="Localisation">
 	                        <span class="input-group-append" style="background-color: white;">
 	                          <button type="submit" class="btn btn-outline-info border-left-0 border" >
 	                                <i class="fa fa-search"></i>
@@ -246,11 +246,11 @@
 		                    </div>
 	                    </c:forEach>
 					</c:if>
-					<c:if test="${doctors == null }">
-						<div class="border py-3 mt-3">
-							<span>Empty</span>
-						</div>
-					</c:if>
+					<c:if test="${doctors == null}">
+						<br>
+                        <img src="<c:url value="/inc/images/noDoctorPic.png"></c:url>" class="center" width="200px"></td>
+                        <h5 style="text-align: center;">Aucun Docteur !</h5>
+                    </c:if>
                     
                 </div>
     

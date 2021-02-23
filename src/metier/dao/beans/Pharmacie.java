@@ -22,9 +22,6 @@ public class Pharmacie implements Serializable{
 	private String name;
 	private String ville;
 	private String email;
-	private Boolean ouverte_jour;
-	private Boolean ouverte_nuit;
-	private Boolean ouverte_journer;
 	private String tel;
 	private String adresse;
 	private String id;
@@ -57,30 +54,6 @@ public class Pharmacie implements Serializable{
 
 	public void setVille(String ville) {
 		this.ville = ville;
-	}
-
-	public Boolean getOuverte_jour() {
-		return ouverte_jour;
-	}
-
-	public void setOuverte_jour(Boolean ouverte_jour) {
-		this.ouverte_jour = ouverte_jour;
-	}
-
-	public Boolean getOuverte_nuit() {
-		return ouverte_nuit;
-	}
-
-	public void setOuverte_nuit(Boolean ouverte_nuit) {
-		this.ouverte_nuit = ouverte_nuit;
-	}
-
-	public Boolean getOuverte_journer() {
-		return ouverte_journer;
-	}
-
-	public void setOuverte_journer(Boolean ouverte_journer) {
-		this.ouverte_journer = ouverte_journer;
 	}
 	
 	public String getTel() {

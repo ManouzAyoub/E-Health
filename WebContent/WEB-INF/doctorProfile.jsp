@@ -394,9 +394,11 @@
                                                 <span><i class="far fa-star"></i></span>
                                             </div>
                                         </div>
-                                        <form method="get" action="<c:url value="signIn"></c:url>">
-                                            <button id="rateBtn" type="submit" class="btn font-size-16 font-gilroy-bold color-second">Se connecter</button>
-                                        </form>
+                                        <c:if test="${ sessionScope.visiter != null && sessionScope.docteur == null && sessionScope.clinique == null && sessionScope.admin == null }">
+                                        	<form method="get" action="<c:url value="signIn"></c:url>">
+	                                            <button id="rateBtn" type="submit" class="btn font-size-16 font-gilroy-bold color-second">Se connecter</button>
+	                                        </form>
+                                        </c:if>
                                     </c:if>
                                     <c:if test="${ sessionScope.visiter != null }">
                                         <c:set var="nbrEtoileUser" value="${ ratingImpl.getNumberOfEtoileByUserAndDocteur(sessionScope.visiter, doctor) != null ? ratingImpl.getNumberOfEtoileByUserAndDocteur( sessionScope.visiter , doctor) : Long.valueOf(0) }"></c:set>

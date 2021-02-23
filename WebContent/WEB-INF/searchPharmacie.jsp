@@ -78,10 +78,10 @@
                         <td class="py-0"><h5 class=" font-size-14 text-white font-montserrat">${ sessionScope.visiter.getFirstname() } ${ sessionScope.visiter.getLastname() }</h5></td>
                     </tr>
                     <tr>
-                        <c:if test="${ sessionScope.visiter != null}">
+                        <c:if test="${ sessionScope.visiter != null || sessionScope.admin != null || sessionScope.clinique != null || sessionScope.docteur != null }">
                         	<td class="py-0"><a href="<c:url value="Deconnexion"></c:url>" class="btn btn-outline-dark btn-info font-size-12 py-1 text-white">Deconnexion</a></td>
                         </c:if>
-                        <c:if test="${ sessionScope.visiter == null}">
+                        <c:if test="${ sessionScope.visiter == null && sessionScope.admin != null && sessionScope.clinique != null && sessionScope.docteur != null}">
                         	<td class="py-0"><a href="<c:url value="signIn"></c:url>" class="btn btn-outline-dark btn-info font-size-12 py-1 text-white">connexion</a></td>
                         </c:if>
                     </tr>
@@ -99,7 +99,7 @@
                 <div class="row font-montserrat font-size-20" align="center" style="font-weight: bold;">
                     <div class="col-lg-2" style="color: white;">Localisation : </div>
                     <div class="col-lg-10 input-group">
-                        <input id="autocomplete" name="ville" class="form-control py-2 border-right-0 border" placeholder="Localisation">
+                        <input id="autocomplete" name="ville" class="form-control py-2 border-right-0 border" value="${adresse }" placeholder="Localisation">
                         <span class="input-group-append" style="background-color: white;">
                           <button class="btn btn-outline-info border-left-0 border" type="submit">
                                 <i class="fa fa-search"></i>
@@ -128,50 +128,57 @@
                 <!--Pharmacies List -->
                 <div class="col-lg-7" id="Pharmacies_list">
 
-                    <c:forEach var="entry" items="${ pharmacies }">
-                    	<c:if test="${entry.en_garde == false}"> 
-                    		<c:set var="permanence" value="jour"></c:set>                   	
-                    	</c:if>
-                    	<c:if test="${entry.en_garde}"> 
-                    		<c:set var="permanence" value="jour_nuit"></c:set>                   	
-                    	</c:if>
-                    	<div class="item ${permanence }">
-	                        <div class="row border py-3 mt-3">
-	                            <div class="col-md-2 text-center">
-	
-	                                <div class="row text-center justify-content-center">
-	                                    <img id="item_img" src="<c:url value="/searchPharmacie/medicine.png"/>" width="75px" class="img-fluid img-responsive">
-	                                </div>
-	
-	                            </div>
-	        
-	                            <div class="col-md-10 text-xs-center justify-content-center">
-	                                <div class="border-bottom">
-	                                    <button class="btn" onclick="showPharmaClicked(event)"><h4 class="font-gilroy-bold font-size-20 color-primary fullName">${ entry.name }</h4></button>
-	                                </div>
-	                                <table style="width:100%">
-	                                    <tr>
-	                                        <td style="width:60%; text-align: left; text-align:left; vertical-align:middle"><span class="font-noto text-secondary font-size-14 ml-3"><i class="fas fa-map-marker-alt text-danger"></i> ${entry.adresse} </span></td>
-	                                        <td style="width:40%; text-align:right; vertical-align:middle"><a href="" target="_blank" class="btn btn-fluid font-size-12 btn-outline-info direction_anchor">Direction</a></td>
-	                                    </tr>
-	                                    <tr>
-	                                        <td style='text-align:left; vertical-align:middle'>
-	                                            <span class="working_time"></span>
-	                                        </td>
-	
-	                                        <td style='text-align:right; vertical-align:middle'>
-	                                            <span class="btn btn-info rounded font-size-14 px-3 py-1">
-	                                                <i class="fas fa-phone-alt"></i>
-	                                                <span class="weight-bold">+212${entry.tel}</span> 
-	                                            </span>
-	                                        </td>
-	                                    </tr>
-	                                </table>
-	                            </div>
-	                            <span class="place_id" hidden>${entry.id}</span><br>
-	                        </div>
-	                    </div>
-                    </c:forEach>                    
+                    <c:if test="${ !pharmacies.isEmpty()}">
+                    	<c:forEach var="entry" items="${ pharmacies }">
+	                    	<c:if test="${entry.en_garde == false}"> 
+	                    		<c:set var="permanence" value="jour"></c:set>                   	
+	                    	</c:if>
+	                    	<c:if test="${entry.en_garde}"> 
+	                    		<c:set var="permanence" value="jour_nuit"></c:set>                   	
+	                    	</c:if>
+	                    	<div class="item ${permanence }">
+		                        <div class="row border py-3 mt-3">
+		                            <div class="col-md-2 text-center">
+		
+		                                <div class="row text-center justify-content-center">
+		                                    <img id="item_img" src="<c:url value="/searchPharmacie/medicine.png"/>" width="75px" class="img-fluid img-responsive">
+		                                </div>
+		
+		                            </div>
+		        
+		                            <div class="col-md-10 text-xs-center justify-content-center">
+		                                <div class="border-bottom">
+		                                    <button class="btn" onclick="showPharmaClicked(event)"><h4 class="font-gilroy-bold font-size-20 color-primary fullName">${ entry.name }</h4></button>
+		                                </div>
+		                                <table style="width:100%">
+		                                    <tr>
+		                                        <td style="width:60%; text-align: left; text-align:left; vertical-align:middle"><span class="font-noto text-secondary font-size-14 ml-3"><i class="fas fa-map-marker-alt text-danger"></i> ${entry.adresse} </span></td>
+		                                        <td style="width:40%; text-align:right; vertical-align:middle"><a href="" target="_blank" class="btn btn-fluid font-size-12 btn-outline-info direction_anchor">Direction</a></td>
+		                                    </tr>
+		                                    <tr>
+		                                        <td style='text-align:left; vertical-align:middle'>
+		                                            <span class="working_time"></span>
+		                                        </td>
+		
+		                                        <td style='text-align:right; vertical-align:middle'>
+		                                            <span class="btn btn-info rounded font-size-14 px-3 py-1">
+		                                                <i class="fas fa-phone-alt"></i>
+		                                                <span class="weight-bold">+212${entry.tel}</span> 
+		                                            </span>
+		                                        </td>
+		                                    </tr>
+		                                </table>
+		                            </div>
+		                            <span class="place_id" hidden>${entry.id}</span><br>
+		                        </div>
+		                    </div>
+	                    </c:forEach> 
+                    </c:if>
+                    <c:if test="${pharmacies.isEmpty() }">
+						<br>
+                        <img src="<c:url value="/inc/images/noPharmaPic.png"></c:url>" class="center" width="200px"></td>
+                        <h5 style="text-align: center;">Aucun Pharmacie !</h5>
+                    </c:if>                   
                 </div>
     
                 <!--Search bar -->

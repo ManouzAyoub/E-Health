@@ -7,11 +7,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import metier.dao.Implementations.RoleDao;
 import metier.dao.Implementations.UserDao;
 import metier.dao.beans.Role;
 import metier.dao.beans.User;
+import metier.dao.util.Instances;
 import metier.services.RoleImpl;
 import metier.services.UserImpl;
 
@@ -39,32 +41,35 @@ public class VisiterFormServlet extends HttpServlet {
 
     protected void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
         
-    	UserImpl form = UserImpl.getInstance();
-    	
-        RoleImpl roleimpl=RoleImpl.getInstance();
-        
-        RoleDao roledao=RoleDao.getInstance();
-        
-    	User visiter = form.visitorFormService( request );
+    	HttpSession session = request.getSession(false);
+    	 if (session == null) {
+    		 
+    		 	UserImpl form = UserImpl.getInstance();
+    	        
+    	    	User visiter = Instances.userImpl.visitorFormService( request );
 
-        request.setAttribute( ATT_VISITER, visiter );
-        request.setAttribute( ATT_FORM, form );
+    	        request.setAttribute( ATT_VISITER, visiter );
+    	        request.setAttribute( ATT_FORM, form );
 
-        if ( form.getErreurs().isEmpty() ) {
+    	        if ( form.getErreurs().isEmpty() ) {
+    	        	
+    	            role = Instances.roleImpl.getRolebyrole("utilisateur");
+    	            
+    	            visiter.setRole(role);
+    	            
+    	            Instances.userDao.add( visiter );
 
-            UserDao userdao = UserDao.getInstance();
-            
-            role=roleimpl.getRolebyrole("utilisateur");
-            
-            visiter.setRole(role);
-            userdao.add( visiter );
+    	            this.getServletContext().getRequestDispatcher( SUCESS ).forward( request, response );
 
-            this.getServletContext().getRequestDispatcher( SUCESS ).forward( request, response );
+    	        } else {
+    	            this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 
-        } else {
-            this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-
-        }
+    	        }
+		} else {
+			
+			response.sendRedirect(request.getContextPath() + "/Home");
+			
+		}
 
     }
 

@@ -64,7 +64,10 @@
                             <span class="erreur" >${form.erreurs['password']}</span>
                             <span toggle="#password" class="zmdi zmdi-eye-off field-icon toggle-password"></span>
                         </div>
-               
+                        <c:if test="${message_erreur != null}">
+	               			<span style="color:red">${message_erreur}</span>
+	               			<br>
+                        </c:if>
                         <div class="form-group">
                             <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up"/>
                         </div>

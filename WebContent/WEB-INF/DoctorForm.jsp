@@ -52,118 +52,40 @@
 
                         <!-- languages -->
            		       
-                             <select name="languages" class="selectpicker" style="margin:10px 0" data-width="fit"  multiple>
-                         <option  data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
-                         <option  data-content='<span class="flag-icon flag-icon-mx"></span> Spanish'>Spanish</option>
-                         <option  data-content='<span class="flag-icon flag-icon-cn"></span> Chinese'>Chinese</option>
-                         <option  data-content='<span class="flag-icon flag-icon-fr"></span> Frensh'>Frensh</option>
-                         <option  data-content='<span class="flag-icon flag-icon-ma"></span> Arabic'>Arabic</option>
-                            </select>
-                            <span class="erreur" style="display:block" >${form.erreurs['languages']}</span>
+                        <select name="languages" class="selectpicker" style="margin:10px 0; width:100%" data-width="fit"  multiple>
+		                      <option  data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
+		                      <option  data-content='<span class="flag-icon flag-icon-mx"></span> Spanish'>Spanish</option>
+		                      <option  data-content='<span class="flag-icon flag-icon-cn"></span> Chinese'>Chinese</option>
+		                      <option  data-content='<span class="flag-icon flag-icon-fr"></span> Frensh'>Frensh</option>
+		                      <option  data-content='<span class="flag-icon flag-icon-ma"></span> Arabic'>Arabic</option>
+                       </select>
+                       <span class="erreur" style="display:block" >${form.erreurs['languages']}</span>
                         
                         <!-- languages -->
                         
                                                 
-                        <!-- file CN -->
-                         <div class="form-group" id="upload-container">
-                        <label class="label-file">Merci de déposer une photocopie de votre carte nationale :</label>
+                        <!-- Profile Photo -->
+                      <div class="form-group" id="upload-container">
+                        <label class="label-file">Merci de déposer votre photo de profile :</label>
                         <div  id="upload-border">
                           <nobr>
                             <input type="text" id="upload-name1"   disabled="true" />
                             <label id="upload-button1">Cliquez moi!</label>
                           </nobr>
                         </div>
-                        <input name="id_scan" type="file" id="hidden-upload1" style="display:none" multiple/>
+                        <input name="profile_image" type="file" id="hidden-upload1" style="display:none" multiple/>
                          <span class="erreur" >${form.erreurs['id_scan']}</span>
-                      </div>
-                      <!-- file CN -->
-                      
-                      
-                      <!-- file MED_certificate -->
-                       
-                        <div class="form-group" id="upload-container">
-                        <label class="label-file">Merci de déposer votre certificat médicale :</label>
-                        <div  id="upload-border">
-                          <nobr>
-                            <input type="text" id="upload-name2"   disabled="true" />
-                            <label id="upload-button2">Cliquez moi!</label>
-                          </nobr>
-                        </div>
-                        <input name="med_certificate" type="file" id="hidden-upload2" style="display:none"/>
-                      <span class="erreur" >${form.erreurs['med_certificate']}</span>
-                      </div>
-                      <!-- file MED_certificate -->
-                      
-                      <!-- file Profile_picture -->
-                      
-                         <div class="form-group" id="upload-container">
-                          	<label class="label-file">Merci de déposer votre photo de profile :</label>
-	                        <div  id="upload-border">
-	                          <nobr>
-	                            <input type="text" id="upload-name3"   disabled="true" />
-	                            <label id="upload-button3">Cliquez moi!</label>
-	                          </nobr>
-	                        </div>
-                        	<input name="profile_image" type="file" id="hidden-upload3" style="display:none"/>
-                      </div>
-                      <!-- file Profile_picture -->
-                      
-                      <!-- file Local_contract -->
-                      
-                         <div class="form-group" id="upload-container">
-	                        <label class="label-file">Merci de déposer le contract de location de votre cabinet médical :</label>
-	                        <div  id="upload-border">
-	                          <nobr>
-	                            <input type="text" id="upload-name4"   disabled="true" />
-	                            <label id="upload-button4">Cliquez moi!</label>
-	                          </nobr>
-	                        </div>
-	                        <input name="local_contract" type="file" id="hidden-upload4" style="display:none" />
-                           <span class="erreur" >${form.erreurs['local_contract']}</span>
-                      </div>
-                     <!-- file Local_contract -->
-                      
-                      <!-- select  -->                      
+                      </div> 
+                      <!-- !Profile Photo -->
                         
-                        <div class="form-group" style="margin-top:15px; margin-bottom:40px" onchange="changeFunc();">
-                        <select  name="med_practice" id="practice" class="select-css">
-                            <option value="none">-- domaine médical--</option>
-                            <option value="pharmacie">pharmacie</option>
-                            <option value="cabinet_medical">cabinet médical</option>
-                            <option value="clinique">clinique</option>
-                        </select>
-                        <span class="erreur" >${form.erreurs['med_practice']}</span> 
-                        </div>
-                        
-                        <div class="form-group" id="Speciality" style="display:none;">
-                        <select name="speciality" class="select-css" onmousedown="if(this.options.length>8){this.size=8;}"  onchange='this.size=0;' onblur="this.size=0;">
-                            <option>Chirurgie esthétique</option>
-                            <option>Chirurgie pédiatrique</option>
-                            <option>Chirurgie vasculaire</option>
-                            <option>Chirurgie viscérale et digestive</option>
-                            <option>Gynécologie obstétrique</option>
-                            <option>Neurochirurgie </option>
-                            <option>Allergologie</option>
-                            <option>Anatomie et cytologie pathologique</option>
-                            <option>Anesthésie</option>
-                            <option>Cardiologie</option>
-                            <option>Dermatologie</option>
-                            <option>Endocrinologie-nutrition</option>
-                            <option>Génétique</option>
-                            <option>Allergologie</option>
-                            <option>Gynécologie médicale</option>
-                            <option>Hématologie</option>
-                            <option>Médecine générale</option>
-                            <option>Médecine physique et réadaptation</option>
-                            <option>Néphrologie</option>
-                            <option>Neurologie</option>
-                            <option>Psychiatrie</option>
-                            <option>Radiologie</option>
-                            <option>Réanimation</option>
-                            <option>Santé publique</option>
-                            <option>Urgentiste</option>
-                        </select>
-                        </div>
+                       <div class="form-group" id="Speciality">
+                       		<label class="label-file">Merci de spécifier votre specialitier :</label>
+	                        <select name="speciality" class="select-css" >
+		                         <c:forEach var="specia" items="${Instances.specialities()}">
+		                             <option value="${specia}" ${clinique.speciality.equals(specia) ? 'selected' : '' } }>${specia}</option>
+		                         </c:forEach>
+	                        </select>
+                       </div>
                         <!-- select  -->
                         
                         

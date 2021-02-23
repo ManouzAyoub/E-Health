@@ -24,12 +24,13 @@ public class SearchPharmacieServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String ville = request.getParameter( CHAMP_VILLE );
+		String adresse = request.getParameter( CHAMP_VILLE );
 		
-		List<Pharmacie> pharmacies = pharmacieImpl.getPharmaciesByYourAdress( ville , true);
+		List<Pharmacie> pharmacies = pharmacieImpl.getPharmaciesByYourAdress( adresse , true);
 		
 		if (pharmacies != null) {
 			request.setAttribute("pharmacies", pharmacies);
+			request.setAttribute("adresse", adresse);
 			this.getServletContext().getRequestDispatcher( VUE ).forward(request, response);
 		}
 	}

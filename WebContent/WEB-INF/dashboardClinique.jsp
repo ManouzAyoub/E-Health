@@ -5,10 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Document</title>
+    <title>${clinique.name}</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="<c:url value="/CliniqueDash/dashboard.css"/>">
+
+    <!-- LOGO -->
+    <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/inc/images/pageLogo.png" />" />
       
         <style>
             .popup_section1 {
@@ -105,9 +108,6 @@
         <div class="sidebar-menu">
             <ul>
 
-                <!-- <li onClick="handleClick(event);show('DashboardSection')">
-                    <aaaaaaaaaa id="dash" href="#"  class="buttons active" > -->
-
                 <li>
                     <a id="dashboard" class="buttons active " onClick="handleClick(event, 'DashboardSection')"  style="cursor: pointer;">
                         
@@ -129,13 +129,20 @@
                     </a>
                 </li>
                
-              
                 <li>
                     <a id="compte" class="buttons" onClick="handleClick(event, 'InfoClinique')" style="cursor: pointer;">
                         <span class="las la-user-circle"></span>
                          <span>Compte</span>
                     </a>
                 </li>
+                
+                <li>
+                    <a id="authBtn" class="buttons" onClick="handleClick(event, 'auth')" style="cursor: pointer;">
+                        <span class="las la-key"></span>
+                         <span>Authentification</span>
+                    </a>
+                </li>
+
                 <br><br>
                 <br><br>
                 <li>
@@ -164,7 +171,7 @@
                 <i class="far fa-hospital fa-3x" style="color:#27aaf0; margin-right:1rem;"></i>
                 <div class="user-wrapper-info">
                     <h4>${clinique.name}</h4>
-                    <small style="color:black;">Hopital</small>
+                    <small style="color:black;">Clinique</small>
                 </div>
             </div>
         </header>
@@ -215,7 +222,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3>Commantaires :</h3>
-                            <button onclick="seeAll('commentaire', 'commentsDash')">See all <span class="las la-arrow-right"></span></button>
+                            <button onclick="seeAll('commentaire', 'commentsDash')">Voire Tous <span class="las la-arrow-right"></span></button>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -256,7 +263,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h3>Vos Docteurs :</h3>
-                            <button onclick="seeAll('docteur', 'doctorsDash')">See all <span class="las la-arrow-right"></span></button>
+                            <button onclick="seeAll('docteur', 'doctorsDash')">Voire Tous <span class="las la-arrow-right"></span></button>
                         </div>
                         <div class="card-body">
                             <c:if test="${doctors.isEmpty()}">
@@ -319,7 +326,7 @@
                                                 		
                                                 		<input type="text" name="delete_comment_clinique" value="${entry.idCommentaire }">
                                                 		<input type="text" value="${ entry.getClinique().getCin() }" name="clinic" />
-                                                		<button type="submit" ><span class="fas fa-trash"></span></button>
+                                                		<button class="styleIcon" type="submit" ><span class="fas fa-trash"></span></button>
                                                 	</form>
                                                 </td>
                                             </tr>
@@ -369,12 +376,12 @@
                                                 <td><img src="data:image/png;base64,${docteurImpl.returnImage(entry)}" style="border-radius:40%" width="100px"></td>
                                                 <td>${entry.getFirstname()} ${entry.getLastname()}</td>
                                                 <td> ${entry.speciality} </td>
-                                                <td><a href="<c:url value="/doctorProfile?docteur=${ entry.cin }"></c:url>" target="_blank"><span class="fas fa-user"></span></a></td>
+                                                <td><a class="styleIcon" style="text-decoration: none;" href="<c:url value="/doctorProfile?docteur=${ entry.cin }"></c:url>" target="_blank"><span class="fas fa-user"></span></a></td>
                                                 <td>
                                                 	<form method="POST" action="<c:url value="cliniqueAssociation"></c:url>">
                                                 		<input type="hidden" name="idClinique" value="${ clinique.cin }">
                                                 		<input type="hidden" name="docteurId" value="${ entry.cin }">
-                                                		<button type="submit"><span class="fas fa-trash"></span></button>
+                                                		<button class="styleIcon" type="submit"><span class="fas fa-trash"></span></button>
                                                 	</form>
                                                 </td>
                                             </tr>
@@ -443,7 +450,7 @@
             
         </div>
 
-        <main id="InfoClinique" class="compte hide" >
+        <main id="InfoClinique" class="compte hide slideBar_main" >
             <form method="POST" action="<c:url value="InformationClinique"></c:url>">
                 <div class="wrapper" >
                     <div class="title">
@@ -463,6 +470,10 @@
                           <label>Adresse :</label>
                           <input type="text" name="adresse" value="${clinique.adresse}" class="input">
                      </div>  
+                     <div class="inputfield">
+                       		<label>Ville :</label>
+                        	<input type="text" name="ville" value="${clinique.ville}" class="input">
+                       </div>
                       <div class="inputfield"> 
                           <label>Téléphone :</label>
                           <input type="text" name="tel" value="${clinique.tel}" class="input">
@@ -476,7 +487,7 @@
                        <label>Téléphone D'urgence :</label>
                         <input type="text" name="urgence" value="${clinique.emergency_tel}" class="input">
                         
-                     </div> 
+                       </div> 
                         <div class="inputfield">
                           <label>Spécialité :</label>
                          <div class="custom_select">
@@ -488,9 +499,50 @@
                                </select>
                           </div>
                        </div> 
+                       <div class="inputfield">
+                       		<label>ID de Localisation :</label>
+                        	<input type="text" name="id_localisation" value="${clinique.id}" class="input" style="margin-left: 25px;">
+                            <span id="Trouverplace_id" onclick="Trouverplace_id()" >Trouver id</span>
+                       </div>
+                       
                       <div class="inputfield">
                         <input type="submit" value="Enregistrer" class="btn">
                       </div>
+                    </div> 
+                </div>
+            </form>
+        </main>
+        
+        <main id="auth" class="compte hide slideBar_main" >
+            <form method="POST" action="<c:url value=""></c:url>">
+                <div class="wrapper" >
+                    <div class="title">
+                      Modifier votre Informations d'authentification :
+                    </div>
+                    <div class="form">
+                        <table style="width: 100%;">
+                            <tr>
+                                <td style="width: 50%;"><label>Ancien mot de passe :</label></td>
+                                <td>
+                                    <input style="width: 100%;" type="password" name="oldMdp" class="input"><input type="hidden" name="id" value="${clinique.cin}" class="input">
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td style="width: 50%;"><label>Nouveau mot de passe :</label></td>
+                                <td><input style="width: 100%;" type="password" name="newMdp" class="input"></td>
+                            </tr>
+                            
+                            <tr>
+                                <td style="width: 50%;"><label>Confirmation de nouveau mot de passe :</label></td>
+                                <td><input style="width: 100%;" type="password" name="confirmationNewMdp" class="input"></td>
+                            </tr>
+
+                        </table>
+                       
+                        <div class="inputfield">
+                            <input type="submit" value="Enregistrer" class="btn">
+                        </div>
                     </div> 
                 </div>
             </form>
@@ -621,6 +673,10 @@
         
         function handleDeleteClick(){
         	document.getElementById('delete_comment_btn').click();
+        }
+
+        function Trouverplace_id(){
+            window.open("https://developers-dot-devsite-v2-prod.appspot.com/maps/documentation/utils/geocoder");
         }
 
     </script>

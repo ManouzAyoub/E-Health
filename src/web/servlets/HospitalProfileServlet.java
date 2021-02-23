@@ -37,6 +37,7 @@ public class HospitalProfileServlet extends HttpServlet {
 		request.setAttribute("docteurImpl", Instances.docteurImpl);
 		request.setAttribute("progressBar", Instances.ratingImpl.getPercentageOfEtoiles(hopital.getIdHopital(), "idHopital"));
 		request.setAttribute("hopital", hopital);
+		request.setAttribute("telephone", Instances.convertNumberPhone(hopital.getTel()));
 		request.setAttribute("nbrRating", Instances.ratingImpl.getNumberOfRating(hopital.getIdHopital(), "idHopital"));
 		request.setAttribute("average", Instances.ratingImpl.average(hopital.getIdHopital(), "idHopital"));
 		request.setAttribute("averageRating", Instances.ratingImpl.getAverageOfRating(hopital.getIdHopital(), "idHopital"));

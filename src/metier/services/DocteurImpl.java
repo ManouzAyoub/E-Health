@@ -23,6 +23,8 @@ import javax.mail.internet.MimeMultipart;
 import javax.persistence.Query;
 
 import org.hibernate.Session;
+
+import metier.dao.beans.Clinique;
 import metier.dao.beans.Docteur;
 import metier.dao.beans.Langue;
 import metier.dao.beans.Role;
@@ -97,13 +99,24 @@ public class DocteurImpl {
 		}
 	}
 
+	public List<Clinique> getAllDoctorsAccordingToTheirAdminConfirmation(Boolean bool){
+		List<Clinique> list = new ArrayList<Clinique>();
+		String hql = "select c from Docteur c where admin_confirmation = :bool";
+		Query q = session.createQuery(hql);
+		q.setParameter("bool", bool);
+		list = q.getResultList();
+		if (list.size() != 0) {
+			return list;
+		}else {
+			return null;
+		}
+	}
+	
 	public Map<Long, List<String>> displayDoctorsInPage(List<Docteur> list) {
 		function();
-		System.out.println("la taille de la list passer est egale :::: " + list.size());
 		for (int i = 0; i < list.size(); i++) {
 			List<String> string = new ArrayList<>();
 			Docteur docteur = list.get(i);
-			System.out.println("le nom de la list passer est egale :::: " + docteur.getFirstname());
 			idDocteur      = String.valueOf(docteur.getCin());
 			fullName       = docteur.getFirstname() + " " + docteur.getLastname();
 			HDepart        = String.valueOf(docteur.getHeureDepart());
@@ -117,8 +130,6 @@ public class DocteurImpl {
 			average        = String.valueOf(ratingImpl.getAverageOfRating(docteur.getCin() , "idDocteur"));
 			rating         = " stars_" + ratingImpl.getAverageOfRating(docteur.getCin(), "idDocteur");
 			specialiter    = docteur.getSpeciality();
-			System.out.println(specialiter);
-			System.out.println(specialities.get(docteur.getSpeciality()));
 			
 			if ( !specialities.get(docteur.getSpeciality()).isEmpty() ) {
 				specialiterClass = specialities.getOrDefault(docteur.getSpeciality(), "");
@@ -131,10 +142,8 @@ public class DocteurImpl {
 			}
 			
 			if(docteur.getConsultationDomicile()) {
-				System.out.println("// consultation a domicile //");
 				aDomicile = "Consultation_a_domicile";
 			} else {
-				System.out.println(" Non // consultation a domicile //");
 				aDomicile = "";
 			}
 			
@@ -167,10 +176,7 @@ public class DocteurImpl {
 			
 			classes_list_map.put(docteur.getCin(), string);
 		}
-//		for(Docteur docteur : list) {
-//			System.out.println("displayDoctorsInPage : " + docteur);
-//				
-//		}
+		
 		specialities.clear();
 		return classes_list_map;
 	}

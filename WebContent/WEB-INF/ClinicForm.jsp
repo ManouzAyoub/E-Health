@@ -79,8 +79,15 @@
                              <span class="erreur" >${form.erreurs['emergency_tel']}</span>  
                         </div>
                       	
+                      	<div class="form-group" style="margin-top:15px; margin-bottom:40px" >
+	                        <select  name="speciality" id="sel" class="select-css">
+	                            <c:forEach var="specia" items="${Instances.specialities()}">
+		                    		<option value="${specia}">${specia}</option>
+		                    	</c:forEach>
+	                        </select> 
+                        </div>
 
-					<div class="div" onmouseover="showSelect('visible')" onmouseout="showSelect('hidden')">
+					<%-- <div class="div" onmouseover="showSelect('visible')" onmouseout="showSelect('hidden')">
 				        &nbsp;&nbsp;&nbsp;&nbsp;Veuillez choisir votre/vos specialités <span class="arrow">&#9660;&nbsp;&nbsp;</span>
 				        <select multiple="multiple" class="hidden" id="sel" name="speciality">
 				        	<c:forEach var="specia" items="${Instances.specialities()}">
@@ -103,7 +110,7 @@
 				            <option value="chirurgie orthopédique et traumatologique">chirurgie orthopédique et traumatologique</option> -->
 				
 				        </select>
-				    </div>
+				    </div> --%>
                      
                         
                         <div class="form-group">
