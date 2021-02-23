@@ -145,6 +145,12 @@ header label span {
   padding-right: 1rem;
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .search-wrapper {
   border: 1px solid #ccc;
   border-radius: 30px;
