@@ -141,7 +141,7 @@
                                     <div class="mt-3 text-white font-size-16 font-montserrat" type="button">
                                         <span class="btn btn-info rounded py-1">
                                             <i class="fas fa-phone-alt"></i>
-                                            <span class="weight-bold">&nbsp; +212${hopital.tel}</span> 
+                                            <span class="weight-bold">&nbsp; +212${telephone}</span> 
                                         </span>
                                     </div>
                                 </div>
