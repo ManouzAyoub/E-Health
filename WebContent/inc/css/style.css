@@ -68,15 +68,6 @@ list-type-ulli {
   .erreur{
   color:red;
   }
-  
-  
-  /*input, select, textarea {
-  outline: none;
-  appearance: unset !important;
-  -moz-appearance: unset !important;
-  -webkit-appearance: unset !important;
-  -o-appearance: unset !important;
-  -ms-appearance: unset !important; }*/
 
    input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
   appearance: none !important;
@@ -156,11 +147,6 @@ body {
     transition:all 0.2s ease-in-out;
 
   }
-  .container:hover{
-    transform:scale(1.02);
-    transition:all 0.2s ease-in-out;
-    cursor: pointer;
-}
   
   .selectpicker {
   padding-top:10px;
@@ -342,7 +328,6 @@ body {
   background-image: -webkit-linear-gradient(to left, #74ebd5, #9face6);
   background-image: linear-gradient(to left, #74ebd5, #9face6); }
 
-/* input[type=checkbox]:not(old) */
  #agree-term{
   width: 2em;
   margin: 0;
@@ -494,8 +479,6 @@ input[type=checkbox]:not(old):checked + label > span:before {
         }
 
 
-/*dropdown*/
-
 @media screen and (max-width: 768px) {
   .container {
     width: calc(100% - 40px);
@@ -504,4 +487,3 @@ input[type=checkbox]:not(old):checked + label > span:before {
   .signup-content {
     padding: 50px 25px; } }
 
-/*# sourceMappingURL=style.css.map */
