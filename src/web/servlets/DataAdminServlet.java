@@ -38,6 +38,8 @@ public class DataAdminServlet extends HttpServlet {
 		request.setAttribute("allHospitals", Instances.hopitalImpl.getAllHopitalesAccordingToTheirAvailability(true));
 		request.setAttribute("allCliniques", Instances.cliniqueImpl.getAllClinicsAccordingToTheirAvailability(true));
 		request.setAttribute("allDoctors", Instances.docteurImpl.getDoctorsAccordingToTheirAvailability(true));
+		request.setAttribute("allCliniquesDemands", Instances.cliniqueImpl.getAllClinicsAccordingToTheirAdminConfirmation(false));
+		request.setAttribute("allDoctorsDemands", Instances.docteurImpl.getAllDoctorsAccordingToTheirAdminConfirmation(false));
 		request.setAttribute("clinics", Instances.cliniqueImpl.getAllClinicsAccordingToTheirAvailability( false ));
 		request.setAttribute("docs", Instances.docteurImpl.getDoctorsAccordingToTheirAvailability(false));
 		request.setAttribute("nbrUsers", Instances.userImpl.getNumbersOfUserVisiter(4) != null ? Instances.userImpl.getNumbersOfUserVisiter(4) : 0 );

@@ -30,7 +30,7 @@
       <input placeholder="clinic's emergency tel" type="text" value="${clinic.emergency_tel }" tabindex="4" >
     </fieldset>
     <fieldset>
-      <input placeholder="clinic speciality " type="text" value="${doc.speciality }" tabindex="4" >
+      <input placeholder="clinic speciality " type="text" value="${clinic.speciality }" tabindex="4" >
     </fieldset>
     <fieldset>
       	<button name="approvec" type="submit" id="demmande_approve" data-submit="...Sending">approve</button>

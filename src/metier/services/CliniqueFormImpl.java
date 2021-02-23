@@ -85,10 +85,12 @@ public class CliniqueFormImpl {
          erreurs.put( CHAMP_EMAIL, e.getMessage() );
      }
      clinic.setEmail( email );
-     System.out.println(speciality[0]);
      clinic.setSpeciality(speciality[0]);
      clinic.setDispo(false);
+     clinic.setFirst_using(false);
+     clinic.setAdmin_confirmation(false);
      clinic.setNbrVisiters(0L);
+     
        
      if ( erreurs.isEmpty() ) {
          resultat = "Succés d'inscription!";

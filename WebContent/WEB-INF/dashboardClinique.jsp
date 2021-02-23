@@ -463,6 +463,10 @@
                           <label>Adresse :</label>
                           <input type="text" name="adresse" value="${clinique.adresse}" class="input">
                      </div>  
+                     <div class="inputfield">
+                       		<label>Ville :</label>
+                        	<input type="text" name="ville" value="${clinique.ville}" class="input">
+                       </div>
                       <div class="inputfield"> 
                           <label>Téléphone :</label>
                           <input type="text" name="tel" value="${clinique.tel}" class="input">
@@ -476,7 +480,7 @@
                        <label>Téléphone D'urgence :</label>
                         <input type="text" name="urgence" value="${clinique.emergency_tel}" class="input">
                         
-                     </div> 
+                       </div> 
                         <div class="inputfield">
                           <label>Spécialité :</label>
                          <div class="custom_select">
@@ -488,6 +492,11 @@
                                </select>
                           </div>
                        </div> 
+                       <div class="inputfield">
+                       		<label>ID de Localisation :</label>
+                        	<input type="text" name="id_localisation" value="${clinique.id}" class="input">
+                       </div>
+                       
                       <div class="inputfield">
                         <input type="submit" value="Enregistrer" class="btn">
                       </div>

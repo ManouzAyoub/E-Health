@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Transient;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "cin")
@@ -29,6 +30,7 @@ public class Clinique extends User{
 	
 	@Column(name="emergency_tel",nullable=false)
 	private String emergency_tel;
+	private Boolean admin_confirmation;
 	
 	@Column(name="speciality",nullable=false)
 	private String speciality;
@@ -39,6 +41,7 @@ public class Clinique extends User{
 	private Boolean first_using;
 	private Long nbrVisiters;
 	
+	@Transient
 	@ManyToOne
 	@JoinColumn(name = "idUser" , referencedColumnName = "cin")
 	private User user;
@@ -148,5 +151,11 @@ public class Clinique extends User{
 		this.first_using = first_using;
 	}
 	
+	public Boolean getAdmin_confirmation() {
+		return admin_confirmation;
+	}
 	
+	public void setAdmin_confirmation(Boolean admin_confirmation) {
+		this.admin_confirmation = admin_confirmation;
+	}
 }

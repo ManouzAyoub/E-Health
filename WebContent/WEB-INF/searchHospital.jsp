@@ -82,10 +82,10 @@
                         <td class="py-0"><h5 class=" font-size-14 text-white font-montserrat">${ sessionScope.visiter.getFirstname() } ${ sessionScope.visiter.getLastname() }</h5></td>
                     </tr>
                     <tr>
-                        <c:if test="${ sessionScope.visiter != null}">
+                        <c:if test="${ sessionScope.visiter != null || sessionScope.admin != null || sessionScope.clinique != null || sessionScope.docteur != null }">
                         	<td class="py-0"><a href="<c:url value="Deconnexion"></c:url>" class="btn btn-outline-dark btn-info font-size-12 py-1 text-white">Deconnexion</a></td>
                         </c:if>
-                        <c:if test="${ sessionScope.visiter == null}">
+                        <c:if test="${ sessionScope.visiter == null && sessionScope.admin != null && sessionScope.clinique != null && sessionScope.docteur != null}">
                         	<td class="py-0"><a href="<c:url value="signIn"></c:url>" class="btn btn-outline-dark btn-info font-size-12 py-1 text-white">connexion</a></td>
                         </c:if>
                     </tr>

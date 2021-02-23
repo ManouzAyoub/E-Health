@@ -57,14 +57,11 @@ public class SignInServlet extends HttpServlet {
     		if ( form.getErreurs().isEmpty() && visiter.getRole().getRole().equals("admin") ) {
         		session.setAttribute("admin", visiter);
         		response.sendRedirect( request.getContextPath() + SUCESS_ADMIN);
-    			//this.getServletContext().getRequestDispatcher( SUCESS_ADMIN ).forward( request, response );
     			
     		} else if ( form.getErreurs().isEmpty() && visiter.getRole().getRole().equals("utilisateur") ) {
         		
     				session.setAttribute("visiter", visiter);
-    				response.sendRedirect( request.getContextPath() + SUCESS_USER);
-    	        	//this.getServletContext().getRequestDispatcher( SUCESS_USER ).forward( request, response );
-    			
+    				response.sendRedirect( request.getContextPath() + SUCESS_USER);    			
             	
     		} else if ( form.getErreurs().isEmpty() && visiter.getRole().getRole().equals("docteur") ) {
         		
@@ -72,13 +69,11 @@ public class SignInServlet extends HttpServlet {
         		
             	session.setAttribute("docteur", docteur);
             	response.sendRedirect( request.getContextPath() + SUCESS_DOCTEUR);
-            	//this.getServletContext().getRequestDispatcher( SUCESS_DOCTEUR ).forward(request, response);
             	
     		} else if ( form.getErreurs().isEmpty() && visiter.getRole().getRole().equals("clinique") ) {
 
         		session.setAttribute("clinique", visiter);
         		response.sendRedirect( request.getContextPath() + SUCESS_CLINIQUE);
-        		//this.getServletContext().getRequestDispatcher( SUCESS_CLINIQUE ).forward( request, response );
         		
     		} else {
 

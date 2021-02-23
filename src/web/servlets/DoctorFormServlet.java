@@ -18,6 +18,7 @@ import metier.dao.Implementations.DocteurDao;
 import metier.dao.Implementations.RoleDao;
 import metier.dao.beans.Docteur;
 import metier.dao.beans.Role;
+import metier.dao.util.Instances;
 
 
 @WebServlet( "/doctorForm" )
@@ -35,6 +36,7 @@ public class DoctorFormServlet extends HttpServlet {
     Role role = new Role();
 
     protected void doGet( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
+    	request.setAttribute("Instances", new Instances());
         this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 
     }
@@ -54,7 +56,7 @@ public class DoctorFormServlet extends HttpServlet {
          if ( form.getErreurs().isEmpty()) {
 
         	 //base64image is just for image display purposes
-             String base64Image = Base64.getEncoder().encodeToString(doctor.getId_scan());
+             String base64Image = Base64.getEncoder().encodeToString(doctor.getProfile_image());
              doctor.setBase64image(base64Image);
              
         	 role=roleimpl.getRolebyrole("docteur");

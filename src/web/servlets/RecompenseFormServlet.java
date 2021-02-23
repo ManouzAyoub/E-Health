@@ -24,22 +24,27 @@ public class RecompenseFormServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String recompen = request.getParameter(CHAMP_RECOMPENSE);
-		String date = request.getParameter(CHAMP_DATE);
-		String id = request.getParameter(DOCTEUR);
-	
-		Recomponse recompense = new Recomponse();
-		
-		recompense.setAnnee(date);
-		recompense.setName(recompen);
-		Docteur docteur = Instances.docteurDao.getById(Long.valueOf(id));
-		recompense.setDocteur(docteur);
 		
 		HttpSession session = request.getSession(false);
-		session.setAttribute("docteur", docteur);
+		
 		if (session.getAttribute("docteur") != null) {
+			
+			String id = request.getParameter(DOCTEUR);
+			
+			Docteur docteur = Instances.docteurDao.getById(Long.valueOf(id));
+			session.setAttribute("docteur", docteur);
+			String recompen = request.getParameter(CHAMP_RECOMPENSE);
+			String date = request.getParameter(CHAMP_DATE);
+			Recomponse recompense = new Recomponse();
+			
+			recompense.setAnnee(date);
+			recompense.setName(recompen);
+			recompense.setDocteur(docteur);
+			
 			Instances.recomDao.add(recompense);
+			
 			response.sendRedirect( request.getContextPath() + "/DataDoctor");
+			
 		} else {
 			this.getServletContext().getRequestDispatcher("/Home").forward(request, response);
 		}

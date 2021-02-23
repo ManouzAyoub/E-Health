@@ -23,6 +23,8 @@ import javax.mail.internet.MimeMultipart;
 import javax.persistence.Query;
 
 import org.hibernate.Session;
+
+import metier.dao.beans.Clinique;
 import metier.dao.beans.Docteur;
 import metier.dao.beans.Langue;
 import metier.dao.beans.Role;
@@ -97,6 +99,19 @@ public class DocteurImpl {
 		}
 	}
 
+	public List<Clinique> getAllDoctorsAccordingToTheirAdminConfirmation(Boolean bool){
+		List<Clinique> list = new ArrayList<Clinique>();
+		String hql = "select c from Docteur c where admin_confirmation = :bool";
+		Query q = session.createQuery(hql);
+		q.setParameter("bool", bool);
+		list = q.getResultList();
+		if (list.size() != 0) {
+			return list;
+		}else {
+			return null;
+		}
+	}
+	
 	public Map<Long, List<String>> displayDoctorsInPage(List<Docteur> list) {
 		function();
 		System.out.println("la taille de la list passer est egale :::: " + list.size());

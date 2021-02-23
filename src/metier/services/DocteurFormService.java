@@ -27,10 +27,7 @@ public class DocteurFormService {
     private static final String CHAMP_PRACTICE        = "med_practice";
     private static final String CHAMP_TEL             = "tel";
     private static final String CHAMP_LANGUAGES       = "languages";
-    private static final String CHAMP_ID_SCAN         = "id_scan";
     private static final String CHAMP_PROFILE_IMAGE   = "profile_image";
-    private static final String CHAMP_MED_CERTIFICATE = "med_certificate";
-    private static final String CHAMP_LOCAL_CONTRACT  = "local_contract";
     private static final String CHAMP_VILLE           = "ville";
     
 
@@ -58,106 +55,47 @@ public class DocteurFormService {
         String speciality  = request.getParameter( CHAMP_SPECIALITY );
         String[] languages = request.getParameterValues( CHAMP_LANGUAGES );
         String practice    = request.getParameter(CHAMP_PRACTICE);
-        Part medfile       = request.getPart(CHAMP_MED_CERTIFICATE);
-        Part localfile     = request.getPart(CHAMP_LOCAL_CONTRACT);
         Part photofile     = request.getPart(CHAMP_PROFILE_IMAGE);
-		List<Part> fileParts = request.getParts().stream().filter(part -> CHAMP_ID_SCAN.equals(part.getName()) && part.getSize() > 0).collect(Collectors.toList());
 		
-		InputStream inputStream1=null,inputStream2=null,inputStream3=null,inputStream4=null;
+		InputStream inputStream = null;
 		
 		Docteur doctor = new Docteur();
 		
-		byte[] bite1=null,bite2=null,bite3=null,bite4=null;
+		byte[] bite = null;
 			    
-		    if(photofile!=null) {
-			    System.out.println(photofile.getName());
-			    System.out.println(photofile.getSize());
-			    System.out.println(photofile.getContentType());
-		    inputStream4=photofile.getInputStream();
-    		bite4=convert(inputStream4);
-            }
-		    doctor.setProfile_image(bite4);
-		    
-		    /*ID_SCAN*/
-        for(Part filepart1 : fileParts) {
-    		if(filepart1!=null) {
-    		      // prints out some information for debugging
-                System.out.println(filepart1.getName());
-                System.out.println(filepart1.getSize());
-                System.out.println(filepart1.getContentType());
-                
-        		inputStream1=filepart1.getInputStream();
-        		bite1=convert(inputStream1);
-    		    }
-    		}
-	        try {
-	        	validationImageID( bite1 );
+	    if(photofile!=null) {
+		    inputStream=photofile.getInputStream();
+		    bite = convert(inputStream);
+        }
+	    doctor.setProfile_image( bite );
+	    
+        try {
+            validationEmail( email );
+        } catch ( Exception e ) {
+            erreurs.put( CHAMP_EMAIL, e.getMessage() );
+        }
+        doctor.setEmail( email );
 
-	        } catch ( Exception e ) {
-	            erreurs.put( CHAMP_ID_SCAN, e.getMessage() );
-	        }
-	        doctor.setId_scan(bite1);
-	        /*ID_SCAN*/
-	        
-	        /*MED_FILE*/
-	        if(medfile.getSize()!=0) {
-			    System.out.println(medfile.getName());
-			    System.out.println(medfile.getSize());
-			    System.out.println(medfile.getContentType());
-		    inputStream2=medfile.getInputStream();
-    		bite2=convert(inputStream2);}
-	        
-		    try {
-		        validationImageCertificat( bite2 );
-		    } catch ( Exception e ) {
-		        erreurs.put( CHAMP_MED_CERTIFICATE, e.getMessage() );
-		    }
-	        doctor.setMed_certificate(bite2);
-	        /*MED_FILE*/
-	        
-	        /*LOCAL_FILE*/
-		    if(localfile.getSize()!=0) {
-			    System.out.println(localfile.getName());
-			    System.out.println(localfile.getSize());
-			    System.out.println(localfile.getContentType());
-			    inputStream3=localfile.getInputStream();
-				bite3=convert(inputStream3);}
-	        
-		    try {
-		        validationImageLocalContract( bite3 );
-		    } catch ( Exception e ) {
-		        erreurs.put( CHAMP_LOCAL_CONTRACT, e.getMessage() );
-		    }
-		    doctor.setLocal_contract(bite3);
-		    /*LOCAL_FILE*/
-		    
-	        try {
-	            validationEmail( email );
-	        } catch ( Exception e ) {
-	            erreurs.put( CHAMP_EMAIL, e.getMessage() );
-	        }
-	        doctor.setEmail( email );
-	
-	        try {
-	            validationPrenom( firstname );
-	        } catch ( Exception e ) {
-	            erreurs.put( CHAMP_FIRSTNAME, e.getMessage() );
-	        }
-	        doctor.setFirstname( firstname );
-	
-	        try {
-	            validationNom( lastname );
-	        } catch ( Exception e ) {
-	            erreurs.put( CHAMP_LASTNAME, e.getMessage() );
-	        }
-	        doctor.setLastname( lastname );
-	
-	        try {
-	            validationTel( tel );
-	        } catch ( Exception e ) {
-	            erreurs.put( CHAMP_TEL, e.getMessage() );
-	        }
-	        doctor.setTel( tel );
+        try {
+            validationPrenom( firstname );
+        } catch ( Exception e ) {
+            erreurs.put( CHAMP_FIRSTNAME, e.getMessage() );
+        }
+        doctor.setFirstname( firstname );
+
+        try {
+            validationNom( lastname );
+        } catch ( Exception e ) {
+            erreurs.put( CHAMP_LASTNAME, e.getMessage() );
+        }
+        doctor.setLastname( lastname );
+
+        try {
+            validationTel( tel );
+        } catch ( Exception e ) {
+            erreurs.put( CHAMP_TEL, e.getMessage() );
+        }
+        doctor.setTel( tel );
         
         
         LangueImpl langueImpl = LangueImpl.getInstance();
@@ -189,14 +127,16 @@ public class DocteurFormService {
         doctor.setDispo(false);
         doctor.setNbrVisiters(0L);
         doctor.setTeleMedcine(false);
+        doctor.setRtelephonique(true);
         doctor.setConsultationDomicile(false);
+        doctor.setAdmin_confirmation(false);
         doctor.setId("ChIJyRyt2um2sw0RdIT0i7fQ-Lw");
         doctor.setVille(ville);
         doctor.setFirst_using(false);
 
         
         if ( erreurs.isEmpty() ) {
-            resultat = "Succ�s d'inscription!";
+            resultat = "Succés d'inscription!";
         } else {
             resultat = "Echec d'inscription";
         }
