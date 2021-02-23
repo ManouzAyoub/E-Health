@@ -12,7 +12,7 @@
 <!-- partial:index.partial.html -->
 <div class="container">  
   <form id="contact" action="<c:url value="SendEmail"/>" method="post">
-    <h3>Doctor's infos</h3>
+    <h3>Informations du clinique</h3>
     <fieldset>
       <input type="hidden" name="id" value="${clinic.cin}">
       <input placeholder="clinic's name" type="text" tabindex="1" value="${clinic.name }" autofocus>
