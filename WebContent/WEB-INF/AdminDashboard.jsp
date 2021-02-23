@@ -47,20 +47,7 @@
                             <span>Demmandes</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#" class="buttons dash" onClick="handleClick(event, 'pharmacy')">
-                            
-                            <img  id="phar" src="https://img.icons8.com/pastel-glyph/24/ffffff/hand-with-a-pill.png"  style="padding-right:12px"/>
-                            <span>Pharmacie</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="buttons dash" onClick="handleClick(event, 'hospital')">
-                            
-                            <img id="hos" src="https://img.icons8.com/material/24/ffffff/hospital-2.png"  style="padding-right:12px"/>
-                            <span>Hopitale</span>
-                        </a>
-                    </li>
+                    
                     <li>
                         <a href="#" class="buttons btn-comment" id="btn-comment"  onclick="handleClick(event, 'comments_Section')">
                             <img id="cmt" src="https://img.icons8.com/metro/24/ffffff/comments.png" style="padding-right:12px"/>
@@ -69,32 +56,46 @@
                     </li>
                     <li>
                         <a href="#" class="buttons dash"  onclick="handleClick(event, 'doctors_Section')">
-                            <span class="las la-user-circle"></span>
-                            <span>List des docteurs</span>
+                            <span class="las la-stream"></span>
+                            <span>Docteurs</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" class="buttons dash"  onclick="handleClick(event, 'cliniques_Section')">
-                            <span class="las la-user-circle"></span>
-                            <span>List des clinique</span>
+                            <span class="las la-stream"></span>
+                            <span>Clinique</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" class="buttons dash"  onclick="handleClick(event, 'pharmacies_Section')">
-                            <span class="las la-user-circle"></span>
-                            <span>List des pharmacies</span>
+                            <span class="las la-stream"></span>
+                            <span>Pharmacies</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" class="buttons dash"  onclick="handleClick(event, 'hospitals_Section')">
-                            <span class="las la-user-circle"></span>
-                            <span>List des hopitaux</span>
+                            <span class="las la-stream"></span>
+                            <span>Hopitaux</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="pharmaBtn" class="buttons dash" onClick="handleClick(event, 'pharmacy')">
+                            
+                            <img id="phar" src="https://img.icons8.com/pastel-glyph/24/ffffff/hand-with-a-pill.png"  style="padding-right:12px"/>
+                            <span>Nauvelle pharmacie</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" id="hospBtn" class="buttons dash" onClick="handleClick(event, 'hospital')">
+                            
+                            <img id="hos" src="https://img.icons8.com/material/24/ffffff/hospital-2.png"  style="padding-right:12px"/>
+                            <span>Nouvel hopital</span>
                         </a>
                     </li>
                     <br>
                     <li>
                         <a href="<c:url value="Deconnexion"></c:url>" class="buttons dash" >
-                            <span class="las la-user-circle"></span>
+                            <span class="las la-door-open"></span>
                             <span>Déconnexion</span>
                         </a>
                     </li>
@@ -266,7 +267,7 @@
                                 <div class="table-responsive">
                                     <c:if test="${comments == null}">
                                         <img src="<c:url value="/inc/images/greenNoCommentPic.png"></c:url>" class="center" width="200px"></td>
-                                        <h2 style="text-align: center;">Pas de commentaires !</h2>
+                                        <h5 style="text-align: center;">Pas de commentaires !</h5>
                                     </c:if>
 
                                     <c:if test="${comments != null}">
@@ -318,9 +319,9 @@
                                 <button onclick="seeAll('demmandes_sidebar', 'Demmandes')">Voire tous <span class="las la-arrow-right"></span></button>
                             </div>
                             <div class="card-body">
-                                <c:if test="${ docs.isEmpty() && clinics.isEmpty() }">
+                                <c:if test="${ docs == null && clinics == null }">
                                     <img src="<c:url value="/inc/images/demmande.png"></c:url>" class="center" width="100px"></td>
-                                    <h3 style="text-align: center;">Aucune demmande !</h3>
+                                    <h5 style="text-align: center;">Aucune demmande !</h5>
                                 </c:if>
                                 <c:if test="${ !docs.isEmpty() }">
                                     <c:forEach var="docteur" items="${docs}">
@@ -394,10 +395,10 @@
                                         </div>
                                     </c:forEach>
                                 </c:if>
-                                <c:if test="${clinics.isEmpty() && docs.isEmpty()}">
-                                    <div class="Form">
-                                        <div class="info">
-                                            <img src="<c:url value="/inc/images/demmande.png"></c:url>" class="center" width="250px"></td>
+                                <c:if test="${clinics == null && docs == null}">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <img src="<c:url value="/inc/images/demmande.png"></c:url>" class="center" width="200px"></td>
                                             <h3 style="text-align: center;">Aucune demmande !</h3>
                                         </div>
                                     </div>
@@ -408,93 +409,6 @@
                 </div>
             </main>
             <!-- demandes -->
-        
-            <!-- pharmacie -->
-            <main id="pharmacy" class="recent-grid-comments hide slideBar_main">
-                <div class="projects">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Ajouter un nouveau pharmacie</h3>
-                        </div>
-                        <div style="padding: 1rem;">
-                            <div class="table-responsive">
-                                <form  method="POST" action="<c:url value="/PharmacieForm" ></c:url>">
-                                    <div class="form-group">
-                                        <label for="inputName">Name</label>
-                                        <input type="text" name="name" class="form-control" id="inputName" placeholder="Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inpulVille">Ville</label>
-                                        <input type="text" name="ville"  class="form-control" id="inpulVille" placeholder="Ville">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputLastName">Address</label>
-                                        <input type="text" name="adresse"  class="form-control" id="inputAddress" placeholder="Address">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email</label>
-                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Phone</label>
-                                        <input type="tel" name="tel" class="form-control" id="exampleInputTel" placeholder="Tel">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Location ID</label>
-                                        <input type="text" name="id" class="form-control" id="exampleInputID" placeholder="LocationID">
-                                    </div>
-                        
-                                    <button type="submit">Submit</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </main>
-            <!-- pharmacie -->
-        
-            <!-- hospital -->
-            <main id="hospital" class="hide slideBar_main">
-                <div class="projects">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3>Ajouter un nouveau hopital</h3>
-                        </div>
-                        <div style="padding: 1rem;">
-                            <div class="table-responsive">
-                                <form method="POST" action="<c:url value="/HospitalForm" ></c:url>">
-                                    <div class="form-group">
-                                        <label for="inputName">Name</label>
-                                        <input type="text" name="name" class="form-control" id="inputName" placeholder="Name">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email</label>
-                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputVille">Ville</label>
-                                        <input type="text" name="ville" class="form-control" id="inputVille" placeholder="Ville">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="inputAddress">Address</label>
-                                        <input type="text" name="adresse" class="form-control" id="inputAddress" placeholder="Address">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputTel">Phone</label>
-                                        <input type="tel" name="tel" class="form-control" id="exampleInputTel" placeholder="Tel">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputID">Location ID</label>
-                                        <input type="text" name="id" class="form-control" id="exampleInputID" placeholder="LocationID">
-                                    </div>
-                                    <button type="submit">Submit</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>        
-            </main>
-            <!-- hospital -->
 
             <!-- comment section -->
             <main class="commentsSection hide slideBar_main" id="comments_Section">
@@ -575,22 +489,27 @@
                     <div class="projects">
                         <div class="card">
                             <div class="card-header">
-                                <h3>List des docteurs</h3>
+                                <h3>Docteurs</h3>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table width="100%">
-                                        <thead>
-                                            <tr>
-                                                <td>Username</td>
-                                                <td>Speciality</td>
-                                                <td>ville</td>
-                                                <td>Delete</td>
-                                                <td>show profile</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <c:if test="${!allDoctors.isEmpty()}">
+                                    <c:if test="${allDoctors == null}">
+                                        <img src="<c:url value="/inc/images/greenNoDoctorPic.png"></c:url>" class="center" width="200px"></td>
+                                        <h3 style="text-align: center;">Aucun docteur !</h3>
+                                    </c:if>
+
+                                    <c:if test="${allDoctors != null}">
+                                        <table width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <td>Username</td>
+                                                    <td>Speciality</td>
+                                                    <td>ville</td>
+                                                    <td>Delete</td>
+                                                    <td>show profile</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
                                                 <c:forEach var="entry" items="${allDoctors}">
                                                     <tr>
                                                         <td> ${entry.getFirstname()} ${entry.getLastname()}</td>
@@ -611,14 +530,10 @@
                                                     </tr>
                                                 
                                                 </c:forEach>
-                                            </c:if>
-                                            <c:if test="${allDoctors == null}">
-                                                <tr>
-                                                    <td colspan="5">AUCUN DOCTEUR</td>
-                                                </tr>
-                                            </c:if>
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </c:if>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -633,22 +548,28 @@
                     <div class="projects">
                         <div class="card">
                             <div class="card-header">
-                                <h3>List des cliniques</h3>
+                                <h3>Cliniques</h3>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table width="100%">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>Speciality</td>
-                                                <td>ville</td>
-                                                <td>Delete</td>
-                                                <td>show profile</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <c:if test="${!allCliniques.isEmpty()}">
+
+                                    <c:if test="${allCliniques == null}">
+                                        <img src="<c:url value="/inc/images/noClinicPic.png"></c:url>" class="center" width="200px"></td>
+                                        <h3 style="text-align: center;">Aucun clinique !</h3>
+                                    </c:if>
+
+                                    <c:if test="${allCliniques != null}">
+                                        <table width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>Speciality</td>
+                                                    <td>ville</td>
+                                                    <td>Delete</td>
+                                                    <td>show profile</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
                                                 <c:forEach var="entry" items="${allCliniques}">
                                                     <tr>
                                                         <td> ${entry.name}</td>
@@ -663,20 +584,16 @@
                                                         <td>
                                                             <a class="btn btn-success " href="<c:url value="/admin"><c:param name = "show_clinique" value = "${entry.cin}"/></c:url>">
                                                                 <img src="https://img.icons8.com/metro/14/ffffff/approve.png"/>
-                                                                &nbsp;show profile
+                                                                &nbsp;Profile
                                                             </a>
                                                         </td>
                                                     </tr>
                                                 
                                                 </c:forEach>
-                                            </c:if>
-                                            <c:if test="${allCliniques == null}">
-                                                <tr>
-                                                    <td colspan="5">AUCUN CLINIQUE</td>
-                                                </tr>
-                                            </c:if>
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </c:if>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -691,62 +608,66 @@
                     <div class="projects">
                         <div class="card">
                             <div class="card-header">
-                                <h3>List des pharmacies</h3>
+                                <h3>Pharmacies</h3>
+                                <button onclick="seeAll('pharmaBtn', 'pharmacy')">Ajouter une pharmacie <span class="las la-plus"></span></button>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table width="100%">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>telephone</td>
-                                                <td>ville</td>
-                                                <td>en garde</td>
-                                                <td>Delete</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <c:if test="${!allPharmacies.isEmpty()}">
-                                                <c:forEach var="entry" items="${allPharmacies}">
-                                                    <tr>
-                                                        <td> ${entry.name}</td>
-                                                        <td>${entry.tel}</td>
-                                                        <td>${entry.getVille()} </td>
-                                                        <td>
-                                                        <form method="POST" action="<c:url value="ToggleGarde"></c:url>" >
-                                                        
-                                                        <div class="custom-control custom-switch" >
-                                                            <c:set var="checked" value="chekeded"></c:set>
-                                                            <c:set var="id" value="${entry.idPharmacie}"></c:set>
-                                                            <c:if test="${pharmacieDao.getById(id).getEn_garde() == true}">
-                                                                    <input type="checkbox"  name="checkgarde"  onchange="toggleGarde('${entry.idPharmacie}')" class="custom-control-input keepcheck" id="customSwitch${entry.idPharmacie}" checked>
-                                                            </c:if>
-                                                            <c:if test="${pharmacieDao.getById(id).getEn_garde() == false}">
-                                                                    <input type="checkbox"  name="checkgarde" onchange="toggleGarde('${entry.idPharmacie}')" class="custom-control-input keepcheck" id="customSwitch${entry.idPharmacie}">
-                                                            </c:if>
-                                                                <label class="custom-control-label" for="customSwitch${entry.idPharmacie}">Toggle this switch</label>
-                                                        </div>
-                                                        <input type="text" hidden name="idd" value="${entry.idPharmacie }">
-                                                        <button id="submit-toggle${entry.idPharmacie}" type="submit" style="display:none;"></button>
-                                                        </form>
-                                                        </td>
-                                                        <td>
-                                                            <a class="btn btn-danger " href="<c:url value="/admin"><c:param name = "dlte_pharmacie" value = "${entry.idPharmacie}"/></c:url>">
-                                                                <img src="https://img.icons8.com/metro/14/ffffff/delete-sign.png" />
-                                                                &nbsp;delete
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                
-                                                </c:forEach>
-                                            </c:if>
-                                            <c:if test="${allPharmacies == null}">
+
+                                    <c:if test="${allPharmacies == null}">
+                                        <img src="<c:url value="/inc/images/noPharmaPic.png"></c:url>" class="center" width="200px"></td>
+                                        <h3 style="text-align: center;">Aucune pharmacie !</h3>
+                                    </c:if>
+
+                                    <c:if test="${allPharmacies != null}">
+                                        <table width="100%">
+                                            <thead>
                                                 <tr>
-                                                    <td colspan="5">AUCUN PHARMACIES</td>
+                                                    <td>Name</td>
+                                                    <td>telephone</td>
+                                                    <td>ville</td>
+                                                    <td>en garde</td>
+                                                    <td>Delete</td>
                                                 </tr>
-                                            </c:if>
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                <c:forEach var="entry" items="${allPharmacies}">
+                                                        <tr>
+                                                            <td> ${entry.name}</td>
+                                                            <td>${entry.tel}</td>
+                                                            <td>${entry.getVille()} </td>
+                                                            <td>
+                                                            <form method="POST" action="<c:url value="ToggleGarde"></c:url>" >
+                                                            
+                                                            <div class="custom-control custom-switch" >
+                                                                <c:set var="checked" value="chekeded"></c:set>
+                                                                <c:set var="id" value="${entry.idPharmacie}"></c:set>
+                                                                <c:if test="${pharmacieDao.getById(id).getEn_garde() == true}">
+                                                                        <input type="checkbox"  name="checkgarde"  onchange="toggleGarde('${entry.idPharmacie}')" class="custom-control-input keepcheck" id="customSwitch${entry.idPharmacie}" checked>
+                                                                </c:if>
+                                                                <c:if test="${pharmacieDao.getById(id).getEn_garde() == false}">
+                                                                        <input type="checkbox"  name="checkgarde" onchange="toggleGarde('${entry.idPharmacie}')" class="custom-control-input keepcheck" id="customSwitch${entry.idPharmacie}">
+                                                                </c:if>
+                                                                    <label class="custom-control-label" for="customSwitch${entry.idPharmacie}">Toggle this switch</label>
+                                                            </div>
+                                                            <input type="text" hidden name="idd" value="${entry.idPharmacie }">
+                                                            <button id="submit-toggle${entry.idPharmacie}" type="submit" style="display:none;"></button>
+                                                            </form>
+                                                            </td>
+                                                            <td>
+                                                                <a class="btn btn-danger " href="<c:url value="/admin"><c:param name = "dlte_pharmacie" value = "${entry.idPharmacie}"/></c:url>">
+                                                                    <img src="https://img.icons8.com/metro/14/ffffff/delete-sign.png" />
+                                                                    &nbsp;delete
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    
+                                                    </c:forEach>
+                                                
+                                            </tbody>
+                                        </table>
+                                    </c:if>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -761,22 +682,28 @@
                     <div class="projects">
                         <div class="card">
                             <div class="card-header">
-                                <h3>List des hopitales</h3>
+                                <h3>Hopitales</h3>
+                                <button onclick="seeAll('hospBtn', 'hospital')">Ajouter un hopital <span class="las la-plus"></span></button>
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table width="100%">
-                                        <thead>
-                                            <tr>
-                                                <td>Name</td>
-                                                <td>telephone</td>
-                                                <td>ville</td>
-                                                <td>Delete</td>
-                                                <td>show profile</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <c:if test="${!allHospitals.isEmpty()}">
+                                    <c:if test="${allHospitals == null}">
+                                        <img src="<c:url value="/inc/images/noHospitalPic.png"></c:url>" class="center" width="200px"></td>
+                                        <h3 style="text-align: center;">Aucune pharmacie !</h3>
+                                    </c:if>
+                                    
+                                    <c:if test="${allHospitals != null}">
+                                        <table width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                    <td>telephone</td>
+                                                    <td>ville</td>
+                                                    <td>Delete</td>
+                                                    <td>show profile</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
                                                 <c:forEach var="entry" items="${allHospitals}">
                                                     <tr>
                                                         <td> ${entry.name}</td>
@@ -797,14 +724,10 @@
                                                     </tr>
                                                 
                                                 </c:forEach>
-                                            </c:if>
-                                            <c:if test="${allHospitals == null}">
-                                                <tr>
-                                                    <td colspan="5">AUCUN Hopital</td>
-                                                </tr>
-                                            </c:if>
-                                        </tbody>
-                                    </table>
+                                            </tbody>
+                                        </table>
+                                    </c:if>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -812,6 +735,94 @@
                 </div>
             </main>
             <!-- !List Hospitals section -->
+
+            <!-- pharmacie --> 
+            <main id="pharmacy" class="recent-grid-comments hide slideBar_main">
+                <div class="projects">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Ajouter une nouvelle pharmacie</h3>
+                        </div>
+                        <div style="padding: 1rem;">
+                            <div class="table-responsive">
+                                <form  method="POST" action="<c:url value="/PharmacieForm" ></c:url>">
+                                    <div class="form-group">
+                                        <label for="inputName">Name</label>
+                                        <input type="text" name="name" class="form-control" id="inputName" placeholder="Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inpulVille">Ville</label>
+                                        <input type="text" name="ville"  class="form-control" id="inpulVille" placeholder="Ville">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputLastName">Address</label>
+                                        <input type="text" name="adresse"  class="form-control" id="inputAddress" placeholder="Address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email</label>
+                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Phone</label>
+                                        <input type="tel" name="tel" class="form-control" id="exampleInputTel" placeholder="Tel">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Location ID</label>
+                                        <input type="text" name="id" class="form-control" id="exampleInputID" placeholder="LocationID">
+                                    </div>
+                        
+                                    <button type="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- pharmacie -->
+        
+            <!-- hospital -->
+            <main id="hospital" class="hide slideBar_main">
+                <div class="projects">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Ajouter un nouvel hopital</h3>
+                        </div>
+                        <div style="padding: 1rem;">
+                            <div class="table-responsive">
+                                <form method="POST" action="<c:url value="/HospitalForm" ></c:url>">
+                                    <div class="form-group">
+                                        <label for="inputName">Name</label>
+                                        <input type="text" name="name" class="form-control" id="inputName" placeholder="Name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email</label>
+                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputVille">Ville</label>
+                                        <input type="text" name="ville" class="form-control" id="inputVille" placeholder="Ville">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputAddress">Address</label>
+                                        <input type="text" name="adresse" class="form-control" id="inputAddress" placeholder="Address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputTel">Phone</label>
+                                        <input type="tel" name="tel" class="form-control" id="exampleInputTel" placeholder="Tel">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputID">Location ID</label>
+                                        <input type="text" name="id" class="form-control" id="exampleInputID" placeholder="LocationID">
+                                    </div>
+                                    <button type="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>        
+            </main>
+            <!-- hospital -->
+
         </div>
 
     <script src='http://code.jquery.com/jquery-1.10.2.min.js'></script>
