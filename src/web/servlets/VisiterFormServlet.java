@@ -40,9 +40,8 @@ public class VisiterFormServlet extends HttpServlet {
     }
 
     protected void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
-        
-    	HttpSession session = request.getSession(false);
-    	 if (session == null) {
+    
+    		 	System.out.println("test");
     		 
     		 	UserImpl form = UserImpl.getInstance();
     	        
@@ -65,11 +64,6 @@ public class VisiterFormServlet extends HttpServlet {
     	            this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 
     	        }
-		} else {
-			
-			response.sendRedirect(request.getContextPath() + "/Home");
-			
-		}
 
     }
 

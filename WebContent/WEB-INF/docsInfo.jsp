@@ -14,7 +14,7 @@
   <form id="contact" action="<c:url value="SendEmail"/>" method="post">
     <h3>Doctor's infos</h3>
     <fieldset>
-    	<input type="text" name="id" value="${ doc.cin }" hidden />
+      <input type="text" name="id" value="${ doc.cin }" hidden />
       <input placeholder="doc's name" type="text" tabindex="1" value="${doc.firstname }" autofocus>
     </fieldset>
     <fieldset>
@@ -28,9 +28,6 @@
     </fieldset>
     <fieldset>
       <input placeholder="doc's speciality" type="text" value="${doc.speciality }" tabindex="4" >
-    </fieldset>
-    <fieldset>
-      <input placeholder="doc practices in a " type="text" value="${doc.practice }" tabindex="4" >
     </fieldset>
     <fieldset>
       	<button name="approve" type="submit" id="demmande_approve" data-submit="...Sending">approve</button>
