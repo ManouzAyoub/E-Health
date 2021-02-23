@@ -24,7 +24,6 @@ public class DocteurFormService {
     private static final String CHAMP_LASTNAME        = "lastname";
     private static final String CHAMP_EMAIL           = "email";
     private static final String CHAMP_SPECIALITY      = "speciality";
-    private static final String CHAMP_PRACTICE        = "med_practice";
     private static final String CHAMP_TEL             = "tel";
     private static final String CHAMP_LANGUAGES       = "languages";
     private static final String CHAMP_PROFILE_IMAGE   = "profile_image";
@@ -54,7 +53,6 @@ public class DocteurFormService {
         String tel         = request.getParameter( CHAMP_TEL );
         String speciality  = request.getParameter( CHAMP_SPECIALITY );
         String[] languages = request.getParameterValues( CHAMP_LANGUAGES );
-        String practice    = request.getParameter(CHAMP_PRACTICE);
         Part photofile     = request.getPart(CHAMP_PROFILE_IMAGE);
 		
 		InputStream inputStream = null;
@@ -111,19 +109,13 @@ public class DocteurFormService {
         } catch ( Exception e ) {
             erreurs.put( CHAMP_LANGUAGES, e.getMessage() );
         }
+        
         doctor.setLangues(les_langues);
-        
-        try {
-            validationPractice( practice );
-        } catch ( Exception e ) {
-            erreurs.put( CHAMP_PRACTICE  , e.getMessage() );
-        }
-        doctor.setPractice(practice);
-        
         doctor.setHeureDepart("9:00");
         doctor.setHeureFin("15:00");
         doctor.setJourDepart("Lundi");
         doctor.setJourFin("Vendredi");
+        doctor.setConger(false);
         doctor.setDispo(false);
         doctor.setNbrVisiters(0L);
         doctor.setTeleMedcine(false);
@@ -133,6 +125,7 @@ public class DocteurFormService {
         doctor.setId("ChIJyRyt2um2sw0RdIT0i7fQ-Lw");
         doctor.setVille(ville);
         doctor.setFirst_using(false);
+        doctor.setSpeciality(speciality);
 
         
         if ( erreurs.isEmpty() ) {
@@ -140,8 +133,7 @@ public class DocteurFormService {
         } else {
             resultat = "Echec d'inscription";
         }
-
-        doctor.setSpeciality(speciality);
+        
         return doctor;
     }
     

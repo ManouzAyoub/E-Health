@@ -52,14 +52,14 @@
 
                         <!-- languages -->
            		       
-                             <select name="languages" class="selectpicker" style="margin:10px 0" data-width="fit"  multiple>
-                         <option  data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
-                         <option  data-content='<span class="flag-icon flag-icon-mx"></span> Spanish'>Spanish</option>
-                         <option  data-content='<span class="flag-icon flag-icon-cn"></span> Chinese'>Chinese</option>
-                         <option  data-content='<span class="flag-icon flag-icon-fr"></span> Frensh'>Frensh</option>
-                         <option  data-content='<span class="flag-icon flag-icon-ma"></span> Arabic'>Arabic</option>
-                            </select>
-                            <span class="erreur" style="display:block" >${form.erreurs['languages']}</span>
+                        <select name="languages" class="selectpicker" style="margin:10px 0; width:100%" data-width="fit"  multiple>
+		                      <option  data-content='<span class="flag-icon flag-icon-us"></span> English'>English</option>
+		                      <option  data-content='<span class="flag-icon flag-icon-mx"></span> Spanish'>Spanish</option>
+		                      <option  data-content='<span class="flag-icon flag-icon-cn"></span> Chinese'>Chinese</option>
+		                      <option  data-content='<span class="flag-icon flag-icon-fr"></span> Frensh'>Frensh</option>
+		                      <option  data-content='<span class="flag-icon flag-icon-ma"></span> Arabic'>Arabic</option>
+                       </select>
+                       <span class="erreur" style="display:block" >${form.erreurs['languages']}</span>
                         
                         <!-- languages -->
                         
@@ -77,26 +77,15 @@
                          <span class="erreur" >${form.erreurs['id_scan']}</span>
                       </div> 
                       <!-- !Profile Photo -->
-                     
-                      
-                      <!-- select  -->                      
                         
-                        <div class="form-group" style="margin-top:15px; margin-bottom:40px" onchange="changeFunc();">
-                        <select  name="med_practice" id="practice" class="select-css">
-                            <option value="none">-- domaine médical--</option>
-                            <option value="cabinet_medical">cabinet médical</option>
-                            <option value="clinique">clinique</option>
-                        </select>
-                        <span class="erreur" >${form.erreurs['med_practice']}</span> 
-                        </div>
-                        
-                        <div class="form-group" id="Speciality" style="display:none;">
-                        <select name="speciality" class="select-css" onmousedown="if(this.options.length>8){this.size=8;}"  onchange='this.size=0;' onblur="this.size=0;">
-	                         <c:forEach var="specia" items="${Instances.specialities()}">
-	                             <option value="${specia}" ${clinique.speciality.equals(specia) ? 'selected' : '' } }>${specia}</option>
-	                         </c:forEach>
-                        </select>
-                        </div>
+                       <div class="form-group" id="Speciality">
+                       		<label class="label-file">Merci de spécifier votre specialitier :</label>
+	                        <select name="speciality" class="select-css" >
+		                         <c:forEach var="specia" items="${Instances.specialities()}">
+		                             <option value="${specia}" ${clinique.speciality.equals(specia) ? 'selected' : '' } }>${specia}</option>
+		                         </c:forEach>
+	                        </select>
+                       </div>
                         <!-- select  -->
                         
                         

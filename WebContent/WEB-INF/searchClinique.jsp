@@ -104,7 +104,7 @@
                 <div class="row font-montserrat font-size-20" align="center" style="font-weight: bold;">
                     <div class="col-lg-2" style="color: white;">Localisation : </div>
                     <div class="col-lg-10 input-group">
-                        <input id="autocomplete" name="adresse" class="form-control py-2 border-right-0 border" placeholder="Localisation">
+                        <input id="autocomplete" name="adresse" class="form-control py-2 border-right-0 border" value="${adresse}" placeholder="Localisation">
                         <span class="input-group-append" style="background-color: white;">
                           <button class="btn btn-outline-info border-left-0 border" type="submit">
                                 <i class="fa fa-search"></i>
@@ -179,9 +179,11 @@
 	                        <!-- !Element -->
 	                    </c:forEach>
                     </c:if>
-					<c:if test="${cliniques == null }">
-						<c:out value="aucun clinique"></c:out>
-					</c:if>
+					<c:if test="${cliniques == null}">
+						<br>
+                        <img src="<c:url value="/inc/images/noClinicPic.png"></c:url>" class="center" width="200px"></td>
+                        <h5 style="text-align: center;">Aucun Clinique !</h5>
+                    </c:if>
                 </div>
     
                 <!--Search bar -->

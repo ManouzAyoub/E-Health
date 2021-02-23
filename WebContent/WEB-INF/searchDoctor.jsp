@@ -96,7 +96,7 @@
 	                <div class="row font-montserrat font-size-20" align="center" style="font-weight: bold;">
 	                    <div class="col-lg-2" style="color: white;">Localisation : </div>
 	                    <div class="col-lg-10 input-group">
-	                        <input class="form-control py-2 border-right-0 border" name="localisation" placeholder="Localisation">
+	                        <input class="form-control py-2 border-right-0 border" name="localisation" value="${adresse }" placeholder="Localisation">
 	                        <span class="input-group-append" style="background-color: white;">
 	                          <button type="submit" class="btn btn-outline-info border-left-0 border" >
 	                                <i class="fa fa-search"></i>
@@ -246,11 +246,11 @@
 		                    </div>
 	                    </c:forEach>
 					</c:if>
-					<c:if test="${doctors == null }">
-						<div class="border py-3 mt-3">
-							<span>Empty</span>
-						</div>
-					</c:if>
+					<c:if test="${doctors == null}">
+						<br>
+                        <img src="<c:url value="/inc/images/noDoctorPic.png"></c:url>" class="center" width="200px"></td>
+                        <h5 style="text-align: center;">Aucun Docteur !</h5>
+                    </c:if>
                     
                 </div>
     

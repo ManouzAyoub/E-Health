@@ -40,9 +40,11 @@ public class SearchDoctorServlet extends HttpServlet {
 			
 			request.setAttribute(ATT_DOCTORS, data_doctors);
 			request.setAttribute("docteurDao", docteurDao);
+			request.setAttribute("adresse", adresse);
 			this.getServletContext().getRequestDispatcher( SUCESS ).forward(request, response);
 		}else {
 			request.setAttribute("docteurDao", docteurDao);
+			request.setAttribute("adresse", adresse);
 			this.getServletContext().getRequestDispatcher( SUCESS ).forward(request, response);
 		}
 		

@@ -30,7 +30,6 @@ public class Docteur extends User{
 	    private Boolean teleMedcine;
 	    private Boolean consultationDomicile;
 	    private String gender;
-	    private String practice;
 	    private Boolean dispo;
 	    private Boolean admin_confirmation;
 	    private int age;
@@ -91,14 +90,6 @@ public class Docteur extends User{
 	
 		public void setSpeciality(String speciality) {
 			this.speciality = speciality;
-		}
-	
-		public String getPractice() {
-			return practice;
-		}
-	
-		public void setPractice(String practice) {
-			this.practice = practice;
 		}
 	
 		public byte[] getProfile_image() {
