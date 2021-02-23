@@ -17,8 +17,9 @@
 				<div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
 					<h5 class="text-uppercase mb-4 font-weight-bold ">E-health</h5>
 					<hr class="mb-4">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscingei labore et dolore magna aliqua. Ut enim minim
-						veniam, nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+					<p>e-heath est un site qui vous offre
+					 la possibilité de rechercher et localiser 
+					 rapidement et facilement un établissement de santé. </p>
 				</div>
 				<div class="col-md-4 col-lg-2 col-xl-2 mx-auto mt-3 " >
 					<h5 class="text-uppercase mb-4 font-weight-bold  ">liens utiles</h5>

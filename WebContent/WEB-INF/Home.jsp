@@ -119,8 +119,8 @@
                 Vous cherchez <span class="animate"></span>
             </h1>
             <p class="text-description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ratione quo cupiditate illo, ev
-                eniet hic nesciunt 
+                Grâce à notre site internet vous pouvez tout faire y compris la recherche d'un cabinet médical,
+                d'une clinique, d'une pharmacie de garde, d'un hôpital selon VOS critères de choix 
             </p> 
             <div class="buttons">
                 <button onclick="handleClickConnexion()" class="sign-in cta">
