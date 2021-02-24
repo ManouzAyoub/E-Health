@@ -12,11 +12,7 @@
 
 		<!-- Database Connection Settings -->
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-<<<<<<< HEAD
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3307/e-health</property>
-=======
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/java</property>
->>>>>>> ec3ad4e09b37d6a6c7a30c7433a74771e58a479b
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password"></property>
 		<property name="hibernate.connection.pool_size">10</property>

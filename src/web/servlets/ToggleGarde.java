@@ -37,9 +37,24 @@ public class ToggleGarde extends HttpServlet {
         	  System.out.println("false");
         	  pharmacie.setEn_garde(false); 
            }
+           
     	   Pharmacie pharmaci = Instances.pharmacieDao.edit(pharmacie);
     	   response.sendRedirect( request.getContextPath() + "/toAdminData");
-		}  else {
+    	   
+		} else if( session.getAttribute("docteur") != null) {
+			
+			   String id = request.getParameter("togl");
+	           String checkbox = request.getParameter("etat");
+	           Docteur docteur = Instances.docteurDao.getById(Long.valueOf(id));
+	           if(checkbox != null) {
+	        	   docteur.setConger(true);
+	           }
+	           else{
+	        	  docteur.setConger(false); 
+	           }
+	    	   Docteur d = Instances.docteurDao.edit(docteur);
+	    	   response.sendRedirect( request.getContextPath() + "/DataDoctor");
+		}else {
 			response.sendRedirect(request.getContextPath() + "/Home");
 		}
 	}

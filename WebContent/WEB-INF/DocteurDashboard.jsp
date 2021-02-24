@@ -203,7 +203,7 @@
                             </div>
                             <div class="demmande-card-body">
                                 <div class="table-responsive">
-                                    <c:if test="${ (hopitaux == null || hopitaux.isEmpty()) && (cliniques == null || cliniques.isEmpty()) }">
+                                    <c:if test="${ (hopitaux == null) && (cliniques == null) }">
                                         <img src="<c:url value="/inc/images/noClinicPic.png"></c:url>" class="center" width="100px"></td>
                                         <h2 style="text-align: center;">Aucune association !</h2>
                                     </c:if>
@@ -638,7 +638,7 @@
                             </div>
                         </form>
 
-                        <form method="POST" action="<c:url value=""></c:url>">
+                        <form method="POST" action="<c:url value="ToggleGarde"></c:url>">
                             <div class="etatCbinet">
                                 <div class="demmande_card">
                                     <div class="card-header">
@@ -649,6 +649,7 @@
                                         <div class="toggleDiv">
                                             <label>Congé</label>
                                             <label class="switch">
+                                            	<input type="text" name="togl" value="${docteur.cin }" />
                                                 <input type="checkbox" name="etat" class="toggleInput" checked onclick="activetoggleInputs()">
                                                 <span class="slider round"></span>
                                             </label>
@@ -891,7 +892,7 @@
                         </div>
                         <div class="demmande-card">
                             <div class="table-responsive">
-                                <c:if test="${ (hopitaux == null || hopitaux.isEmpty()) && (cliniques == null || cliniques.isEmpty()) }">
+                                <c:if test="${ (hopitaux == null) && (cliniques == null) }">
                                     <img src="<c:url value="/inc/images/noClinicPic.png"></c:url>" class="center" width="100px"></td>
                                     <h2 style="text-align: center;">Aucun clinique !</h2>
                                 </c:if>
@@ -923,7 +924,7 @@
                             <h3>Authentification</h3>
                         </div>
                         <div class="demmande-card">
-                            <form action="">
+                            <form method="POST" action="<c:url value="EuthentificationDoc"></c:url>">
                                 <div class="table-responsive">
                                     <table style="width: 100%;">
                                         <tr>
