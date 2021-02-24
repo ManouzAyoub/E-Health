@@ -92,6 +92,13 @@
                             <span>Nouvel hopital</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="#" id="hospBtn" class="buttons dash" onClick="handleClick(event, 'new_admin')">
+                            
+                            <img id="hos" src="https://img.icons8.com/material/24/ffffff/hospital-2.png"  style="padding-right:12px"/>
+                            <span>Nouveau admin</span>
+                        </a>
+                    </li>
                     <br>
                     <li>
                         <a href="<c:url value="Deconnexion"></c:url>" class="buttons dash" >
@@ -822,6 +829,42 @@
                 </div>        
             </main>
             <!-- hospital -->
+
+            <!-- pharmacie --> 
+            <main id="new_admin" class="recent-grid-comments hide slideBar_main">
+                <div class="projects">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Ajouter un nouveau admin</h3>
+                        </div>
+                        <div style="padding: 1rem;">
+                            <div class="table-responsive">
+                                <form  method="POST" action="<c:url value="/NewAdmin" ></c:url>">
+                                    <div class="form-group">
+                                        <label for="inputName">Nom</label>
+                                        <input type="text" name="nom" class="form-control" id="inputName" placeholder="Nom">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inpulVille">Prénom</label>
+                                        <input type="text" name="prenom"  class="form-control" id="inpulVille" placeholder="Prénom">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputLastName">Téléphone</label>
+                                        <input type="text" name="phone"  class="form-control" id="inputAddress" placeholder="Téléphone">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email</label>
+                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                                    </div>
+                        
+                                    <button type="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- pharmacie -->
 
         </div>
 

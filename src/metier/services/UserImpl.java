@@ -57,6 +57,20 @@ public class UserImpl {
 		}
 	}
 
+	public User VerifyEmail( String email) {
+    	String hql="select u from User u where u.email = :email ";
+        Query query = session.createQuery( hql );
+        query.setParameter("email", email);
+        User user = new User();
+        List<User> list = query.getResultList();
+        if (list.size() == 0) {
+			return null;
+		}else {
+			return list.get(0);
+		}
+		    		
+	}
+	
     public User visitorFormService( HttpServletRequest request ) {
         String firstname = request.getParameter( CHAMP_FIRSTNAME );
         String lastname = request.getParameter( CHAMP_LASTNAME );

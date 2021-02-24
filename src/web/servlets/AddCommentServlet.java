@@ -168,6 +168,8 @@ public class AddCommentServlet extends HttpServlet {
 		if (qui.equals("Clinique")) {
 			commentaire.setClinique(c);
 		}
+		commentaire.setApprov(false);
+		commentaire.setDel(false);
 		commentaire.setUser(u);
 		Instances.commentDao.add(commentaire);
 	}

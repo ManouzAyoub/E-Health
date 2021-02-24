@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="<c:url value="/FrontENd/Styling/home.css" />">
     <link rel="stylesheet" href="<c:url value="/FrontEnd/Styling/index.css" />">
     <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/searchClinique/pageLogo.png"></c:url>" />
+
+    <!-- Google API-->
+    <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcybDNa2i9CePsLK9l7rAhcAafXMGALcY&libraries=places">
+    </script>
       
       <style>
       .popup_section1#blur.active, #blurimg.active{
@@ -69,11 +74,11 @@
       </style>   
         
 </head>
-<body >
+<body onload="initialize()">
     <header>
         <div class="header-links">
             <div class="logo-container">
-                <h3 ><a  class="logo">E-health</a></h3>
+                <h3 ><a  class="logo"><img src="<c:url value="/inc/images/EHealthLogo.png"></c:url>" width="250px"></a></h3>
             </div>
             <nav>
                 <ul class="nav-links">
@@ -101,7 +106,9 @@
             		<form method="get" action="<c:url value="Deconnexion" />">
             			<button type="submit" class="sign-up" style="padding:0px 5px" >Log Out</button>
             		</form>
-	               	
+	               	<form method="get" action="<c:url value="UserProfile" />">
+            			<button type="submit" class="sign-up" style="padding:0px 5px" >Profile</button>
+            		</form>
             	</div>
             </c:if>
             
@@ -249,6 +256,19 @@
 	    function handleClickConnexion(){
 	    	document.getElementById('conBtn').click();
 	    }
+
+        var autocomplete;
+        function initialize() {
+            var localisations = document.getElementsByClassName("localisation");
+            for(var i = 0; i < localisations.length; i++){
+                autocomplete = new google.maps.places.Autocomplete(
+                (localisations[i]),
+                { types: ['geocode'] });
+                google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                });
+            }
+            
+        }
     </script>
 
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>

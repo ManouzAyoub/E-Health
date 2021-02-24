@@ -75,6 +75,21 @@ function voireAssociations(){
     btn[4].click();
 }
 
+function activetoggleInputs(){
+    document.getElementById("enregistrerToggle").style.display = "inline";
+    document.getElementById("annulerToggle").style.display = "inline";
+}
+
+function modifierAuth() {
+    authInputs = document.getElementsByClassName("authInput");
+    for(var i = 0; i < authInputs.length; i++) {
+        authInputs[i].disabled = false;
+    }
+    document.getElementById("modifierAuth").style.display = "none";
+    document.getElementById("enregistrerAuth").style.display = "inline";
+    document.getElementById("annulerAuth").style.display = "inline";
+}
+
 function modifierInfoPerso() {
     infoInputs = document.getElementsByClassName("infoInput");
     for(var i = 0; i < infoInputs.length; i++) {
