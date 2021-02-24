@@ -106,7 +106,9 @@
             		<form method="get" action="<c:url value="Deconnexion" />">
             			<button type="submit" class="sign-up" style="padding:0px 5px" >Log Out</button>
             		</form>
-	               	
+	               	<form method="get" action="<c:url value="UserProfile" />">
+            			<button type="submit" class="sign-up" style="padding:0px 5px" >Profile</button>
+            		</form>
             	</div>
             </c:if>
             

@@ -226,12 +226,12 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <c:if test="${comments == null}">
+                                <c:if test="${comments.isEmpty()}">
                                     <img src="<c:url value="/inc/images/noCommentPic.png"></c:url>" class="center" width="200px"></td>
                                     <h2 style="text-align: center;">Pas de commentaires !</h2>
                                 </c:if>
 
-                                <c:if test="${comments != null}">
+                                <c:if test="${!comments.isEmpty()}">
                                     <table width="100%">
                                         <thead>
                                             <tr>
@@ -299,13 +299,13 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <c:if test="${comments == null}">
+                            <c:if test="${comments.isEmpty()}">
                                 <img src="<c:url value="/inc/images/noCommentPic.png"></c:url>" class="center" width="250px"></td>
                                 <h2 style="text-align: center;">Pas de commentaires !</h2>
                             </c:if>
                             
 
-                            <c:if test="${comments != null}">
+                            <c:if test="${!comments.isEmpty()}">
                                 <table width="100%" >
                                     <thead>
                                         <tr>
