@@ -3,168 +3,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
-    <!--  All snippets are MIT license http://bootdey.com/license -->
-    <title>${user.firstname} ${user.lastname}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <style type="text/css">
-    	
+  <meta charset="utf-8">
+  <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
+  <!--  All snippets are MIT license http://bootdey.com/license -->
+  <title>${user.firstname} ${user.lastname}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CDN -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-        body{
-            margin-top:20px;
-            background:#f5f5f5;
-        }
-        /**
-        * Panels
-        */
-        /*** General styles ***/
-        .panel {
-          box-shadow: none;
-        }
-        .panel-heading {
-          border-bottom: 0;
-        }
-        .panel-title {
-          font-size: 17px;
-        }
-        .panel-title > small {
-          font-size: .75em;
-          color: #999999;
-        }
-        .panel-body *:first-child {
-          margin-top: 0;
-        }
-        .panel-footer {
-          border-top: 0;
-        }
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
-        .panel-default > .panel-heading {
-            color: #333333;
-            background-color: transparent;
-            border-color: rgba(0, 0, 0, 0.07);
-        }
+  <!-- Custom CSS file -->
+  <link rel="stylesheet" href="<c:url value="/DoctorSearch/style.css" />">
 
-        form label {
-            color: #999999;
-            font-weight: 400;
-        }
-
-        .form-horizontal .form-group {
-          margin-left: -15px;
-          margin-right: -15px;
-        }
-        @media (min-width: 768px) {
-          .form-horizontal .control-label {
-            text-align: right;
-            margin-bottom: 0;
-            padding-top: 7px;
-          }
-        }
-
-        .profile__contact-info-icon {
-            float: left;
-            font-size: 18px;
-            color: #999999;
-        }
-        .profile__contact-info-body {
-            overflow: hidden;
-            padding-left: 20px;
-            color: #999999;
-        }
-        .profile-avatar {
-          width: 200px;
-          position: relative;
-          margin: 0px auto;
-          margin-top: 196px;
-          border: 4px solid #f3f3f3;
-        }
-    </style>
 </head>
 <body>
-
-
-<div class="container bootstrap snippets bootdeys">
-<div class="row">
-  <div class="col-xs-12 col-sm-9">
-    <form method="POST" action="<c:url value="UserProfile"></c:url>"  class="form-horizontal">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-        <h4 class="panel-title">Votre informations</h4>
+  <header class="color-primary-bg py-2" style="width: 100%;">
+    <div class="row" >
+        <div class="col-lg-3 d-flex justify-content-start">
+            <a class="navbar-brand mx-3" href="<c:url value="/Home"></c:url>"><img src="<c:url value="/DoctorProfile/EHealthLogo.png"></c:url>" width="200px" alt=""></a>
+            <button type="button" class="btn show-mobile font-size-20 mt-2 font-gilroy-bold color-second text-right" id="showNavBarBtn" data-target="#nav_bar">
+                <i class="fas fa-bars"></i>                      
+            </button>
         </div>
-        <div class="panel-body">
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Nom</label>
-            <div class="col-sm-10">
-              <input type="text" name="nom" value="${user.lastname}" class="form-control">
+
+        <div class="col-lg-6 d-flex justify-content-center">
+            <div class="row" id="nav_bar">
+
+                <div class="col-sm-1"></div>
+
+                <div class="col-sm-2">
+                    <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-1"></c:url>">Acceuil</a>
+                </div>
+
+                <div class="col-sm-2">
+                    <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-2"></c:url>">Medecin</a>
+                </div>
+
+                <div class="col-sm-2">
+                    <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-3"></c:url>">Hopital</a>
+                </div>
+
+                <div class="col-sm-2">
+                    <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-4"></c:url>">Clinique</a>
+                </div>
+
+                <div class="col-sm-2">
+                    <a class="nav-link text-white font-gilroy-bold font-size-20" href="<c:url value="/Home#section-5"></c:url>">Pharmacie</a>
+                </div>
+
+                <div class="col-sm-1"></div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 d-flex justify-content-lg-end">
+            <table>
+                <tr>
+                    <td class="py-0"><h5 class=" font-size-14 text-white font-montserrat">${ sessionScope.visiter.getFirstname() } ${ sessionScope.visiter.getLastname() }</h5></td>
+                </tr>
+                <tr>
+                    <c:if test="${ sessionScope.visiter != null || sessionScope.admin != null || sessionScope.clinique != null || sessionScope.docteur != null }">
+                      <td class="py-0"><a href="<c:url value="Deconnexion"></c:url>" class="btn btn-outline-dark btn-info font-size-12 py-1 text-white">Deconnexion</a></td>
+                    </c:if>
+                    <c:if test="${ sessionScope.visiter == null && sessionScope.admin != null && sessionScope.clinique != null && sessionScope.docteur != null}">
+                      <td class="py-0"><a href="<c:url value="signIn"></c:url>" class="btn btn-outline-dark btn-info font-size-12 py-1 text-white">connexion</a></td>
+                    </c:if>
+                </tr>
+            </table>
+        </div>
+    </div>
+  </header>
+
+  <form method="POST" action="<c:url value="UserProfile"></c:url>"  class="form-horizontal">
+    <div class="container container-fluid border my-3">
+      <div class="row py-2 border-bottom bg-light">
+        <div class="col-lg-12">
+          <h3 class="font-gilroy text-dark">Votre informations</h3>
+        </div>
+      </div>
+
+      <div class="row py-2">
+        <div class="col-lg-12">
+          <div class="row form-group">
+            <label class="col-lg-4">Nom</label>
+            <div class="col-lg-8">
+              <input type="text" name="nom" value="${user.lastname}" class="infoInput form-control" disabled>
             </div>
           </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Prénom</label>
-            <div class="col-sm-10">
-              <input type="text" name="prenom" value="${user.firstname}" class="form-control">
+
+          <div class="row form-group">
+            <label class="col-lg-4">Prénom</label>
+            <div class="col-lg-8">
+              <input type="text" name="prenom" value="${user.firstname}" class="infoInput form-control" disabled>
             </div>
           </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Email</label>
-            <div class="col-sm-10">
-              <input type="text" name="email" value="${user.email}" class="form-control">
+
+          <div class="row form-group">
+            <label class="col-lg-4">Email</label>
+            <div class="col-lg-8">
+              <input type="text" name="email" value="${user.email}" class="infoInput form-control" disabled>
             </div>
           </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">Téléphone</label>
-            <div class="col-sm-10">
-              <input type="text" name="tel" value="${user.tel}" class="form-control">
+
+          <div class="row form-group">
+            <label class="col-lg-4">Téléphone</label>
+            <div class="col-lg-8">
+              <input type="text" name="tel" value="${user.tel}" class="infoInput form-control" disabled>
             </div>
           </div>
         </div>
       </div>
 
-      
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-        <h4 class="panel-title">Security</h4>
+      <div class="row py-2">
+        <div class="col-lg-12">
+          <div class="d-flex justify-content-center">
+            <label id="modifierInfoModif" class="btn btn-info" onclick="activeInfoModif()">Modifier</label>
+            <label id="enregistrerInfoModif" name="changeInfo" type="submit" class="btn btn-info" style="display: none;">Enregistrer</label>
+            <label id="anullerInfoModif" class="btn btn-info ml-3" onclick="reloadPage()" style="display: none;">Annuler</label>
+          </div>
         </div>
-          <div class="panel-body">
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Current password</label>
-              <div class="col-sm-10">
-                <input type="password" name="last_pass" class="form-control">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">New password</label>
-              <div class="col-sm-10">
-                <input type="password" name="new_pass" class="form-control">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-2 control-label">Confirmation password</label>
-              <div class="col-sm-10">
-                <input type="password" name="confirmation" class="form-control">
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <div class="col-sm-10 col-sm-offset-2">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="reset" class="btn btn-default">Cancel</button>
-              </div>
+      </div>
+    </div>
+  </form>
+
+  <form method="POST" action="<c:url value="UserProfile"></c:url>">
+    <div class="container container-fluid border my-3">
+      <div class="row py-2 border-bottom bg-light">
+        <div class="col-lg-12">
+          <h3 class="font-gilroy text-dark">Authentification</h3>
+        </div>
+      </div>
+
+      <div class="row py-2">
+
+        <div class="col-lg-12">
+          <div class="row form-group">
+            <label class="col-lg-4 control-label">Current password</label>
+            <div class="col-lg-8">
+              <input type="password" name="last_pass" class="passInput form-control" disabled>
             </div>
           </div>
-      </div>
-    </form>
-  </div>
-</div>
-</div>
-<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	
 
-</script>
+          <div class="row form-group">
+            <label class="col-lg-4 control-label">New password</label>
+            <div class="col-lg-8">
+              <input type="password" name="new_pass" class="passInput form-control" disabled>
+            </div>
+          </div>
+
+          <div class="row form-group">
+            <label class="col-lg-4 control-label">Confirmation password</label>
+            <div class="col-lg-8">
+              <input type="password" name="confirmation" class="passInput form-control" disabled>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row py-2">
+        <div class="col-lg-12">
+          <div class="d-flex justify-content-center">
+            <label id="modifierPassModif" class="btn btn-info" onclick="activePassModif()">Modifier</label>
+            <label id="enregistrerPassModif" name="changeInfo" type="submit" class="btn btn-info" style="display: none;">Enregistrer</label>
+            <label id="anullerPassModif" class="btn btn-info ml-3" onclick="reloadPage()" style="display: none;">Annuler</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  <script>
+    function activeInfoModif(){
+      var infoInputs = document.getElementsByClassName("infoInput");
+      for(var i = 0; i < infoInputs.length; i++) {
+        infoInputs[i].disabled = false;
+      }
+
+      document.getElementById("modifierInfoModif").style.display = "none";
+      document.getElementById("enregistrerInfoModif").style.display = "inline";
+      document.getElementById("anullerInfoModif").style.display = "inline";
+    }
+    
+    function activePassModif(){
+      var passInputs = document.getElementsByClassName("passInput");
+      for(var i = 0; i < passInputs.length; i++) {
+        passInputs[i].disabled = false;
+      }
+
+      document.getElementById("modifierPassModif").style.display = "none";
+      document.getElementById("enregistrerPassModif").style.display = "inline";
+      document.getElementById("anullerPassModif").style.display = "inline";
+    }
+
+    function reloadPage() {
+      location.reload();
+    }
+  </script>
+  
+  <!-- Custom Javascript -->
+  <script src="<c:url value="/DoctorSearch/JSIndex.js" />"></script>
 </body>
 </html>
