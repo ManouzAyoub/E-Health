@@ -5,10 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Document</title>
+    <title>${docteur.firstname} ${docteur.lastname}</title>
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     <link rel="stylesheet" href="<c:url value="/DoctorDashboard/assets/css/dashboard.css"></c:url>">
 
+	<!-- LOGO -->
+    <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/inc/images/pageLogo.png" />" />
+    
     <!-- Google Maps API -->
     <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcybDNa2i9CePsLK9l7rAhcAafXMGALcY&libraries=places&callback=initMap"> </script>
 </head>
@@ -17,7 +20,7 @@
     <input type="checkbox" id="nav-toggle">
     <div class="sidebar">
         <div class="sidebar-brand">
-            <img src="<c:url value="/DoctorDashboard/assets/img/EHealthLogo.png"></c:url>" style="width: 250px;" alt="">
+            <img src="<c:url value="/inc/images/whiteEHealthLogo.png"></c:url>" style="width: 250px;" alt="">
         </div>
         <div class="sidebar-menu">
             <ul>
@@ -50,6 +53,14 @@
                         
                         <span class="las la-hospital"></span>
                         <span class="sideebarText">Associations</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="#" class="buttons" onClick="handleClick(event)">
+                        
+                        <span class="las la-key"></span>
+                        <span class="sideebarText">Authentification</span>
                     </a>
                 </li>
 
@@ -138,18 +149,24 @@
                             </div>
                             <div class="demmande-card-body">
                                 <div class="table-responsive">
-                                    <table width="100%">
-                                        <thead>
-                                            <tr>
-                                                <td>Username</td>
-                                                <td>Vote</td>
-                                                <td>Commentaire</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-    
-                                            <!-- Selement 5 -->
-                                            <c:if test="${!commentaires.isEmpty()}">
+
+                                    <c:if test="${commentaires == null || commentaires.isEmpty()}">
+                                        <img src="<c:url value="/inc/images/noCommentPic.png"></c:url>" class="center" width="200px"></td>
+                                        <h2 style="text-align: center;">Pas de commentaires !</h2>
+                                    </c:if>
+
+                                    <c:if test="${commentaires != null}">
+                                        <table width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <td>Username</td>
+                                                    <td>Vote</td>
+                                                    <td>Commentaire</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+        
+                                                <!-- Selement 5 -->
                                                 <c:forEach var="commentaire" items="${commentaires}" begin="1" end="5">
                                                     <tr>
                                                         <td>${commentaire.getUser().getFirstname()} ${commentaire.getUser().getLastname()}</td>
@@ -168,16 +185,11 @@
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
-                                            </c:if>
+        
+                                            </tbody>
+                                        </table>
+                                    </c:if>
 
-                                            <c:if test="${commentaires == null}">
-                                                <tr>
-                                                    <td colspan="3">aucun commentaire</td>
-                                                </tr>
-                                            </c:if>
-    
-                                        </tbody>
-                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -191,50 +203,47 @@
                             </div>
                             <div class="demmande-card-body">
                                 <div class="table-responsive">
-                                    <table width="100%">
-                                        <thead>
-                                            <tr>
-                                                <td>Hopiteaux</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Selement 2 -->
-                                            <c:if test="${!hopitaux.isEmpty()}">
-                                                <c:forEach var="hopital" items="${hopitaux}" begin="1" end="2">
+                                    <c:if test="${ (hopitaux == null || hopitaux.isEmpty()) && (cliniques == null || cliniques.isEmpty()) }">
+                                        <img src="<c:url value="/inc/images/noClinicPic.png"></c:url>" class="center" width="100px"></td>
+                                        <h2 style="text-align: center;">Aucune association !</h2>
+                                    </c:if>
+
+                                    <c:if test="${ !hopitaux.isEmpty() || !cliniques.isEmpty() }">
+                                        <table width="100%">
+                                            <c:if test="${ !hopitaux.isEmpty() }">
+                                                <thead>
                                                     <tr>
-                                                        <td>${hopital.name}</td>
+                                                        <td>Hopiteaux</td>
                                                     </tr>
-                                                </c:forEach>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- Selement 2 -->
+                                                    <c:forEach var="hopital" items="${hopitaux}" begin="1" end="2">
+                                                        <tr>
+                                                            <td>${hopital.name}</td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
                                             </c:if>
-                                            <c:if test="${ hopitaux == null }">
+                                            
+                                            <c:if test="${ !cliniques.isEmpty() }">
+                                                <thead>
                                                     <tr>
-                                                        <td>aucun hopital</td>
+                                                        <td>Cliniques</td>
                                                     </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!-- Selement 2 -->
+                                                    <c:forEach var="clinique" items="${cliniques}" begin="1" end="2">
+                                                        <tr>
+                                                            <td>${clinique.name}</td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
                                             </c:if>
-                                        </tbody>
-    
-                                        <thead>
-                                            <tr>
-                                                <td>Cliniques</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <!-- Selement 2 -->
-                                            <c:if test="${!cliniques.isEmpty()}">
-                                                <c:forEach var="clinique" items="${cliniques}" begin="1" end="2">
-                                                    <tr>
-                                                        <td>${clinique.name}</td>
-                                                    </tr>
-                                                </c:forEach>
-                                            </c:if>
-                                            <c:if test="${ cliniques == null }">
-                                                    <tr>
-                                                        <td>aucun hopital</td>
-                                                    </tr>
-                                            </c:if>
-                                        </tbody>
-    
-                                    </table>
+        
+                                        </table>
+                                    </c:if>
                                 </div>
                             </div>
                         </div>
@@ -536,8 +545,8 @@
             <div class="slidebar-menu" id="Cabinet" style="display: none;">
                 
                     <!-- Information du cabinet section -->
-                    <form method="POST" action="<c:url value="InfoCabinet"></c:url>">
-                        <div class="recent-grid">
+                    <div class="recent-grid">
+                        <form method="POST" action="<c:url value="InfoCabinet"></c:url>">
                             <div class="InfoCabinet">
                                 <div class="demmande_card">
                                     <div class="card-header">
@@ -561,17 +570,17 @@
                                                     <td>
                                                         Le : &nbsp;
                                                         <select name="jour_debut" class="infoInputCabinet" id="jour_debut" disabled>
-									                    	<c:forEach var="day" items="${Instances.days()}">
-									                    		<option value="${day}" ${ docteur.jourDepart.equals(day) ? 'selected' : '' } }>${day}</option>
-									                    	</c:forEach>
-							                   			 </select>
+                                                            <c:forEach var="day" items="${Instances.days()}">
+                                                                <option value="${day}" ${ docteur.jourDepart.equals(day) ? 'selected' : '' } }>${day}</option>
+                                                            </c:forEach>
+                                                            </select>
                                                         <!-- <select name="jour_debut" class="infoInputCabinet" id="jour_debut" disabled></select> -->
                                                         &nbsp; Jusqu'à : &nbsp;
                                                         <select name="jour_fin" class="infoInputCabinet" id="jour_fin" disabled>
-									                    	<c:forEach var="day" items="${Instances.days()}">
-									                    		<option value="${day}" ${ docteur.jourFin.equals(day) ? 'selected' : '' } }>${day}</option>
-									                    	</c:forEach>
-							                   			 </select>
+                                                            <c:forEach var="day" items="${Instances.days()}">
+                                                                <option value="${day}" ${ docteur.jourFin.equals(day) ? 'selected' : '' } }>${day}</option>
+                                                            </c:forEach>
+                                                            </select>
                                                         <!-- <select name="jour_fin" class="infoInputCabinet" id="jour_fin" disabled></select> -->
                                                     </td>
                                                 </tr>
@@ -580,17 +589,17 @@
                                                     <td>
                                                         De : &nbsp;
                                                         <select name="heure_debut" class="infoInputCabinet" id="heure_debut" disabled>
-									                    	<c:forEach var="heur" items="${Instances.Heurs()}">
-									                    		<option value="${heur}" ${ docteur.heureDepart.equals(heur) ? 'selected' : '' } }>${heur}</option>
-									                    	</c:forEach>
-							                   			 </select>
+                                                            <c:forEach var="heur" items="${Instances.Heurs()}">
+                                                                <option value="${heur}" ${ docteur.heureDepart.equals(heur) ? 'selected' : '' } }>${heur}</option>
+                                                            </c:forEach>
+                                                            </select>
                                                         <!-- <select name="heure_debut" class="infoInputCabinet" id="heure_debut" disabled></select> -->
                                                         &nbsp; Jusqu'à : &nbsp;
                                                         <select name="heure_fin" class="infoInputCabinet" id="heure_fin" disabled>
-									                    	<c:forEach var="heur" items="${Instances.Heurs()}">
-									                    		<option value="${heur}" ${ docteur.heureFin.equals(heur) ? 'selected' : '' } }>${heur}</option>
-									                    	</c:forEach>
-							                   			 </select>
+                                                            <c:forEach var="heur" items="${Instances.Heurs()}">
+                                                                <option value="${heur}" ${ docteur.heureFin.equals(heur) ? 'selected' : '' } }>${heur}</option>
+                                                            </c:forEach>
+                                                            </select>
                                                         <!-- <select name="heure_fin" class="infoInputCabinet" id="heure_fin" disabled></select> -->
                                                     </td>
                                                 </tr>
@@ -627,8 +636,36 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+
+                        <form method="POST" action="<c:url value=""></c:url>">
+                            <div class="etatCbinet">
+                                <div class="demmande_card">
+                                    <div class="card-header">
+                                        <h3>Etat de travail</h3>
+                                    </div>
+                                    <div class="demmande_card">
+                                        
+                                        <div class="toggleDiv">
+                                            <label>Congé</label>
+                                            <label class="switch">
+                                                <input type="checkbox" name="etat" class="toggleInput" checked onclick="activetoggleInputs()">
+                                                <span class="slider round"></span>
+                                            </label>
+                                            <label>Active</label>
+                                        </div>
+
+                                        <div class="image-card">
+                                            <input type="submit" id="enregistrerToggle" value="Enregistrer" style="display: none;">
+                                            <label onclick="reloadPage()" id="annulerToggle" style="display: none;">Annuler</label>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
                     <!-- !Information du cabinet section -->
 
                     <!-- Localisation du cabinet section -->
@@ -770,17 +807,21 @@
                         <div class="demmande_card">
 
                             <div class="table-responsive">
-                                <table width="100%">
-                                    <thead>
-                                        <tr>
-                                            <td>Username</td>
-                                            <td>Vote</td>
-                                            <td>Commentaire</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-                                        <c:if test="${!commentaires.isEmpty()}">
+                                <c:if test="${commentaires == null || commentaires.isEmpty()}">
+                                    <img src="<c:url value="/inc/images/noCommentPic.png"></c:url>" class="center" width="200px"></td>
+                                    <h2 style="text-align: center;">Pas de commentaires !</h2>
+                                </c:if>
+
+                                <c:if test="${commentaires != null}">
+                                    <table width="100%">
+                                        <thead>
+                                            <tr>
+                                                <td>Username</td>
+                                                <td>Vote</td>
+                                                <td>Commentaire</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
                                             <c:forEach var="commentaire" items="${commentaires}">
                                                 <tr>
                                                     <td>${commentaire.getUser().getFirstname()} ${commentaire.getUser().getLastname()}</td>
@@ -799,16 +840,11 @@
                                                     </td>
                                                 </tr>
                                             </c:forEach>
-                                        </c:if>
-
-                                        <c:if test="${commentaires == null}">
-                                            <tr>
-                                                <td colspan="3">aucun commentaire</td>
-                                            </tr>
-                                        </c:if>
-
-                                    </tbody>
-                                </table>
+    
+                                        </tbody>
+                                    </table>
+                                </c:if>
+                                
                             </div>
 
                         </div>
@@ -826,23 +862,23 @@
                         </div>
                         <div class="demmande-card">
                             <div class="table-responsive">
-                                <table width="100%">
-                                    
-                                    <tbody>
-                                        <c:if test="${!hopitaux.isEmpty()}">
+                                <c:if test="${ hopitaux == null || hopitaux.isEmpty() }">
+                                    <img src="<c:url value="/inc/images/noHospitalPic.png"></c:url>" class="center" width="100px"></td>
+                                    <h2 style="text-align: center;">Aucun hopital !</h2>
+                                </c:if>
+
+                                <c:if test="${!hopitaux.isEmpty()}">
+                                    <table width="100%">
+                                        <tbody>
                                             <c:forEach var="hopital" items="${hopitaux}">
                                                 <tr>
                                                     <td>${hopital.name}</td>
                                                 </tr>
                                             </c:forEach>
-                                        </c:if>
-                                        <c:if test="${ hopitaux == null }">
-                                                <tr>
-                                                    <td>aucun hopital</td>
-                                                </tr>
-                                        </c:if>
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </c:if>
+                                
                             </div>
                         </div>
                     </div>
@@ -855,24 +891,68 @@
                         </div>
                         <div class="demmande-card">
                             <div class="table-responsive">
-                                <table width="100%">
-                                    <tbody>
-                                        <c:if test="${!cliniques.isEmpty()}">
+                                <c:if test="${ (hopitaux == null || hopitaux.isEmpty()) && (cliniques == null || cliniques.isEmpty()) }">
+                                    <img src="<c:url value="/inc/images/noClinicPic.png"></c:url>" class="center" width="100px"></td>
+                                    <h2 style="text-align: center;">Aucun clinique !</h2>
+                                </c:if>
+
+                                <c:if test="${!cliniques.isEmpty()}">
+                                    <table width="100%">
+                                        <tbody>
                                             <c:forEach var="clinique" items="${cliniques}">
                                                 <tr>
                                                     <td>${clinique.name}</td>
                                                 </tr>
                                             </c:forEach>
-                                        </c:if>
-                                        <c:if test="${ cliniques == null }">
-                                                <tr>
-                                                    <td>aucun clinique</td>
-                                                </tr>
-                                        </c:if>
-                                    </tbody>
-
-                                </table>
+                                        </tbody>
+    
+                                    </table>
+                                </c:if>
+                                
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slidebar-menu" id="Authentification" style="display: none;">
+
+                <div class="Authentification">
+                    <div class="demmande_card">
+                        <div class="card-header">
+                            <h3>Authentification</h3>
+                        </div>
+                        <div class="demmande-card">
+                            <form action="">
+                                <div class="table-responsive">
+                                    <table style="width: 100%;">
+                                        <tr>
+                                            <td style="width: 50%;"><label>Ancien mot de passe :</label></td>
+                                            <td>
+                                                <input style="width: 100%;" type="password" name="oldMdp" class="authInput" disabled><input type="hidden" name="id" value="${docteur.cin}" class="input">
+                                            </td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td style="width: 50%;"><label>Nouveau mot de passe :</label></td>
+                                            <td><input style="width: 100%;" type="password" name="newMdp" class="authInput" disabled></td>
+                                        </tr>
+                                        
+                                        <tr>
+                                            <td style="width: 50%;"><label>Confirmation de nouveau mot de passe :</label></td>
+                                            <td><input style="width: 100%;" type="password" name="confirmationNewMdp" class="authInput" disabled></td>
+                                        </tr>
+            
+                                    </table>
+                                </div>
+    
+                                <div class="image-card">
+                                    <label id="modifierAuth" onclick="modifierAuth()">Modifier</label>
+                                    <input type="submit" id="enregistrerAuth" value="Enregistrer" style="display: none;">
+                                    <label id="annulerAuth" onclick="reloadPage()" style="display: none;">Annuler</label>
+                                </div>
+                            </form>
+                            
                         </div>
                     </div>
                 </div>
