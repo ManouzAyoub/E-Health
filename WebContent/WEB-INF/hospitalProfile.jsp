@@ -204,7 +204,7 @@
                     <div class="border py-3 px-3">
                         <div class="text-xs-center">
                             <div class="color-dark">
-                                <h4 class="font-size-20 font-weight-bold font-montserrat">Hï¿½pital Hassan II Agadir</span> </h4>
+                                <h4 class="font-size-20 font-weight-bold font-montserrat">Hopital Hassan II Agadir</span> </h4>
                             </div>
 
                             <div class="row">
@@ -268,7 +268,7 @@
 
                                 <table class="font-gilroy rating-table">
                                     <tr>
-                                        <td>5 ï¿½toiles</td>
+                                        <td>5 étoiles</td>
                                         <td style="width: 360px;">
                                             <div class="progress position-relative" style="height: 10px;">
                                                 <div class="progress-bar" role="progressbar" style="width: ${progressBar.getOrDefault(Integer.valueOf(5),"0") }%;" aria-valuenow="1.5" aria-valuemin="0" aria-valuemax="100"></div>
@@ -279,7 +279,7 @@
 
                                     
                                     <tr>
-                                        <td>4 ï¿½toiles</td>
+                                        <td>4 étoiles</td>
                                         <td>
                                             <div class="progress position-relative" style="height: 10px;">
                                                 <div class="progress-bar" role="progressbar" style="width: ${progressBar.getOrDefault(Integer.valueOf(4),"0") }%;" aria-valuenow="31.25" aria-valuemin="0" aria-valuemax="100"></div>
@@ -289,7 +289,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td>3 ï¿½toiles</td>
+                                        <td>3 étoiles</td>
                                         <td>
                                             <div class="progress position-relative" style="height: 10px;">
                                                 <div class="progress-bar" role="progressbar" style="width: ${progressBar.getOrDefault(Integer.valueOf(3),"0") }%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
@@ -299,7 +299,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td>2 ï¿½toiles</td>
+                                        <td>2 étoiles</td>
                                         <td>
                                             <div class="progress position-relative" style="height: 10px;">
                                                 <div class="progress-bar" role="progressbar" style="width: ${progressBar.getOrDefault(Integer.valueOf(2),"0") }%;" aria-valuenow="18.75" aria-valuemin="0" aria-valuemax="100"></div>
@@ -309,7 +309,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td>1 ï¿½toile</td>
+                                        <td>1 étoile</td>
                                         <td>
                                             <div class="progress position-relative" style="height: 10px;">
                                                 <div class="progress-bar" role="progressbar" style="width: ${progressBar.getOrDefault(Integer.valueOf(1),"0") }%;" aria-valuenow="15.62" aria-valuemin="0" aria-valuemax="100"></div>

@@ -127,11 +127,13 @@
                             <h2 class="font-gilroy-bold fullName">${clinique.name}</h2>
                         </div>
 
-                        <div class="mt-3">
-                            <p class="font-noto text-justify font-size-14 mt-3">
-                                &nbsp;&nbsp;&nbsp;&nbsp; ${clinique.description}
-                            </p>
-                        </div>
+                         <c:if test="${clinique.description != null}">
+                            <div class="mt-3">
+                                <p class="font-noto text-justify font-size-14 mt-3">
+                                    &nbsp;&nbsp;&nbsp;&nbsp; ${clinique.description}
+                                </p>
+                            </div>
+                        </c:if>
 
                         <div class="mt-3 py-2 border-top">
                             <div class="row justify-content-center">
@@ -202,7 +204,7 @@
                     <div class="border py-3 px-3">
                         <div class="text-xs-center">
                             <div class="color-dark">
-                                <h4 class="font-size-20 font-weight-bold font-montserrat">Hï¿½pital Hassan II Agadir</span> </h4>
+                                <h4 class="font-size-20 font-weight-bold font-montserrat">Hopital Hassan II Agadir</span> </h4>
                             </div>
 
                             <div class="row">

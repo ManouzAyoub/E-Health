@@ -30,9 +30,6 @@
       <input placeholder="doc's speciality" type="text" value="${doc.speciality }" tabindex="4" >
     </fieldset>
     <fieldset>
-      <input placeholder="doc practices in a " type="text" value="${doc.practice }" tabindex="4" >
-    </fieldset>
-    <fieldset>
       	<button name="approve" type="submit" id="demmande_approve" data-submit="...Sending">approve</button>
     </fieldset>
     <fieldset>

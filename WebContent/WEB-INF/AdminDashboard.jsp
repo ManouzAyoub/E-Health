@@ -44,7 +44,7 @@
                         <a href="#" class="buttons dash" id="demmandes_sidebar" onClick="handleClick(event, 'Demmandes')">
                             
                             <span class="las la-clipboard-list"></span>
-                            <span>Demmandes</span>
+                            <span>Demandes</span>
                         </a>
                     </li>
                     
@@ -315,13 +315,13 @@
                     <div class="customers">
                         <div class="card">
                             <div class="card-header">
-                                <h3>Demmandes</h3>
+                                <h3>Demandes</h3>
                                 <button onclick="seeAll('demmandes_sidebar', 'Demmandes')">Voire tous <span class="las la-arrow-right"></span></button>
                             </div>
                             <div class="card-body">
                                 <c:if test="${ docs == null && clinics == null }">
                                     <img src="<c:url value="/inc/images/demmande.png"></c:url>" class="center" width="100px"></td>
-                                    <h5 style="text-align: center;">Aucune demmande !</h5>
+                                    <h5 style="text-align: center;">Aucune demande !</h5>
                                 </c:if>
                                 <c:if test="${ !docs.isEmpty() }">
                                     <c:forEach var="docteur" items="${docs}">
@@ -362,7 +362,7 @@
                     <div class="Dommendes-card">
                         <div class="demmande_card">
                             <div class="card-header">
-                                <h3>Demmandes de comptes</h3>
+                                <h3>Demandes de comptes</h3>
                             </div>
                             <div class="demmande-card-body">
                                 <c:if test="${!docs.isEmpty()}">
@@ -375,7 +375,7 @@
                                                 </div>
                                             </div>
                                             <div class="contact">
-                                                <a href="<c:url value="/docsInfo?id=${doc.cin}" />" target="_blank" class="viewBtn">Voir la demmande</a>
+                                                <a href="<c:url value="/docsInfo?id=${doc.cin}" />" target="_blank" class="viewBtn">Voir la demande</a>
                                             </div>
                                         </div>
                                     </c:forEach>
@@ -390,7 +390,7 @@
                                                 </div>
                                             </div>
                                             <div class="contact">
-                                                <a href="<c:url value="/clinicInfo?id=${clinic.cin}" />" class="viewBtn">Voir la demmande</a>
+                                                <a href="<c:url value="/clinicInfo?id=${clinic.cin}" />" class="viewBtn">Voir la demande</a>
                                             </div>
                                         </div>
                                     </c:forEach>
@@ -399,7 +399,7 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <img src="<c:url value="/inc/images/demmande.png"></c:url>" class="center" width="200px"></td>
-                                            <h3 style="text-align: center;">Aucune demmande !</h3>
+                                            <h3 style="text-align: center;">Aucune demande !</h3>
                                         </div>
                                     </div>
                                 </c:if>

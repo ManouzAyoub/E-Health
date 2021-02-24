@@ -260,7 +260,7 @@
 
                     <!-- Clear Button -->
                     <div class="Clear border d-flex justify-content-center mb-3">
-                        <button class="btn font-size-16 font-gilroy-bold color-second" id="clearAllBtn">R�initialiser la recherche</button>
+                        <button class="btn font-size-16 font-gilroy-bold color-second" id="clearAllBtn">Réinitialiser la recherche</button>
                     </div>
                     
                     <!-- Name -->
@@ -283,20 +283,20 @@
                     
                     <!-- Special services -->
                     <div class="special_services border mb-3">
-                        <h6 class="font-size-16 font-gilroy-bold color-second px-4 mt-2">S�vices Sp�cial</h6>
+                        <h6 class="font-size-16 font-gilroy-bold color-second px-4 mt-2">Sévices Spécial</h6>
                         <div class="px-4 py-2">
                             <div class="font-montserrat font-size-14">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="T�l�m�decine" id="Telemedecine" name="Sevices_Special" onclick="filter()" checked>
+                                    <input class="form-check-input" type="checkbox" value="Télémédecine" id="Telemedecine" name="Sevices_Special" onclick="filter()" checked>
                                     <label class="form-check-label" for="special_services">
-                                        T�l�m�decine
+                                        Télémédecine
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="Consultation � domicile" id="Consultation_a_domicile" name="Sevices_Special" onclick="filter()" checked>
+                                    <input class="form-check-input" type="checkbox" value="Consultation à domicile" id="Consultation_a_domicile" name="Sevices_Special" onclick="filter()" checked>
                                     <label class="form-check-label" for="special_services">
-                                        Consultation � domicile
+                                        Consultation à domicile
                                     </label>
                                 </div>
                             </div>
@@ -305,7 +305,7 @@
 
                     <!-- Rating -->
                     <div class="Rating border mb-3">
-                        <h6 class="font-size-16 font-gilroy-bold color-second px-4 mt-2">�valuation des visiteurs</h6>
+                        <h6 class="font-size-16 font-gilroy-bold color-second px-4 mt-2">Évaluation des visiteurs</h6>
                         <div class="px-4 py-2">
                             <div class="font-montserrat font-size-14">
 
@@ -408,7 +408,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" value="Chirurgie p�diatrique" name="Speciality" id="Chirurgie_pediatrique" onclick="filter()">
                                     <label class="form-check-label" for="Speciality">
-                                        Chirurgie p�diatrique
+                                        Chirurgie pédiatrique
                                     </label>
                                 </div>
 
@@ -424,14 +424,14 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" value="Chirurgie visc�rale et digestive" name="Speciality" id="Chirurgie_visc�rale_et_digestive" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            Chirurgie visc�rale et digestive
+                                            Chirurgie viscérale et digestive
                                         </label>
                                     </div>
                                     
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" value="Gyn�cologie obst�trique" name="Speciality" id="Gynecologie_obstetrique" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            Gyn�cologie obst�trique
+                                            Gynécologie obstétrique
                                         </label>
                                     </div>
                                     
@@ -459,7 +459,7 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" value="Anesth�sie" name="Speciality" id="Anesthesie" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            Anesth�sie
+                                            Anesthésie
                                         </label>
                                     </div>
                                     
@@ -487,7 +487,7 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" value="G�n�tique" name="Speciality" id="Genetique" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            G�n�tique
+                                            Génétique
                                         </label>
                                     </div>
                                     
@@ -501,35 +501,35 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" value="Gyn�cologie m�dicale" name="Speciality" id="Gynecologie_medicale" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            Gyn�cologie m�dicale
+                                            Gynécologie médicale
                                         </label>
                                     </div>
                                     
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" value="H�matologie" name="Speciality" id="Hematologie" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            H�matologie
+                                            Hématologie
                                         </label>
                                     </div>
                                     
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" value="M�decine g�n�rale" name="Speciality" id="Medecine_generale" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            M�decine g�n�rale
+                                            Médecine générale
                                         </label>
                                     </div>
                                     
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" value="M�decine physique et r�adaptation" name="Speciality" id="Medecine_physique_et_readaptation" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            M�decine physique et r�adaptation
+                                            Médecine physique et réadaptation
                                         </label>
                                     </div>
                                     
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" value="N�phrologie" name="Speciality" id="Nephrologie" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            N�phrologie
+                                            Néphrologie
                                         </label>
                                     </div>
                                     
@@ -557,14 +557,14 @@
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" value="R�animation" name="Speciality" id="Reanimation" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            R�animation
+                                           Réanimation
                                         </label>
                                     </div>
                                     
                                     <div class="form-check">
                                         <input class="form-check-input" type="radio" value="Sant� publique" name="Speciality" id="Sante_publique" onclick="filter()">
                                         <label class="form-check-label" for="Speciality">
-                                            Sant� publique
+                                            Santé publique
                                         </label>
                                     </div>
                                     
@@ -583,7 +583,7 @@
 
                     <!-- Language -->
                     <div class="Language border mb-3">
-                        <h6 class="font-size-16 font-gilroy-bold color-second px-4 mt-2">Langue</h6>
+                        <h6 class="font-size-16 font-gilroy-bold color-second px-4 mt-2">Langues</h6>
                         <div class="px-4 py-2">
                             <div class="font-montserrat font-size-14">
                                 <div class="form-check">
@@ -596,14 +596,14 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" value="English" id="English" name="Language" onclick="filter()">
                                     <label class="form-check-label" for="Language">
-                                        <span class="flag-icon flag-icon-us"></span> English
+                                        <span class="flag-icon flag-icon-us"></span> Anglais
                                     </label>
                                 </div>
 
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" value="Espanol" id="Espanol" name="Language" onclick="filter()">
                                     <label class="form-check-label" for="Language">
-                                        <span class="flag-icon flag-icon-mx"></span> Espa�ol
+                                        <span class="flag-icon flag-icon-mx"></span> Espanol
                                     </label>
                                 </div>
 
@@ -617,7 +617,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" value="Frensh" id="Frensh" name="Language" onclick="filter()">
                                     <label class="form-check-label" for="Language">
-                                        <span class="flag-icon flag-icon-fr"></span> Frensh
+                                        <span class="flag-icon flag-icon-fr"></span> Francais
                                     </label>
                                 </div>
 
@@ -662,7 +662,7 @@
 
                     <!-- Disponibility -->
                     <div class="Disponibility border mb-3">
-                        <h6 class="font-size-16 font-gilroy-bold color-second px-4 mt-2">Disponibilit�</h6>
+                        <h6 class="font-size-16 font-gilroy-bold color-second px-4 mt-2">Disponibilité</h6>
                         <div class="px-4 py-2">
                             <div class="font-montserrat font-size-14">
                                 <div class="form-check">
@@ -673,21 +673,21 @@
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="Consultation � domicile" id="Disponibility" >
+                                    <input class="form-check-input" type="checkbox" value="Consultation à domicile" id="Disponibility" >
                                     <label class="form-check-label" for="Disponibility">
                                         Demain
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="Consultation � domicile" id="Disponibility" >
+                                    <input class="form-check-input" type="checkbox" value="Consultation à domicile" id="Disponibility" >
                                     <label class="form-check-label" for="Disponibility">
                                         Cette semaine
                                     </label>
                                 </div>
 
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="Consultation � domicile" id="Disponibility" >
+                                    <input class="form-check-input" type="checkbox" value="Consultation à domicile" id="Disponibility" >
                                     <label class="form-check-label" for="Disponibility">
                                         La semaine prochaine
                                     </label>

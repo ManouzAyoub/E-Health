@@ -32,7 +32,7 @@ public class SignInServlet extends HttpServlet {
     private static final String ATT_RESULTAT     = "resultat";
     private static final String ATT_ERROR        = "erreurs";
     private static final String VUE              = "/WEB-INF/SignIn.jsp";
-    private static final String SUCESS_USER      = "/WEB-INF/Home.jsp";
+    private static final String SUCESS_USER      = "/Home";
     private static final String SUCESS_ADMIN     = "/toAdminData";
     private static final String SUCESS_DOCTEUR   = "/DataDoctor";
     private static final String SUCESS_CLINIQUE  = "/DataClinique";
