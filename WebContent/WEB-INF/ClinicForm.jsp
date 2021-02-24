@@ -44,10 +44,18 @@
             float: right;
             cursor: pointer;
         }
+        
+        .logo{
+			position: fixed;
+			top: 60px;
+			left: 150px;
+		}
     </style>  
 </head>
 <body>
-
+	<div class="logo">
+    	<a href="<c:url value="/Home"></c:url>"><img src="<c:url value="/DoctorProfile/EHealthLogo.png"></c:url>" width="250px" alt=""></a>
+    </div>
     <div class="main">
 
         <section class="signup">
@@ -67,6 +75,11 @@
                         <div class="form-group">
                             <input type="email" class="form-input" name="email" id="email" placeholder="Your Clinic's Email" value="<c:out value="${requestScope.clinic.email}"/>" />
                              <span class="erreur" >${form.erreurs['email']}</span>  
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" class="form-input" name="ville" id="ville" placeholder="Your Clinic's ville"  />
+                             <%-- <span class="erreur" >${form.erreurs['email']}</span> --%>  
                         </div>
                         
                         <div class="form-group">

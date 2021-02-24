@@ -17,10 +17,20 @@
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css'>
 
     <link rel="stylesheet" href="inc/css/style.css">
+    
+    <style type="text/css">
+    	.logo{
+			position: fixed;
+			top: 60px;
+			left: 150px;
+		}
+    </style>
 
 </head>
 <body>
-
+	<div class="logo">
+    	<a href="<c:url value="/Home"></c:url>"><img src="<c:url value="/DoctorProfile/EHealthLogo.png"></c:url>" width="250px" alt=""></a>
+    </div>
     <div class="main">
 
         <section class="signup">

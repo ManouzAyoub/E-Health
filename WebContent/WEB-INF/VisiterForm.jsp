@@ -16,7 +16,9 @@
     <link rel="stylesheet" href="inc/css/style.css">
 </head>
 <body>
-
+	<div class="logo">
+    	<a href="<c:url value="/Home"></c:url>"><img src="<c:url value="/DoctorProfile/EHealthLogo.png"></c:url>" width="250px" alt=""></a>
+    </div>
     <div class="main">
 
         <section class="signup">

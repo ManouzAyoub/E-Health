@@ -514,7 +514,7 @@
         </main>
         
         <main id="auth" class="compte hide slideBar_main" >
-            <form method="POST" action="<c:url value=""></c:url>">
+            <form method="POST" action="<c:url value="Euthentification"></c:url>">
                 <div class="wrapper" >
                     <div class="title">
                       Modifier votre Informations d'authentification :

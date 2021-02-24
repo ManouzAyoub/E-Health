@@ -19,6 +19,7 @@ public class CliniqueFormImpl {
 	    private static final String CHAMP_TEL         = "tel";
 	    private static final String CHAMP_EMER_TEL    = "emergency_tel";
 	    private static final String CHAMP_SPECIALITY  = "speciality";
+	    private static final String CHAMP_VILLE = "ville";
 
 	    private String              resultat;
 	    private Map<String, String> erreurs            = new HashMap<String, String>();
@@ -45,6 +46,7 @@ public class CliniqueFormImpl {
      String tel = request.getParameter( CHAMP_TEL );
      String emer_tel = request.getParameter( CHAMP_EMER_TEL );
      String speciality = request.getParameter( CHAMP_SPECIALITY );
+     String ville = request.getParameter( CHAMP_VILLE );
      
      //System.out.print("sssssss"+speciality[0]);
 
@@ -57,6 +59,7 @@ public class CliniqueFormImpl {
      }
      clinic.setName(name);
      clinic.setFirst_using(false);
+     clinic.setVille(ville);
      
      try {
          validationAddress( adresse );
