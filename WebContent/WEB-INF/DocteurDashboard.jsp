@@ -203,7 +203,7 @@
                             </div>
                             <div class="demmande-card-body">
                                 <div class="table-responsive">
-                                    <c:if test="${ (hopitaux == null) && (cliniques == null) }">
+                                    <c:if test="${ ((hopitaux == null) && (cliniques == null)) || ((hopitaux.isEmpty()) && (cliniques.isEmpty())) }">
                                         <img src="<c:url value="/inc/images/noClinicPic.png"></c:url>" class="center" width="100px"></td>
                                         <h2 style="text-align: center;">Aucune association !</h2>
                                     </c:if>
@@ -252,8 +252,6 @@
             </div>
             
             <div class="slidebar-menu" id="Doctor" style="display: none;">
-
-                
 
                     <!-- Information Personnel section -->
                     <div class="recent-grid">
@@ -391,16 +389,21 @@
                                 </div>
                                 <div class="demmande-card-body">
                                     <div class="table-responsive">
-                                        <table style="width: 100%;">
-                                            <thead>
-                                                <tr>
-                                                    <td>Année</td>
-                                                    <td>Diplome</td>
-                                                    <td>Etablissement</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:if test="${!educations.isEmpty()}">
+                                        <c:if test="${educations == null || educations.isEmpty()}">
+                                            <img src="<c:url value="/inc/images/noEducPic.png"></c:url>" class="center" width="100px"></td>
+                                            <h2 style="text-align: center;">Aucune education !</h2>
+                                        </c:if>
+
+                                        <c:if test="${educations != null}">
+                                            <table style="width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Année</td>
+                                                        <td>Diplome</td>
+                                                        <td>Etablissement</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
                                                     <c:forEach var="education" items="${educations}">
                                                         <tr>
                                                             <td>${education.anneeEduc}</td>
@@ -408,15 +411,9 @@
                                                             <td>${education.descEduc}</td>
                                                         </tr>
                                                     </c:forEach>
-                                                </c:if>
-                                                <c:if test="${educations == null}">
-                                                    <tr>
-                                                        <td colspan="3"> aucun education</td>
-                                                    </tr>
-                                                </c:if>
-                                                
-                                            </tbody>
-                                        </table>
+                                                </tbody>
+                                            </table>
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>
@@ -431,6 +428,7 @@
                                     </div>
                                     <div class="demmande-card-body">
                                         <div class="table-responsive">
+                                            
                                             <table style="width: 100%;">
                                                 <tr>
                                                     <td>Année</td>
@@ -473,30 +471,29 @@
                                 </div>
                                 <div class="demmande-card-body">
                                     <div class="table-responsive">
-                                        <table style="width: 100%;">
-                                            <thead>
-                                                <tr>
-                                                    <td>Année</td>
-                                                    <td>Récompense</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:if test="${!recompences.isEmpty()}">
+                                        <c:if test="${recompences == null || recompences.isEmpty()}">
+                                            <img src="<c:url value="/inc/images/noAwardPic.png"></c:url>" class="center" width="100px"></td>
+                                            <h2 style="text-align: center;">Aucune Récompense !</h2>
+                                        </c:if>
+
+                                        <c:if test="${recompences != null}">
+                                            <table style="width: 100%;">
+                                                <thead>
+                                                    <tr>
+                                                        <td>Année</td>
+                                                        <td>Récompense</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
                                                     <c:forEach var="recompence" items="${recompences}">
                                                         <tr>
                                                             <td>${recompence.annee}</td>
                                                             <td>${recompence.name}</td>
                                                         </tr>
                                                     </c:forEach>
-                                                </c:if>
-                                                <c:if test="${recompences == null}">
-                                                    <tr>
-                                                        <td colspan="2"> aucun recompence</td>
-                                                    </tr>
-                                                </c:if>
-        
-                                            </tbody>
-                                        </table>
+                                                </tbody>
+                                            </table>
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>
@@ -650,8 +647,8 @@
                                             <label>Congé</label>
                                             <label class="switch">
                                             	<input type="text" name="togl" value="${docteur.cin }" />
-                                                <input type="checkbox" name="etat" class="toggleInput" checked onclick="activetoggleInputs()">
-                                                <span class="slider round"></span>
+                                                <input type="checkbox" name="etat" class="toggleInput" id="toggleInput" checked>
+                                                <span class="slider round"  onclick="activetoggleInputs()"></span>
                                             </label>
                                             <label>Active</label>
                                         </div>
@@ -892,7 +889,7 @@
                         </div>
                         <div class="demmande-card">
                             <div class="table-responsive">
-                                <c:if test="${ (hopitaux == null) && (cliniques == null) }">
+                                <c:if test="${ (cliniques.isEmpty()) || (cliniques == null) }">
                                     <img src="<c:url value="/inc/images/noClinicPic.png"></c:url>" class="center" width="100px"></td>
                                     <h2 style="text-align: center;">Aucun clinique !</h2>
                                 </c:if>

@@ -76,6 +76,7 @@ function voireAssociations(){
 }
 
 function activetoggleInputs(){
+    document.getElementById("toggleInput").checked = !document.getElementById("toggleInput").checked;
     document.getElementById("enregistrerToggle").style.display = "inline";
     document.getElementById("annulerToggle").style.display = "inline";
 }
