@@ -9,10 +9,6 @@
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="<c:url value="/CliniqueProfile/node_modules/flag-icon-css/css/flag-icon.css" />">
-    <link rel="stylesheet" href="<c:url value="/CliniqueProfile/node_modules/flag-icon-css/css/flag-icon.min.css" />">
-
     <!-- Owl-carousel CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
@@ -27,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&display=swap" rel="stylesheet">
 
     <!-- LOGO -->
-    <link rel="shortcut icon" type="image/x-icon" href="pageLogo.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="<c:url value="/searchHospital/pageLogo.png"></c:url>" />
 
     <!-- Custom CSS file -->
     <link rel="stylesheet" href="<c:url value="/searchPharmacie/style.css" />">
@@ -290,6 +286,8 @@
 
     <!-- Custom Javascript -->
     <script src="<c:url value="/searchPharmacie/JSIndex.js"/>"></script>
+
+    <c:import url="/FrontEnd/footer.jsp"></c:import>
 
     <!-- font awesome Kit -->
     <script src="https://kit.fontawesome.com/bcf0cddf32.js" crossorigin="anonymous"></script>

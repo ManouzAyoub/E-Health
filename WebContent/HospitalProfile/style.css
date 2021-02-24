@@ -46,6 +46,12 @@ html, body {
   } 
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Color Template */
 .color-primary {
   color: #114A75;

@@ -474,6 +474,13 @@
                         <span class="font-size-20 font-gilroy-bold color-second">Commentaires</span>
                     </div>
 
+                    <c:if test="${comments.isEmpty() || comments == null }">
+                        <div class="col-lg-12">
+                            <img src="<c:url value="/inc/images/noCommentPic.png"></c:url>" class="center" width="200px">
+                            <h5 style="text-align: center;">Aucun commentaire !</h5>
+                        </div>
+                    </c:if>
+
                     <c:forEach var="entry" items="${comments}">
                         <div class="card comment-card mt-2">
                             <div class="user-card card-body">
@@ -625,7 +632,11 @@
 	                            <!-- !Element-->
                         	</c:if>
                         	<c:if test="${hopitaux.isEmpty() }">
-                        		<c:out value="is empty --- a changer"></c:out>
+                        		<div class="col-lg-12">
+                                    <img src="<c:url value="/inc/images/noHospitalPic.png"></c:url>" class="center" width="100px">
+                                    <h5 style="text-align: center;">Aucun Hopital !</h5>
+                                </div>
+                                
                         	</c:if>
                             
                         </div>
@@ -658,7 +669,11 @@
 	                            <!-- !Element-->
                         	</c:if>
                         	<c:if test="${cliniques.isEmpty() }">
-                        		<c:out value="is empty --- a changer"></c:out>
+                                <div class="col-lg-12">
+                                    <img src="<c:url value="/inc/images/noClinicPic.png"></c:url>" class="center" width="100px">
+                                    <h5 style="text-align: center;">Aucune clinique !</h5>
+                                </div>
+                                
                         	</c:if>
                             
                         </div>
@@ -673,7 +688,7 @@
 
     </section>
 
-    
+    <c:import url="/FrontEnd/footer.jsp"></c:import>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

@@ -9,10 +9,6 @@
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="<c:url value="/searchClinique/node_modules/flag-icon-css/css/flag-icon.css"/>">
-    <link rel="stylesheet" href="<c:url value="/searchClinique/node_modules/flag-icon-css/css/flag-icon.min.css"/>">
-
     <!-- Owl-carousel CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
@@ -39,12 +35,12 @@
 </head>
 <body onload="initialize()">
 
-        <header class="color-primary-bg py-2" style="width: 100%;">
+    <header class="color-primary-bg py-2" style="width: 100%;">
         <div class="row" >
             <div class="col-lg-3 d-flex justify-content-start">
                 <a class="navbar-brand mx-3" href="<c:url value="/Home"></c:url>"><img src="<c:url value="/DoctorProfile/EHealthLogo.png"></c:url>" width="200px" alt=""></a>
                 <button type="button" class="btn show-mobile font-size-20 mt-2 font-gilroy-bold color-second text-right" id="showNavBarBtn" data-target="#nav_bar">
-                    <i class="fas fa-bars"></i>                      
+                    <i class="fas fa-bars"></i>
                 </button>
             </div>
 
@@ -308,6 +304,8 @@
             
         </div>
     </section>
+
+    <c:import url="/FrontEnd/footer.jsp"></c:import>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

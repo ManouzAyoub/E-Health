@@ -26,10 +26,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400&display=swap" rel="stylesheet">
 
+    <!-- Google API-->
+    <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcybDNa2i9CePsLK9l7rAhcAafXMGALcY&libraries=places&callback=initHospitalMap">
+    </script>
+
     <!-- Custom CSS file -->
     <link rel="stylesheet" href="<c:url value="/DoctorSearch/style.css" />">
 </head>
-<body>
+<body onload="initialize()">
 
     <header class="color-primary-bg py-2" style="width: 100%;">
         <div class="row" >
@@ -96,7 +101,7 @@
 	                <div class="row font-montserrat font-size-20" align="center" style="font-weight: bold;">
 	                    <div class="col-lg-2" style="color: white;">Localisation : </div>
 	                    <div class="col-lg-10 input-group">
-	                        <input class="form-control py-2 border-right-0 border" name="localisation" value="${adresse }" placeholder="Localisation">
+	                        <input id="autocomplete" class="form-control py-2 border-right-0 border" name="localisation" value="${adresse }" placeholder="Localisation">
 	                        <span class="input-group-append" style="background-color: white;">
 	                          <button type="submit" class="btn btn-outline-info border-left-0 border" >
 	                                <i class="fa fa-search"></i>
@@ -702,6 +707,8 @@
             
         </div>
     </section>
+
+    <c:import url="/FrontEnd/footer.jsp"></c:import>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

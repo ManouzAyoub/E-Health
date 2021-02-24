@@ -9,9 +9,6 @@
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <!-- Font Icon -->
-    <link rel="stylesheet" href="<c:url value="/HospitalProfile/node_modules/flag-icon-css/css/flag-icon.css" />">
-    <link rel="stylesheet" href="<c:url value="/HospitalProfile/node_modules/flag-icon-css/css/flag-icon.min.css" />">
 
     <!-- Owl-carousel CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
@@ -418,6 +415,15 @@
                         <span class="font-size-20 font-gilroy-bold color-second">Commentaires</span>
                     </div>
 
+                    <c:if test="${comments.isEmpty() || comments == null }">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <img src="<c:url value="/inc/images/noCommentPic.png"></c:url>" class="center" width="200px">
+                                <h5 style="text-align: center;">Aucun commentaire !</h5>
+                            </div>
+                        </div>
+                    </c:if>
+
                    <c:forEach var="commentaire" items="${comments}">
                        <!-- Element -->
                        <div class="card comment-card mt-2">
@@ -479,6 +485,13 @@
                 <div class="mt-5 text-center justify-content-center" id="Docteurs">
                     <div class="container">
                         <div class="row">
+                            <c:if test="${docteurs.isEmpty() || docteurs == null }">
+                                <div class="col-lg-12">
+                                    <img src="<c:url value="/inc/images/noDoctorPic.png"></c:url>" class="center" width="200px">
+                                    <h5 style="text-align: center;">Aucun docteur !</h5>
+                                </div>
+                            </c:if>
+
                             <c:if test="${!docteurs.isEmpty() }">
                             	<!-- Element-->
 	                            <c:forEach var="docteur" items="${docteurs}">
@@ -490,17 +503,14 @@
 	                                            </div>
 	                                            <div class="card-body">
 	                                                <h5 class="card-title font-gilroy-bold color-primary">Dr. <span class="DoctorName"> ${docteur.firstname} </span></h5>
-	                                                <span class="font-montserrat font-size-12">Spï¿½cialitï¿½ : <span class="font-size-14 font-gilroy-bold"> ${docteur.speciality}</span></span><br>
+	                                                <span class="font-montserrat font-size-12">Spécialité : <span class="font-size-14 font-gilroy-bold"> ${docteur.speciality}</span></span><br>
 	                                            </div>
 	                                        </div>
 	                                    </a>
 	                                </div>
 	                            </c:forEach>
 	                            <!-- !Element-->  
-                            </c:if>   
-                            <c:if test="${docteurs.isEmpty() }">
-                            	<c:out value="aucun docteur"></c:out>
-                            </c:if>                       
+                            </c:if>                   
                             
                             <div class="border d-flex justify-content-center mt-2" id="moredoctorsBtn" style="visibility: hidden;width: 100%;">
                                 <a id="show-more-doctors" class="btn font-size-16 font-gilroy-bold color-second">Afficher plus de docteurs</a>
@@ -516,7 +526,7 @@
 
     </section>
 
-    
+    <c:import url="/FrontEnd/footer.jsp"></c:import>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
