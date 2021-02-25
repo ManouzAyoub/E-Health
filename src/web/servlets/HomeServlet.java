@@ -23,7 +23,7 @@ import metier.dao.util.Instances;
 public class HomeServlet extends HttpServlet {
 	
 	
-	private static final String VUE            = "/WEB-INF/Home.jsp";
+	private static final String VUE            = "/Home.jsp";
 	List<Role> roles                           = new ArrayList<Role>();
 	String[] langues						   = {"Arabic" , "Frensh", "English", "Chinese", "Spanish" };
     
