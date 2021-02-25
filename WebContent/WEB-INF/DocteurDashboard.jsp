@@ -645,9 +645,15 @@
                                         
                                         <div class="toggleDiv">
                                             <label>Congé</label>
+                                            <input type="hidden" name="togl" value="${docteur.cin }" />
+                                            <c:set var="cDocteur" value="${ docteur.cin }"></c:set>                                            
                                             <label class="switch">
-                                            	<input type="text" name="togl" value="${docteur.cin }" />
-                                                <input type="checkbox" name="etat" class="toggleInput" id="toggleInput" checked>
+                                            	<c:if test="${docteurDao.getById(cDocteur).getConger()}">
+                                                        <input type="checkbox" name="etat" class="toggleInput" id="toggleInput" checked  >
+                                                </c:if>
+                                                <c:if test="${!docteurDao.getById(cDocteur).getConger()}">
+                                                        <input type="checkbox" name="etat" class="toggleInput" id="toggleInput" >
+                                                </c:if>
                                                 <span class="slider round"  onclick="activetoggleInputs()"></span>
                                             </label>
                                             <label>Active</label>

@@ -21,11 +21,14 @@ public class HopitalImpl {
 		
 	}
 	
-	public List<Hopital> getAllHospitalsAccordingToTheirAvailabilityAndAdress(String adresse){
+	public List<Hopital> getAllHospitalsAccordingToTheirAvailabilityAndAdress(String ville){
 		List<Hopital> list = new ArrayList<Hopital>();
 		String hql = "select h from Hopital h where ville like ?1";
 		Query q = session.createQuery(hql);
-		q.setParameter(1, "%"+adresse + "%");
+		String[] currencies = ville.split(",");
+		currencies = currencies[0].split(" ");
+		currencies = currencies[0].split(";");
+		q.setParameter(1, "%"+ currencies[0].toLowerCase() + "%");
 		list = q.getResultList();
 		if (list.size() != 0) {
 			return list;

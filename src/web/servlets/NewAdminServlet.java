@@ -33,18 +33,18 @@ public class NewAdminServlet extends HttpServlet {
 			User u = Instances.userImpl.VerifyEmail(email);
 			
 			if (u == null) {
-				
-				String messages = " vous etes ajouter comme un admin dans l'application e-health est voici votre mot de pass -- ";
+				String password = Instances.send.generateRandomPassword(8);
+				String messages = " vous etes ajouter comme un admin dans l'application e-health est voici votre mot de pass -- " + password;
 				
 				User user = new User();
 				user.setEmail(email);
 				user.setFirstname(prenom);
 				user.setLastname(nom);
-				String password = Instances.send.generateRandomPassword(8);
+				
 				user.setPassword(password);
 				user.setTel(telephone);
 				user.setRole(Instances.roleDao.getById(1));
-				Instances.send.sendEMailToUser(messages, password, email);
+				Instances.send.sendEMailToUser(messages, email);
 				Instances.userDao.add(user);
 				
 				response.sendRedirect(request.getContextPath() + "/toAdminData");

@@ -43,7 +43,7 @@ public class HospitalFormServlet extends HttpServlet {
 		hopital.setName(name);
 		hopital.setTel(tel);
 		hopital.setEmail(email);
-		hopital.setVille(ville);
+		hopital.setVille(ville.toLowerCase());
 		hopital.setDispo(true);
 		
 		HttpSession session = request.getSession(false);

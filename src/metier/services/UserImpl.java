@@ -58,14 +58,14 @@ public class UserImpl {
 	}
 
 	public User VerifyEmail( String email) {
-    	String hql="select u from User u where u.email = :email ";
+    	String hql="select u from User u where email = :email ";
         Query query = session.createQuery( hql );
         query.setParameter("email", email);
-        User user = new User();
         List<User> list = query.getResultList();
         if (list.size() == 0) {
 			return null;
 		}else {
+			System.out.println("# 0" + list.get(0));
 			return list.get(0);
 		}
 		    		

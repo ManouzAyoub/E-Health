@@ -41,7 +41,6 @@ public class SignInServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
-		
 	}
 
 
@@ -59,7 +58,7 @@ public class SignInServlet extends HttpServlet {
         		response.sendRedirect( request.getContextPath() + SUCESS_ADMIN);
     			
     		} else if ( form.getErreurs().isEmpty() && visiter.getRole().getRole().equals("utilisateur") ) {
-        		
+        			System.out.println("utilisateur");
     				session.setAttribute("visiter", visiter);
     				response.sendRedirect( request.getContextPath() + SUCESS_USER);    			
             	

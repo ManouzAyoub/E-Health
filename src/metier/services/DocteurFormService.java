@@ -123,7 +123,7 @@ public class DocteurFormService {
         doctor.setConsultationDomicile(false);
         doctor.setAdmin_confirmation(false);
         doctor.setId("ChIJyRyt2um2sw0RdIT0i7fQ-Lw");
-        doctor.setVille(ville);
+        doctor.setVille(ville.toLowerCase());
         doctor.setFirst_using(false);
         doctor.setSpeciality(speciality);
 

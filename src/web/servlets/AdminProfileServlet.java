@@ -38,8 +38,10 @@ public class AdminProfileServlet extends HttpServlet {
 		
 		user.setEmail(email);
 		user.setTel(tel);
-		
+		System.out.println(acien_pass);
+		System.out.println(email);
 		User u = Instances.signInService.VerifyUser(email, acien_pass);
+		System.out.println("from admin profile " + u);
 		if ( u != null && session.getAttribute("admin") != null ) {
 			if (nv_pass.equals(confirmation_password) ) {
 				user.setPassword(nv_pass);

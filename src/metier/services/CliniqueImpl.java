@@ -19,12 +19,15 @@ public class CliniqueImpl {
 		
 	}
 	
-	public List<Clinique> getAllClinicsAccordingToTheirAvailabilityAndAdress(String adresse , Boolean bool){
+	public List<Clinique> getAllClinicsAccordingToTheirAvailabilityAndAdress(String ville , Boolean bool){
 		List<Clinique> list = new ArrayList<Clinique>();
 		String hql = "select c from Clinique c where dispo = :bool and  ville like ?1";
 		Query q = session.createQuery(hql);
 		q.setParameter("bool", bool);
-		q.setParameter(1, "%"+adresse + "%");
+		String[] currencies = ville.split(",");
+		currencies = currencies[0].split(" ");
+		currencies = currencies[0].split(";");
+		q.setParameter(1, "%"+ currencies[0].toLowerCase() + "%");
 		list = q.getResultList();
 		if (list.size() != 0) {
 			return list;

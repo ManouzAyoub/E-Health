@@ -31,7 +31,7 @@ public class SendEmailService {
 	    return instance;
 	}
 	
-	public static void sendEMailToUser(String messages, String password, String email) {
+	public static void sendEMailToUser(String message_envoyer, String email) {
 		String username = "healthapp775@gmail.com";
 		String pass = "health2021";
 		
@@ -61,9 +61,6 @@ public class SendEmailService {
 		} catch (MessagingException e3) {
 			e3.printStackTrace();
 		}
-		
-		
-		String message_envoyer = messages + " \n " + password ;
 		
 		try {
 			MimeBodyPart mimeBodyPart = new MimeBodyPart();

@@ -41,11 +41,15 @@ public class SendEmailServlet extends HttpServlet {
 				
 				Docteur docteur = Instances.docteurDao.getById(Long.valueOf(id));
 				
-				String message = "message envoyer au docteur dans l'email";
-				
 				String password = Instances.send.generateRandomPassword(8);
 				
-				Instances.send.sendEMailToUser(message, password, docteur.getEmail());
+				String message = "Votre demande a été traitée avec succès veuillez se connecter a votre compte en utilisant le mot de passe ci-dessous :\r\n"
+						+ "Mot de passe : "+ password +"\r\n"
+						+ "Ps:nous vous conseillons de changer ce mot de passe dès que vous êtes connectés";
+				
+				
+				
+				Instances.send.sendEMailToUser(message , docteur.getEmail());
 				
 				docteur.setPassword(password);
 				docteur.setAdmin_confirmation(true);
@@ -62,7 +66,7 @@ public class SendEmailServlet extends HttpServlet {
 				
 				String message_echeck = "message envoyer au docteur dans l'email erreeeeeeeeeeeeeeeeeeeeeeeeeeeeur";
 				
-				Instances.send.sendEMailToUser(message_echeck, " - ", email);
+				Instances.send.sendEMailToUser(message_echeck, email);
 				
 				response.sendRedirect( request.getContextPath() + "/toAdminData");
 				
@@ -74,11 +78,15 @@ public class SendEmailServlet extends HttpServlet {
 				
 				Clinique clinique = Instances.cliniqueDao.getById(Long.valueOf(id));
 				
-				String message = "message envoyer au docteur dans l'email";
-				
 				String password = Instances.send.generateRandomPassword(8);
 				
-				Instances.send.sendEMailToUser(message, password, clinique.getEmail());
+				String message = "Votre demande a été traitée avec succès veuillez se connecter a votre compte en utilisant le mot de passe ci-dessous :\r\n"
+						+ "Mot de passe : "+ password +"\r\n"
+						+ "Ps:nous vous conseillons de changer ce mot de passe dès que vous êtes connectés";
+				
+				
+				
+				Instances.send.sendEMailToUser(message, clinique.getEmail());
 				
 				clinique.setPassword(password);
 				clinique.setAdmin_confirmation(true);
@@ -97,7 +105,7 @@ public class SendEmailServlet extends HttpServlet {
 				
 				String message_echeck = "message envoyer au docteur dans l'email erreeeeeeeeeeeeeeeeeeeeeeeeeeeeur";
 				
-				Instances.send.sendEMailToUser(message_echeck, " - ", clinique.getEmail());
+				Instances.send.sendEMailToUser(message_echeck,  clinique.getEmail());
 				
 				response.sendRedirect( request.getContextPath() + "/toAdminData");
 			}

@@ -47,12 +47,16 @@ public class ToggleGarde extends HttpServlet {
 	           String checkbox = request.getParameter("etat");
 	           Docteur docteur = Instances.docteurDao.getById(Long.valueOf(id));
 	           if(checkbox != null) {
+	        	   System.out.println("true");
 	        	   docteur.setConger(true);
 	           }
 	           else{
+	        	   System.out.println("false");
 	        	  docteur.setConger(false); 
 	           }
 	    	   Docteur d = Instances.docteurDao.edit(docteur);
+	    	   System.out.println("result of change is " + d.getConger());
+	    	   session.setAttribute("docteur", d);
 	    	   response.sendRedirect( request.getContextPath() + "/DataDoctor");
 		}else {
 			response.sendRedirect(request.getContextPath() + "/Home");

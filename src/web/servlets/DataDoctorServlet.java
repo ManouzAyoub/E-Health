@@ -46,6 +46,7 @@ public class DataDoctorServlet extends HttpServlet {
 			request.setAttribute("commentaires", comments);
 			request.setAttribute("nbrsOfComments", numbersOfComments != null ? numbersOfComments : 0);
 			request.setAttribute("docteur", docteur);
+			request.setAttribute("docteurDao", Instances.docteurDao);
 			request.setAttribute("image", Base64.getEncoder().encodeToString(docteur.getProfile_image()));
 			List<Education> educations = Instances.educImpl.getEducationByDoctor(docteur);
 			List<Recomponse> recompences = Instances.recomImpl.getRecompenseByDoctor(docteur);

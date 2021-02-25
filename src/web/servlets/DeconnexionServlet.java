@@ -18,6 +18,7 @@ public class DeconnexionServlet extends HttpServlet {
 		if (session_visiter != null) {
 			if (session_visiter.getAttribute("visiter") != null) {
 				session_visiter.invalidate();
+				session_visiter.setMaxInactiveInterval(0);
 				response.sendRedirect(request.getContextPath() + "/Home");
 				return;
 			}
@@ -26,6 +27,7 @@ public class DeconnexionServlet extends HttpServlet {
 		if (session_docteur != null) {
 			if (session_docteur.getAttribute("docteur") != null) {
 				session_docteur.invalidate();
+				session_docteur.setMaxInactiveInterval(0);
 				response.sendRedirect(request.getContextPath() + "/Home");
 				return;
 			}
@@ -35,6 +37,7 @@ public class DeconnexionServlet extends HttpServlet {
 			if (session_admin.getAttribute("admin") != null) {
 				System.out.println(session_admin);
 				session_admin.invalidate();
+				session_admin.setMaxInactiveInterval(0);
 				System.out.println(session_admin);
 				System.out.println("la session existe ou pas ?");
 				response.sendRedirect(request.getContextPath() + "/Home");
@@ -45,6 +48,7 @@ public class DeconnexionServlet extends HttpServlet {
 		if (session_clinique != null) {
 			if (session_clinique.getAttribute("clinique") != null) {
 				session_clinique.invalidate();
+				session_clinique.setMaxInactiveInterval(0);
 				response.sendRedirect(request.getContextPath() + "/Home");
 				return;
 			}

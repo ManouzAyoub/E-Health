@@ -41,7 +41,7 @@ public class PharmacieFormServlet extends HttpServlet {
 		pharmacie.setName(name);
 		pharmacie.setTel(tel);
 		pharmacie.setEmail(email);
-		pharmacie.setVille(ville);
+		pharmacie.setVille(ville.toLowerCase());
 		pharmacie.setDispo(true);
 		pharmacie.setEn_garde(false);
 		HttpSession session = request.getSession(false);

@@ -23,8 +23,10 @@ public class PharmacieImpl  {
 		List<Pharmacie> list = new ArrayList<Pharmacie>();
 		String hql = "select p from Pharmacie p where ville like ?1";
 		Query q = session.createQuery(hql);
-		//q.setParameter("bool", bool);
-		q.setParameter(1, "%"+ ville + "%");
+		String[] currencies = ville.split(",");
+		currencies = currencies[0].split(" ");
+		currencies = currencies[0].split(";");
+		q.setParameter(1, "%"+ currencies[0].toLowerCase() + "%");
 		list = q.getResultList();
 		return list;
 	}

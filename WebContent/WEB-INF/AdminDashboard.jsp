@@ -184,7 +184,7 @@
                         </div>
                     </div>
                     <div class="card-form">
-                        <form method="POST" action="<c:url value="/AdminProfile"></c:url>">
+                        <form method="POST" action="<c:url value="AdminProfile"></c:url>">
                             <div class="form-group" style="display: none;">
                                 <label for="exampleInputEmail1">ID</label>
                                 <input type="text" name="id" value="${sessionScope.admin.cin}" class="form-control" id="exampleInputEmail1" placeholder="id">

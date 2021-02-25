@@ -42,15 +42,16 @@ public class SignInFormService {
 		}
 
 		public User VerifyUser( String email,String password) {
-	    	String hql="select u from User u where u.email = :email AND u.password = :password";
+	    	String hql="select u from User u where email = :email and password = :password";
 	        Query query = session.createQuery( hql );
 	        query.setParameter("email", email);
 	        query.setParameter("password", password);
-	        User user = new User();
 	        List<User> list = query.getResultList();
 	        if (list.size() == 0) {
+	        	System.out.println("---------> "+list.size());
 				return null;
 			}else {
+				System.out.println("from verify user " + list.get(0).getEmail() + "  "+list.get(0).getPassword());
 				return list.get(0);
 			}
     		    		

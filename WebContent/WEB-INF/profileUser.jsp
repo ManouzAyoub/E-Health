@@ -4,8 +4,6 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <!--  This file has been downloaded from bootdey.com    @bootdey on twitter -->
-  <!--  All snippets are MIT license http://bootdey.com/license -->
   <title>${user.firstname} ${user.lastname}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap CDN -->
@@ -118,7 +116,7 @@
         <div class="col-lg-12">
           <div class="d-flex justify-content-center">
             <label id="modifierInfoModif" class="btn btn-info" onclick="activeInfoModif()">Modifier</label>
-            <label id="enregistrerInfoModif" name="changeInfo" type="submit" class="btn btn-info" style="display: none;">Enregistrer</label>
+            <button id="enregistrerInfoModif" name="changeInfo" value="info" type="submit" class="btn btn-info" style="display: none;">Enregistrer</button>
             <label id="anullerInfoModif" class="btn btn-info ml-3" onclick="reloadPage()" style="display: none;">Annuler</label>
           </div>
         </div>
@@ -150,7 +148,7 @@
               <input type="password" name="new_pass" class="passInput form-control" disabled>
             </div>
           </div>
-
+	
           <div class="row form-group">
             <label class="col-lg-4 control-label">Confirmation password</label>
             <div class="col-lg-8">
@@ -160,12 +158,12 @@
 
         </div>
       </div>
-
+	<input type="hidden" name="email_pass" value="${user.email}" class="infoInput form-control">
       <div class="row py-2">
         <div class="col-lg-12">
           <div class="d-flex justify-content-center">
             <label id="modifierPassModif" class="btn btn-info" onclick="activePassModif()">Modifier</label>
-            <label id="enregistrerPassModif" name="changeInfo" type="submit" class="btn btn-info" style="display: none;">Enregistrer</label>
+            <button id="enregistrerPassModif" name="changePass" value="pass"type="submit" class="btn btn-info" style="display: none;">Enregistrer</button>
             <label id="anullerPassModif" class="btn btn-info ml-3" onclick="reloadPage()" style="display: none;">Annuler</label>
           </div>
         </div>

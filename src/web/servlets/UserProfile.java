@@ -27,37 +27,59 @@ public class UserProfile extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		String telephone = request.getParameter("tel");
-		String email = request.getParameter("email");
-		String new_pass = request.getParameter("new_pass");
-		String last_pass = request.getParameter("last_pass");
-		String confirmation = request.getParameter("confirmation");
+		String changeInfo = request.getParameter("changeInfo");
+		String changePass = request.getParameter("changePass");
+		System.out.println("pass"+changePass);
+		System.out.println("info"+changeInfo);
+		
+		
 		
 		HttpSession session = request.getSession(false);
 		
-		if (session.getAttribute("visiter") != null) {
-			User user = Instances.signInService.VerifyUser(email, last_pass);
-			
+		if (session.getAttribute("visiter") != null && changeInfo != null ) {
+			String nom = request.getParameter("nom");
+			String prenom = request.getParameter("prenom");
+			String telephone = request.getParameter("tel");
+			String email = request.getParameter("email");
+			String last_pass = request.getParameter("last_pass");
+			User u = Instances.userImpl.VerifyEmail(email);
+			if (u != null) {
+				u.setFirstname(prenom);
+				u.setLastname(nom);
+				u.setTel(telephone);
+				User uu = Instances.userDao.edit(u);
+				request.setAttribute("user", uu);
+				session.setAttribute("visiter", uu);
+				response.sendRedirect(request.getContextPath() + "/UserProfile");
+			} else {
+				response.sendRedirect(request.getContextPath() + "/Home");
+			}
+		}
+		
+		
+		//pass
+		if (session.getAttribute("visiter") != null && changePass != null ) {
+			String email_pass = request.getParameter("email_pass");
+			String last_pass = request.getParameter("last_pass");
+			String new_pass = request.getParameter("new_pass");
+			String confirmation = request.getParameter("confirmation");
+			User user = Instances.signInService.VerifyUser(email_pass,last_pass);
+			System.out.println("pas de :: "+user);
 			if (user != null) {
 				if (new_pass.equals(confirmation)) {
-					user.setFirstname(prenom);
-					user.setLastname(nom);
+					System.out.println("les mot de pass sont egaux");
 					user.setPassword(new_pass);
-					user.setTel(telephone);
-					User u = Instances.userDao.edit(user);
-					request.setAttribute("user", u);
-					session.setAttribute("visiter", u);
+					User u_pass = Instances.userDao.edit(user);
+					request.setAttribute("user", u_pass);
+					session.setAttribute("visiter", u_pass);
 					response.sendRedirect(request.getContextPath() + "/UserProfile");
 				}
 			} else {
 				request.setAttribute("user", session.getAttribute("visiter"));
-				response.sendRedirect(request.getContextPath() + "/UserProfile");
+				response.sendRedirect(request.getContextPath() + "/Home");
 			}
-		} else {
-			response.sendRedirect(request.getContextPath() + "/Home");
 		}
+		
 	}
-
+	
 }

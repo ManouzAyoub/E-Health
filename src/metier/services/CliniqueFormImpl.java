@@ -59,7 +59,7 @@ public class CliniqueFormImpl {
      }
      clinic.setName(name);
      clinic.setFirst_using(false);
-     clinic.setVille(ville);
+     clinic.setVille(ville.toLowerCase());
      
      try {
          validationAddress( adresse );
