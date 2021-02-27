@@ -228,6 +228,9 @@ function initMap() {
                 map: new google.maps.Map(document.getElementById("map"), {
                 center: place.geometry.location,
                 zoom: 15,
+                streetViewControl: false,
+                scaleControl: true,
+                mapTypeControl: false
                 })
             });
 

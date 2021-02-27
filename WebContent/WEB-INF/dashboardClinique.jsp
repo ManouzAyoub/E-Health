@@ -226,12 +226,12 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <c:if test="${comments.isEmpty()}">
-                                    <img src="<c:url value="/inc/images/noCommentPic.png"></c:url>" class="center" width="200px"></td>
+                                <c:if test="${comments.isEmpty() || comments == null}">
+                                    <img src="<c:url value="/inc/images/noCommentPic.png"></c:url>" class="center" width="200px">
                                     <h2 style="text-align: center;">Pas de commentaires !</h2>
                                 </c:if>
 
-                                <c:if test="${!comments.isEmpty()}">
+                                <c:if test="${comments != null}">
                                     <table width="100%">
                                         <thead>
                                             <tr>
@@ -299,13 +299,13 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <c:if test="${comments.isEmpty()}">
+                            <c:if test="${comments.isEmpty() || comments == null}">
                                 <img src="<c:url value="/inc/images/noCommentPic.png"></c:url>" class="center" width="250px"></td>
                                 <h2 style="text-align: center;">Pas de commentaires !</h2>
                             </c:if>
                             
 
-                            <c:if test="${!comments.isEmpty()}">
+                            <c:if test="${comments != null}">
                                 <table width="100%" >
                                     <thead>
                                         <tr>
@@ -489,25 +489,30 @@
                         
                        </div> 
                         <div class="inputfield">
-                          <label>Spécialité :</label>
-                         <div class="custom_select">
-                              <select name="speciality">
-                                <c:forEach var="specia" items="${Instances.specialities()}">
-                                
-                                    <option value="${specia}" ${clinique.speciality.equals(specia) ? 'selected' : '' } }>${specia}</option>
-                                </c:forEach>
-                               </select>
-                          </div>
-                       </div> 
-                       <div class="inputfield">
-                       		<label>ID de Localisation :</label>
-                        	<input type="text" name="id_localisation" value="${clinique.id}" class="input" style="margin-left: 25px;">
+                            <label>Spécialité :</label>
+                            <div class="custom_select">
+                                <select name="speciality">
+                                    <c:forEach var="specia" items="${Instances.specialities()}">
+                                    
+                                        <option value="${specia}" ${clinique.speciality.equals(specia) ? 'selected' : '' } }>${specia}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div> 
+                        <div class="inputfield">
+                       		<label>ID de Localisation:</label>
+                        	<input type="text" name="id_localisation" value="${clinique.id}" class="input" style="margin-left: 37px;">
                             <span id="Trouverplace_id" onclick="Trouverplace_id()" >Trouver id</span>
-                       </div>
+                            <span id="findplace_id" onclick="hundleComment()">Comment?</span>
+                        </div>
                        
-                      <div class="inputfield">
-                        <input type="submit" value="Enregistrer" class="btn">
-                      </div>
+                        <div class="inputfield" id="findPlace" style="display: none;">
+                           <img src="<c:url value="/inc/images/findIdCliniquePic.png"></c:url>" class="center" width="500px">
+                        </div>
+                       
+                        <div class="inputfield">
+                            <input type="submit" value="Enregistrer" class="btn">
+                        </div>
                     </div> 
                 </div>
             </form>
@@ -563,8 +568,16 @@
             popup.classList.toggle("active");
             blured.classList.toggle("popup_section1");
             burgerBtn.click();
-
         });
+
+        function hundleComment() {
+            var image = document.getElementById("findPlace");
+            if(image.style.display == "none"){
+                image.style.display = "block";
+            }else {
+                image.style.display = "none";
+            }
+        }
 
         for (var i=0 ,len=closepop.length; i<len ;i++){
             closepop[i].addEventListener("click",()=>{

@@ -706,7 +706,22 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="gif">
+                                <div class="demmande_card">
+                                    <div class="card-header">
+                                        <h3>Obtenir id de localisation :</h3>
+                                    </div>
+                                    <div class="demmande_card">
+                                        
+                                        <img src="<c:url value="/inc/images/findIdDocPic.png"></c:url>" class="center" width="300px">
+    
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
+
                     </form>
                     <!-- !Localisation du cabinet section -->
                 

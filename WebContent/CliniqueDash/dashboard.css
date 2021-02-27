@@ -17,13 +17,38 @@
 #Trouverplace_id {
   background: var(--main-color);
   border-radius: 10px;
-  width: 150px;
+  width: 130px;
   text-align: center;
   color: #fff;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   margin-left: 0.5rem;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--main-color);
+  padding: 0.5rem 0.5rem;
+  border: 0.5px solid var(--main-color);
+  cursor: pointer;
+}
+
+#Trouverplace_id:hover {
+  background:  #fff;
+  color: var(--main-color);
+}
+
+
+#findplace_id {
+  background: var(--main-color);
+  border-radius: 10px;
+  width: 130px;
+  text-align: center;
+  color: #fff;
+  font-size: 0.7rem;
+  margin-left: 0.5rem;
+  padding: 0.5rem 0.5rem;
+  border: 0.5px solid var(--main-color);
+  cursor: pointer;
+}
+
+#findplace_id:hover {
+  background:  #fff;
+  color: var(--main-color);
 }
 
 .styleIcon {
