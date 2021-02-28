@@ -26,7 +26,7 @@ public class VisiterFormServlet extends HttpServlet {
     public static final String ATT_ERROR        = "erreurs";
 
     public static final String VUE              = "/WEB-INF/VisiterForm.jsp";
-    public static final String SUCESS           = "/WEB-INF/Home.jsp";
+    public static final String SUCESS           = "/Home";
     
     Role role=new Role();
     
@@ -58,7 +58,7 @@ public class VisiterFormServlet extends HttpServlet {
     	            
     	            Instances.userDao.add( visiter );
 
-    	            this.getServletContext().getRequestDispatcher( SUCESS ).forward( request, response );
+    	            response.sendRedirect(request.getContextPath() + SUCESS);
 
     	        } else {
     	            this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );

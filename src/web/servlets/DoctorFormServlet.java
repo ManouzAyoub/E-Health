@@ -43,6 +43,7 @@ public class DoctorFormServlet extends HttpServlet {
 
     protected void doPost( HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
     	 DocteurFormService form = new DocteurFormService();
+    	 form.getErreurs().clear();
          Docteur doctor = form.doctorFormService(request);
          RoleImpl roleimpl=RoleImpl.getInstance(); 
          RoleDao roledao=RoleDao.getInstance();
@@ -68,7 +69,7 @@ public class DoctorFormServlet extends HttpServlet {
              
 
          } else {
-        	 System.out.print(form.getErreurs());
+        	 
              this.getServletContext().getRequestDispatcher( VUE ).forward( request, response );
 
          }

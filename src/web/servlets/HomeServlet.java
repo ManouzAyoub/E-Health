@@ -29,21 +29,7 @@ public class HomeServlet extends HttpServlet {
     
     @Override
     public void init() throws ServletException {
-    	roles = Instances.roleDao.getAll();
-    	if (roles.size() == 0) {
-    		AjouterLesRoles("admin","desc");
-    		AjouterLesRoles("docteur","desc");
-    		AjouterLesRoles("clinique","desc");
-    		AjouterLesRoles("utilisateur","desc");
-		}
-    	List<Langue> languages = Instances.langueDao.getAll();
-    	if (languages.size() == 0) {
-			AjouterLangues(langues);
-		}
     	
-    	if ( Instances.userDao.getAll().size() == 0 ) {
-			AjouterAdmin();
-		}
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -73,30 +59,6 @@ public class HomeServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	public void AjouterLesRoles(String role , String description) {
-		Role r = new Role();
-		r.setDescription(description);
-		r.setRole(role);
-		Instances.roleDao.add(r);
-	}
 	
-	public void AjouterLangues(String[] langues) {
-		for (int i = 0; i < langues.length; i++) {
-			Langue langue = new Langue();
-			langue.setLangue(langues[i]);
-			Instances.langueDao.add(langue);
-		}
-	}
-	
-	public void AjouterAdmin() {
-		User user = new User();
-		Role role = Instances.roleDao.getById(1);
-		user.setEmail("admin@gmail.com");
-		user.setFirstname("youssef");
-		user.setLastname("el gourari");
-		user.setPassword("admin");
-		user.setRole(role);
-		Instances.userDao.add(user);
-	}
 
 }

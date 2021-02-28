@@ -16,6 +16,9 @@ import metier.dao.Implementations.RecompenceDao;
 import metier.dao.Implementations.RoleDao;
 import metier.dao.Implementations.UserDao;
 import metier.dao.beans.Docteur;
+import metier.dao.beans.Langue;
+import metier.dao.beans.Role;
+import metier.dao.beans.User;
 import metier.services.CliniqueImpl;
 import metier.services.CommentaireImpl;
 import metier.services.DocteurImpl;
@@ -145,6 +148,32 @@ public class Instances {
 		} else {
 			return null;
 		}
+	}
+	
+	public static void AjouterLesRoles(String role , String description) {
+		Role r = new Role();
+		r.setDescription(description);
+		r.setRole(role);
+		Instances.roleDao.add(r);
+	}
+	
+	public static void AjouterLangues(String[] langues) {
+		for (int i = 0; i < langues.length; i++) {
+			Langue langue = new Langue();
+			langue.setLangue(langues[i]);
+			Instances.langueDao.add(langue);
+		}
+	}
+	
+	public static void AjouterAdmin() {
+		User user = new User();
+		Role role = Instances.roleDao.getById(1);
+		user.setEmail("admin@gmail.com");
+		user.setFirstname("youssef");
+		user.setLastname("el gourari");
+		user.setPassword("admin");
+		user.setRole(role);
+		Instances.userDao.add(user);
 	}
 
 }
