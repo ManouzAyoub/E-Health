@@ -44,6 +44,8 @@ public class VisiterFormServlet extends HttpServlet {
     		 	System.out.println("test");
     		 
     		 	UserImpl form = UserImpl.getInstance();
+    		 	
+    		 	form.getErreurs().clear();
     	        
     	    	User visiter = Instances.userImpl.visitorFormService( request );
 

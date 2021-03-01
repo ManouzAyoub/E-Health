@@ -42,7 +42,7 @@ public class ClinicFormServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		CliniqueFormImpl form     = CliniqueFormImpl.getInstance();
-        
+		form.getErreurs().clear();
     	Clinique clinic           = form.clinicFormService(request);
 
         request.setAttribute( ATT_CLINIC, clinic );
