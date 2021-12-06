@@ -17,6 +17,7 @@ public class CliniqueDao implements functionStd<Clinique, Long> {
 	
 	@Override
 	public Clinique add(Clinique a) {
+		System.out.println("Ajouter nouveau clinique");
 		session.beginTransaction();
 		session.save(a);
 		session.getTransaction().commit();
