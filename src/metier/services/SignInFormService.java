@@ -50,8 +50,10 @@ public class SignInFormService {
 	        if (list.size() == 0) {
 	        	System.out.println("---------> "+list.size());
 				return null;
+				
 			}else {
 				System.out.println("from verify user " + list.get(0).getEmail() + "  "+list.get(0).getPassword());
+				System.out.println("---------> "+list.size());
 				return list.get(0);
 			}
     		    		
