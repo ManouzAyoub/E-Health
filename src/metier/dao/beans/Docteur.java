@@ -20,7 +20,7 @@ import javax.persistence.Transient;
 @Entity
 @PrimaryKeyJoinColumn(name = "cin")
 public class Docteur extends User{
-	
+       private String username;	
 	    private String speciality;
 	    private String adresse;
 	    private String heureDepart;
