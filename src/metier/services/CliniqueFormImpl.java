@@ -48,7 +48,7 @@ public class CliniqueFormImpl {
      String speciality = request.getParameter( CHAMP_SPECIALITY );
      String ville = request.getParameter( CHAMP_VILLE );
      
-     //System.out.print("sssssss"+speciality[0]);
+     System.out.print("sssssss"+speciality[0]);
 
      Clinique clinic = new Clinique();
      
