@@ -31,6 +31,7 @@ public class LangueImpl {
     	query.setParameter("name", name);
     	List<Langue> langue = query.getResultList();
     	if (langue.size() != 0) {
+		System.out.println("---------> "+langue.size());
     		return langue.get(0);
 		}else {
 			return null;
